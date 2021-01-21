@@ -1,13 +1,17 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Container, CssBaseline, Typography } from '@material-ui/core';
+import { makeStyles, createStyles, useTheme, Theme } from '@material-ui/core/styles';
 //import './App.css';
+import DenseAppBar from './components/DenseAppBar';
+import SimpleContainer from './components/SimpleContainer';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     textAlign: "center",
-    height: '100vh',
-    margin: 0,
+    //height: '100vh',
+    //minHeight: '50vh',
+    //maxHeight: '100vh',
+    //margin: 0,
     color: theme.palette.text.primary,
     fontFamily: theme.typography.fontFamily,
     backgroundColor: theme.palette.background.default,
@@ -21,7 +25,10 @@ export default function App() {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" className={classes.root}>Sysco Digital Onboarding</Typography>
+
+      {/* <Typography variant="h1" className={classes.root}>Sysco Digital Onboarding</Typography> */}
+      <DenseAppBar/>
+      <SimpleContainer/>
     </div>
   );
 }
