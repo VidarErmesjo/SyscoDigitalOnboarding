@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Typography } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+//import './App.css';
 
-function App() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    textAlign: "center",
+    height: '100vh',
+    margin: 0,
+    color: theme.palette.text.primary,
+    fontFamily: theme.typography.fontFamily,
+    backgroundColor: theme.palette.background.default,
+  },
+}));
+
+export default function App() {
+  const classes = useStyles();
+  //const theme = useTheme();
+  //console.log(theme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.root}>
+      <Typography variant="h1" className={classes.root}>Sysco Digital Onboarding</Typography>
     </div>
   );
 }
-
-export default App;
