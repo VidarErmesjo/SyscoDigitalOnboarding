@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, CssBaseline, Typography } from '@material-ui/core';
-import { makeStyles, createStyles, useTheme, Theme } from '@material-ui/core/styles';
-//import './App.css';
+import { Box, Container, CssBaseline, Fab, Typography } from '@material-ui/core';
+import { makeStyles, createStyles, useTheme, Theme, ThemeProvider } from '@material-ui/core/styles';
+//import { UpIcon } from '@material-ui/icons';
+import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DenseAppBar from './components/DenseAppBar';
 import SimpleContainer from './components/SimpleContainer';
 
@@ -9,12 +10,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     textAlign: "center",
     //height: '100vh',
-    //minHeight: '50vh',
-    //maxHeight: '100vh',
-    //margin: 0,
+    maxWidth: '100vw',
     color: theme.palette.text.primary,
     fontFamily: theme.typography.fontFamily,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: '#000', //theme.palette.background.default,
+  },
+  fabIcon: {
+    float: 'right',
+    backgroundColor: theme.palette.secondary.light,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.dark,
+    },
   },
 }));
 
@@ -24,11 +30,13 @@ export default function App() {
   //console.log(theme);
 
   return (
-    <div className={classes.root}>
-
+    <Container className={classes.root}>
       {/* <Typography variant="h1" className={classes.root}>Sysco Digital Onboarding</Typography> */}
       <DenseAppBar/>
-      <SimpleContainer/>
-    </div>
+
+      <Fab className={classes.fabIcon}>
+        <UpIcon/>
+      </Fab>
+    </Container>
   );
 }

@@ -32,7 +32,7 @@ export const theme = createMuiTheme({
         },
   
         background: {
-            default: '#121921', // Sysco black
+            default: '#000',//'#121921', // Sysco black
             paper: '#FFF',
          },
     },
