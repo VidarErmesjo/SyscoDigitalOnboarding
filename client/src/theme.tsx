@@ -1,46 +1,41 @@
 import { createMuiTheme } from '@material-ui/core/styles';
   
-export const theme = createMuiTheme({
+const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#121921',
-        },
-  
+            main: '#121921',    // Sysco Black
+        },  
         secondary: {
-            main: '#00FF97',
-        },
-  
+            main: '#00FF97',    // Sysco Green
+        },  
         error: {
-            main: '#FF4E00',
-        },
-  
+            main: '#FF4E00',    // Sysco Red
+        },  
         warning: {
-            main: '#FFF200',
-        },
-  
+            main: '#FFF200',    // Sysco Yellow
+        },  
         info: {
-            main: '#27F7FF',
-        },
-  
+            main: '#27F7FF',    // Sysco Blue
+        },  
         success: {
-            main: '#00FF97',
+            main: '#00FF97',    // Sysco Green
         },
-
         text: {
-            primary: '#FFF',
-            secondary: '#000',
-        },
-  
+            primary: '#FFF',    // White
+            secondary: '#000',  // Black
+        },  
         background: {
-            default: '#000',//'#121921', // Sysco black
-            paper: '#FFF',
+            default: '#000',    // Black
+            paper: '#FFF',      // White
          },
     },
-
     typography: {
-        fontFamily: "Arial",
+        fontFamily: "Arial Regular",
     },
-
+    overrides: {
+    },
     props: {
     }
 });
+
+export default theme;

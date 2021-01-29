@@ -6,6 +6,8 @@ import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import DenseAppBar from './components/DenseAppBar';
 import SimpleContainer from './components/SimpleContainer';
 
+import Dashboard from './containers/Home/Dashboard';
+
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     textAlign: "center",
@@ -26,17 +28,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function App() {
   const classes = useStyles();
-  //const theme = useTheme();
-  //console.log(theme);
 
   return (
-    <Container className={classes.root}>
-      {/* <Typography variant="h1" className={classes.root}>Sysco Digital Onboarding</Typography> */}
-      <DenseAppBar/>
 
-      <Fab className={classes.fabIcon}>
-        <UpIcon/>
-      </Fab>
-    </Container>
+      <Dashboard/>
+
   );
 }
