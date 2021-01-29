@@ -75,7 +75,10 @@ export default function Menu(props: any) {
 					<List
 						role="presentation"
 						onClick={toggleMenu}
-						className={classes.list}>{menuListItems}</List>
+						className={classes.list}
+					>
+						{menuListItems}
+					</List>
 				</Drawer>					
 			</React.Fragment>
 		</div>
