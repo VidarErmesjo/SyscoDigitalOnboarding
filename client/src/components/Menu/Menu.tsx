@@ -1,4 +1,7 @@
-import React from 'react';
+// React
+import React, { useContext } from 'react';
+
+// Material UI
 import {
 	createStyles,
 	Divider,
@@ -11,6 +14,7 @@ import {
 	Theme,
 } from '@material-ui/core';
 
+// Material Icons
 import {
 	Clear as ClearIcon,
 	DateRange as DateRangeIcon,
@@ -20,6 +24,8 @@ import {
 	Timer as TimerIcon,
 } from '@material-ui/icons';
 
+// App
+import { AppContext } from "./../../AppContext";
 import { menuListItems } from './../../menuListItems';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,54 +39,25 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Menu(props: any) {
-	const { open, toggleMenu } = props;
+export default function Menu() {
 	const classes = useStyles();
+	const [isMenuOpen, setIsMenuOpen] = useContext(AppContext);
 
-	const list = (
-		<div
-			role="presentation"
-			className={classes.list}
-			onClick={toggleMenu}
-		>
-			<List>
-				{['One', 'Two', 'Three'].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index === 0 ? <TimerIcon/> : index === 1 ? <RotateRightIcon/> : <DateRangeIcon/> }</ListItemIcon>
-						<ListItemText primary={text}/>
-					</ListItem>
-				))}
-			</List>
-			<Divider/>
-			<List>
-				{['Four', 'Five', 'Six'].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index === 0 ? <ClearIcon color="secondary"/> : index === 1 ? <LocationOnIcon/> : <SearchIcon/> }</ListItemIcon>
-						<ListItemText primary={text}/>
-					</ListItem>
-				))}
-			</List>
-		</div>
-	);
-
-	return (
-		<div>
-			<React.Fragment>
-				<Drawer
-					anchor="left"
-					open={open}
-					onClose={toggleMenu}
+	return (	
+		<React.Fragment>
+			<Drawer
+				anchor="left"
+				open={isMenuOpen}
+				onClose={() => setIsMenuOpen((state: boolean) => false)}
 				>
-					{/* {list} */}
-					<List
-						role="presentation"
-						onClick={toggleMenu}
-						className={classes.list}
+				<List
+					role="presentation"
+					onClick={() => setIsMenuOpen((state: boolean) => !isMenuOpen)}
+					className={classes.list}
 					>
-						{menuListItems}
-					</List>
-				</Drawer>					
-			</React.Fragment>
-		</div>
+					{menuListItems}
+				</List>
+			</Drawer>					
+		</React.Fragment>
 	);
 }

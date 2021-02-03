@@ -11,7 +11,7 @@ import {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textPrimary" align="center">
+    <Typography variant="body1" color="textPrimary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="http://student.cs.hioa.no/~s318075/Bachelorprosjekt/">
         Bachelorprosjekt
@@ -37,25 +37,17 @@ const useStyles = makeStyles((theme: Theme) =>
       top: 'auto',
       bottom: 0,
     },
-		list: {
-			width: 'auto',
-			height: '100vh',
-			color: theme.palette.text.primary,
-			backgroundColor: theme.palette.primary.dark,
-		},
 	}),
 );
 
-export default function() {
+export default function Footer() {
 	const classes = useStyles();
 
 	return (
 		<div className={classes.root}>
 			<AppBar position="fixed" color="primary" className={classes.appBar}>
 				<Toolbar variant="dense">
-					{/* <Typography component="h1" variant="h6">Footer</Typography> */}
 					<Copyright/>
-
 				</Toolbar>
 			</AppBar>
 		</div>
