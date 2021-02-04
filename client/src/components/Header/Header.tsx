@@ -4,7 +4,7 @@ import {
     Badge,
     createStyles,
     Divider,
-    Drawer,
+	Drawer,
     IconButton,
     Link,
     List,
@@ -22,88 +22,87 @@ import {
 
 import { AppContext } from '../../AppContext';
 
-  const drawerWidth = 250;
-  const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.background.default,
-    },
-    title: {
-      display: 'flex',
-      flexGrow: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    appBar: {
-		position: 'absolute',
-        display: 'flex',
-		flexGrow: 1,
-		top: 0,
-    },
-    badge: {
-      color: theme.palette.primary.light,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-    },
-    drawerPaper: {
-      position: 'relative',
-      whiteSpace: 'nowrap',
-      width: drawerWidth,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-
-	fabIcon: {
-		float: 'right',
-		backgroundColor: theme.palette.secondary.light,
-		'&:hover': {
-			backgroundColor: theme.palette.secondary.dark,
+const drawerWidth = 250;
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			display: 'flex',
+			color: theme.palette.primary.main,
+			backgroundColor: theme.palette.background.default,
 		},
-	},	
-    menuButton: {
-      marginRight: 36,
-    },
-    menuButtonHidden: {
-      display: 'none',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(2),
-      display: 'flex',
-      overflow: 'auto',
-      flexDirection: 'column'
-    },
-    toolbar: {
-      //paddingRight: 24, // keep right padding when drawer closed
-    },
-    toolbarIcon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      //padding: '0 8px',
-      ...theme.mixins.toolbar,
-    },
-  }),
+		title: {
+			display: 'flex',
+			flexGrow: 1,
+			alignItems: 'center',
+			justifyContent: 'center',
+		},
+		appBar: {
+			//position: 'absolute',
+			display: 'flex',
+			flexGrow: 1,
+			top: 0,
+			//marginBottom: 80,
+		},
+		badge: {
+			color: theme.palette.primary.light,
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'flex-end',
+		},
+		drawerPaper: {
+			position: 'relative',
+			whiteSpace: 'nowrap',
+			width: drawerWidth,
+			transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+			}),
+		},
+		fabIcon: {
+			float: 'right',
+			backgroundColor: theme.palette.secondary.light,
+			'&:hover': {
+				backgroundColor: theme.palette.secondary.dark,
+			},
+		},	
+		paper: {
+			backgroundColor: theme.palette.background.default,
+			padding: theme.spacing(2),
+			display: 'flex',
+			overflow: 'auto',
+			flexDirection: 'column'
+		},
+		toolbar: {
+			//paddingRight: 24, // keep right padding when drawer closed
+		},
+		toolbarIcon: {
+			//color: theme.palette.primary.light,
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'flex-start',
+		},
+		offset: theme.mixins.toolbar,
+	}),
 );
 
 export default function Header() {
 	const classes = useStyles();
 	const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
+
 	return (
-		<div className={classes.root}>
+		<React.Fragment>
 			<AppBar position="fixed" className={classes.appBar}>
 				<Toolbar variant="dense" className={classes.toolbar}>
 					<IconButton
+						color="inherit"
 						edge="start"
-						aria-label="open menu"
+						aria-label="menu"
 						onClick={() => setIsMenuOpen((state: boolean) => true)}
 						>
-						<MenuIcon color="secondary"/>
+						<MenuIcon
+							className={classes.toolbarIcon}
+							color="secondary"
+							/>
 					</IconButton>
 					<Typography
 						component="h1"
@@ -113,18 +112,21 @@ export default function Header() {
 						>
 						Sysco Digital Onboarding
 					</Typography>
-					<IconButton>
+					<IconButton
+						aria-label="notification badge"
+						color="inherit"
+						onClick={() => setBadgeCount((count: number) => count - 1)}
+						>
 						<Badge
 							badgeContent={badgeCount}
 							className={classes.badge}
 							color="secondary"
-							onClick={() => setBadgeCount((count: number) => count - 1)}
 							>
 							<NotifiactionsIcon/>
 						</Badge>
 					</IconButton>
 				</Toolbar>
 			</AppBar>
-		</div>
+		</React.Fragment>
 	);
 }

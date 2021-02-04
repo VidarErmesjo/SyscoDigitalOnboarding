@@ -6,6 +6,7 @@ import {
 	createStyles,
 	Divider,
 	Drawer,
+	Fab,
 	Grid,
 	IconButton,
 	Link,
@@ -33,28 +34,34 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
+			flexGrow: 1,
 			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.background.default,
 		},
-		paper: {
-			padding: theme.spacing(2),
-			textAlign: 'center',
-			color: theme.palette.text.secondary,
-		},
+		fabIcon: {
+			bottom: 0,
+			//float: 'right',
+			backgroundColor: theme.palette.secondary.light,
+			'&:hover': {
+				backgroundColor: theme.palette.secondary.dark,
+			},
+		},	
 	}),
 );
 
 export default function Dashboard() {
 	const classes = useStyles();
-	const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
+	//const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
 
 	return (
 		<div className={classes.root}>	
-
 			<Header/>
 			<Content/>
 			<Footer/>
 			<Menu/>
+			{/* <Fab color="secondary" className={classes.fabIcon}>
+				<ClearIcon/>
+			</Fab> */}
 		</div>
 	);
 }
