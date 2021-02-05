@@ -18,6 +18,10 @@ import {
     Typography,
 } from '@material-ui/core';
 
+import { Gradient } from '@material-ui/icons';
+
+import Progress from './Progress';
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         stepper: {
             color: theme.palette.text.primary,
-            backgroundColor: 'transparent',
+            backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
         },
 		fabIcon: {
 			float: 'right',
@@ -80,19 +84,26 @@ export default function Content() {
     return (
         <React.Fragment>
             <Grid container spacing={4} className={classes.content}>
+                {/* <Grid item xs={12}>
+
+                    <Stepper nonLinear activeStep={3} className={classes.stepper}>
+                        {steps.map((label, index) => (
+                            <Step key={label}>
+                                <StepButton completed={true}>
+                                    <Typography color="textPrimary" variant="caption">
+                                        {label}
+                                    </Typography>
+                                </StepButton>
+                            </Step>
+                        ))}
+                    </Stepper>
+
+                </Grid> */}
+
                 <Grid item xs={12}>
-
-                <Stepper nonLinear activeStep={1} className={classes.stepper}>
-                    {steps.map((label, index) => (
-                        <Step key={label}>
-                            <StepButton completed={true}>
-                                {label}
-                            </StepButton>
-                        </Step>
-                    ))}
-                </Stepper>
-
+                    <Progress/>
                 </Grid>
+
                 <Grid item xs={6}>EMPTY</Grid>
                 <Grid item xs={6}>
                     <Paper elevation={elevation} className={classes.paper}>
@@ -113,6 +124,11 @@ export default function Content() {
                 </Grid>
                 <Grid item xs={3}>EMPTY</Grid>
                 <Grid item xs={3}>ALSO EMPTY</Grid>
+                <Grid item xs={12}>
+                    <Fab className={classes.fabIcon}>
+                        OK
+                    </Fab>
+                </Grid>
             </Grid>
         </React.Fragment>
     );
