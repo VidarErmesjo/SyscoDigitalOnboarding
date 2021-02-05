@@ -18,6 +18,7 @@ const theme = createMuiTheme({
         },  
         info: {
             main: '#27F7FF',    // Sysco Blue
+            //backgroundImage: 'linear-gradient( 136deg, #79FFFF 0%, #27F7FF 50%, #00C4CC 100%)',
         },  
         success: {
             main: '#00FF97',    // Sysco Green

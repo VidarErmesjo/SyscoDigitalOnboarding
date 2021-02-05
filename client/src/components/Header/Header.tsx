@@ -87,7 +87,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Header() {
 	const classes = useStyles();
-	const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
+	//const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
+	const { toggleMenu, decrement, badgeCount } = useContext(AppContext);
 
 	return (
 		<React.Fragment>
@@ -97,7 +98,8 @@ export default function Header() {
 						color="inherit"
 						edge="start"
 						aria-label="menu"
-						onClick={() => setIsMenuOpen((state: boolean) => true)}
+						//onClick={() => setIsMenuOpen((state: boolean) => true)}
+						onClick={toggleMenu}
 						>
 						<MenuIcon
 							className={classes.toolbarIcon}
@@ -115,7 +117,8 @@ export default function Header() {
 					<IconButton
 						aria-label="notification badge"
 						color="inherit"
-						onClick={() => setBadgeCount((count: number) => count - 1)}
+						//onClick={() => setBadgeCount((count: number) => count - 1)}
+						onClick={decrement}
 						>
 						<Badge
 							badgeContent={badgeCount}

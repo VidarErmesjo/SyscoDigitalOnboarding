@@ -26,22 +26,24 @@ const GradientConnector = withStyles(theme => ({
     },
     active: {
         '& $line': {
-            backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
+            //backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
             //backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
+            backgroundImage: 'linear-gradient( 136deg, #79FFFF 0%, #27F7FF 50%, #00C4CC 100%)',
             //backgroundImage: 'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
         },
     },
     completed: {
         '& $line': {
-            backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
+            //backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
             //backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
+            backgroundImage: 'linear-gradient( 136deg, #79FFFF 0%, #27F7FF 50%, #00C4CC 100%)',
             //backgroundImage: 'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
         },
     },
     line: {
         height: 3,
         border: 0,
-        backgroundColor: theme.palette.primary.dark,
+        backgroundColor: theme.palette.text.secondary,
         borderRadius: 1,
     },
 }))(StepConnector);
@@ -49,7 +51,7 @@ const GradientConnector = withStyles(theme => ({
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
         root: {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: theme.palette.text.secondary,
             zIndex: 1,
             color: theme.palette.text.secondary,
             width: 50,
@@ -60,13 +62,15 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
         },
         active: {
-            backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
+            //backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
             //backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
-            boxShadow: '0 4px 20px 0 rgba(255,255,0,.50)',
+            backgroundImage: 'linear-gradient( 136deg, #79FFFF 0%, #27F7FF 50%, #00C4CC 100%)',
+            boxShadow: '0 4px 10px 0 rgba(0,0,255,.5)',
         },
         completed: {
-            backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
+            //backgroundImage: 'linear-gradient( 136deg, #FFFF57 0%, #FFF200 50%, #C7C000 100%)',
             //backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
+            backgroundImage: 'linear-gradient( 136deg, #79FFFF 0%, #27F7FF 50%, #00C4CC 100%)',
         },
     }),
 );

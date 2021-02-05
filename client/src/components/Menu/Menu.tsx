@@ -41,18 +41,20 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Menu() {
 	const classes = useStyles();
-	const [isMenuOpen, setIsMenuOpen] = useContext(AppContext);
+	const { toggleMenu, isMenuOpen } = useContext(AppContext);
 
 	return (	
 		<React.Fragment>
 			<Drawer
 				anchor="left"
 				open={isMenuOpen}
-				onClose={() => setIsMenuOpen((state: boolean) => false)}
+				//onClose={() => setIsMenuOpen((state: boolean) => false)}
+				onClose={toggleMenu}
 				>
 				<List
 					role="presentation"
-					onClick={() => setIsMenuOpen((state: boolean) => !isMenuOpen)}
+					//onClick={() => setIsMenuOpen((state: boolean) => !isMenuOpen)}
+					onClick={toggleMenu}
 					className={classes.list}
 					>
 					{menuListItems}

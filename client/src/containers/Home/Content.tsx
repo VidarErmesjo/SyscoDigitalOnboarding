@@ -40,9 +40,10 @@ const useStyles = makeStyles((theme: Theme) =>
             right: 'auto',
         },
         content: {
-            //marginTop: 80,
-            //marginBottom: 80,
-            margin: theme.spacing(8),
+            marginTop: theme.spacing(8),
+            marginRight: theme.spacing(2),
+            marginBottom: theme.spacing(8),
+            marginLeft: theme.spacing(2),
         },
 		paper: {
 			padding: theme.spacing(),
@@ -51,8 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.primary.dark,
         },
         stepper: {
+            //position: 'fixed',
+            //width: '100vw',
             color: theme.palette.text.primary,
-            backgroundImage: 'linear-gradient( 136deg, #FF823B 0%, #FF4E00 50%, #C30500 100%)',
+            backgroundColor: theme.palette.primary.dark,
         },
 		fabIcon: {
 			float: 'right',
@@ -84,23 +87,7 @@ export default function Content() {
     return (
         <React.Fragment>
             <Grid container spacing={4} className={classes.content}>
-                {/* <Grid item xs={12}>
-
-                    <Stepper nonLinear activeStep={3} className={classes.stepper}>
-                        {steps.map((label, index) => (
-                            <Step key={label}>
-                                <StepButton completed={true}>
-                                    <Typography color="textPrimary" variant="caption">
-                                        {label}
-                                    </Typography>
-                                </StepButton>
-                            </Step>
-                        ))}
-                    </Stepper>
-
-                </Grid> */}
-
-                <Grid item xs={12}>
+                <Grid item xs={12} className={classes.stepper}>
                     <Progress/>
                 </Grid>
 
