@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: 'auto',
 			height: '100vh',
 			color: theme.palette.text.primary,
-			backgroundColor: theme.palette.primary.dark,
+			backgroundColor: theme.palette.primary.main,
 		},
 	}),
 );

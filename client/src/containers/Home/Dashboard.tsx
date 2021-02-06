@@ -24,7 +24,7 @@ import {
 	Notifications as NotifiactionsIcon,
 } from '@material-ui/icons';
 
-import { AppContext } from "./../../AppContext";
+import { UserProvider } from "./../../UserContext";
 import Content from "./../Home/Content";
 import Footer from './../../components/Footer/Footer';
 import Header from './../../components/Header/Header';
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			flexGrow: 1,
 			color: theme.palette.primary.main,
-			backgroundColor: theme.palette.background.default,
+			backgroundColor: theme.palette.primary.dark,
 		},
 		fabIcon: {
 			bottom: 0,
@@ -54,11 +54,13 @@ export default function Dashboard() {
 	//const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
 
 	return (
-		<div className={classes.root}>	
-			<Header/>
-			<Content/>
-			<Footer/>
-			<Menu/>
+		<div className={classes.root}>
+			<UserProvider>	
+				<Header/>
+				<Menu/>
+				<Content/>
+				{/* <Footer/> */}
+			</UserProvider>
 			{/* <Fab color="secondary" className={classes.fabIcon}>
 				<ClearIcon/>
 			</Fab> */}

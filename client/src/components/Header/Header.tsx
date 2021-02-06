@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
-			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.background.default,
 		},
 		title: {
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			flexGrow: 1,
 			top: 0,
+			backgroundColor: theme.palette.primary.main,
 			//marginBottom: 80,
 		},
 		badge: {
@@ -72,16 +72,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			overflow: 'auto',
 			flexDirection: 'column'
 		},
-		toolbar: {
-			//paddingRight: 24, // keep right padding when drawer closed
-		},
 		toolbarIcon: {
 			//color: theme.palette.primary.light,
 			display: 'flex',
 			alignItems: 'center',
 			justifyContent: 'flex-start',
 		},
-		offset: theme.mixins.toolbar,
 	}),
 );
 
@@ -93,12 +89,10 @@ export default function Header() {
 	return (
 		<React.Fragment>
 			<AppBar position="fixed" className={classes.appBar}>
-				<Toolbar variant="dense" className={classes.toolbar}>
+				<Toolbar variant="dense">
 					<IconButton
 						color="inherit"
 						edge="start"
-						aria-label="menu"
-						//onClick={() => setIsMenuOpen((state: boolean) => true)}
 						onClick={toggleMenu}
 						>
 						<MenuIcon
@@ -115,9 +109,7 @@ export default function Header() {
 						Sysco Digital Onboarding
 					</Typography>
 					<IconButton
-						aria-label="notification badge"
 						color="inherit"
-						//onClick={() => setBadgeCount((count: number) => count - 1)}
 						onClick={decrement}
 						>
 						<Badge

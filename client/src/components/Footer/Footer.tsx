@@ -11,7 +11,7 @@ import {
 
 function Copyright() {
 return (
-	<Typography variant="body1" color="textPrimary" align="center">
+	<Typography variant="body1" color="textSecondary" align="center">
 		{'Copyright © '}
 		<Link color="inherit" href="http://student.cs.hioa.no/~s318075/Bachelorprosjekt/">
 			Bachelorprosjekt
@@ -25,12 +25,13 @@ return (
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		appBar: {
-				//display: 'flex',
-				//flexGrow: 1,
-				alignItems: 'center',
-				justifyContent: 'center',
-				top: 'auto',
-		bottom: 0,
+			//display: 'flex',
+			//flexGrow: 1,
+			backgroundColor: theme.palette.primary.light,
+			alignItems: 'center',
+			justifyContent: 'center',
+			top: 'auto',
+			bottom: 0,
 		},
 	}),
 );
