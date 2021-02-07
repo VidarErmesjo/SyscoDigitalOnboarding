@@ -29,10 +29,8 @@ import {
     Gradient,
  } from '@material-ui/icons';
 
- import { UserContext } from './../../UserContext';
-
-import Progress from './Progress';
-import { AnyARecord } from 'dns';
+import { UserContext } from './../../UserContext';
+import UserProgress from '../User/UserProgress';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -84,12 +82,11 @@ const useStyles = makeStyles((theme: Theme) =>
             borderRadius: 10,
         },
         stepper: {
-            margin: theme.spacing(0),
-            padding: theme.spacing(0),
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.dark,
         },
 		fabIcon: {
-			float: 'right',
+            float: 'right',
+            bottom: 0,
 			backgroundColor: theme.palette.secondary.main,
 			'&:hover': {
 				backgroundColor: theme.palette.secondary.dark,
@@ -143,36 +140,37 @@ function ScrollToTop(props: any) {
 export default function Content() {
     const classes = useStyles();
     const steps = getSteps();
-    const { activeStep, totalSteps } = useContext(UserContext);
+    const { activeStep, advance, totalSteps } = useContext(UserContext);
 
     return (
         <React.Fragment>
             <Grid
                 container
-                direction="row"
-                justify="space-evenly"
-                alignItems="baseline"
-                spacing={4}
+                //direction="row"
+                //justify="space-evenly"
+                //alignItems="baseline"
+                spacing={2}
                 xs={12}
-                className={classes.content}>
-                {/* <Grid
-                    id="back-to-top-anchor"
-                    item
-                    xs={12} 
-                    className={classes.stepper}>
-                    <Progress/>
-                </Grid> */}
-
-                {/* Statisk side uten scrolling (kun stepping venstre høyre)?
-                    Bytter da innhold for hvert steg?
-                    Stepper på bunn? */}
-                <Grid item xs={12} className={classes.paper} style={{ textAlign: 'center', height: '70vh', maxHeight: '70vh' }}>
+                className={classes.content}
+                >
+                <Grid
+                    item xs={12}
+                    className={classes.paper}
+                    style={{ textAlign: 'center', height: '70vh', maxHeight: '70vh' }}
+                    >
+                    <Fab
+                        disabled={activeStep < totalSteps ? false : true}
+                        onClick={advance}
+                        className={classes.fabIcon}
+                        >
+                        <DoneIcon fontSize="large"/>
+                    </Fab>
                     <Typography variant="h1">
-                        {activeStep > 0 && activeStep < totalSteps ? "Side: " : "" }
-                        {activeStep === 0 ? "Intro" : activeStep === totalSteps ? "Outro" : activeStep}
+                        {activeStep > 0 && activeStep < totalSteps - 1 ? "Side: " : "" }
+                        {activeStep === 0 ? "Intro" : activeStep === totalSteps - 1 ? "Outro" : activeStep}
                     </Typography>
                     <Typography color="secondary" variant="h3">                    
-                    {activeStep > 0 && activeStep < totalSteps ? steps[activeStep] : "" }
+                        {activeStep > 0 && activeStep < totalSteps - 1 ? steps[activeStep] : "" }
                     </Typography>
                 </Grid>
 
@@ -180,10 +178,11 @@ export default function Content() {
                     item
                     xs={12} 
                     className={classes.stepper}>
-                    <Progress/>
+                    <UserProgress/>
                 </Grid>
+            </Grid>
 
-                <Grid item xs={5} className={classes.paper}>
+                {/* <Grid item xs={5} className={classes.paper}>
                     <Typography variant="h6" style={{ color: '#FFF200'}}>
                         There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
                     </Typography>
@@ -229,7 +228,6 @@ export default function Content() {
                 <Grid item xs={12} className={classes.bottomBar}>
                     <ScrollToTop>
                         <Fab
-                            // Scroller ikke til toppen på siste??
                             disabled={activeStep < totalSteps ? false : true}
                             //onClick={advance}
                             className={classes.fabIcon}
@@ -238,7 +236,7 @@ export default function Content() {
                         </Fab>
                     </ScrollToTop>
                 </Grid>
-            </Grid>
+            </Grid> */}
             
         </React.Fragment>
     );

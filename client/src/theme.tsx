@@ -41,7 +41,7 @@ const theme = createMuiTheme({
             secondary: '#000',  // Black
         },  
         background: {
-            default: '#121921', // Sysco Black '#000',    // Black
+            default: '#121921', // Sysco Black
             paper: '#FFF',      // White
          },
     },

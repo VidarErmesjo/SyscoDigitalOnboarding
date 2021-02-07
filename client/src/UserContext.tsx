@@ -9,7 +9,7 @@ export const UserProvider = (props: any) => {
     const logIn = () => setIsLoggedIn((state: boolean) => true);
     const logOut = () => setIsLoggedIn((state: boolean) => false);
 
-    const totalSteps = 6;
+    const totalSteps = 7;
     const advance = () => setActiveStep((step: number) => step > totalSteps ? step = totalSteps : step + 1);
 
     const value = useMemo(() => ({

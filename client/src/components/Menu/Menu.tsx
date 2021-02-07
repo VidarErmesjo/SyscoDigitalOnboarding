@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: '100vh',
 			color: theme.palette.text.primary,
 			backgroundColor: theme.palette.primary.main,
+			borderStyle: 'solid',
+			border: 0,
+			borderRightColor: theme.palette.primary.light,
+			borderRight: '0.5em',
 		},
 	}),
 );
