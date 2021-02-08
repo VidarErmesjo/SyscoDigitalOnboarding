@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     AppBar,
     Badge,
@@ -15,12 +15,15 @@ import {
   } from '@material-ui/core';
   
   import {
+	AccountCircle as AccountCircleIcon,
     Clear as ClearIcon,
     Menu as MenuIcon,
     Notifications as NotifiactionsIcon,
   } from '@material-ui/icons';
 
 import { AppContext } from '../../AppContext';
+import { MenuContext } from '../../MenuContext';
+import { UserContext } from '../../UserContext';
 
 const drawerWidth = 250;
 const useStyles = makeStyles((theme: Theme) =>
@@ -83,8 +86,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Header() {
 	const classes = useStyles();
-	//const [isMenuOpen, setIsMenuOpen, badgeCount, setBadgeCount] = useContext(AppContext);
-	const { toggleMenu, decrement, badgeCount } = useContext(AppContext);
+	const { decrement, badgeCount } = React.useContext(AppContext);
+	const { toggleMenu } = React.useContext(MenuContext);
+	const { isLoggedIn } = React.useContext(UserContext);
 
 	return (
 		<React.Fragment>
@@ -120,6 +124,10 @@ export default function Header() {
 							<NotifiactionsIcon/>
 						</Badge>
 					</IconButton>
+					{isLoggedIn ?
+					<IconButton>
+						<AccountCircleIcon color="secondary"/>
+					</IconButton> : null}
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>

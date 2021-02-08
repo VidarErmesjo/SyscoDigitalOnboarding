@@ -1,11 +1,11 @@
-// React
-import React, { useContext } from 'react';
+import React from 'react';
 
-// Material UI
 import {
+	ButtonBase,
 	createStyles,
 	Divider,
 	Drawer,
+	IconButton,
 	List,
 	ListItem,
 	ListItemIcon,
@@ -14,22 +14,21 @@ import {
 	Theme,
 } from '@material-ui/core';
 
-// Material Icons
 import {
-	Clear as ClearIcon,
-	DateRange as DateRangeIcon,
-	LocationOn as LocationOnIcon,
-	RotateRight as RotateRightIcon,
-	Search as SearchIcon,
-	Timer as TimerIcon,
+	Dashboard as DashboardIcon,
+	Info as InfoIcon,
 } from '@material-ui/icons';
 
-// App
-import { AppContext } from "./../../AppContext";
+import { MenuContext } from './../../MenuContext';
+import About from './../About/About';
+//import TransparentDrawer from './../Custom/TransparentDrawer';
 import { menuListItems } from './../../menuListItems';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+		drawer: {
+			backgroundColor: 'transparent',
+		},
 		list: {
 			width: 'auto',
 			height: '100vh',
@@ -37,33 +36,55 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.primary.main,
 			borderStyle: 'solid',
 			border: 0,
-			borderRightColor: theme.palette.primary.light,
-			borderRight: '0.5em',
+			borderColor: theme.palette.primary.light,
+			//borderTopWidth: theme.spacing(0.25),
+			borderRightWidth: theme.spacing(0.25),
+			//borderBottomWidth: theme.spacing(0.25),
 		},
+		divider: {
+			backgroundColor: theme.palette.primary.light,
+		}
 	}),
 );
 
 export default function Menu() {
 	const classes = useStyles();
-	const { toggleMenu, isMenuOpen } = useContext(AppContext);
+	const { isMenuOpen, toggleMenu, isAboutOpen, toggleAbout } = React.useContext(MenuContext);
+
+	console.log(isAboutOpen);
 
 	return (	
 		<React.Fragment>
 			<Drawer
 				anchor="left"
 				open={isMenuOpen}
-				//onClose={() => setIsMenuOpen((state: boolean) => false)}
 				onClose={toggleMenu}
+				classes={{ paper: classes.drawer }}
 				>
 				<List
 					role="presentation"
-					//onClick={() => setIsMenuOpen((state: boolean) => !isMenuOpen)}
-					onClick={toggleMenu}
 					className={classes.list}
 					>
+					<ListItem button>
+						<ListItemIcon onClick={toggleMenu}>
+							<DashboardIcon color="secondary"/>
+						</ListItemIcon>
+						<ListItemText primary={null}/>
+					</ListItem>
+					<Divider className={classes.divider}/>
 					{menuListItems}
+					<Divider className={classes.divider}/>
+					<ListItem>
+						<ButtonBase onClick={toggleAbout}>
+							<ListItemIcon>
+								<InfoIcon color="secondary"/>
+							</ListItemIcon>
+							<ListItemText primary="Om oss"/>
+						</ButtonBase>
+					</ListItem>
 				</List>
-			</Drawer>					
+			</Drawer>
+			<About open={isAboutOpen} toggle={toggleAbout}/>
 		</React.Fragment>
 	);
 }

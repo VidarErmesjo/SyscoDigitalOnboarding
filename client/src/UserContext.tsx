@@ -1,10 +1,10 @@
-import React, { useState, useMemo, createContext } from 'react';
+import React from 'react';
 
-export const UserContext = createContext<any>(undefined);
+export const UserContext = React.createContext<any>(undefined);
 
 export const UserProvider = (props: any) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [activeStep, setActiveStep] = useState(0);
+    const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(true);
+    const [activeStep, setActiveStep] = React.useState<number>(0);
 
     const logIn = () => setIsLoggedIn((state: boolean) => true);
     const logOut = () => setIsLoggedIn((state: boolean) => false);
@@ -12,7 +12,7 @@ export const UserProvider = (props: any) => {
     const totalSteps = 7;
     const advance = () => setActiveStep((step: number) => step > totalSteps ? step = totalSteps : step + 1);
 
-    const value = useMemo(() => ({
+    const value = React.useMemo(() => ({
         isLoggedIn,
         logIn,
         logOut,

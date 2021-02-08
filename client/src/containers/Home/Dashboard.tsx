@@ -1,33 +1,11 @@
-import React, { useContext } from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import {
-	AppBar,
-	Badge,
 	createStyles,
-	Container,
-	Divider,
-	Drawer,
-	Fab,
-	Grid,
-	IconButton,
-	Link,
-	List,
 	makeStyles,
-	Paper,
 	Theme,
-	Toolbar,
-	Typography,
 } from '@material-ui/core';
 
-import {
-	Clear as ClearIcon,
-	Menu as MenuIcon,
-	Notifications as NotifiactionsIcon,
-} from '@material-ui/icons';
-
-import { UserProvider } from "./../../UserContext";
 import Content from "./../Home/Content";
-import Footer from './../../components/Footer/Footer';
 import Header from './../../components/Header/Header';
 import Menu from './../../components/Menu/Menu';
 
@@ -38,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexGrow: 1,
 			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.primary.dark,
-			minHeight: '100vh',
+			height: '100vh',
 		},
 	}),
 );

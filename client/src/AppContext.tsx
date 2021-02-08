@@ -1,16 +1,16 @@
-import React, { useState, useMemo, createContext } from 'react';
+import React from 'react';
 
-export const AppContext = createContext<any>(undefined);
+export const AppContext = React.createContext<any>(undefined);
 
 export const AppProvider = (props: any) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [badgeCount, setBadgeCount] = useState(99);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [badgeCount, setBadgeCount] = React.useState(99);
 
     const toggleMenu = () => setIsMenuOpen((state: boolean) => !isMenuOpen);
 
     const decrement = () => setBadgeCount((count: number) => count - 1);
 
-    const value = useMemo(() => ({
+    const value = React.useMemo(() => ({
         isMenuOpen,
         toggleMenu,
         badgeCount,
