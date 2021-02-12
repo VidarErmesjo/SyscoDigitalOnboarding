@@ -21,7 +21,7 @@ import {
 
 import { MenuContext } from './../../MenuContext';
 import About from './../About/About';
-//import TransparentDrawer from './../Custom/TransparentDrawer';
+import TransparentDrawer from './../Custom/TransparentDrawer';
 import { menuListItems } from './../../menuListItems';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -57,11 +57,11 @@ export default function Menu() {
 
 	return (	
 		<React.Fragment>
-			<Drawer
+			<TransparentDrawer
 				anchor="left"
 				open={isMenuOpen}
 				onClose={toggleMenu}
-				classes={{ paper: classes.drawer }}
+				//classes={{ paper: classes.drawer }}
 				>
 				<List
 					role="presentation"
@@ -85,7 +85,7 @@ export default function Menu() {
 						</ButtonBase>
 					</ListItem>
 				</List>
-			</Drawer>
+			</TransparentDrawer>
 			<About open={isAboutOpen} toggle={toggleAbout}/>
 		</React.Fragment>
 	);

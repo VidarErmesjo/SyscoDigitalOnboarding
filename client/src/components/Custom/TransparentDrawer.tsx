@@ -17,17 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function TransparentDrawer(props: any) {
     const classes = useStyles();
-    const { anchor, open, onClick, onClose } = props;
 
     return (
-        <Drawer
-            anchor={anchor}
-            open={open}
-            onClick={onClick}
-            onClose={onClose}
-            classes={{ paper: classes.drawer }}
-            >
-            {props.children}
-        </Drawer>
+        <Drawer {...props} classes={{ paper: classes.drawer}} />
     );
 };
