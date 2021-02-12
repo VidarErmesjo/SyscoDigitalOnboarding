@@ -49,9 +49,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Menu() {
 	const classes = useStyles();
-	const { isMenuOpen, toggleMenu, isAboutOpen, toggleAbout } = React.useContext(MenuContext);
-
-	console.log(isAboutOpen);
+	const {
+		isMenuOpen,
+		toggleMenu,
+		isAboutOpen,
+		toggleAbout } = React.useContext(MenuContext);
 
 	return (	
 		<React.Fragment>
@@ -65,14 +67,14 @@ export default function Menu() {
 					role="presentation"
 					className={classes.list}
 					>
-					<ListItem button>
+					<ListItem>
 						<ListItemIcon onClick={toggleMenu}>
 							<DashboardIcon color="secondary"/>
 						</ListItemIcon>
 						<ListItemText primary={null}/>
 					</ListItem>
 					<Divider className={classes.divider}/>
-					{menuListItems}
+						{menuListItems}
 					<Divider className={classes.divider}/>
 					<ListItem>
 						<ButtonBase onClick={toggleAbout}>

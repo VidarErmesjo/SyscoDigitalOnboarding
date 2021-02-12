@@ -14,7 +14,7 @@ export const MenuProvider = (props: any) => {
         toggleMenu,
         isAboutOpen,
         toggleAbout,
-    }), [isMenuOpen, isAboutOpen]);
+    }), [isMenuOpen, toggleMenu, isAboutOpen, toggleAbout]);
 
     return (
         <MenuContext.Provider value={value}>

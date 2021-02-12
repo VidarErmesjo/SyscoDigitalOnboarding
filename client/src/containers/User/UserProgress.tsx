@@ -22,7 +22,7 @@ import { UserContext } from '../../UserContext';
 
 const CustomConnector = withStyles(theme => ({
     alternativeLabel: {
-        top: 24,
+        top: 20,
     },
     active: {
         '& $line': {
@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.primary.light,
             zIndex: 1,
             color: theme.palette.text.secondary,
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             display: 'flex',
             borderRadius: '50%',
             borderColor: theme.palette.secondary.main,

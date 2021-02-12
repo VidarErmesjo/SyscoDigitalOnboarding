@@ -124,10 +124,11 @@ export default function Header() {
 							<NotifiactionsIcon/>
 						</Badge>
 					</IconButton>
-					{isLoggedIn ?
-					<IconButton>
-						<AccountCircleIcon color="secondary"/>
-					</IconButton> : null}
+						{isLoggedIn ?
+							<IconButton>
+								<AccountCircleIcon color="secondary"/>
+							</IconButton>
+							: null}
 				</Toolbar>
 			</AppBar>
 		</React.Fragment>
