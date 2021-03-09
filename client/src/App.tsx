@@ -7,12 +7,12 @@ import Dashboard from './containers/Home/Dashboard';
 
 export default function App() {
 	return (
-		<AppProvider>
-			<MenuProvider>
+		// <AppProvider>
+		// 	<MenuProvider>
 				<UserProvider>
 					<Dashboard/>
 				</UserProvider>
-			</MenuProvider>
-		</AppProvider>
+		// 	</MenuProvider>
+		// </AppProvider>
 	);
 }

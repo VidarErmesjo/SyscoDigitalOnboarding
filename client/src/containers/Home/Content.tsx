@@ -60,21 +60,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-function getSteps() {
-    return ([
-        'Intro',
-        'Generisk presentasjon',
-        'Tilpasset presentasjon',
-        'Hva skjer når du er ansatt?',
-        'Har du alt du trenger av kontoer?',
-        'Noe motiverende for første dagen!',
-        'Outro']
-    );
-};
-
 export default function Content() {
     const classes = useStyles();
-    const steps = getSteps();
     const { activeStep, advance, totalSteps } = React.useContext(UserContext);
 
     return (
@@ -84,7 +71,7 @@ export default function Content() {
                 spacing={2}
                 className={classes.root}
                 >
-                <Grid
+                {/*<Grid
                     item xs={12}
                     className={classes.background}
                     >
@@ -102,7 +89,7 @@ export default function Content() {
                     <Typography color="secondary" variant="h3">                    
                         {activeStep > 0 && activeStep < totalSteps - 1 ? steps[activeStep] : "" }
                     </Typography>
-                </Grid>
+                </Grid> */}
 
                 <Grid
                     item
