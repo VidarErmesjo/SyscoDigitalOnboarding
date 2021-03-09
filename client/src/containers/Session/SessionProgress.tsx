@@ -18,7 +18,7 @@ import {
     Check as CheckIcon,
 } from '@material-ui/icons';
 
-import { UserContext } from '../../UserContext';
+import { SessionContext } from '../../SessionContext';
 
 const CustomConnector = withStyles(theme => ({
     alternativeLabel: {
@@ -94,10 +94,10 @@ function CustomStepIcon(props: StepIconProps) {
     );
 }
 
-export default function UserProgress() {
+export default function SessionProgress() {
     const classes = useStyles();
     const steps = getSteps();
-    const { activeStep } = React.useContext(UserContext);
+    const { activeStep } = React.useContext(SessionContext);
 
     return (
         <React.Fragment>

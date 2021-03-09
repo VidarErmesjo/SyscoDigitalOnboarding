@@ -6,12 +6,15 @@ import App from './App';
 import theme from './theme';
 
 import reportWebVitals from './reportWebVitals';
+import { SessionProvider } from './SessionContext';
 
 ReactDOM.render(
 	<React.StrictMode>		
 		<ThemeProvider theme={theme}>
 			<CssBaseline/>
-			<App/>
+			<SessionProvider>
+				<App/>
+			</SessionProvider>
 		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

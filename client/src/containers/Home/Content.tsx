@@ -14,8 +14,8 @@ import {
     Done as DoneIcon,
  } from '@material-ui/icons';
 
-import { UserContext } from './../../UserContext';
-import UserProgress from '../User/UserProgress';
+import { SessionContext } from '../../SessionContext';
+import UserProgress from '../Session/SessionProgress';
 
 import background from './../../assets/SYSCO_SoMe_Profile_Picture.png';
 //import background from './../../assets/SYSCO_logo_white_RGB.png';
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Content() {
     const classes = useStyles();
-    const { activeStep, advance, totalSteps } = React.useContext(UserContext);
+    const { activeStep, advance, totalSteps } = React.useContext(SessionContext);
 
     return (
         <React.Fragment>

@@ -14,7 +14,7 @@ import {
 	Typography,
 } from '@material-ui/core';
 
-import { UserContext } from './../../UserContext';
+import { SessionContext } from '../../SessionContext';
 
 import Intro from "./../../routes/Intro/Intro";
 import Part1 from "./../../routes/Part1/Part1";
@@ -25,55 +25,32 @@ import Part5 from "./../../routes/Part5/Part5";
 import Outro from "./../../routes/Outro/Outro";
 
 import Content from "./../Home/Content";
-import UserProgess from "./../User/UserProgress";
-import Header from './../../components/Header/Header';
-import Menu from './../../components/Menu/Menu';
+import SessionProgress from "../Session/SessionProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		root: {
-			display: 'flex',
-			flexGrow: 1,
-			color: theme.palette.primary.main,
-			backgroundColor: theme.palette.primary.dark,
-			height: '100vh',
-			justifyContent: 'center',
-			//margin: theme.spacing(6, 0, 6, 0),
-		},
 		stepper: {
             backgroundColor: theme.palette.primary.dark,
         },
 	}),
 );
 
-function Part() {
-	return <Typography color="secondary">Banan!</Typography>
-}
-
-function Login() {
-	return (
-		<React.Fragment>
-			<Typography color="secondary">Please log in!</Typography>
-		</React.Fragment>
-	);
+function Home() {
+	return <Typography color="secondary">Feels like home</Typography>
 }
 
 export default function Dashboard() {
 	const classes = useStyles();
 	const version = React.version;
 
-	const { isLoggedIn } = React.useContext(UserContext);
-
-	//document.body.style.overflow = 'hidden';	// Fjerner scrolling
+	const { session } = React.useContext(SessionContext);
 
 	return (
 		<Router>
-			<div className={classes.root}>
+			<div>
 
-				<Link to="/test">Test</Link>
 				<Switch>
-					<Route exact path="/" component={Login}/>
-					<Route path="/test" component={Part}/>
+					<Route exact path="/" component={Home}/>
 					<Route path="/intro" component={Intro}>
 
 					</Route>
@@ -96,7 +73,6 @@ export default function Dashboard() {
 						<Outro/>
 					</Route>
 				</Switch>
-				<UserProgess/>
 				<Typography color="secondary">React version: {version}</Typography>
 			</div>
 		</Router>
