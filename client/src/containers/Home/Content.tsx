@@ -40,8 +40,14 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         chevron: {
             color: theme.palette.primary.light,
-            fontSize: 48,
-        }
+            opacity: 0.5,
+            fontSize: 50,
+            transition: '0.5s',
+            '&:hover': {
+                color: theme.palette.text.primary,
+                opacity: 1,
+            },
+        },
     })
 );
 
@@ -116,7 +122,7 @@ export default function Content() {
                         </IconButton>
                     </Fade>
                 </Grid>
-                <Grid item xs={session? 10 : 12}>
+                <Grid item xs={10}>
                     <Route path={getActiveStep(0)} component={Intro}/>
                     <Route path={getActiveStep(1)} component={Part1}/>
                     <Route path={getActiveStep(2)} component={Part2}/>

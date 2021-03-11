@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
+            transition: '1s',
         },
         active: {
             backgroundColor: theme.palette.text.secondary,

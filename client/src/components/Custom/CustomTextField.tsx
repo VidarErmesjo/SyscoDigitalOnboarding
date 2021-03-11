@@ -10,10 +10,10 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         root: {
             '& label.Mui-focused': {
-            color: 'green',
+                color: 'green',
             },
             '& .MuiInput-underline:after': {
-            borderBottomColor: 'green',
+                borderBottomColor: 'green',
             },
             '& .MuiOutlinedInput-root': {
                 '& fieldset': {
