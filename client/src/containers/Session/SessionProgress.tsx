@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import {
     createStyles,
+    Fade,
     Step,
     StepConnector,
     StepIconProps,
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-function getSteps() {
+function getStepNames() {
     return ([
         'Intro',
         'Generisk presentasjon',
@@ -84,8 +85,8 @@ function getSteps() {
 };
 
 function CustomStepIcon(props: StepIconProps) {
-    const classes = useStyles();
     const { active, completed } = props;
+    const classes = useStyles();
   
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
@@ -94,9 +95,9 @@ function CustomStepIcon(props: StepIconProps) {
     );
 }
 
-export default function SessionProgress() {
+export default function SessionProgress({...rest}) {
     const classes = useStyles();
-    const steps = getSteps();
+    const steps = getStepNames();
     const { activeStep } = React.useContext(SessionContext);
 
     return (
@@ -106,11 +107,12 @@ export default function SessionProgress() {
                 activeStep={activeStep}
                 connector={<CustomConnector/>}
                 className={classes.stepper}
+                {...rest}
                 >
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel StepIconComponent={CustomStepIcon}>
-                            <Typography color="textPrimary" variant="caption">
+                            <Typography color="textPrimary" variant="caption" style={{ userSelect: 'none'}}>
                                 {label}
                             </Typography>
                         </StepLabel>

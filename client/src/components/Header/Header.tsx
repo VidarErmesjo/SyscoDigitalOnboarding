@@ -1,56 +1,86 @@
 import React from 'react';
 import {
-    AppBar,
-    Badge,
 	Box,
-    createStyles,
-    Divider,
-	Drawer,
-    IconButton,
-    Link,
-    List,
-    makeStyles,
-    Theme,
-    Toolbar,
+	Fade,
+	IconButton,
+	useTheme,
+	Theme,
+	Tooltip,
     Typography,
-  } from '@material-ui/core';
-  
-  import {
+	withStyles
+} from '@material-ui/core';
+ 
+import {
 	AccountCircle as AccountCircleIcon,
-    Clear as ClearIcon,
-    Menu as MenuIcon,
-    Notifications as NotifiactionsIcon,
   } from '@material-ui/icons';
 
-const drawerWidth = 250;
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		header: {
-			width: '100%',
-			left: 0,
-			right: 0,
-			//display: 'flex',
-			//backgroundColor: theme.palette.background.default,
-		},
-	}),
-);
+import logo from './../../assets/SYSCO_logo_white_RGB.png';
+
+import { SessionContext } from './../../SessionContext';
+
+const CustomTooltip = withStyles((theme: Theme) => ({
+	tooltip: {
+		backgroundColor: theme.palette.background.paper,
+		color: theme.palette.text.secondary,
+		fontSize: theme.typography.pxToRem(12),
+	},
+}))(Tooltip);
 
 export default function Header() {
-	const classes = useStyles();
+	const { session, user, resetSession  } = React.useContext(SessionContext);
+	const theme = useTheme();
+	const spacing = 0.25;
+	const timeout = 1000;
 
 	return (
 		<React.Fragment>
 			<Box
-				//textAlign="right"
-				alignContent="center"
-				justifyContent="center"
-				marginRight={2}
-				marginBottom={0}
-				//className={classes.header}
+				position="absolute"
+				textAlign="left"
+				marginLeft={theme.spacing(spacing-0.15)}
+				marginTop={theme.spacing(spacing-0.2)}
 				>
-				<AccountCircleIcon color="secondary" style={{ float: 'left'}}/>
-				<Typography variant="h3" color="textPrimary" style={{ float: 'right'}}>SYSCO</Typography>
-
+				<Fade
+					in={session}
+					timeout={timeout}
+					>
+					<CustomTooltip
+						title={
+							<React.Fragment>
+								<Typography variant="caption">Start ny Onboarding</Typography>
+							</React.Fragment>
+						}
+						>
+						<IconButton onClick={resetSession}>
+							<AccountCircleIcon color="secondary"/>
+						</IconButton>
+					</CustomTooltip>
+				</Fade>
+				<Fade in={session} timeout={timeout}>
+					<Typography
+						color="textPrimary"
+						variant="caption"
+						style={{ userSelect: 'none' }}
+						>
+						{user}
+					</Typography>
+				</Fade>
+			</Box>
+			<Box
+				textAlign="right"
+				marginTop={theme.spacing(spacing - 0.05)}
+				marginRight={theme.spacing(spacing)}
+				>
+				<Fade in={true} timeout={timeout*5}>
+				<img src={logo} alt="SYSCO logo" width="10%"/>
+				</Fade>
+				{/* <Typography
+					variant="h3"
+					color="textPrimary"
+					style={{ userSelect: 'none' }}
+					>
+					SYSCO
+				</Typography> */}
 			</Box>
 		</React.Fragment>
 	);

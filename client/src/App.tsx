@@ -1,74 +1,93 @@
-import React from 'react';
 import {
-	Box,
+	BrowserRouter as Router,
+	Switch
+} from 'react-router-dom';
+
+import {
 	createStyles,
+	Fade,
 	Grid,
 	makeStyles,
 	Theme,
-	Typography,
 } from '@material-ui/core';
 
-import { SessionContext } from './SessionContext';
-import Dashboard from './containers/Home/Dashboard';
+import {
+	ChevronLeft as LeftIcon,
+	ChevronRight as RightIcon
+} from '@material-ui/icons';
+
+import Content from './containers/Home/Content';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import Login from './containers/Session/Login';
-import SessionProgress from './containers/Session/SessionProgress';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			display: 'flex',
-			flexGrow: 1,
+			flexGrow: 0,
 			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.primary.dark,
 			height: '100vh',
 		},
 		header: {
-			height: theme.spacing(7),
 			backgroundColor: theme.palette.primary.main,
+			width: '100%',
+			height: theme.spacing(7),
+			zIndex: 1,
 		},
 		content: {
-			//overflowY: 'clip',
+			textAlign: 'center',
+			//justifyContent: 'center',
+			zIndex: 0,
 		},
 		footer: {
 			position: 'fixed',
+			backgroundColor: theme.palette.primary.dark,
 			width: '100%',
-			height: theme.spacing(14),
-			textAlign: 'center',
-			//left: 0,
+			height: 'auto',
 			bottom: 0,
-			backgroundColor: theme.palette.primary.main,
-			//zIndex: 3,
+			zIndex: 1,
 		},
 	}),
 );
 
 export default function App() {
 	const classes = useStyles();
-	const { session } = React.useContext(SessionContext);
 
-	const version = React.version;
-
-	document.body.style.overflow = 'hidden';	// Fjerner scrolling
+	document.body.style.overflow = 'hidden';	// Deaktiverer scrolling
 
 	return (
-		<Grid
-			container
-			justify="flex-start"
-			alignItems="flex-start"
-			//spacing={5}
-			className={classes.root}
-			>
-			<Grid item xs={12} className={classes.header}>
-				<Header/>
-			</Grid>
-			<Grid item xs={12} className={classes.content}>
-				{!session ? <Login/> : <Dashboard/>}
-			</Grid>
-			<Grid item xs={12} className={classes.footer}>
-				{!session && <Typography variant="caption" color="textPrimary">React version: {version}</Typography>}
-				{session && <SessionProgress/>}
-			</Grid>
-		</Grid>
+		<Router>
+			<Switch>
+				<Grid
+					container
+					justify="flex-start"
+					alignItems="flex-start"
+					className={classes.root}
+					>
+					<Grid id="header"
+						item
+						xs={12}
+						className={classes.header}
+						>
+						<Header/>
+					</Grid>
+					<Grid id="content"
+						item
+						xs={12}
+						className={classes.content}
+						>
+						<Content/>
+					</Grid>
+					<Grid id="footer"
+						item
+						xs={12} 
+						className={classes.footer}
+						>
+						<Footer/>
+					</Grid>
+				</Grid>
+			</Switch>
+		</Router>
 	);
 }

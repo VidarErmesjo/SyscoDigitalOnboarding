@@ -15,10 +15,10 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function TransparentDrawer(props: any) {
+export default function TransparentDrawer({...rest}) {
     const classes = useStyles();
 
     return (
-        <Drawer {...props} classes={{ paper: classes.drawer}} />
+        <Drawer {...rest} classes={{ paper: classes.drawer}} />
     );
 };

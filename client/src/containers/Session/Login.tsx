@@ -4,10 +4,11 @@ import {
     Box,
     Button,
     createStyles,
+    Fade,
     makeStyles,
-    TextField,
+    useTheme,
     Theme,
-    Typography,
+    Typography
 } from '@material-ui/core';
 
 import {
@@ -15,6 +16,7 @@ import {
     PlayCircleFilled as PlayCircle,
 } from '@material-ui/icons';
 
+import CustomTextField from './../../components/Custom/CustomTextField';
 import { SessionContext } from './../../SessionContext';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,64 +32,69 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Login() {
-    const classes = useStyles();
     const { session, startSession } = React.useContext(SessionContext);
+    const classes = useStyles();
+    const theme = useTheme();
+    const timeout = 5000;
 
     return (
         <React.Fragment>
             <Box
-                marginX={5}
-                marginBottom={5}
+                marginX={theme.spacing(2)}
+                marginTop={theme.spacing(-1)}
+                marginBottom={theme.spacing(1)}
                 >
-                <Typography variant="h3"color="textPrimary">
-                    <InputIcon
-                        color="secondary"
-                        fontSize="large"
-                        style={{ marginRight: '12px'}}
-                        />
-                    Velkommen til SYSCO
-                </Typography>
-            </Box>
-
+                <Fade in={!session} timeout={timeout}>
+                    <Typography variant="h3" color="textPrimary">
+                        <InputIcon
+                            color="secondary"
+                            fontSize="large"
+                            style={{ marginRight: theme.spacing(1)}}
+                            />
+                        Velkommen til SYSCO Digital Onboarding
+                    </Typography>
+                </Fade>
+            </Box>        
             <Box
-                marginX={40}
+                marginX={theme.spacing(5)}
                 textAlign="left"
                 >
-                <Typography variant="body1" color="textPrimary">
-    Du skal nå igjennom en Onboarding prosess.
-    Du vil få vite det meste du trenger å vite før første dag på jobb.
-    Hva slags verktøy som brukes i SYSCO, hva rutinene ved ansettelse er, og ikke minst hva slags verdier SYSCO står for.
-    Vi vil også opprette flere brukerkontoer for deg.
-    Vi som har laget denne webapplikasjonen håper den er til god hjelp, og vi ønsker deg lykke til i ny jobb.
-                </Typography>
+                <Fade in={!session} timeout={timeout}>
+                    <Typography variant="body1" color="textPrimary">
+        Du skal nå igjennom en Onboarding-prosess.
+        Du vil få vite det meste du trenger å vite før første dag på jobb.
+        Hva slags verktøy som brukes i SYSCO, hva rutinene ved ansettelse er, og ikke minst hva slags verdier SYSCO står for.
+        Vi vil også opprette flere brukerkontoer for deg.
+        Vi som har laget denne webapplikasjonen håper den er til god hjelp, og vi ønsker deg lykke til i ny jobb.
+                    </Typography>
+                </Fade>
             </Box>
 
             <Box
-                //marginX={24}
                 textAlign="center"
                 justifyContent="center"
-                //alignItems="center"
-                //alignContent="center"
                 >
-                <form
-                    className={classes.form}
-                    noValidate
-                    autoComplete="off"
-                    >
-                    <TextField
-                        label="SYSCO e-post"
-                        variant="outlined"
-                        color="secondary"
-                        />
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        startIcon={<PlayCircle/>}
-                        onClick={startSession}
-                    >
-                        Start
-                    </Button>
-                </form>
+                <Fade in={!session} timeout={timeout}>
+                    <form
+                        className={classes.form}
+                        noValidate
+                        autoComplete="off"
+                        >
+                        <CustomTextField
+                            label="SYSCO e-post"
+                            variant="outlined"
+                            color="secondary"
+                            />
+                        <Button
+                            variant="outlined"
+                            color="secondary"
+                            startIcon={<PlayCircle/>}
+                            onClick={startSession}
+                        >
+                            Start
+                        </Button>
+                    </form>
+                </Fade>
             </Box>
         </React.Fragment>
     );
