@@ -19,7 +19,7 @@ import {
     Check as CheckIcon,
 } from '@material-ui/icons';
 
-import { SessionContext } from '../../SessionContext';
+import { SessionContext } from '../../SessionProvider';
 
 const CustomConnector = withStyles(theme => ({
     alternativeLabel: {

@@ -20,21 +20,16 @@ import {
     useHistory
 } from 'react-router-dom';
 
-import { SessionContext } from '../../SessionContext';
+import { SessionContext } from '../../SessionProvider';
 
-//import ProtectedRoute from './../../components/Custom/ProtectedRoute';
-
-import Login from "./../Session/Login"; // StartSession?
-import Intro from "./../../routes/Intro/Intro";
-import Part1 from "./../../routes/Part1/Part1";
-import Part2 from "./../../routes/Part2/Part2";
-import Part3 from "./../../routes/Part3/Part3";
-import Part4 from "./../../routes/Part4/Part4";
-import Part5 from "./../../routes/Part5/Part5";
-import Outro from "./../../routes/Outro/Outro";
-
-import background from './../../assets/SYSCO_SoMe_Profile_Picture.png';
-//import background from './../../assets/SYSCO_logo_white_RGB.png';
+import Signup from "./Signup";
+import Intro from "../../routes/Intro/Intro";
+import Part1 from "../../routes/Part1/Part1";
+import Part2 from "../../routes/Part2/Part2";
+import Part3 from "../../routes/Part3/Part3";
+import Part4 from "../../routes/Part4/Part4";
+import Part5 from "../../routes/Part5/Part5";
+import Outro from "../../routes/Outro/Outro";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -55,65 +50,65 @@ function Done() {
     return <Typography>Done!</Typography>
 }
 
+function getActiveStep(step: number) {
+    var name;
+    switch(step) {
+        case 0:
+            name = "/intro"
+            break;
+        case 1:
+            name = "/generisk-presentasjon"
+            break;
+        case 2:
+            name = "/tilpasset-presentasjon"
+            break;
+        case 3:
+            name = "/hva-skjer-naar-du-er-ansatt"
+            break;
+        case 4:
+            name = "/har-du-alt-du-trenger-av-kontoer"
+            break;
+        case 5:
+            name = "/noe-motiverende-for-foerste-dagen"
+            break;
+        case 6:
+            name = "/outro"
+            break;
+        case 7:
+            name = "/oppsummering"
+            break;  
+        default:
+            name = "/"
+            break;
+    }
+    return name
+};
+
 export default function Content() {
     const classes = useStyles();
-    const { session, activeStep, totalSteps, nextStep, previousStep } = React.useContext(SessionContext);
+    const { user, activeStep, totalSteps, nextStep, previousStep } = React.useContext(SessionContext);
     const timeout = 1000;
-
-    function getActiveStep(step: number) {
-        var name;
-        switch(step) {
-            case 0:
-                name = "/intro"
-                break;
-            case 1:
-                name = "/generisk-presentasjon"
-                break;
-            case 2:
-                name = "/tilpasset-presentasjon"
-                break;
-            case 3:
-                name = "/hva-skjer-naar-du-er-ansatt"
-                break;
-            case 4:
-                name = "/har-du-alt-du-trenger-av-kontoer"
-                break;
-            case 5:
-                name = "/noe-motiverende-for-foerste-dagen"
-                break;
-            case 6:
-                name = "/outro"
-                break;
-            case 7:
-                name = "/oppsummering"
-                break;  
-            default:
-                name = "/"
-                break;
-        }
-        return name
-    };
 
     let history = useHistory();
     React.useEffect(() => {
-        if(!session) {
+        if(!user) {
             history.replace("/");
         }
-    },[session]);
+    },[user]);
 
     return (
         <React.Fragment>
             <Route exact path="/">
-                {!session
-                ? <Login/>
+                {!user
+                ? <Signup/>
                 : <Redirect to={getActiveStep(activeStep)}/>}
             </Route>
-            {session && <Grid
+            {user && <Grid
                 container
                 direction="row"
                 >
                 <Grid item xs={1}>
-                    <Fade in={session} timeout={timeout}>
+                    <Fade in={user} timeout={timeout}>
                         <IconButton
                             onClick={previousStep}
                             disabled={activeStep < 1 ? true : false}
@@ -134,7 +129,7 @@ export default function Content() {
                     <Redirect to={getActiveStep(activeStep)}/>
                 </Grid>
                 <Grid item xs={1}>
-                    <Fade in={session} timeout={timeout}>
+                    <Fade in={user} timeout={timeout}>
                         <IconButton
                             onClick={nextStep}
                             disabled={activeStep > totalSteps - 1 ? true : false}

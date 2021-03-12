@@ -1,8 +1,11 @@
 import React from 'react';
 import {
 	Box,
+	createStyles,
 	Fade,
+	Grid,
 	IconButton,
+	makeStyles,
 	useTheme,
 	Theme,
 	Tooltip,
@@ -16,7 +19,7 @@ import {
 
 import logo from './../../assets/SYSCO_logo_white_RGB.png';
 
-import { SessionContext } from './../../SessionContext';
+import { SessionContext } from '../../SessionProvider';
 
 const CustomTooltip = withStyles((theme: Theme) => ({
 	tooltip: {
@@ -26,23 +29,37 @@ const CustomTooltip = withStyles((theme: Theme) => ({
 	},
 }))(Tooltip);
 
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		icon: {
+			maxHeight: 'fill-available',
+		},
+		logo: {
+			width: window.innerWidth * 0.1,
+			height: 361 * window.innerWidth / 1745 * 0.1,
+			maxHeight: 'fill-available',
+			marginTop: theme.spacing(1.5),
+			marginRight: theme.spacing(1.5),
+		},
+    })
+);
 export default function Header() {
-	const { session, user, resetSession  } = React.useContext(SessionContext);
+	const { user, signOut } = React.useContext(SessionContext);
+	const classes = useStyles();
 	const theme = useTheme();
-	const spacing = 0.25;
 	const timeout = 1000;
 
 	return (
 		<React.Fragment>
-			<Box
-				position="absolute"
-				textAlign="left"
-				marginLeft={theme.spacing(spacing-0.15)}
-				marginTop={theme.spacing(spacing-0.2)}
+			<Fade
+				in={user}
+				timeout={timeout}
 				>
-				<Fade
-					in={session}
-					timeout={timeout}
+				<Box
+					position="absolute"
+					textAlign="left"
+					marginLeft={theme.spacing(0.05)}
+					marginTop={theme.spacing(0.05)}
 					>
 					<CustomTooltip
 						title={
@@ -51,37 +68,19 @@ export default function Header() {
 							</React.Fragment>
 						}
 						>
-						<IconButton onClick={resetSession}>
+						<IconButton onClick={signOut} className={classes.icon}>
 							<AccountCircleIcon color="secondary"/>
 						</IconButton>
 					</CustomTooltip>
-				</Fade>
-				<Fade in={session} timeout={timeout}>
-					<Typography
-						color="textPrimary"
-						variant="caption"
-						style={{ userSelect: 'none' }}
-						>
-						{user}
-					</Typography>
-				</Fade>
-			</Box>
-			<Box
-				textAlign="right"
-				marginTop={theme.spacing(spacing - 0.05)}
-				marginRight={theme.spacing(spacing)}
-				>
-				<Fade in={true} timeout={timeout*5}>
-				<img src={logo} alt="SYSCO logo" width="10%"/>
-				</Fade>
-				{/* <Typography
-					variant="h3"
-					color="textPrimary"
-					style={{ userSelect: 'none' }}
+				</Box>
+			</Fade>
+			<Fade in={true} timeout={timeout}>
+				<Box
+					textAlign="right"
 					>
-					SYSCO
-				</Typography> */}
-			</Box>
+					<img src={logo} alt="SYSCO logo" className={classes.logo}/>
+				</Box>
+			</Fade>
 		</React.Fragment>
 	);
 }

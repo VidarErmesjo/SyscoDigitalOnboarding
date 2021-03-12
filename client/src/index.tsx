@@ -6,7 +6,7 @@ import App from './App';
 import theme from './theme';
 
 import reportWebVitals from './reportWebVitals';
-import { SessionProvider } from './SessionContext';
+import { SessionProvider } from './SessionProvider';
 
 ReactDOM.render(
 	<React.StrictMode>		

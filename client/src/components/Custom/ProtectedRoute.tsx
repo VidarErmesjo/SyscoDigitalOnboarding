@@ -8,10 +8,11 @@ import {
 type Props = {
     isAuthorized: boolean;
     component: React.FC;
+    children: React.ReactNode;
 };
 
-export default function ProtectedRoute(props: Props) {
-    const {isAuthorized, component: Component, ...rest} = props;
+export default function ProtectedRoute({isAuthorized, component: Component, children}: Props) {
+    //const {isAuthorized, component: Component, ...rest} = props;
     const location = useLocation().pathname;
     return (
         <Route
@@ -25,7 +26,7 @@ export default function ProtectedRoute(props: Props) {
                     )
                 }
             }}
-            {...rest}
+            {...children}
         />
     );
 };

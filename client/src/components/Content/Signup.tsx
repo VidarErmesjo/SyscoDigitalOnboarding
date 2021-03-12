@@ -16,8 +16,8 @@ import {
     PlayCircleFilled as PlayCircle,
 } from '@material-ui/icons';
 
-import CustomTextField from './../../components/Custom/CustomTextField';
-import { SessionContext } from './../../SessionContext';
+import CustomTextField from '../Custom/CustomTextField';
+import { SessionContext } from '../../SessionProvider';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Login() {
-    const { session, startSession } = React.useContext(SessionContext);
+    const { user, signIn } = React.useContext(SessionContext);
     const classes = useStyles();
     const theme = useTheme();
     const timeout = 5000;
@@ -44,7 +44,7 @@ export default function Login() {
                 marginTop={theme.spacing(-1)}
                 marginBottom={theme.spacing(1)}
                 >
-                <Fade in={!session} timeout={timeout}>
+                <Fade in={!user} timeout={timeout}>
                     <Typography variant="h3" color="textPrimary">
                         <InputIcon
                             color="secondary"
@@ -59,7 +59,7 @@ export default function Login() {
                 marginX={theme.spacing(5)}
                 textAlign="left"
                 >
-                <Fade in={!session} timeout={timeout}>
+                <Fade in={!user} timeout={timeout}>
                     <Typography variant="body1" color="textPrimary">
         Du skal nå igjennom en Onboarding-prosess.
         Du vil få vite det meste du trenger å vite før første dag på jobb.
@@ -74,7 +74,7 @@ export default function Login() {
                 textAlign="center"
                 justifyContent="center"
                 >
-                <Fade in={!session} timeout={timeout}>
+                <Fade in={!user} timeout={timeout}>
                     <form
                         className={classes.form}
                         noValidate
@@ -89,7 +89,7 @@ export default function Login() {
                             variant="outlined"
                             color="secondary"
                             startIcon={<PlayCircle/>}
-                            onClick={startSession}
+                            onClick={signIn}
                         >
                             Start
                         </Button>

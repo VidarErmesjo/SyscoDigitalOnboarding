@@ -3,19 +3,19 @@ import {
     Fade,
 } from '@material-ui/core';
 
-import { SessionContext } from './../../SessionContext';
-import SessionProgress from './../../containers/Session/SessionProgress';
+import { SessionContext } from '../../SessionProvider';
+import Progress from '../Content/Progress';
 
 export default function Footer() {
-    const { session } = React.useContext(SessionContext);
+    const { user } = React.useContext(SessionContext);
 
     return (
         <React.Fragment>
             <Fade
-                in={session}
+                in={user}
                 timeout={1000}
                 >
-                <SessionProgress/>
+                <Progress/>
             </Fade>
         </React.Fragment>
     );

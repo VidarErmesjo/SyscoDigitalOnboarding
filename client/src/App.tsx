@@ -1,3 +1,4 @@
+import React from 'react';
 import {
 	BrowserRouter as Router,
 	Switch
@@ -5,10 +6,10 @@ import {
 
 import {
 	createStyles,
-	Fade,
 	Grid,
 	makeStyles,
 	Theme,
+	Typography,
 } from '@material-ui/core';
 
 import {
@@ -16,7 +17,7 @@ import {
 	ChevronRight as RightIcon
 } from '@material-ui/icons';
 
-import Content from './containers/Home/Content';
+import Feed from './components/Content/Feed';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 
@@ -56,6 +57,24 @@ export default function App() {
 
 	document.body.style.overflow = 'hidden';	// Deaktiverer scrolling
 
+	/*const [blank, setBlank] = React.useState<undefined | boolean>(undefined);
+	let ratio: undefined | number = undefined;
+	React.useEffect(() => {
+		function handleResize() {
+			ratio = window.innerWidth / window.innerHeight;
+
+			console.log(ratio);
+
+			if(ratio < (3/2) || ratio > 1.78) {
+				setBlank(true);
+			}
+			else {
+				setBlank(false);
+			}
+		}
+		window.onresize = handleResize;
+	})*/
+
 	return (
 		<Router>
 			<Switch>
@@ -77,7 +96,7 @@ export default function App() {
 						xs={12}
 						className={classes.content}
 						>
-						<Content/>
+						<Feed/>
 					</Grid>
 					<Grid id="footer"
 						item
