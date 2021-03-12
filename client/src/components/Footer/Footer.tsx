@@ -6,16 +6,16 @@ import {
 import { SessionContext } from '../../SessionProvider';
 import Progress from '../Content/Progress';
 
-export default function Footer() {
+export default function Footer(props: any) {
     const { user } = React.useContext(SessionContext);
 
     return (
         <React.Fragment>
             <Fade
-                in={user}
+                in={user !== null}
                 timeout={1000}
                 >
-                <Progress/>
+                <Progress {...props}/>
             </Fade>
         </React.Fragment>
     );

@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
     createStyles,
-    Fade,
     Step,
     StepConnector,
     StepIconProps,
@@ -24,6 +23,7 @@ import { SessionContext } from '../../SessionProvider';
 const CustomConnector = withStyles(theme => ({
     alternativeLabel: {
         top: 20,
+        width: 'auto',
     },
     active: {
         '& $line': {
@@ -32,20 +32,21 @@ const CustomConnector = withStyles(theme => ({
     },
     completed: {
         '& $line': {
-            backgroundColor: theme.palette.text.primary,
+            backgroundColor: theme.palette.secondary.main,
         },
     },
     line: {
         height: 3,
         border: 0,
         backgroundColor: theme.palette.text.primary,
+        transition: '1s',
     },
 }))(StepConnector);
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
         root: {
-            backgroundColor: theme.palette.primary.light,
+            backgroundColor: theme.palette.primary.main,
             zIndex: 1,
             color: theme.palette.text.secondary,
             width: 40,
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
-            transition: '1s',
+            transition: '2s',
         },
         active: {
             backgroundColor: theme.palette.text.secondary,
@@ -85,18 +86,17 @@ function getStepNames() {
     );
 };
 
-function CustomStepIcon(props: StepIconProps) {
-    const { active, completed } = props;
+function CustomStepIcon({active, completed}: StepIconProps) {
     const classes = useStyles();
   
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
-            {props.completed === true ? <CheckIcon fontSize="large"/> : null }
+            {completed && <CheckIcon fontSize="large" style={{ transition: '1s'}}/>}
         </div>
     );
-}
+};
 
-export default function SessionProgress({...rest}) {
+export default function SessionProgress(props: any) {
     const classes = useStyles();
     const steps = getStepNames();
     const { activeStep } = React.useContext(SessionContext);
@@ -108,7 +108,7 @@ export default function SessionProgress({...rest}) {
                 activeStep={activeStep}
                 connector={<CustomConnector/>}
                 className={classes.stepper}
-                {...rest}
+                {...props}
                 >
                 {steps.map((label) => (
                     <Step key={label}>

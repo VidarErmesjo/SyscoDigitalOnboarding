@@ -94,7 +94,7 @@ export default function Content() {
         if(!user) {
             history.replace("/");
         }
-    },[user]);
+    },[user, history]);
 
     return (
         <React.Fragment>
@@ -108,7 +108,7 @@ export default function Content() {
                 direction="row"
                 >
                 <Grid item xs={1}>
-                    <Fade in={user} timeout={timeout}>
+                    <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={previousStep}
                             disabled={activeStep < 1 ? true : false}
@@ -129,7 +129,7 @@ export default function Content() {
                     <Redirect to={getActiveStep(activeStep)}/>
                 </Grid>
                 <Grid item xs={1}>
-                    <Fade in={user} timeout={timeout}>
+                    <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={nextStep}
                             disabled={activeStep > totalSteps - 1 ? true : false}

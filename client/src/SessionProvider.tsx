@@ -6,7 +6,8 @@ type Props = {
     children: React.ReactNode;
 }
 
-export const SessionProvider = ({children}:Props) => {
+export const SessionProvider = (props: Props) => {
+    //const [] = React.useState<Array>()
     const [activeStep, setActiveStep] = React.useState<number>(-1);
     const totalSteps = 7;
     const nextStep = () => setActiveStep((step: number) => step > totalSteps ? step = totalSteps : step + 1);
@@ -16,8 +17,7 @@ export const SessionProvider = ({children}:Props) => {
     const [user, setUser] = React.useState<null | string>(null);
     const signIn = () => {
         setUser(() => "navn.navnesen@sysco.no");
-        nextStep();
-        // Her s
+        setActiveStep(() => 0);
     }
 
     const signOut = () => {
@@ -35,9 +35,5 @@ export const SessionProvider = ({children}:Props) => {
         previousStep,
     }), [user, activeStep]);
 
-    return (
-        <SessionContext.Provider value={value}>
-            {children}
-        </SessionContext.Provider>
-    );
+    return <SessionContext.Provider value={value} {...props}/>
 }

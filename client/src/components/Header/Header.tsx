@@ -3,7 +3,6 @@ import {
 	Box,
 	createStyles,
 	Fade,
-	Grid,
 	IconButton,
 	makeStyles,
 	useTheme,
@@ -32,18 +31,21 @@ const CustomTooltip = withStyles((theme: Theme) => ({
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		icon: {
-			maxHeight: 'fill-available',
+			//maxHeight: 'fill-available',
+			//marginTop: theme.spacing(0.05),
+			//marginLeft: theme.spacing(0.05),
 		},
 		logo: {
-			width: window.innerWidth * 0.1,
-			height: 361 * window.innerWidth / 1745 * 0.1,
+			width: window.screen.availWidth * 0.1,
+			height: (361 * window.screen.availWidth / 1745) * 0.1,
 			maxHeight: 'fill-available',
 			marginTop: theme.spacing(1.5),
 			marginRight: theme.spacing(1.5),
 		},
     })
 );
-export default function Header() {
+
+export default function Header(props: any) {
 	const { user, signOut } = React.useContext(SessionContext);
 	const classes = useStyles();
 	const theme = useTheme();
@@ -52,31 +54,42 @@ export default function Header() {
 	return (
 		<React.Fragment>
 			<Fade
-				in={user}
+				in={user !== null}
 				timeout={timeout}
+				{...props}
 				>
 				<Box
 					position="absolute"
-					textAlign="left"
+					top={0}
+					left={0}
 					marginLeft={theme.spacing(0.05)}
 					marginTop={theme.spacing(0.05)}
+					{...props}
 					>
 					<CustomTooltip
 						title={
 							<React.Fragment>
-								<Typography variant="caption">Start ny Onboarding</Typography>
-							</React.Fragment>
+								<Typography variant="caption">Avslutt Onboarding</Typography>
+						 	</React.Fragment>
 						}
+						{...props}
 						>
 						<IconButton onClick={signOut} className={classes.icon}>
 							<AccountCircleIcon color="secondary"/>
 						</IconButton>
 					</CustomTooltip>
+					<Typography variant="caption" color="textPrimary">{user}</Typography>
 				</Box>
 			</Fade>
-			<Fade in={true} timeout={timeout}>
+			<Fade
+				in={true}
+				timeout={timeout*3}
+				{...props}
+				>
 				<Box
-					textAlign="right"
+					position="absolute"
+					top={0} 
+					right={0}
 					>
 					<img src={logo} alt="SYSCO logo" className={classes.logo}/>
 				</Box>
