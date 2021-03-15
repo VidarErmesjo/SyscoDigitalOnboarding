@@ -18,6 +18,7 @@ import {
 
 import logo from './../../assets/SYSCO_logo_white_RGB.png';
 
+import { Zustand } from '../../Zustand';
 import { SessionContext } from '../../SessionProvider';
 
 const CustomTooltip = withStyles((theme: Theme) => ({
@@ -46,7 +47,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header(props: any) {
-	const { user, signOut } = React.useContext(SessionContext);
+	const [user, signOut] = Zustand.useSessionStore((state: any) => [
+		state.user,
+		state.signOut
+	]);
 	const classes = useStyles();
 	const theme = useTheme();
 	const timeout = 1000;

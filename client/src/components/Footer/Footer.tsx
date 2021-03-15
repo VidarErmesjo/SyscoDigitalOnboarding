@@ -3,11 +3,11 @@ import {
     Fade,
 } from '@material-ui/core';
 
-import { SessionContext } from '../../SessionProvider';
-import Progress from '../Content/Progress';
+import { Zustand } from '../../Zustand';
+import { Progress } from '../Progress';
 
 export default function Footer(props: any) {
-    const { user } = React.useContext(SessionContext);
+    const user = Zustand.useSessionStore((state: any) => state.user);
 
     return (
         <React.Fragment>

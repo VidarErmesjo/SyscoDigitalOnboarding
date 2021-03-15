@@ -16,8 +16,8 @@ import {
     PlayCircleFilled as PlayCircle,
 } from '@material-ui/icons';
 
-import CustomTextField from '../Custom/CustomTextField';
-import { SessionContext } from '../../SessionProvider';
+import { Zustand } from '../../Zustand';
+import CustomTextField from '../../components/Custom/CustomTextField';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Login() {
-    const { user, signIn } = React.useContext(SessionContext);
+    const [user, signIn] = Zustand.useSessionStore((state: any) => [state.user, state.signIn]);
     const classes = useStyles();
     const theme = useTheme();
     const timeout = 5000;
@@ -89,7 +89,7 @@ export default function Login() {
                             variant="outlined"
                             color="secondary"
                             startIcon={<PlayCircle/>}
-                            onClick={signIn}
+                            onClick={() => signIn("navn.navnesen@sysco.no")}
                         >
                             Start
                         </Button>

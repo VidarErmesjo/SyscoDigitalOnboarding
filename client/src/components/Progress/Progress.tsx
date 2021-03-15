@@ -18,7 +18,7 @@ import {
     Check as CheckIcon,
 } from '@material-ui/icons';
 
-import { SessionContext } from '../../SessionProvider';
+import { Zustand } from '../../Zustand';
 
 const CustomConnector = withStyles(theme => ({
     alternativeLabel: {
@@ -99,13 +99,13 @@ function CustomStepIcon({active, completed}: StepIconProps) {
 export default function SessionProgress(props: any) {
     const classes = useStyles();
     const steps = getStepNames();
-    const { activeStep } = React.useContext(SessionContext);
+    const currentStep = Zustand.useSessionStore((state: any) => state.currentStep); 
 
     return (
         <React.Fragment>
             <Stepper
                 alternativeLabel
-                activeStep={activeStep}
+                activeStep={currentStep}
                 connector={<CustomConnector/>}
                 className={classes.stepper}
                 {...props}

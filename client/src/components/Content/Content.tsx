@@ -20,16 +20,16 @@ import {
     useHistory
 } from 'react-router-dom';
 
-import { SessionContext } from '../../SessionProvider';
+import { Zustand } from '../../Zustand';
 
-import Signup from "./Signup";
-import Intro from "../../routes/Intro/Intro";
-import Part1 from "../../routes/Part1/Part1";
-import Part2 from "../../routes/Part2/Part2";
-import Part3 from "../../routes/Part3/Part3";
-import Part4 from "../../routes/Part4/Part4";
-import Part5 from "../../routes/Part5/Part5";
-import Outro from "../../routes/Outro/Outro";
+import { Signup } from '../../routes/Signup';
+import { Intro } from '../../routes/Intro';
+import { Part1 } from '../../routes/Part1';
+import { Part2 } from '../../routes/Part2';
+import { Part3 } from '../../routes/Part3';
+import { Part4 } from '../../routes/Part4';
+import { Part5 } from '../../routes/Part5';
+import { Outro } from '../../routes/Outro';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -85,10 +85,17 @@ function getActiveStep(step: number) {
 };
 
 export default function Content() {
+    const [user, currentStep, totalSteps, nextStep, previousStep] = Zustand.useSessionStore((state: any) => [
+        state.user,
+        state.currentStep,
+        state.totalSteps,
+        state.nextStep,
+        state.previousStep
+    ]);
     const classes = useStyles();
-    const { user, activeStep, totalSteps, nextStep, previousStep } = React.useContext(SessionContext);
     const timeout = 1000;
 
+    // Hvis user === null => kjør browser til root.
     let history = useHistory();
     React.useEffect(() => {
         if(!user) {
@@ -101,7 +108,7 @@ export default function Content() {
             <Route exact path="/">
                 {!user
                 ? <Signup/>
-                : <Redirect to={getActiveStep(activeStep)}/>}
+                : <Redirect to={getActiveStep(currentStep)}/>}
             </Route>
             {user && <Grid
                 container
@@ -111,7 +118,7 @@ export default function Content() {
                     <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={previousStep}
-                            disabled={activeStep < 1 ? true : false}
+                            disabled={currentStep < 1 ? true : false}
                             >
                             <ChevronLeftIcon fontSize="large" className={classes.chevron}/>
                         </IconButton>
@@ -126,13 +133,13 @@ export default function Content() {
                     <Route path={getActiveStep(5)} component={Part5}/>
                     <Route path={getActiveStep(6)} component={Outro}/>
                     <Route path={getActiveStep(7)} component={Done}/>
-                    <Redirect to={getActiveStep(activeStep)}/>
+                    <Redirect to={getActiveStep(currentStep)}/>
                 </Grid>
                 <Grid item xs={1}>
                     <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={nextStep}
-                            disabled={activeStep > totalSteps - 1 ? true : false}
+                            disabled={currentStep > totalSteps - 1 ? true : false}
                             >
                             <ChevronRightIcon fontSize="large" className={classes.chevron}/>
                         </IconButton>
