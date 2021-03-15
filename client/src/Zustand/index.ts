@@ -1,2 +1,1 @@
-import Zustand from './Zustand';
-export { Zustand };
+export { default as Zustand } from './Zustand';

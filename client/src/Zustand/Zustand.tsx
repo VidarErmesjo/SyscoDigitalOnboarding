@@ -1,5 +1,11 @@
 import create, { SetState, GetState } from 'zustand';
+/*
+    Info:
+    https://github.com/pmndrs/zustand
+    https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
+*/
 
+// Typer og metoder
 type SessionStore = {
     currentStep: number
     totalSteps: number
@@ -10,6 +16,7 @@ type SessionStore = {
     previousStep: () => void
 }
 
+// Initialverdier og metodeimplementasjon
 const useSessionStore = create<SessionStore>((set: SetState<SessionStore>, get: GetState<SessionStore>) => ({
     currentStep: -1,
     totalSteps: 7,
@@ -32,4 +39,6 @@ const useSessionStore = create<SessionStore>((set: SetState<SessionStore>, get: 
     }
 }));
 
-export default { useSessionStore };
+const Zustand = { useSessionStore };
+
+export default Zustand;

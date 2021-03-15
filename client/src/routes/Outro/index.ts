@@ -1,2 +1,1 @@
-import Outro from './Outro';
-export { Outro };
+export { default as Outro } from './Outro';

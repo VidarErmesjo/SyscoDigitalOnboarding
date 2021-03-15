@@ -19,7 +19,6 @@ import {
 import logo from './../../assets/SYSCO_logo_white_RGB.png';
 
 import { Zustand } from '../../Zustand';
-import { SessionContext } from '../../SessionProvider';
 
 const CustomTooltip = withStyles((theme: Theme) => ({
 	tooltip: {
@@ -31,11 +30,6 @@ const CustomTooltip = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-		icon: {
-			//maxHeight: 'fill-available',
-			//marginTop: theme.spacing(0.05),
-			//marginLeft: theme.spacing(0.05),
-		},
 		logo: {
 			width: window.screen.availWidth * 0.1,
 			height: (361 * window.screen.availWidth / 1745) * 0.1,
@@ -78,7 +72,7 @@ export default function Header(props: any) {
 						}
 						{...props}
 						>
-						<IconButton onClick={signOut} className={classes.icon}>
+						<IconButton onClick={signOut}>
 							<AccountCircleIcon color="secondary"/>
 						</IconButton>
 					</CustomTooltip>

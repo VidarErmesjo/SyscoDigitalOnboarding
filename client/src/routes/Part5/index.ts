@@ -1,2 +1,1 @@
-import Part5 from './Part5';
-export { Part5 };
+export { default as Part5 } from './Part5';
