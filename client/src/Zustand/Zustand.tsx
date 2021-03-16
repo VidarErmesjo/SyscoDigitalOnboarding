@@ -6,7 +6,7 @@ import create, { SetState, GetState } from 'zustand';
 */
 
 // Typer og metoder
-type SessionStore = {
+type GlobalState = {
     currentStep: number
     totalSteps: number
     user: null | string
@@ -17,7 +17,7 @@ type SessionStore = {
 }
 
 // Initialverdier og metodeimplementasjon
-const useSessionStore = create<SessionStore>((set: SetState<SessionStore>, get: GetState<SessionStore>) => ({
+const useGlobalState = create<GlobalState>((set: SetState<GlobalState>, get: GetState<GlobalState>) => ({
     currentStep: -1,
     totalSteps: 7,
     user: null,
@@ -39,6 +39,6 @@ const useSessionStore = create<SessionStore>((set: SetState<SessionStore>, get: 
     }
 }));
 
-const Zustand = { useSessionStore };
+const Zustand = { useGlobalState };
 
 export default Zustand;

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Login() {
-    const [user, signIn] = Zustand.useSessionStore((state: any) => [state.user, state.signIn]);
+    const [user, signIn] = Zustand.useGlobalState((state: any) => [state.user, state.signIn]);
     const classes = useStyles();
     const theme = useTheme();
     const timeout = 5000;

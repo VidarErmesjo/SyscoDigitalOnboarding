@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Box,
     createStyles,
     Fade,
     Grid,
@@ -85,7 +86,7 @@ function getActiveStep(step: number) {
 };
 
 export default function Content() {
-    const [user, currentStep, totalSteps, nextStep, previousStep] = Zustand.useSessionStore((state: any) => [
+    const [user, currentStep, totalSteps, nextStep, previousStep] = Zustand.useGlobalState((state: any) => [
         state.user,
         state.currentStep,
         state.totalSteps,

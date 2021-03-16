@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import {
     createStyles,
+    Fade,
     Step,
     StepConnector,
     StepIconProps,
@@ -57,12 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
-            transition: '2s',
         },
         active: {
             backgroundColor: theme.palette.text.secondary,
             borderStyle: 'solid',
             boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
+            //transition: '1s',
         },
         completed: {
             backgroundColor: theme.palette.secondary.main,
@@ -91,7 +92,9 @@ function CustomStepIcon({active, completed}: StepIconProps) {
   
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
-            {completed && <CheckIcon fontSize="large" style={{ transition: '1s'}}/>}
+            <Fade in={completed} timeout={1000}>
+            {completed ? <CheckIcon fontSize="large"/> : <div/>}
+            </Fade>
         </div>
     );
 };
@@ -99,7 +102,7 @@ function CustomStepIcon({active, completed}: StepIconProps) {
 export default function SessionProgress(props: any) {
     const classes = useStyles();
     const steps = getStepNames();
-    const currentStep = Zustand.useSessionStore((state: any) => state.currentStep); 
+    const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
 
     return (
         <React.Fragment>

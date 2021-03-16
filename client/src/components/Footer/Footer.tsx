@@ -7,7 +7,7 @@ import { Zustand } from '../../Zustand';
 import { Progress } from '../Progress';
 
 export default function Footer(props: any) {
-    const user = Zustand.useSessionStore((state: any) => state.user);
+    const user = Zustand.useGlobalState((state: any) => state.user);
 
     return (
         <React.Fragment>

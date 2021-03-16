@@ -7,9 +7,9 @@ import {
     Theme
 } from '@material-ui/core';
 
-import { Content} from './../Content';
-import { Header } from './../Header';
+import { Content } from './../Content';
 import { Footer } from './../Footer';
+import { Header } from './../Header';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.primary.dark,
 			height: '100vh',
+            margin: 0,
 		},
 		header: {
 			backgroundColor: theme.palette.primary.main,
@@ -49,27 +50,25 @@ export default function Dashbord() {
         <React.Fragment>
                 <Grid
                     container
-                    justify="flex-start"
-                    alignItems="flex-start"
                     className={classes.root}
                     >
                     <Grid id="header"
                         item
-                        xs={12}
+                        xs={12} // Setter full bredde (for alle)
                         className={classes.header}
                         >
                         <Header/>
                     </Grid>
                     <Grid id="content"
                         item
-                        xs={12}
+                        xs
                         className={classes.content}
                         >
                         <Content/>
                     </Grid>
                     <Grid id="footer"
                         item
-                        xs={12} 
+                        xs
                         className={classes.footer}
                         >
                         <Footer/>

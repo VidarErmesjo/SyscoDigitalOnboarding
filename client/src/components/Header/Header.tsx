@@ -41,10 +41,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header(props: any) {
-	const [user, signOut] = Zustand.useSessionStore((state: any) => [
+	const [user, signOut] = Zustand.useGlobalState((state: any) => [
 		state.user,
 		state.signOut
 	]);
+
 	const classes = useStyles();
 	const theme = useTheme();
 	const timeout = 1000;
@@ -76,7 +77,7 @@ export default function Header(props: any) {
 							<AccountCircleIcon color="secondary"/>
 						</IconButton>
 					</CustomTooltip>
-					<Typography variant="caption" color="textPrimary">{user}</Typography>
+					<Typography variant="caption" color="textPrimary" style={{ userSelect: 'none' }}>{user}</Typography>
 				</Box>
 			</Fade>
 			<Fade
