@@ -47,23 +47,23 @@ const CustomConnector = withStyles(theme => ({
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
         root: {
+            display: 'flex',
             backgroundColor: theme.palette.primary.main,
             zIndex: 1,
             color: theme.palette.text.secondary,
             width: 40,
             height: 40,
-            display: 'flex',
             borderRadius: '50%',
             borderColor: theme.palette.secondary.main,
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
+            transition: '1s',
         },
         active: {
-            backgroundColor: theme.palette.text.secondary,
+            //backgroundColor: theme.palette.text.secondary,
             borderStyle: 'solid',
             boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
-            //transition: '1s',
         },
         completed: {
             backgroundColor: theme.palette.secondary.main,
@@ -100,9 +100,9 @@ function CustomStepIcon({active, completed}: StepIconProps) {
 };
 
 export default function SessionProgress(props: any) {
+    const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
     const classes = useStyles();
     const steps = getStepNames();
-    const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
 
     return (
         <React.Fragment>

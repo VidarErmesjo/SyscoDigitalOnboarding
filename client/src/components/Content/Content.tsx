@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Box,
     createStyles,
     Fade,
     Grid,
@@ -35,9 +34,11 @@ import { Outro } from '../../routes/Outro';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         chevron: {
+            position: 'fixed',
+            top: '40vh',
             color: theme.palette.primary.light,
-            opacity: 0.5,
-            fontSize: 50,
+            opacity: 0.75,
+            fontSize: 148,
             transition: '0.5s',
             '&:hover': {
                 color: theme.palette.text.primary,
@@ -96,7 +97,7 @@ export default function Content() {
     const classes = useStyles();
     const timeout = 1000;
 
-    // Hvis user === null => kjør browser til root.
+    // Hvis user === null => omdiriger browser til root.
     let history = useHistory();
     React.useEffect(() => {
         if(!user) {
@@ -104,28 +105,29 @@ export default function Content() {
         }
     },[user, history]);
 
+    //console.log(document.getElementById("content")?.getClientRects());
+
     return (
         <React.Fragment>
             <Route exact path="/">
                 {!user
                 ? <Signup/>
                 : <Redirect to={getActiveStep(currentStep)}/>}
-            </Route>
-            {user && <Grid
-                container
-                direction="row"
-                >
-                <Grid item xs={1}>
+            </Route>            
+            {user && <Grid container wrap="nowrap">
+                <Grid item xs={1} zeroMinWidth>
                     <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={previousStep}
-                            disabled={currentStep < 1 ? true : false}
+                            disabled={currentStep < 1
+                                ? true
+                                : false}
                             >
-                            <ChevronLeftIcon fontSize="large" className={classes.chevron}/>
+                            <ChevronLeftIcon className={classes.chevron}/>
                         </IconButton>
                     </Fade>
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={10} zeroMinWidth>
                     <Route path={getActiveStep(0)} component={Intro}/>
                     <Route path={getActiveStep(1)} component={Part1}/>
                     <Route path={getActiveStep(2)} component={Part2}/>
@@ -136,13 +138,15 @@ export default function Content() {
                     <Route path={getActiveStep(7)} component={Done}/>
                     <Redirect to={getActiveStep(currentStep)}/>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1} zeroMinWidth>
                     <Fade in={user !== null} timeout={timeout}>
                         <IconButton
                             onClick={nextStep}
-                            disabled={currentStep > totalSteps - 1 ? true : false}
+                            disabled={currentStep > totalSteps - 1
+                                ? true
+                                : false}
                             >
-                            <ChevronRightIcon fontSize="large" className={classes.chevron}/>
+                            <ChevronRightIcon className={classes.chevron}/>
                         </IconButton>
                     </Fade>
                 </Grid>

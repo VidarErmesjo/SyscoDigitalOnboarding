@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme: Theme) =>
 		header: {
 			backgroundColor: theme.palette.primary.main,
 			width: '100%',
-			height: theme.spacing(7),
+            minHeight: theme.spacing(7),
+            maxHeight: theme.spacing(7),
 			zIndex: 2,
 		},
 		content: {
-			width: 'fit-content',
-			height: 'fit-content',
 			textAlign: 'center',
+            height: 'auto',
 			zIndex: 0,
 		},
 		footer: {
@@ -46,15 +46,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Dashbord() {
     const classes = useStyles();
+
     return (
         <React.Fragment>
                 <Grid
                     container
+                    direction="column"
+                    wrap="nowrap"
                     className={classes.root}
                     >
                     <Grid id="header"
                         item
-                        xs={12} // Setter full bredde (for alle)
+                        xs
                         className={classes.header}
                         >
                         <Header/>

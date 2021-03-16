@@ -12,11 +12,19 @@ import {
 } from '@material-ui/core';
 
 import {
+    Field,
+    Form,
+    Formik,
+    FormikHelpers
+} from 'formik';
+
+import {
     Input as InputIcon,
     PlayCircleFilled as PlayCircle,
 } from '@material-ui/icons';
 
 import { Zustand } from '../../Zustand';
+import SignupForm from './SignupForm';
 import CustomTextField from '../../components/Custom/CustomTextField';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -31,7 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Login() {
+interface Values {
+    email: string;
+}
+
+export default function Signup() {
     const [user, signIn] = Zustand.useGlobalState((state: any) => [state.user, state.signIn]);
     const classes = useStyles();
     const theme = useTheme();
@@ -40,8 +52,7 @@ export default function Login() {
     return (
         <React.Fragment>
             <Box
-                marginX={theme.spacing(2)}
-                marginTop={theme.spacing(-1)}
+                marginTop={theme.spacing(2)}
                 marginBottom={theme.spacing(1)}
                 >
                 <Fade in={!user} timeout={timeout}>
@@ -75,25 +86,7 @@ export default function Login() {
                 justifyContent="center"
                 >
                 <Fade in={!user} timeout={timeout}>
-                    <form
-                        className={classes.form}
-                        noValidate
-                        autoComplete="off"
-                        >
-                        <CustomTextField
-                            label="SYSCO e-post"
-                            variant="outlined"
-                            color="secondary"
-                            />
-                        <Button
-                            variant="outlined"
-                            color="secondary"
-                            startIcon={<PlayCircle/>}
-                            onClick={() => signIn("navn.navnesen@sysco.no")}
-                        >
-                            Start
-                        </Button>
-                    </form>
+                    <SignupForm/>
                 </Fade>
             </Box>
         </React.Fragment>
