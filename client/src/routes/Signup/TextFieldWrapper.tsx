@@ -1,6 +1,10 @@
-import React from 'react';
-import { TextField, TextFieldProps } from '@material-ui/core';
+import {
+    TextFieldProps
+} from '@material-ui/core';
+
 import { useField } from 'formik';
+
+import SyscoTextField from '../../components/Custom/SyscoTextField';
 
 type Props = TextFieldProps & {
     name: string;
@@ -21,5 +25,5 @@ export default function TextFieldWrapper({name, ...props}: Props) {
         configuration.helperText = meta.error;
     }
 
-    return <TextField {...configuration}/>
+    return <SyscoTextField {...configuration}/>
 };

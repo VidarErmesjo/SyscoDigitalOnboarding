@@ -2,52 +2,22 @@ import React from 'react';
 
 import {
     Box,
-    Button,
-    createStyles,
     Fade,
-    makeStyles,
     useTheme,
-    Theme,
     Typography
 } from '@material-ui/core';
 
 import {
-    Field,
-    Form,
-    Formik,
-    FormikHelpers
-} from 'formik';
-
-import {
-    Input as InputIcon,
-    PlayCircleFilled as PlayCircle,
+    Input as InputIcon
 } from '@material-ui/icons';
 
 import { Zustand } from '../../Zustand';
 import SignupForm from './SignupForm';
-import CustomTextField from '../../components/Custom/CustomTextField';
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-        form: {
-            backgroundColor: theme.palette.primary.dark,
-            '& > *': {
-                margin: theme.spacing(5),
-                width: '50ch',
-            },
-        },
-	}),
-);
-
-interface Values {
-    email: string;
-}
 
 export default function Signup() {
-    const [user, signIn] = Zustand.useGlobalState((state: any) => [state.user, state.signIn]);
-    const classes = useStyles();
+    const user = Zustand.useGlobalState((state: any) => state.user);
     const theme = useTheme();
-    const timeout = 5000;
+    const timeout = theme.transitions.duration.enteringScreen;
 
     return (
         <React.Fragment>

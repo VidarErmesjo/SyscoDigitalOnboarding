@@ -6,7 +6,8 @@ import {
     IconButton,
     makeStyles,
     Theme,
-    Typography
+    Typography,
+    useTheme
 } from '@material-ui/core';
 
 import {
@@ -17,7 +18,7 @@ import {
 import {
     Redirect,
     Route,
-    useHistory
+    useHistory,
 } from 'react-router-dom';
 
 import { Zustand } from '../../Zustand';
@@ -39,10 +40,10 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.light,
             opacity: 0.75,
             fontSize: 148,
-            transition: '0.5s',
             '&:hover': {
                 color: theme.palette.text.primary,
                 opacity: 1,
+                transition: '0.5s',
             },
         },
     })
@@ -95,7 +96,7 @@ export default function Content() {
         state.previousStep
     ]);
     const classes = useStyles();
-    const timeout = 1000;
+    const timeout = useTheme().transitions.duration.enteringScreen;
 
     // Hvis user === null => omdiriger browser til root.
     let history = useHistory();

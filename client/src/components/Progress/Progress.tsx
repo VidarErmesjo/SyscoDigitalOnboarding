@@ -13,6 +13,7 @@ import {
     Theme,
     Typography,
     withStyles,
+    useTheme,
 } from '@material-ui/core';
 
 import {
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
-            transition: '1s',
+            transition: theme.transitions.duration.enteringScreen.toString(),
         },
         active: {
             //backgroundColor: theme.palette.text.secondary,
@@ -89,10 +90,11 @@ function getStepNames() {
 
 function CustomStepIcon({active, completed}: StepIconProps) {
     const classes = useStyles();
+    const timeout = useTheme().transitions.duration.standard;
   
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
-            <Fade in={completed} timeout={1000}>
+            <Fade in={completed} timeout={timeout}>
             {completed ? <CheckIcon fontSize="large"/> : <div/>}
             </Fade>
         </div>
