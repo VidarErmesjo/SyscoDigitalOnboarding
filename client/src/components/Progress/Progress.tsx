@@ -13,6 +13,7 @@ import {
     Theme,
     Typography,
     withStyles,
+    useMediaQuery,
     useTheme,
 } from '@material-ui/core';
 
@@ -22,7 +23,7 @@ import {
 
 import { Zustand } from '../../Zustand';
 
-const CustomConnector = withStyles(theme => ({
+const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
         top: 20,
         width: 'auto',
@@ -59,10 +60,9 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
-            transition: theme.transitions.duration.enteringScreen.toString(),
+            transition: theme.transitions.duration.enteringScreen + 'ms',
         },
         active: {
-            //backgroundColor: theme.palette.text.secondary,
             borderStyle: 'solid',
             boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
         },
@@ -95,7 +95,7 @@ function CustomStepIcon({active, completed}: StepIconProps) {
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
             <Fade in={completed} timeout={timeout}>
-            {completed ? <CheckIcon fontSize="large"/> : <div/>}
+                {completed ? <CheckIcon fontSize="large"/> : <div/>}
             </Fade>
         </div>
     );
@@ -105,6 +105,9 @@ export default function SessionProgress(props: any) {
     const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
     const classes = useStyles();
     const steps = getStepNames();
+
+    // Endre på layout når bredden blir for liten.
+    const constricted = useMediaQuery('(max-width:666px)');
 
     return (
         <React.Fragment>
@@ -117,10 +120,14 @@ export default function SessionProgress(props: any) {
                 >
                 {steps.map((label) => (
                     <Step key={label}>
-                        <StepLabel StepIconComponent={CustomStepIcon}>
-                            <Typography color="textPrimary" variant="caption" style={{ userSelect: 'none'}}>
+                        <StepLabel StepIconComponent={CustomStepIcon}>                            
+                            {!constricted && <Typography
+                                color="textPrimary"
+                                variant="caption"
+                                style={{ userSelect: 'none'}}
+                                >
                                 {label}
-                            </Typography>
+                            </Typography>}
                         </StepLabel>
                     </Step>))}
             </Stepper>

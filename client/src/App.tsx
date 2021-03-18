@@ -1,4 +1,3 @@
-import React from 'react';
 import {
 	BrowserRouter,
 	Switch
@@ -8,7 +7,7 @@ import { Dashboard } from './components/Dashboard';
 
 export default function App(props: any) {
 	// Deaktiver scrolling
-	document.body.style.overflow = 'hidden';
+	document.body.style.overflow = 'visible';
 
 	return (
 		<BrowserRouter>

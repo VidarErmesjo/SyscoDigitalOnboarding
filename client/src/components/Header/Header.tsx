@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginTop: theme.spacing(1.5),
 			marginRight: theme.spacing(1.5),
 		},
+		iconButton: {
+			transition: theme.transitions.duration.standard + 'ms',
+		},
     })
 );
 
@@ -68,16 +71,30 @@ export default function Header(props: any) {
 					<CustomTooltip
 						title={
 							<React.Fragment>
-								<Typography variant="caption">Avslutt Onboarding</Typography>
-						 	</React.Fragment>
+								<Typography
+									variant="caption"
+									>
+									Avslutt Onboarding
+								</Typography>
+							</React.Fragment>
 						}
 						{...props}
 						>
-						<IconButton onClick={signOut}>
+						<IconButton
+							onClick={signOut} 
+							color="secondary"
+							className={classes.iconButton}
+							>
 							<AccountCircleIcon color="secondary"/>
 						</IconButton>
 					</CustomTooltip>
-					<Typography variant="caption" color="textPrimary" style={{ userSelect: 'none' }}>{user}</Typography>
+					<Typography
+						variant="caption"
+						color="textPrimary"
+						style={{ userSelect: 'none' }}
+						>
+						{user}
+					</Typography>
 				</Box>
 			</Fade>
 			<Fade
@@ -90,7 +107,12 @@ export default function Header(props: any) {
 					top={0} 
 					right={0}
 					>
-					<img src={logo} alt="SYSCO logo" className={classes.logo}/>
+					<img
+						src={logo}
+						alt="SYSCO logo"
+						className={classes.logo}
+						style={{ userSelect: 'none' }}
+					/>
 				</Box>
 			</Fade>
 		</React.Fragment>

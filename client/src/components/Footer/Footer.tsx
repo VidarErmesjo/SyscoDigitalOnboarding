@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    BottomNavigation,
     Fade,
 } from '@material-ui/core';
 

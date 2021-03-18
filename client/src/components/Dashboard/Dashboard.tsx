@@ -1,15 +1,21 @@
 import React from 'react';
+import clsx from 'clsx';
 
 import {
     createStyles,
     Grid,
     makeStyles,
-    Theme
+    Theme,
+    useMediaQuery
 } from '@material-ui/core';
 
+import { Zustand } from './../../Zustand';
 import { Content } from './../Content';
 import { Footer } from './../Footer';
 import { Header } from './../Header';
+
+const topBounds = document.getElementById("header")?.getClientRects()[0].height;
+//const bottomBounds = document.getElementById("footer")?.getClientRects()[0].height;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -17,65 +23,80 @@ const useStyles = makeStyles((theme: Theme) =>
 			display: 'flex',
 			flexGrow: 0,
 			color: theme.palette.primary.main,
-			backgroundColor: theme.palette.primary.dark,
+			backgroundColor: theme.palette.background.default,
 			height: '100vh',
             margin: 0,
 		},
 		header: {
-			backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.main,
+            position: 'fixed',
+            top: 0,
 			width: '100%',
             minHeight: theme.spacing(7),
             maxHeight: theme.spacing(7),
-			zIndex: 2,
+			zIndex: 100,
 		},
 		content: {
-			textAlign: 'center',
+            position: 'relative',
+            left: 0,
+            top: topBounds,
+   			textAlign: 'center',
             height: 'auto',
 			zIndex: 0,
 		},
 		footer: {
 			position: 'fixed',
-			backgroundColor: theme.palette.primary.dark,
+            top: 'auto',
+            bottom: 0,
 			width: '100%',
-			height: 'auto',
-			bottom: 0,
-			zIndex: 1,
+            minHeight: theme.spacing(18),
+            maxHeight: theme.spacing(18),
+			zIndex: 100,
+            backgroundColor: theme.palette.background.default,
 		},
+        constrictedFooter: {
+            minHeight: theme.spacing(11),
+            maxHeight: theme.spacing(11),
+        },
 	}),
 );
 
 export default function Dashbord() {
+    const user = Zustand.useGlobalState((state: any) => state.user);
     const classes = useStyles();
+    const constricted = useMediaQuery('(max-width:666px)');
 
     return (
         <React.Fragment>
                 <Grid
                     container
-                    direction="column"
                     wrap="nowrap"
                     className={classes.root}
                     >
-                    <Grid id="header"
+                    <Grid
+                        id="header"
                         item
-                        xs
+                        xs={12}
                         className={classes.header}
                         >
                         <Header/>
                     </Grid>
-                    <Grid id="content"
+                    <Grid
+                        id="content"
                         item
-                        xs
+                        xs={12}
                         className={classes.content}
                         >
                         <Content/>
                     </Grid>
-                    <Grid id="footer"
+                    {user != null && <Grid
+                        id="footer"
                         item
-                        xs
-                        className={classes.footer}
+                        xs={12}
+                        className={clsx(classes.footer, {[classes.constrictedFooter]: constricted})}
                         >
                         <Footer/>
-                    </Grid>
+                    </Grid>}
                 </Grid>         
         </React.Fragment> 
     );

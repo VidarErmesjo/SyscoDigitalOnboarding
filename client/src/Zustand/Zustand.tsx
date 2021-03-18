@@ -7,19 +7,21 @@ import create, { SetState, GetState } from 'zustand';
 
 // Typer og metoder
 type GlobalState = {
-    currentStep: number
-    totalSteps: number
-    user: null | string
-    signIn: (user: null | string) => void
-    signOut: () => void
-    nextStep: () => void
-    previousStep: () => void
+    // Session
+    user: null | string;
+    signIn: (user: null | string) => void;
+    signOut: () => void;
+
+    // Stepper
+    currentStep: number;
+    totalSteps: number;
+    nextStep: () => void;
+    previousStep: () => void;
 }
 
 // Initialverdier og metodeimplementasjon
 const useGlobalState = create<GlobalState>((set: SetState<GlobalState>, get: GetState<GlobalState>) => ({
-    currentStep: -1,
-    totalSteps: 7,
+    // Session
     user: null,
     signIn: (acount): void => {
         set({user: acount});
@@ -29,6 +31,10 @@ const useGlobalState = create<GlobalState>((set: SetState<GlobalState>, get: Get
         set({user: null});
         set({currentStep: -1});
     },
+
+    // Stepper
+    currentStep: -1,
+    totalSteps: 7,
     nextStep: (): void => {
         const { currentStep } = get();
         set({currentStep: currentStep + 1});

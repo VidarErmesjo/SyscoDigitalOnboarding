@@ -1,27 +1,25 @@
 import {
     TextField,
+    Theme,
     withStyles
 } from '@material-ui/core';
 
-const SyscoTextField = withStyles(theme => ({
+const SyscoTextField = withStyles((theme: Theme) => ({
     root: {
-        background: 'transparent',
         '& label.Mui-focused': {
-            color: theme.palette.text.primary,
-        },
-        '& label': {
-            color: theme.palette.text.primary,
+             color: theme.palette.text.primary,
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
                 borderColor: theme.palette.secondary.dark,
+                borderWidth: '1px',
+                transition: theme.transitions.duration.short + 'ms',
             },
             '&:hover fieldset': {
                 borderColor: theme.palette.secondary.main,
-                transition: theme.transitions.duration.standard,
             },
             '&.Mui-focused fieldset': {
-                borderColor: theme.palette.secondary.main,
+                borderWidth: '1px',
             },
         },
     },

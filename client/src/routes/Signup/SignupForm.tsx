@@ -6,7 +6,7 @@ import {
     Fade,
     Grid,
     makeStyles,
-    Theme
+    Theme,
 } from '@material-ui/core';
 
 import {
@@ -22,19 +22,16 @@ import {
 import { Zustand } from './../../Zustand';
 import * as Yup from 'yup';
 import TextField from './TextFieldWrapper';
-import theme from '../../theme';
+import SyscoTextField from './../../components/Custom/SyscoTextField';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        button: {
-            backgroundColor: theme.palette.primary.dark,
+        form: {
             '& > *': {
-                //marginTop: theme.spacing(1),
-                
+                marginTop: theme.spacing(3),               
             },
         },
         textField: {
-            //backgroundColor: theme.palette.primary.dark,
             '& > *': {
                 marginRight: theme.spacing(2),
             },
@@ -73,7 +70,7 @@ export default function SignupForm(props: any) {
                 onSubmit={onSubmit}
                 >
                 <Fade in={true} timeout={1000}>
-                    <Form style={{ marginTop: theme.spacing(2) }}>
+                    <Form className={classes.form}>
                         <Grid
                             container
                             direction="row"
@@ -89,7 +86,7 @@ export default function SignupForm(props: any) {
                                     name="email"
                                     label="SYSCO epost"
                                     placeholder="navn.navnesen@sysco.no"
-                                    color="primary"
+                                    color="secondary"
                                     variant="outlined"
                                     size="small"
                                     className={classes.textField}
