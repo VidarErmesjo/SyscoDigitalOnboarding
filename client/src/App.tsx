@@ -6,8 +6,8 @@ import {
 import { Dashboard } from './components/Dashboard';
 
 export default function App(props: any) {
-	// Deaktiver scrolling
-	document.body.style.overflow = 'visible';
+	// Låse scrolling
+	document.body.style.overflowX = 'hidden';
 
 	return (
 		<BrowserRouter>

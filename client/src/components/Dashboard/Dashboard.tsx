@@ -14,9 +14,6 @@ import { Content } from './../Content';
 import { Footer } from './../Footer';
 import { Header } from './../Header';
 
-const topBounds = document.getElementById("header")?.getClientRects()[0].height;
-//const bottomBounds = document.getElementById("footer")?.getClientRects()[0].height;
-
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -34,12 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
             minHeight: theme.spacing(7),
             maxHeight: theme.spacing(7),
-			zIndex: 100,
+			zIndex: theme.zIndex.appBar,
 		},
 		content: {
             position: 'relative',
             left: 0,
-            top: topBounds,
    			textAlign: 'center',
             height: 'auto',
 			zIndex: 0,
@@ -49,8 +45,8 @@ const useStyles = makeStyles((theme: Theme) =>
             top: 'auto',
             bottom: 0,
 			width: '100%',
-            minHeight: theme.spacing(18),
-            maxHeight: theme.spacing(18),
+            minHeight: theme.spacing(17),
+            maxHeight: theme.spacing(17),
 			zIndex: 100,
             backgroundColor: theme.palette.background.default,
 		},
@@ -64,6 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Dashbord() {
     const user = Zustand.useGlobalState((state: any) => state.user);
     const classes = useStyles();
+    const headerBottom = document.getElementById("header")?.getClientRects()[0].height;
     const constricted = useMediaQuery('(max-width:666px)');
 
     return (
@@ -86,6 +83,7 @@ export default function Dashbord() {
                         item
                         xs={12}
                         className={classes.content}
+                        style={{ top: headerBottom }}
                         >
                         <Content/>
                     </Grid>

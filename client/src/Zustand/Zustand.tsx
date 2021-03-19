@@ -13,36 +13,37 @@ type GlobalState = {
     signOut: () => void;
 
     // Stepper
-    currentStep: number;
+    currentStep: undefined | number;
     totalSteps: number;
     nextStep: () => void;
     previousStep: () => void;
+
+    // Map
+    geoMap: undefined | string;
 }
 
 // Initialverdier og metodeimplementasjon
 const useGlobalState = create<GlobalState>((set: SetState<GlobalState>, get: GetState<GlobalState>) => ({
     // Session
     user: null,
-    signIn: (acount): void => {
-        set({user: acount});
+    signIn: (acountName): void => {
+        set({user: acountName});
         set({currentStep: 0});
     },
     signOut: (): void => {
         set({user: null});
-        set({currentStep: -1});
+        set({currentStep: undefined});
     },
 
     // Stepper
-    currentStep: -1,
+    currentStep: undefined,
     totalSteps: 7,
-    nextStep: (): void => {
-        const { currentStep } = get();
-        set({currentStep: currentStep + 1});
-    },
-    previousStep: (): void => {
-        const { currentStep } = get();
-        set({currentStep: currentStep - 1});
-    }
+    nextStep: (): void => set(state => ({currentStep: state.currentStep! + 1})),
+    previousStep: (): void => set(state => ({currentStep: state.currentStep! - 1})),
+
+    // Map
+    geoMap: "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json",
+
 }));
 
 const Zustand = { useGlobalState };

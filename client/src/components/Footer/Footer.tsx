@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-    BottomNavigation,
-    Fade,
+    Fade
 } from '@material-ui/core';
 
 import { Zustand } from '../../Zustand';

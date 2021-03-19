@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import {
-    Container,
+    Box,
     createStyles,
     Fade,
     Grid,
@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.main,
             fontSize: theme.typography.pxToRem(chevronSize),
             transition: theme.transitions.duration.short + 'ms',
+            zIndex: theme.zIndex.mobileStepper,
             '&:hover': {
                 color: theme.palette.text.primary,
             },
@@ -152,7 +153,6 @@ export default function Content() {
                             >
                             <ChevronLeftIcon
                                 className={clsx(classes.chevron, {[classes.constrictedChevron]: constricted})}
-                                style={{ marginRight: chevronSize * 0.25 }}
                                 />
                         </IconButton>
                     </Fade>
@@ -162,9 +162,7 @@ export default function Content() {
                     xs={8}
                     zeroMinWidth
                     >
-                    <React.Fragment
-
-                        >
+                    <React.Fragment>
                         <Route path={getActiveStep(0)} component={Intro}/>
                         <Route path={getActiveStep(1)} component={Part1}/>
                         <Route path={getActiveStep(2)} component={Part2}/>
@@ -193,7 +191,6 @@ export default function Content() {
                             >
                             <ChevronRightIcon
                                 className={clsx(classes.chevron, {[classes.constrictedChevron]: constricted})}
-                                style={{ marginLeft: chevronSize * 0.25 }}
                             />
                         </IconButton>
                     </Fade>
