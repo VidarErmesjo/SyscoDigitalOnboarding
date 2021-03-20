@@ -3,15 +3,17 @@ import React from 'react';
 import {
     Button,
     createStyles,
-    Fade,
     Grid,
     makeStyles,
     Theme,
+    useTheme
 } from '@material-ui/core';
 
 import {
     PlayCircleFilled as PlayCircle
 } from '@material-ui/icons';
+
+import { useSpring, animated } from 'react-spring';
 
 import {
     Formik,
@@ -46,6 +48,12 @@ interface Values {
 export default function SignupForm(props: any) {
     const signIn = Zustand.useGlobalState((state: any) => state.signIn);
     const classes = useStyles();
+    const theme = useTheme();
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: theme.transitions.duration.enteringScreen }
+    });
 
     const initialValues = {
         email: '',
@@ -64,12 +72,14 @@ export default function SignupForm(props: any) {
 
     return (
         <React.Fragment>
-            <Formik
-                initialValues={{...initialValues}}
-                validationSchema={validationSchema}
-                onSubmit={onSubmit}
+            <animated.div
+                style={style}
                 >
-                <Fade in={true} timeout={1000}>
+                <Formik
+                    initialValues={{...initialValues}}
+                    validationSchema={validationSchema}
+                    onSubmit={onSubmit}
+                    >
                     <Form className={classes.form}>
                         <Grid
                             container
@@ -104,8 +114,8 @@ export default function SignupForm(props: any) {
                             </Grid>
                         </Grid>
                     </Form>
-                </Fade>
-            </Formik>
+                </Formik>
+            </animated.div>
         </React.Fragment>
     );  
 }
