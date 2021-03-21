@@ -26,4 +26,4 @@ export default function TextFieldWrapper({name, ...props}: Props) {
     }
 
     return <SyscoTextField {...configuration}/>
-};
+}

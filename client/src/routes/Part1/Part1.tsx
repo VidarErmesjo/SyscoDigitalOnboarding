@@ -1,30 +1,32 @@
 import React from 'react';
 
 import {
-    Container,
-    Fade,
     Typography,
     useTheme
 } from '@material-ui/core';
 
+import { useSpring, animated } from 'react-spring';
+
 export default function Part1() {
-    const timeout = useTheme().transitions.duration.enteringScreen;
+    const theme = useTheme();
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: theme.transitions.duration.enteringScreen }
+    });
 
     return (
         <React.Fragment>
-            <Fade in={true} timeout={timeout}>
-                <Container fixed maxWidth="lg">
+            <animated.div style={style}>
+                <div>
                     <Typography color="textPrimary">
-                        {[...new Array(12)]
+                        {[...new Array(666)]
                             .map(
-                            () => `Cras mattis consectetur purus sit amet fermentum.
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                                Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
+                            () => `Part 1.`,
                             ).join('\n')}
                     </Typography>
-                </Container>
-            </Fade>
+                </div>
+            </animated.div>
         </React.Fragment>
     );
 };

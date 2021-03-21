@@ -1,9 +1,10 @@
 import React from 'react';
+
 import clsx from 'clsx';
+
 import {
-    Box,
+    Container,
     createStyles,
-    Fade,
     Grid,
     IconButton,
     makeStyles,
@@ -24,6 +25,11 @@ import {
     useHistory,
 } from 'react-router-dom';
 
+import {
+    useSpring,
+    animated
+} from 'react-spring';
+
 import { Zustand } from '../../Zustand';
 
 import { Signup } from '../../routes/Signup';
@@ -39,24 +45,11 @@ const chevronSize = 200;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        chevron: {
-            color: theme.palette.primary.main,
-            fontSize: theme.typography.pxToRem(chevronSize),
-            transition: theme.transitions.duration.short + 'ms',
-            zIndex: theme.zIndex.mobileStepper,
-            '&:hover': {
-                color: theme.palette.text.primary,
-            },
-        },
-        constrictedChevron: {
-            fontSize: theme.typography.pxToRem(chevronSize * 0.5),
-        },
-        iconButton: {
-            position: 'fixed',
+        center: {
+            position: 'absolute',
             top: '50%',
-            marginTop: theme.typography.pxToRem(-chevronSize * 0.5),
-            width: theme.typography.pxToRem(chevronSize),
-            height: theme.typography.pxToRem(chevronSize),
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
         },
         paper: {
             backgroundColor: theme.palette.primary.main,
@@ -101,9 +94,9 @@ function getActiveStep(step: number) {
             break;
     }
     return name
-};
+}
 
-export default function Content() {
+export default function Content(props: any) {
     const [user, currentStep, totalSteps, nextStep, previousStep] = Zustand.useGlobalState((state: any) => [
         state.user,
         state.currentStep,
@@ -112,8 +105,14 @@ export default function Content() {
         state.previousStep
     ]);
     const classes = useStyles();
-    const timeout = useTheme().transitions.duration.enteringScreen;
+    const theme = useTheme();
     const constricted = useMediaQuery('(max-width:666px)');
+
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: user !== null ? 1 : 0 },
+        config: { duration: theme.transitions.duration.enteringScreen }
+    });
 
     // Hvis user === null => omdiriger browser til root.
     let history = useHistory();
@@ -123,79 +122,31 @@ export default function Content() {
         }
     },[user, history]);
 
+    const headerBottom = document.getElementById('header')?.getClientRects()[0].height;
+    const scale = window.innerWidth / window.screen.availWidth;
+
     return (
         <React.Fragment>
-            <Route exact path="/">
-                {!user
-                ? <Signup/>
-                : <Redirect to={getActiveStep(currentStep)}/>}
-            </Route>            
-            {user && <Grid
-                container
-                justify="center"
-                alignItems="center"
-                wrap="nowrap"
+            <Container
+                id="feed"
+                fixed
+                className={classes.center}
                 >
-                <Grid
-                    item
-                    xs={2}
-                    zeroMinWidth
-                    >
-                    <Fade in={user !== null} timeout={timeout}>
-                        <IconButton
-                            onClick={previousStep}
-                            disabled={currentStep < 1
-                                ? true
-                                : false}
-                            color="secondary"
-                            className={classes.iconButton}
-                            style={{ left: 0 }}
-                            >
-                            <ChevronLeftIcon
-                                className={clsx(classes.chevron, {[classes.constrictedChevron]: constricted})}
-                                />
-                        </IconButton>
-                    </Fade>
-                </Grid>
-                <Grid
-                    item
-                    xs={8}
-                    zeroMinWidth
-                    >
-                    <React.Fragment>
-                        <Route path={getActiveStep(0)} component={Intro}/>
-                        <Route path={getActiveStep(1)} component={Part1}/>
-                        <Route path={getActiveStep(2)} component={Part2}/>
-                        <Route path={getActiveStep(3)} component={Part3}/>
-                        <Route path={getActiveStep(4)} component={Part4}/>
-                        <Route path={getActiveStep(5)} component={Part5}/>
-                        <Route path={getActiveStep(6)} component={Outro}/>
-                        <Route path={getActiveStep(7)} component={Done}/>
-                        <Redirect to={getActiveStep(currentStep)}/>
-                    </React.Fragment>
-                </Grid>
-                <Grid
-                    item
-                    xs={2}
-                    zeroMinWidth
-                    >
-                    <Fade in={user !== null} timeout={timeout}>
-                        <IconButton
-                            onClick={nextStep}
-                            disabled={currentStep > totalSteps - 1
-                                ? true
-                                : false}
-                            color="secondary"
-                            className={classes.iconButton}
-                            style={{ right: 0 }}
-                            >
-                            <ChevronRightIcon
-                                className={clsx(classes.chevron, {[classes.constrictedChevron]: constricted})}
-                            />
-                        </IconButton>
-                    </Fade>
-                </Grid>
-            </Grid>}
+                <Route exact path="/">
+                    {!user
+                    ? <Signup/>
+                    : <Redirect to={getActiveStep(currentStep)}/>}
+                </Route> 
+                <Route path={getActiveStep(0)} component={Intro}/>
+                <Route path={getActiveStep(1)} component={Part1}/>
+                <Route path={getActiveStep(2)} component={Part2}/>
+                <Route path={getActiveStep(3)} component={Part3}/>
+                <Route path={getActiveStep(4)} component={Part4}/>
+                <Route path={getActiveStep(5)} component={Part5}/>
+                <Route path={getActiveStep(6)} component={Outro}/>
+                <Route path={getActiveStep(7)} component={Done}/>
+                <Redirect to={getActiveStep(currentStep)}/>
+            </Container>
         </React.Fragment>
     );
-};
+}

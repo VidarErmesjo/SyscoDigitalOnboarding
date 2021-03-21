@@ -27,12 +27,16 @@ const useGlobalState = create<GlobalState>((set: SetState<GlobalState>, get: Get
     // Session
     user: null,
     signIn: (acountName): void => {
-        set({user: acountName});
-        set({currentStep: 0});
+        setTimeout(() => {
+            set({user: acountName});
+            set({currentStep: 0});    
+        }, 1000);
     },
     signOut: (): void => {
-        set({user: null});
-        set({currentStep: undefined});
+        setTimeout(() => {
+            set({user: null});
+            set({currentStep: undefined});
+        }, 1000);
     },
 
     // Stepper

@@ -12,6 +12,7 @@ import {
     Point
 } from 'react-simple-maps';
 
+// SYSCO kontor
 const markers = [
     {
         offset: [0, 15] as Point,
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Markers(props: any) {
     const classes = useStyles();
     const theme = useTheme();
+
     return (
         <React.Fragment>
             {markers.map(({name, coordinates, offset})  => (                          
@@ -90,4 +92,4 @@ export default function Markers(props: any) {
             ))}
         </React.Fragment>
     );
-};
+}

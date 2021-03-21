@@ -3,7 +3,6 @@ import clsx from 'clsx';
 
 import {
     createStyles,
-    Fade,
     Step,
     StepConnector,
     StepIconProps,
@@ -20,6 +19,8 @@ import {
 import {
     Check as CheckIcon,
 } from '@material-ui/icons';
+
+import { useSpring, animated } from 'react-spring';
 
 import { Zustand } from '../../Zustand';
 
@@ -86,20 +87,25 @@ function getStepNames() {
         'Noe motiverende for første dagen!',
         'Outro']
     );
-};
+}
 
 function CustomStepIcon({active, completed}: StepIconProps) {
     const classes = useStyles();
-    const timeout = useTheme().transitions.duration.standard;
+    const theme = useTheme();
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: completed ? 1 : 0 },
+        config: { duration: theme.transitions.duration.standard }
+    });
   
     return (
         <div className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed,})}>
-            <Fade in={completed} timeout={timeout}>
+            <animated.div style={style}>
                 {completed ? <CheckIcon fontSize="large"/> : <div/>}
-            </Fade>
+            </animated.div>
         </div>
     );
-};
+}
 
 export default function SessionProgress(props: any) {
     const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
@@ -133,4 +139,4 @@ export default function SessionProgress(props: any) {
             </Stepper>
         </React.Fragment>
     );
-};
+}

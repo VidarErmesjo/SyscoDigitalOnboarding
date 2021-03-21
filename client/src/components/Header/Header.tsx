@@ -1,20 +1,23 @@
 import React from 'react';
+
 import {
 	Box,
 	createStyles,
-	Fade,
 	IconButton,
 	makeStyles,
 	useTheme,
 	Theme,
 	Tooltip,
     Typography,
-	withStyles
+	withStyles,
 } from '@material-ui/core';
  
 import {
 	AccountCircle as AccountCircleIcon,
-  } from '@material-ui/icons';
+} from '@material-ui/icons';
+
+import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
 import logo from './../../assets/SYSCO_logo_white_RGB.png';
 
@@ -49,15 +52,20 @@ export default function Header(props: any) {
 		state.signOut
 	]);
 
+	const ref = React.useRef(9999);
 	const classes = useStyles();
 	const theme = useTheme();
-	const timeout = 1000;
+
+	const style = useSpring({
+		from: { opacity: 0 },
+		to: { opacity: user !== null ? 1 : 0 },
+		config: { duration: theme.transitions.duration.enteringScreen }
+	});
 
 	return (
 		<React.Fragment>
-			<Fade
-				in={user !== null}
-				timeout={timeout}
+			{user !== null && <animated.div
+				style={style}
 				{...props}
 				>
 				<Box
@@ -68,7 +76,7 @@ export default function Header(props: any) {
 					marginTop={theme.spacing(0.05)}
 					{...props}
 					>
-					<CustomTooltip
+					<CustomTooltip ref={ref}
 						title={
 							<React.Fragment>
 								<Typography
@@ -78,9 +86,8 @@ export default function Header(props: any) {
 								</Typography>
 							</React.Fragment>
 						}
-						{...props}
 						>
-						<IconButton
+						<IconButton 
 							onClick={signOut} 
 							color="secondary"
 							className={classes.iconButton}
@@ -96,16 +103,18 @@ export default function Header(props: any) {
 						{user}
 					</Typography>
 				</Box>
-			</Fade>
-			<Fade
-				in={true}
-				timeout={timeout*3}
-				{...props}
+			</animated.div>}
+			<Spring
+				from={{ opacity: 0 }}
+				to={{ opacity: 1 }}
+				config={{ duration: theme.transitions.duration.enteringScreen }}
 				>
-				<Box
+				{props =>
+					<Box
 					position="absolute"
 					top={0} 
 					right={0}
+					style={props}
 					>
 					<img
 						src={logo}
@@ -113,8 +122,8 @@ export default function Header(props: any) {
 						className={classes.logo}
 						style={{ userSelect: 'none' }}
 					/>
-				</Box>
-			</Fade>
+				</Box>}
+			</Spring>
 		</React.Fragment>
 	);
 }

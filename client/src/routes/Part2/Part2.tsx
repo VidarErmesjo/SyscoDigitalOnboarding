@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {
-    Box,
     createStyles,
-    Fade,
     makeStyles,
     Theme,
     useTheme
 } from '@material-ui/core';
+
+import { useSpring, animated } from 'react-spring';
 
 import {
     ComposableMap,
@@ -25,30 +25,35 @@ const geoSize = 1000;
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         geoMap: {
-            position: 'absolute',
+            /*position: 'absolute',
             top: '50%',
             left: '50%',
             marginTop: -geoSize * 0.5,
             marginLeft: -geoSize * 0.5,
             width: geoSize,
             height: geoSize,
-            zIndex: -1,
+            zIndex: -1,*/
         },
     })
 );
 
-export default function Part2() {
+export default function Part2(props: any) {
     const theme = useTheme();
     const classes = useStyles();
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: theme.transitions.duration.enteringScreen }
+    });
 
-    const timeout = theme.transitions.duration.enteringScreen;
-
-    document.body.style.overflowY = 'hidden';
+    console.log(document.getElementById('content')?.clientWidth);
     
     return (
         <React.Fragment>
-            <Fade in={true} timeout={timeout}>
-                <Box className={classes.geoMap}>
+            <animated.div
+                style={style}
+                >
+                <div className={classes.geoMap}>
                     <ComposableMap
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{
@@ -81,8 +86,8 @@ export default function Part2() {
                             <Markers/>
                         </ZoomableGroup>
                     </ComposableMap>
-                </Box>
-            </Fade>
+                </div>
+            </animated.div>
         </React.Fragment>
     );
-};
+}
