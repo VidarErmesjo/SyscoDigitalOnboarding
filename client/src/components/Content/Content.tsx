@@ -1,23 +1,15 @@
 import React from 'react';
 
-import clsx from 'clsx';
-
 import {
+    Box,
     Container,
     createStyles,
-    Grid,
-    IconButton,
     makeStyles,
     Theme,
     Typography,
     useMediaQuery,
     useTheme
 } from '@material-ui/core';
-
-import {
-    ChevronLeft as ChevronLeftIcon,
-    ChevronRight as ChevronRightIcon
-} from '@material-ui/icons';
 
 import {
     Redirect,
@@ -31,7 +23,6 @@ import {
 } from 'react-spring';
 
 import { Zustand } from '../../Zustand';
-
 import { Signup } from '../../routes/Signup';
 import { Intro } from '../../routes/Intro';
 import { Part1 } from '../../routes/Part1';
@@ -41,19 +32,12 @@ import { Part4 } from '../../routes/Part4';
 import { Part5 } from '../../routes/Part5';
 import { Outro } from '../../routes/Outro';
 
-const chevronSize = 200;
-
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        center: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, -50%)`,
-        },
-        paper: {
-            backgroundColor: theme.palette.primary.main,
-            padding: theme.spacing(2),
+        root: {
+   		    textAlign: 'center',
+			zIndex: 0,
+            transformOrigin: 'center',
         },
     })
 );
@@ -97,12 +81,9 @@ function getActiveStep(step: number) {
 }
 
 export default function Content(props: any) {
-    const [user, currentStep, totalSteps, nextStep, previousStep] = Zustand.useGlobalState((state: any) => [
+    const [user, currentStep] = Zustand.useGlobalState((state: any) => [
         state.user,
         state.currentStep,
-        state.totalSteps,
-        state.nextStep,
-        state.previousStep
     ]);
     const classes = useStyles();
     const theme = useTheme();
@@ -123,14 +104,16 @@ export default function Content(props: any) {
     },[user, history]);
 
     const headerBottom = document.getElementById('header')?.getClientRects()[0].height;
-    const scale = window.innerWidth / window.screen.availWidth;
+    const scaleX = window.innerWidth / window.screen.availWidth;
+    //const scaleY = window.innerHeight / window.screen.availHeight;
 
     return (
         <React.Fragment>
             <Container
                 id="feed"
-                fixed
-                className={classes.center}
+                className={classes.root}
+                style={{ top: headerBottom, transform: `scale(${scaleX})` }}
+                //style={{ top: headerBottom, transform: `scale(${scaleX}, ${scaleY})` }}
                 >
                 <Route exact path="/">
                     {!user

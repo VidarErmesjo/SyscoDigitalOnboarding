@@ -16,15 +16,14 @@ import { useSpring, animated } from 'react-spring';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         root: {
-            //position: 'absolute',
-            //top: 0,
-            //left: '50%',
-            //transform: `translateY(-50%)`,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
         },
         text: {
-            //fontFamily: theme.typography.fontFamily,
-            //fontWeight: 230,
-            fill: theme.palette.text.primary,
+            fontFamily: theme.typography.fontFamily,
+            fontSize: theme.typography.fontSize,
             userSelect: 'none',
         },
     })
@@ -43,27 +42,21 @@ export default function Intro(props: any) {
         <React.Fragment>
              <animated.div style={style}>
                 <div className={classes.root}>
-                    <svg width="100%" height="100%"
-                        viewBox="0 0 300 100"
+                    <svg
+                        width="80vw"
+                        //height="100%"
+                        //viewBox="0 0 200 200"
                         fill={theme.palette.text.primary}
                         >
                         <text
-                            //textAnchor="middle"
-                            className={classes.text}
                             x={0}
                             y={theme.typography.fontSize}
-                            textLength={theme.typography.fontFamily}
+                            className={classes.text}
                             >
                             {[...new Array(666)].map(() => `Intro.`).join('\n')}
                         </text>
                         <ellipse cx="50" cy="50" rx="50" ry="50"></ellipse>
                     </svg>
-                    {/* <Typography color="textPrimary">
-                        {[...new Array(666)]
-                            .map(
-                            () => `Intro.`,
-                            ).join('\n')}
-                    </Typography> */}
                 </div>
             </animated.div>
         </React.Fragment>
