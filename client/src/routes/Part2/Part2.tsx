@@ -53,7 +53,7 @@ export default function Part2(props: any) {
             <animated.div
                 style={style}
                 >
-                <div className={classes.geoMap}>
+                <div>
                     <ComposableMap
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{

@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
     Box,
-    Container,
     createStyles,
     makeStyles,
     useTheme,
@@ -17,10 +16,6 @@ import {
 import { useSpring, animated } from 'react-spring';
 
 import SignupForm from './SignupForm';
-
-const scale = window.innerWidth / window.screen.availWidth;
-
-const boxSize = 666;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -48,10 +43,7 @@ export default function Signup(props: any) {
                 style={style}
                 {...props}
                 >
-                <Container
-                    fixed
-                    //className={classes.center}
-                    >
+                <Box className={classes.center}>
                     <Typography
                         variant="h3"
                         color="textPrimary"
@@ -81,7 +73,7 @@ export default function Signup(props: any) {
                         </Typography>
                     </Box>
                     <SignupForm/>
-                </Container>
+                </Box>
             </animated.div>
         </React.Fragment>
     );

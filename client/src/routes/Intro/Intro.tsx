@@ -3,7 +3,6 @@ import React from 'react';
 import {
     createStyles,
     makeStyles,
-    Typography,
     useTheme,
     Theme
 } from '@material-ui/core';

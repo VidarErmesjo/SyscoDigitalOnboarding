@@ -43,7 +43,7 @@ const CustomConnector = withStyles((theme: Theme) => ({
         height: 3,
         border: 0,
         backgroundColor: theme.palette.text.primary,
-        transition: '1s',
+        transition: theme.transitions.duration.standard + 'ms',
     },
 }))(StepConnector);
 

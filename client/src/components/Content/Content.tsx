@@ -1,13 +1,11 @@
 import React from 'react';
 
 import {
-    Box,
     Container,
     createStyles,
     makeStyles,
     Theme,
     Typography,
-    useMediaQuery,
     useTheme
 } from '@material-ui/core';
 
@@ -16,11 +14,6 @@ import {
     Route,
     useHistory,
 } from 'react-router-dom';
-
-import {
-    useSpring,
-    animated
-} from 'react-spring';
 
 import { Zustand } from '../../Zustand';
 import { Signup } from '../../routes/Signup';
@@ -87,13 +80,6 @@ export default function Content(props: any) {
     ]);
     const classes = useStyles();
     const theme = useTheme();
-    const constricted = useMediaQuery('(max-width:666px)');
-
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: user !== null ? 1 : 0 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
 
     // Hvis user === null => omdiriger browser til root.
     let history = useHistory();
