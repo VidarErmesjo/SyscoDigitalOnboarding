@@ -1,5 +1,4 @@
-import { SingleBedOutlined } from '@material-ui/icons';
-import create, { SetState, GetState } from 'zustand';
+import create from 'zustand';
 /*
     Info:
     https://github.com/pmndrs/zustand
@@ -7,13 +6,13 @@ import create, { SetState, GetState } from 'zustand';
 */
 
 // Typer og metoder
-interface GlobalState {
+interface Store {
     // Signature
     [key: string]: any;
 
     // Session
     user: null | string;
-    signIn: (user: null | string) => void;
+    signIn: (email: null | string) => void;
     signOut: () => void;
 
     // Stepper
@@ -27,20 +26,16 @@ interface GlobalState {
 }
 
 // Initialverdier og metodeimplementasjon
-const useGlobalState = create<GlobalState>(set => ({
+const useStore = create<Store>(set => ({
     // Session
     user: null,
-    signIn: async (accountName) => {
-        setTimeout(() => {
-            set({user: accountName});
-            set({currentStep: 0});    
-        }, 0);
+    signIn: async (email: null | string) => {
+        set({user: email});
+        set({currentStep: 0}); 
     },
     signOut: async () => {
-        setTimeout(() => {
-            set({currentStep: undefined});
-            set({user: null});
-        }, 0);
+        set({currentStep: undefined});
+        set({user: null});
     },
 
     // Stepper
@@ -54,6 +49,6 @@ const useGlobalState = create<GlobalState>(set => ({
 
 }));
 
-const Zustand = { useGlobalState };
+const Zustand = { useStore };
 
 export default Zustand;
