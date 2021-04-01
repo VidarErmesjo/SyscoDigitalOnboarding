@@ -15,15 +15,21 @@ import {
     useHistory,
 } from 'react-router-dom';
 
+// Animation
+import {
+    animated,
+    useSpring
+} from 'react-spring';
+
 import { Zustand } from '../../Zustand';
-import { Signup } from '../../routes/Signup';
-import { Intro } from '../../routes/Intro';
-import { Part1 } from '../../routes/Part1';
-import { Part2 } from '../../routes/Part2';
-import { Part3 } from '../../routes/Part3';
-import { Part4 } from '../../routes/Part4';
-import { Part5 } from '../../routes/Part5';
-import { Outro } from '../../routes/Outro';
+import { Signup } from '../../pages/Signup';
+import { Intro } from '../../pages/Intro';
+import { Part1 } from '../../pages/Part1';
+import { Part2 } from '../../pages/Part2';
+import { Part3 } from '../../pages/Part3';
+import { Part4 } from '../../pages/Part4';
+import { Part5 } from '../../pages/Part5';
+import { Outro } from '../../pages/Outro';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -74,12 +80,18 @@ function getActiveStep(step: number) {
 }
 
 export default function Content(props: any) {
-    const [user, currentStep] = Zustand.useGlobalState((state: any) => [
+    const [user, currentStep] = Zustand.useStore((state: any) => [
         state.user,
         state.currentStep,
     ]);
     const classes = useStyles();
     const theme = useTheme();
+
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        config: { duration: theme.transitions.duration.enteringScreen }
+    });
 
     // Hvis user === null => omdiriger browser til root.
     let history = useHistory();
@@ -95,12 +107,13 @@ export default function Content(props: any) {
 
     return (
         <React.Fragment>
-            <Container
+            <section
                 id="feed"
                 className={classes.root}
                 style={{ top: headerBottom, transform: `scale(${scaleX})` }}
                 //style={{ top: headerBottom, transform: `scale(${scaleX}, ${scaleY})` }}
                 >
+                <animated.div style={style}>
                 <Route exact path="/">
                     {!user
                     ? <Signup/>
@@ -115,7 +128,8 @@ export default function Content(props: any) {
                 <Route path={getActiveStep(6)} component={Outro}/>
                 <Route path={getActiveStep(7)} component={Done}/>
                 <Redirect to={getActiveStep(currentStep)}/>
-            </Container>
+                </animated.div>
+            </section>
         </React.Fragment>
     );
 }

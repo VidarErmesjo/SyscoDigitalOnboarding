@@ -24,13 +24,10 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Dashbord(props: any) {
-    const user = Zustand.useGlobalState((state: any) => state.user);
-    
-    const classes = useStyles();
-
-    // Håndterer skalering av innholdet
+// Håndterer skalering av innholdet
+function useWindowSize() {
     const [size, setSize] = React.useState([0, 0]);
+
     React.useLayoutEffect(() => {
         function updateSize() {
             setSize([window.innerWidth, window.innerHeight]);
@@ -39,6 +36,15 @@ export default function Dashbord(props: any) {
         updateSize();    
         return () => window.removeEventListener('resize', updateSize);
     }, []);
+
+    return size;
+}
+
+export default function Dashbord(props: any) {
+    const user = Zustand.useStore((state: any) => state.user);    
+    const classes = useStyles();
+    //const [width, height] = 
+    useWindowSize();
 
     return (
         <React.Fragment>

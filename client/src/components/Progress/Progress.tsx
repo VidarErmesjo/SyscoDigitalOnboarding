@@ -108,7 +108,7 @@ function CustomStepIcon({active, completed}: StepIconProps) {
 }
 
 export default function SessionProgress(props: any) {
-    const currentStep = Zustand.useGlobalState((state: any) => state.currentStep); 
+    const currentStep = Zustand.useStore((state: any) => state.currentStep); 
     const classes = useStyles();
     const steps = getStepNames();
 

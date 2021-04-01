@@ -20,8 +20,6 @@ import Markers from './Markers';
 
 const geoUrl: string = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json";
 
-const geoSize = 1000;
-
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         geoMap: {
@@ -39,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Part2(props: any) {
     const theme = useTheme();
-    const classes = useStyles();
+    //const classes = useStyles();
     const style = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },

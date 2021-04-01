@@ -21,7 +21,7 @@ import {
     FormikHelpers
 } from 'formik';
 
-import { Zustand } from './../../Zustand';
+import { Zustand } from '../../Zustand';
 import * as Yup from 'yup';
 import TextField from './TextFieldWrapper';
 //import SyscoTextField from './../../components/Custom/SyscoTextField';
@@ -46,7 +46,7 @@ interface Values {
 }
 
 export default function SignupForm(props: any) {
-    const signIn = Zustand.useGlobalState((state: any) => state.signIn);
+    const signIn = Zustand.useStore((state: any) => state.signIn);
     const classes = useStyles();
     const theme = useTheme();
     const style = useSpring({

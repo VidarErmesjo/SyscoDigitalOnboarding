@@ -19,7 +19,7 @@ const chevronSize = 100;
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         chevron: {
-            color: theme.palette.primary.main,
+            color: theme.palette.secondary.main,
             fontSize: theme.typography.pxToRem(chevronSize),
             transition: theme.transitions.duration.short + 'ms',
             zIndex: theme.zIndex.mobileStepper,
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Controls(props: any) {
-    const [currentStep, totalSteps, nextStep, previousStep] = Zustand.useGlobalState((state: any) => [
+    const [currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore((state: any) => [
         state.currentStep,
         state.totalStep,
         state.nextStep,

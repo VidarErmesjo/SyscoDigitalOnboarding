@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Footer(props: any) {
-    const user = Zustand.useGlobalState((state: any) => state.user);
+    const user = Zustand.useStore((state: any) => state.user);
     const classes = useStyles();
     const theme = useTheme();
     const constricted = useMediaQuery('(max-width:666px)');
@@ -45,14 +45,14 @@ export default function Footer(props: any) {
 
     return (
         <React.Fragment>
-            <Box className={clsx(classes.root, {[classes.constricted]: constricted})}>
+            <footer className={clsx(classes.root, {[classes.constricted]: constricted})}>
                 <animated.div
                     style={style}
                     {...props}
                     >
                     <Progress/>
                 </animated.div>
-            </Box>
+            </footer>
         </React.Fragment>
     );
 }

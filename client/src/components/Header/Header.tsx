@@ -28,10 +28,10 @@ export default function Header(props: any) {
 
 	return (
 		<React.Fragment>
-			<Box id="header" className={classes.root}>
+			<header id="header" className={classes.root}>
 				<SessionButton/>
 				<SyscoLogo/>
-			</Box>
+			</header>
 		</React.Fragment>
 	);
 }

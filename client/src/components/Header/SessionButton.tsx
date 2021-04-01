@@ -37,12 +37,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function SessionButton(props: any) {
-    const [user, signOut] = Zustand.useGlobalState((state: any) => [
+    const [user, signOut] = Zustand.useStore((state: any) => [
 		state.user,
 		state.signOut
 	]);
+    // ??
+    //const state = Zustand.useStore();
+
     const classes = useStyles();
+
     const theme = useTheme();
+    
 	const style = useSpring({
 		from: { opacity: 0 },
 		to: { opacity: user !== null ? 1 : 0 },

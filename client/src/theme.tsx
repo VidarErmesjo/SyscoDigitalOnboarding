@@ -36,8 +36,8 @@ const theme = createMuiTheme({
     },
     transitions: {
         duration: {
-            enteringScreen: 2000,
-            standard: 1000,
+            enteringScreen: 1000,
+            standard: 500,
         },
     },
     overrides: {
