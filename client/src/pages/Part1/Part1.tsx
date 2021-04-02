@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Typography } from '@material-ui/core';
 
+import { Info as InfoIcon } from '@material-ui/icons';
+
 import SyscoModal from './../../components/Custom/SyscoModal';
 
 export default function Part1(props: any) {
@@ -33,7 +35,8 @@ export default function Part1(props: any) {
         <React.Fragment>
             <button onClick={handleOpen}>Modal</button>
             <SyscoModal
-                title="Some title"
+                title="Tittel på modalen"
+                icon={<InfoIcon/>}
                 left={<LeftComponent/>}
                 right={<RightComponent/>}
                 open={open}

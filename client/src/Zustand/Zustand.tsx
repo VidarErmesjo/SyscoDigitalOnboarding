@@ -41,10 +41,10 @@ const useStore = create<Store>(set => ({
     // Stepper
     currentStep: undefined,
     totalSteps: 7,
-    nextStep: async () => set(state => ({currentStep: state.currentStep! + 1})),
-    previousStep: async () => set(state => ({currentStep: state.currentStep! - 1})),
+    nextStep: async () => setTimeout(() => set(state => ({currentStep: state.currentStep! + 1})), 500),    
+    previousStep: async () => setTimeout(() => set(state => ({currentStep: state.currentStep! - 1})), 500),
 
-    // Map
+    // Map => må buffres
     geoMap: "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json",
 
 }));

@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
+// Material UI
 import {
     createStyles,
     Step,
@@ -16,13 +17,19 @@ import {
     useTheme,
 } from '@material-ui/core';
 
+// Ikoner
 import {
     Check as CheckIcon,
 } from '@material-ui/icons';
 
+// Animasjon
 import { useSpring, animated } from 'react-spring';
 
+// Route
+import { useHistory } from 'react-router-dom';
+
 import { Zustand } from '../../Zustand';
+import { getActiveStep } from '../Content/Content';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
@@ -115,6 +122,12 @@ export default function SessionProgress(props: any) {
     // Endre på layout når bredden blir for liten.
     const constricted = useMediaQuery('(max-width:666px)');
 
+    const history = useHistory();
+    function handleOnClick(index: number) {
+        // Mer ...
+        history.push(getActiveStep(index));
+    };
+
     return (
         <React.Fragment>
             <Stepper
@@ -124,9 +137,12 @@ export default function SessionProgress(props: any) {
                 className={classes.stepper}
                 {...props}
                 >
-                {steps.map((label) => (
+                {steps.map((label, index) => (
                     <Step key={label}>
-                        <StepLabel StepIconComponent={CustomStepIcon}>                            
+                        <StepLabel
+                            StepIconComponent={CustomStepIcon}
+                            onClick={() => handleOnClick(index)}
+                            >                            
                             {!constricted && <Typography
                                 color="textPrimary"
                                 variant="caption"

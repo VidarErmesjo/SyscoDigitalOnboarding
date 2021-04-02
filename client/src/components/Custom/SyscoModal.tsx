@@ -2,8 +2,6 @@ import React from 'react';
 
 // Material UI
 import {
-    Card,
-    Container,
     Dialog,
     DialogActions,
     DialogContent,
@@ -12,11 +10,8 @@ import {
     DialogProps,
     Grid,
     IconButton,
-    Modal,
-    ModalProps,
-    SvgIcon,
-    SvgIconTypeMap,
-    Typography
+    Typography,
+    SvgIconProps
 } from '@material-ui/core';
 
 // Icons
@@ -31,6 +26,11 @@ import {
     Theme,
     useTheme
 } from '@material-ui/core/styles';
+
+import {
+    animated,
+    useSpring,
+} from 'react-spring';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,16 +58,49 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+interface FadeProps {
+    children?: React.ReactElement;
+    in: boolean;
+    onEnter?: () => {};
+    onExited?: () => {};
+}
+
+const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
+    const { in: open, children, onEnter, onExited, ...other } = props;
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+        onStart: () => {
+        if (open && onEnter) {
+            onEnter();
+        }
+        },
+        onRest: () => {
+        if (!open && onExited) {
+            onExited();
+        }
+        },
+    });
+
+    return (
+        <animated.div ref={ref} style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+});
+
 interface SyscoModalProps extends DialogProps {
     // Innhold
     left?: null | React.ReactNode;
     right?: null | React.ReactNode;
 
+    icon?: React.ReactElement<SvgIconProps>;
+
     // Control
     handleClose: () => void;
 };
 
-export default function SyscoModal({handleClose, title, left, right, ...props}: SyscoModalProps) {
+export default function SyscoModal({handleClose, title, icon, left, right, ...props}: SyscoModalProps) {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -88,9 +121,11 @@ export default function SyscoModal({handleClose, title, left, right, ...props}: 
                 disableBackdropClick
                 disableEscapeKeyDown
                 PaperProps={PaperProps}
+                //TransitionComponent={Fade}
                 {...props}                
                 >
                 <DialogActions className={classes.actions}>
+                    {icon ? icon : null}
                     <Typography
                         color={ title ? "textPrimary" : "textSecondary"}
                         variant="h5" 

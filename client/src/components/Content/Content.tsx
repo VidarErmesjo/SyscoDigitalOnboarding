@@ -45,7 +45,7 @@ function Done() {
     return <Typography>Done!</Typography>
 }
 
-function getActiveStep(step: number) {
+export function getActiveStep(step: number) {
     var name;
     switch(step) {
         case 0:
@@ -94,7 +94,7 @@ export default function Content(props: any) {
     });
 
     // Hvis user === null => omdiriger browser til root.
-    let history = useHistory();
+    const history = useHistory();
     React.useEffect(() => {
         if(!user) {
             history.replace("/");

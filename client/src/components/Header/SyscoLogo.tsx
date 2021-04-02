@@ -14,8 +14,8 @@ import logo from './../../assets/SYSCO_logo_white_RGB.png';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		logo: {
-			width: window.innerWidth * 0.1,
-			height: (361 * window.innerWidth / 1745) * 0.1,
+			width: window.screen.availWidth * 0.1,
+			height: (361 * window.screen.availWidth / 1745) * 0.1,
 			maxHeight: 'fill-available',
 			marginTop: theme.spacing(1.5),
 			marginRight: theme.spacing(1.5),

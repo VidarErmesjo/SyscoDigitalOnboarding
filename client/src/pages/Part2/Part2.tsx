@@ -44,7 +44,7 @@ export default function Part2(props: any) {
         config: { duration: theme.transitions.duration.enteringScreen }
     });
 
-    console.log(document.getElementById('content')?.clientWidth);
+    //console.log(document.getElementById('feed')?.clientWidth);
     
     return (
         <React.Fragment>
@@ -56,7 +56,7 @@ export default function Part2(props: any) {
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{
                             center: [15, 61],
-                            scale: 3000,
+                            scale: 1000,
                         }}
                         >
                         <ZoomableGroup zoom={1}>
