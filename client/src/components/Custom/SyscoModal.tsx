@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-interface FadeProps {
+/*interface FadeProps {
     children?: React.ReactElement;
     in: boolean;
     onEnter?: () => {};
@@ -87,20 +87,22 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
             {children}
         </animated.div>
     );
-});
+});*/
 
 interface SyscoModalProps extends DialogProps {
     // Innhold
     left?: null | React.ReactNode;
     right?: null | React.ReactNode;
 
+    // Tittel ikon
     icon?: React.ReactElement<SvgIconProps>;
 
-    // Control
+    // Metoder
     handleClose: () => void;
 };
 
-export default function SyscoModal({handleClose, title, icon, left, right, ...props}: SyscoModalProps) {
+export default function SyscoModal(props: SyscoModalProps): JSX.Element {
+    const {handleClose, title, icon, left, right} = props;
     const classes = useStyles();
     const theme = useTheme();
 
@@ -110,6 +112,8 @@ export default function SyscoModal({handleClose, title, icon, left, right, ...pr
             borderRadius: 0,
         },
     };
+
+    // Bytte fra flex til Mui Grid? Vil vi ha gitte størrelse og kvadratisk uttrykk for innhold?
 
     return (
         <React.Fragment >

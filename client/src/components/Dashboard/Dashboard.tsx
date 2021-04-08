@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 // Håndterer skalering av innholdet
-function useWindowSize() {
+export function useWindowSize() {
     const [size, setSize] = React.useState([0, 0]);
 
     React.useLayoutEffect(() => {
@@ -43,7 +43,7 @@ function useWindowSize() {
 export default function Dashbord(props: any) {
     const user = Zustand.useStore((state: any) => state.user);    
     const classes = useStyles();
-    //const [width, height] = 
+
     useWindowSize();
 
     return (

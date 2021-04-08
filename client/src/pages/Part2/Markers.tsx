@@ -70,7 +70,7 @@ export default function Markers(props: any) {
                     <g
                         fill="none"
                         stroke={theme.palette.error.main}
-                        strokeWidth="2"
+                        strokeWidth="1"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         transform="translate(-12, -24)"

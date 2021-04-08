@@ -15,7 +15,10 @@ import {
 
 import { useSpring, animated } from 'react-spring';
 
+import { useWindowSize } from './../../components/Dashboard/Dashboard';
+
 import SignupForm from './SignupForm';
+import Wave from './Wave';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -37,12 +40,15 @@ export default function Signup(props: any) {
         config: { duration: theme.transitions.duration.enteringScreen }
     });
 
+    const [width, height] = useWindowSize();
+
     return (
         <React.Fragment>
             <animated.div
                 style={style}
                 {...props}
                 >
+                <Wave/>
                 <Box className={classes.center}>
                     <Typography
                         variant="h3"

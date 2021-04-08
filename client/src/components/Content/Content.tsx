@@ -24,6 +24,7 @@ import {
 import { Zustand } from '../../Zustand';
 import { Signup } from '../../pages/Signup';
 import { Intro } from '../../pages/Intro';
+import SyscoProfile from '../../pages/Intro/SyscoProfile';
 import { Part1 } from '../../pages/Part1';
 import { Part2 } from '../../pages/Part2';
 import { Part3 } from '../../pages/Part3';
@@ -105,12 +106,14 @@ export default function Content(props: any) {
     const scaleX = window.innerWidth / window.screen.availWidth;
     //const scaleY = window.innerHeight / window.screen.availHeight;
 
+    const Test = () => <p>Hei!</p>
+
     return (
         <React.Fragment>
             <section
                 id="feed"
                 className={classes.root}
-                style={{ top: headerBottom, transform: `scale(${scaleX})` }}
+                //style={{ top: headerBottom }} //, transform: `scale(${scaleX})` }}
                 //style={{ top: headerBottom, transform: `scale(${scaleX}, ${scaleY})` }}
                 >
                 <animated.div style={style}>
@@ -119,6 +122,7 @@ export default function Content(props: any) {
                     ? <Signup/>
                     : <Redirect to={getActiveStep(currentStep)}/>}
                 </Route> 
+                <Route path="/sysco-profile" component={SyscoProfile}/>
                 <Route path={getActiveStep(0)} component={Intro}/>
                 <Route path={getActiveStep(1)} component={Part1}/>
                 <Route path={getActiveStep(2)} component={Part2}/>
