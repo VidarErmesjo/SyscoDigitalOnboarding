@@ -20,6 +20,40 @@ import { useSpring, animated } from 'react-spring';
 
 import { Zustand } from '../../Zustand';
 
+interface FadeProps {
+    children?: React.ReactElement;
+    in: boolean;
+    onEnter?: () => {};
+    onExited?: () => {};
+}
+
+//const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
+function Fade(props: FadeProps) {
+    const { in: open, children, onEnter, onExited, ...other } = props;
+    const style = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: open ? 1 : 0 },
+        onStart: () => {
+        if (open && onEnter) {
+            onEnter();
+        }
+        },
+        onRest: () => {
+        if (!open && onExited) {
+            onExited();
+        }
+        },
+    });
+
+    return (
+        <animated.div
+            //ref={ref} 
+            style={style} {...other}>
+            {children}
+        </animated.div>
+    );
+};
+
 const CustomTooltip = withStyles((theme: Theme) => ({
 	tooltip: {
 		backgroundColor: theme.palette.background.paper,
@@ -41,16 +75,14 @@ export default function SessionButton(props: any) {
 		state.user,
 		state.signOut
 	]);
-    // ??
-    //const state = Zustand.useStore();
 
     const classes = useStyles();
 
     const theme = useTheme();
-    
+   
 	const style = useSpring({
 		from: { opacity: 0 },
-		to: { opacity: user !== null ? 1 : 0 },
+		to: { opacity: user ? 1 : 0 },
 		config: { duration: theme.transitions.duration.enteringScreen }
 	});
 
@@ -78,6 +110,7 @@ export default function SessionButton(props: any) {
                                 </Typography>
                             </React.Fragment>
                         }
+                        //TransitionComponent={Fade}
                         >
                         <IconButton 
                             onClick={signOut} 

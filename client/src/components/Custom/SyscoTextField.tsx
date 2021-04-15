@@ -7,7 +7,16 @@ import {
 const SyscoTextField = withStyles((theme: Theme) => ({
     root: {
         '& label.Mui-focused': {
-             color: theme.palette.text.primary,
+             //color: theme.palette.text.primary,
+        },
+        '& .MuiInputLabel-root': {
+            backgroundColor: 'transparent',
+        },
+        '& .MuiInputLabel-shrink': {
+            color: theme.palette.secondary.main,
+        },
+        '& .MuiFormLabel-filled': {
+            backgroundColor: 'transparent',
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {

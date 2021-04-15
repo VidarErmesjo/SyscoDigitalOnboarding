@@ -34,28 +34,34 @@ const useStore = create<Store>((set, get) => ({
     user: null,
     isLoading: false,
     signIn: async (email: null | string) => {
-        set({user: email});
-        set({currentStep: 0}); 
+        const { isLoading } = get();
+        if(!isLoading) {
+            set({isLoading: true, user: email});
+            set({currentStep: 0});
+            setTimeout(() => set(state => ({isLoading: false})), 1000);
+        }
     },
     signOut: async () => {
-        set({currentStep: undefined});
-        set({user: null});
+        const { isLoading } = get();
+        if(!isLoading) {
+            set({isLoading: true, currentStep: undefined});
+            set({user: null});
+            setTimeout(() => set(state => ({isLoading: false})), 1000);
+        }
     },
 
     // Stepper
     currentStep: 1,
     totalSteps: steps.length,
     nextStep: async () => {
-        const { isLoading } = get();
-        
+        const { isLoading } = get();        
         if(!isLoading) {
             set(state => ({isLoading: true, currentStep: state.currentStep! + 1}));
             setTimeout(() => set(state => ({isLoading: false})), 1000);
         }
     },    
     previousStep: async () => {
-        const { isLoading } = get();
-        
+        const { isLoading } = get();        
         if(!isLoading) {
             set(state => ({isLoading: true, currentStep: state.currentStep! - 1}));
             setTimeout(() => set(state => ({isLoading: false})), 1000);
