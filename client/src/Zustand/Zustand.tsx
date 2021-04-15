@@ -5,6 +5,8 @@ import create from 'zustand';
     https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
 */
 
+import { steps } from './steps';
+
 // Typer og metoder
 interface Store {
     // Signature
@@ -12,6 +14,7 @@ interface Store {
 
     // Session
     user: null | string;
+    isLoading: boolean;
     signIn: (email: null | string) => void;
     signOut: () => void;
 
@@ -22,13 +25,14 @@ interface Store {
     previousStep: () => void;
 
     // Map
-    geoMap: undefined | string;
+    //geoMap: undefined | string;
 }
 
 // Initialverdier og metodeimplementasjon
-const useStore = create<Store>(set => ({
+const useStore = create<Store>((set, get) => ({
     // Session
     user: null,
+    isLoading: false,
     signIn: async (email: null | string) => {
         set({user: email});
         set({currentStep: 0}); 
@@ -39,13 +43,26 @@ const useStore = create<Store>(set => ({
     },
 
     // Stepper
-    currentStep: undefined,
-    totalSteps: 7,
-    nextStep: async () => setTimeout(() => set(state => ({currentStep: state.currentStep! + 1})), 500),    
-    previousStep: async () => setTimeout(() => set(state => ({currentStep: state.currentStep! - 1})), 500),
-
+    currentStep: 1,
+    totalSteps: steps.length,
+    nextStep: async () => {
+        const { isLoading } = get();
+        
+        if(!isLoading) {
+            set(state => ({isLoading: true, currentStep: state.currentStep! + 1}));
+            setTimeout(() => set(state => ({isLoading: false})), 1000);
+        }
+    },    
+    previousStep: async () => {
+        const { isLoading } = get();
+        
+        if(!isLoading) {
+            set(state => ({isLoading: true, currentStep: state.currentStep! - 1}));
+            setTimeout(() => set(state => ({isLoading: false})), 1000);
+        }
+    },
     // Map => må buffres
-    geoMap: "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json",
+    //geoMap: "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json",
 
 }));
 

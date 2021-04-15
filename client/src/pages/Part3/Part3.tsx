@@ -7,6 +7,8 @@ import {
 
 import { useSpring, animated } from 'react-spring';
 
+import StepByStep from './StepByStep';
+
 export default function Part3() {
     const theme = useTheme();
     const style = useSpring({
@@ -18,14 +20,7 @@ export default function Part3() {
     return (
         <React.Fragment>
             <animated.div style={style}>
-                <div>
-                    <Typography color="textPrimary">
-                        {[...new Array(666)]
-                            .map(
-                            () => `Part 3.`,
-                            ).join('\n')}
-                    </Typography>
-                </div>
+                <StepByStep/>
             </animated.div>
         </React.Fragment>
     );

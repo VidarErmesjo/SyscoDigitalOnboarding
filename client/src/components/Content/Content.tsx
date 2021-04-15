@@ -1,6 +1,8 @@
 import React from 'react';
 
 import {
+    Backdrop,
+    CircularProgress,
     Container,
     createStyles,
     makeStyles,
@@ -35,9 +37,17 @@ import { Outro } from '../../pages/Outro';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         root: {
-   		    textAlign: 'center',
-			zIndex: 0,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
             transformOrigin: 'center',
+            transform: `translate(-50%, -50%)`,
+            textAlign: 'center',
+			zIndex: 0,
+        },
+        circularProgress: {
+            color: theme.palette.secondary.main,
+            zIndex: theme.zIndex.mobileStepper,
         },
     })
 );
@@ -81,18 +91,13 @@ export function getActiveStep(step: number) {
 }
 
 export default function Content(props: any) {
-    const [user, currentStep] = Zustand.useStore((state: any) => [
+    const [isLoading, user, currentStep] = Zustand.useStore((state: any) => [
+        state.isLoading,
         state.user,
         state.currentStep,
     ]);
     const classes = useStyles();
     const theme = useTheme();
-
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
 
     // Hvis user === null => omdiriger browser til root.
     const history = useHistory();
@@ -106,34 +111,35 @@ export default function Content(props: any) {
     const scaleX = window.innerWidth / window.screen.availWidth;
     //const scaleY = window.innerHeight / window.screen.availHeight;
 
-    const Test = () => <p>Hei!</p>
-
     return (
         <React.Fragment>
-            <section
+            <Container
                 id="feed"
+                fixed
                 className={classes.root}
+                //style={{ transform: `scale(${scaleX})`}}
                 //style={{ top: headerBottom }} //, transform: `scale(${scaleX})` }}
                 //style={{ top: headerBottom, transform: `scale(${scaleX}, ${scaleY})` }}
                 >
-                <animated.div style={style}>
-                <Route exact path="/">
-                    {!user
-                    ? <Signup/>
-                    : <Redirect to={getActiveStep(currentStep)}/>}
-                </Route> 
-                <Route path="/sysco-profile" component={SyscoProfile}/>
-                <Route path={getActiveStep(0)} component={Intro}/>
-                <Route path={getActiveStep(1)} component={Part1}/>
-                <Route path={getActiveStep(2)} component={Part2}/>
-                <Route path={getActiveStep(3)} component={Part3}/>
-                <Route path={getActiveStep(4)} component={Part4}/>
-                <Route path={getActiveStep(5)} component={Part5}/>
-                <Route path={getActiveStep(6)} component={Outro}/>
-                <Route path={getActiveStep(7)} component={Done}/>
-                <Redirect to={getActiveStep(currentStep)}/>
-                </animated.div>
-            </section>
+                {!isLoading ? <React.Fragment>
+                    <Route exact path="/">
+                        {!user
+                        ? <Signup/>
+                        : <Redirect to={getActiveStep(currentStep)}/>}
+                    </Route> 
+                    <Route path="/sysco-profile" component={SyscoProfile}/>
+                    <Route path={getActiveStep(0)} component={Intro}/>
+                    <Route path={getActiveStep(1)} component={Part1}/>
+                    <Route path={getActiveStep(2)} component={Part2}/>
+                    <Route path={getActiveStep(3)} component={Part3}/>
+                    <Route path={getActiveStep(4)} component={Part4}/>
+                    <Route path={getActiveStep(5)} component={Part5}/>
+                    <Route path={getActiveStep(6)} component={Outro}/>
+                    <Route path={getActiveStep(7)} component={Done}/>
+                    <Redirect to={getActiveStep(currentStep)}/>                    
+                </React.Fragment> : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
+
+            </Container>
         </React.Fragment>
     );
 }

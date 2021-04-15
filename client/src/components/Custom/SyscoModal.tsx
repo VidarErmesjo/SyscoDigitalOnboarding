@@ -102,7 +102,7 @@ interface SyscoModalProps extends DialogProps {
 };
 
 export default function SyscoModal(props: SyscoModalProps): JSX.Element {
-    const {handleClose, title, icon, left, right} = props;
+    const {handleClose, title, icon, left, right, ...rest} = props;
     const classes = useStyles();
     const theme = useTheme();
 
@@ -126,7 +126,7 @@ export default function SyscoModal(props: SyscoModalProps): JSX.Element {
                 disableEscapeKeyDown
                 PaperProps={PaperProps}
                 //TransitionComponent={Fade}
-                {...props}                
+                {...rest}                
                 >
                 <DialogActions className={classes.actions}>
                     {icon ? icon : null}

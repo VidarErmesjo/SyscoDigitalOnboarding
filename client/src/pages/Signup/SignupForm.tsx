@@ -64,10 +64,8 @@ export default function SignupForm(props: any) {
     });
 
     const onSubmit = (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
-        setTimeout(() => {
-            signIn(values.email);
-            setSubmitting(false);
-        }, 500)
+        setSubmitting(false);
+        signIn(values.email);
     };
 
     return (

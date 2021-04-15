@@ -41,7 +41,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Controls(props: any) {
-    const [currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore((state: any) => [
+    const [isLoading, currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore((state: any) => [
+        state.isLoading,
         state.currentStep,
         state.totalStep,
         state.nextStep,
@@ -56,7 +57,8 @@ export default function Controls(props: any) {
                 onClick={previousStep}
                 disabled={currentStep < 1
                     ? true
-                    : false}
+                    : false
+                    || isLoading}
                 className={classes.iconButton}
                 style={{ left: 0 }}
                 >
@@ -67,7 +69,8 @@ export default function Controls(props: any) {
                 onClick={nextStep}
                 disabled={currentStep > totalSteps - 1
                     ? true
-                    : false}
+                    : false
+                    || isLoading}
                 className={classes.iconButton}
                 style={{ right: 0 }}
                 >

@@ -6,21 +6,13 @@ import {
     Theme
 } from '@material-ui/core';
 
+import { useWindowSize } from './../../components/Dashboard/Dashboard';
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        outerWave: {
+        wave: {
             position: 'absolute',
-            width: 1832,
-            height: 585,
-            left: -101,
-            top: 408,
-        },
-        innerWave: {
-            position: 'absolute',
-            width: 1732,
-            height: 553.31,
-            left: -101,
-            top: 521,
+            left: 0,
         },
 	}),
 );
@@ -28,37 +20,88 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Wave() {
     const classes = useStyles();
 
+    const [width, height] = useWindowSize();
+
+
     return (
         <React.Fragment>
             <svg
+                xmlns="http://www.w3.org/2000/svg"
                 width="1540"
-                height="499"
-                viewBox="0 0 1540 499"
-                fill="none"
-                className={classes.outerWave}
+                height="412"
+                fill="n<one"
+                viewBox="0 0 1540 412"
+                className={classes.wave}
                 >
-                <path d="M278.199 366.672C103.619 424.666 -88.4216 476.105 -101 477.456V487.591L438.461 542.208L1415.46 585L1731 414.957C1592.02 405.573 1526.12 409.689 1655.37 328.609C1784.63 247.529 1508.51 219.301 1494.07 171.075C1425.84 -56.7693 1335.85 0.985798 1305.79 23.0554C1271.94 47.9015 1212.71 102.164 1195.33 115.975C1051.3 230.463 773.741 408.538 815.813 204.938C868.404 -49.5635 721.39 112.924 609.799 196.449C498.208 279.975 343.763 344.891 278.199 366.672Z" fill="url(#paint0_linear)"/>
-                <defs>
-                    <linearGradient id="paint0_linear" x1="-326" y1="316.555" x2="1491.8" y2="102.369" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#386781"/>
-                    <stop offset="0.0001" stop-color="#C4C4C4" stop-opacity="0"/>
-                    <stop offset="1" stop-color="#386781"/>
+                <g clipPath="url(#clip0)" filter="url(#filter0_d)">
+                <path
+                    fill="url(#paint0_linear)"
+                    d="M257.5 459.806C92.45 514.659-89.108 563.311-101 564.589v9.586l510.015 51.657 923.665 40.474L1631 505.476c-131.39-8.876-193.7-4.983-71.5-81.67 122.2-76.687-138.85-103.387-152.5-149-64.5-215.5-149.58-160.874-178-140-32 23.5-88 74.823-104.43 87.886-136.171 108.285-398.577 276.713-358.801 84.143C815.489 66.122 676.5 219.806 571 298.806s-251.515 140.4-313.5 161z"
+                />
+                <path
+                    fill="url(#paint1_linear)"
+                    d="M278.199 366.672C103.619 424.666-88.421 476.105-101 477.456v10.135l539.461 54.617L1415.46 585 1731 414.957c-138.98-9.384-204.88-5.268-75.63-86.348 129.26-81.08-146.86-109.308-161.3-157.534-68.23-227.844-158.22-170.09-188.28-148.02-33.85 24.846-93.08 79.109-110.46 92.92-144.03 114.488-421.589 292.563-379.517 88.963 52.591-254.501-94.423-92.014-206.014-8.489-111.591 83.526-266.036 148.442-331.6 170.223z"
+                ></path>
+                    </g>
+                    <defs>
+                    <filter
+                        id="filter0_d"
+                        width="1548"
+                        height="828"
+                        x="-4"
+                        y="-408"
+                        colorInterpolationFilters="sRGB"
+                        filterUnits="userSpaceOnUse"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+                        <feColorMatrix
+                        in="SourceAlpha"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        ></feColorMatrix>
+                        <feOffset dy="4"></feOffset>
+                        <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix>
+                        <feBlend
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow"
+                        ></feBlend>
+                        <feBlend
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow"
+                        result="shape"
+                        ></feBlend>
+                    </filter>
+                    <linearGradient
+                        id="paint0_linear"
+                        x1="-326"
+                        x2="1491.8"
+                        y1="316.555"
+                        y2="102.369"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#386781"></stop>
+                        <stop offset="0" stopColor="#C4C4C4" stopOpacity="0"></stop>
+                        <stop offset="1" stopColor="#386781"></stop>
                     </linearGradient>
-                </defs>
-            </svg>
-            <svg
-                width="1540"
-                height="299"
-                viewBox="0 0 1549 299"
-                fill="none"
-                className={classes.innerWave}
-                >
-                <path offset="0 -50" d="M257.5 346.806C92.4502 401.659 -89.1082 450.311 -101 451.589V461.175L409.015 512.832L1332.68 553.306L1631 392.476C1499.61 383.6 1437.3 387.493 1559.5 310.806C1681.7 234.119 1420.65 207.419 1407 161.806C1342.5 -53.6937 1257.42 0.932388 1229 21.8063C1197 45.3063 1141 96.6292 1124.57 109.692C988.399 217.977 725.993 386.405 765.769 193.835C815.489 -46.8783 676.5 106.806 571 185.806C465.5 264.806 319.485 326.206 257.5 346.806Z" fill="url(#paint0_linear)"/>
-                <defs>
-                    <linearGradient id="paint0_linear" x1="1184.3" y1="282.847" x2="-94.8169" y2="344.034" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#386781"/>
-                    <stop offset="1" stop-color="#C4C4C4" stop-opacity="0"/>
+                    <linearGradient
+                        id="paint1_linear"
+                        x1="-326"
+                        x2="1491.8"
+                        y1="316.555"
+                        y2="102.369"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#386781"></stop>
+                        <stop offset="0" stopColor="#C4C4C4" stopOpacity="0"></stop>
+                        <stop offset="1" stopColor="#386781"></stop>
                     </linearGradient>
+                    <clipPath id="clip0">
+                        <path
+                        fill="#fff"
+                        d="M0 0H1540V820H0z"
+                        transform="translate(0 -408)"
+                        ></path>
+                    </clipPath>
                 </defs>
             </svg>
         </React.Fragment>

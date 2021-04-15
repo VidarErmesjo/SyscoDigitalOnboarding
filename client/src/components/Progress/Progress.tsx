@@ -28,7 +28,7 @@ import { useSpring, animated } from 'react-spring';
 // Route
 import { useHistory } from 'react-router-dom';
 
-import { Zustand } from '../../Zustand';
+import { Zustand, steps } from '../../Zustand';
 import { getActiveStep } from '../Content/Content';
 
 const CustomConnector = withStyles((theme: Theme) => ({
@@ -84,18 +84,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-function getStepNames() {
-    return ([
-        'Intro',
-        'Generisk presentasjon',
-        'Tilpasset presentasjon',
-        'Hva skjer når du er ansatt?',
-        'Har du alt du trenger av kontoer?',
-        'Noe motiverende for første dagen!',
-        'Outro']
-    );
-}
-
 function CustomStepIcon({active, completed}: StepIconProps) {
     const classes = useStyles();
     const theme = useTheme();
@@ -115,9 +103,8 @@ function CustomStepIcon({active, completed}: StepIconProps) {
 }
 
 export default function SessionProgress(props: any) {
-    const currentStep = Zustand.useStore((state: any) => state.currentStep); 
+    const store = Zustand.useStore(); 
     const classes = useStyles();
-    const steps = getStepNames();
 
     // Endre på layout når bredden blir for liten.
     const constricted = useMediaQuery('(max-width:666px)');
@@ -132,13 +119,13 @@ export default function SessionProgress(props: any) {
         <React.Fragment>
             <Stepper
                 alternativeLabel
-                activeStep={currentStep}
+                activeStep={store.currentStep}
                 connector={<CustomConnector/>}
                 className={classes.stepper}
                 {...props}
                 >
-                {steps.map((label, index) => (
-                    <Step key={label}>
+                {steps.map((label: string, index: number) => (
+                    <Step key={index}>
                         <StepLabel
                             StepIconComponent={CustomStepIcon}
                             onClick={() => handleOnClick(index)}
