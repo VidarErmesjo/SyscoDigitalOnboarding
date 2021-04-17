@@ -7,6 +7,7 @@ import {
 
 import { useSpring, animated } from 'react-spring';
 
+import FAQ from './FAQ';
 import StepByStep from './StepByStep';
 
 export default function Part3() {
@@ -20,7 +21,8 @@ export default function Part3() {
     return (
         <React.Fragment>
             <animated.div style={style}>
-                <StepByStep/>
+                {/* <StepByStep/> */}
+                <FAQ/>
             </animated.div>
         </React.Fragment>
     );

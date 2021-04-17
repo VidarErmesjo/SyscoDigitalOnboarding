@@ -16,11 +16,25 @@ import { Header } from './../Header';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
+            display: 'flex',
+            flex: '0 0 column',
+            justifyContent: 'center',
+            alignItems: 'center',
+
 			color: theme.palette.primary.main,
 			backgroundColor: theme.palette.background.default,
 			height: '100vh',
             margin: 0,
 		},
+        container: {
+            display: 'flex',
+            flex: `0 0 column`,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        item: {
+            width: '100vw',
+        },
 	}),
 );
 
@@ -48,7 +62,19 @@ export default function Dashbord(props: any) {
 
     return (
         <React.Fragment>
-            <Grid
+            <div className={classes.root}>
+                <header className={classes.item}>
+                    <Header/>
+                </header>
+                <section className={classes.item}>
+                    <Content/>
+                </section>
+                <footer className={classes.item}>
+                    {user && <Footer/>}
+                </footer>
+                {user && <Controls/>}
+            </div>
+            {/* <Grid
                 container
                 className={classes.root}
                 >
@@ -64,7 +90,7 @@ export default function Dashbord(props: any) {
                     </Grid>
                     <Controls/>
                 </React.Fragment>}
-            </Grid>
+            </Grid> */}
         </React.Fragment>        
     );
 }

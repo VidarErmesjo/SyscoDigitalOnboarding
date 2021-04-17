@@ -10,6 +10,7 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 import logo from './../../assets/SYSCO_logo_white_RGB.png';
+import { SyscoLogo } from '../Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function SyscoLogo(props: any) {
+export default function Logo(props: any) {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -41,6 +42,7 @@ export default function SyscoLogo(props: any) {
                         right={0}
                         style={props}
                         >
+                        {/* <SyscoLogo/> */}
                         <img
                             src={logo}
                             alt="SYSCO logo"

@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
 			position: 'fixed',
+            left: 0,
             bottom: 0,
 			width: '100%',
             height: theme.spacing(17),
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: theme.palette.background.default,
 		},
         constricted: {
-            height: theme.spacing(11),
+            height: theme.spacing(14),
         },
     })
 );

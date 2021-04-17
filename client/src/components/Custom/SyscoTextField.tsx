@@ -18,6 +18,9 @@ const SyscoTextField = withStyles((theme: Theme) => ({
         '& .MuiFormLabel-filled': {
             backgroundColor: 'transparent',
         },
+        '& .MuiFormHelperText-root': {
+            userSelect: 'none',
+        },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
                 borderColor: theme.palette.secondary.dark,

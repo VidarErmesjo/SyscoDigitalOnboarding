@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 
 import SessionButton from './SessionButton';
-import SyscoLogo from './SyscoLogo';
+import Logo from './Logo';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.primary.main,
 			position: 'fixed',
             top: 0,
+			left: 0,
 			width:'100%',
 			height: theme.spacing(7),
 			zIndex: theme.zIndex.appBar,
@@ -30,7 +31,7 @@ export default function Header(props: any) {
 		<React.Fragment>
 			<header id="header" className={classes.root}>
 				<SessionButton/>
-				<SyscoLogo/>
+				<Logo/>
 			</header>
 		</React.Fragment>
 	);

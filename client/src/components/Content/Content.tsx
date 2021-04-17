@@ -37,12 +37,25 @@ import { Outro } from '../../pages/Outro';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         root: {
-            position: 'absolute',
+            //position: 'relative',
+
+            display: 'flex',
+            //flex: `0 0 row`,
+            justifyContent: 'center',
+            alignItems: 'center',
+
+            /*borderColor: '#FF0000',
+            borderWidth: 1,
+            borderStyle: 'solid',*/
+
+            /*position: 'absolute',
             top: '50%',
             left: '50%',
             transformOrigin: 'center',
             transform: `translate(-50%, -50%)`,
             textAlign: 'center',
+            width: '80vw',*/
+            //height: '80vh',
 			zIndex: 0,
         },
         circularProgress: {
@@ -113,13 +126,10 @@ export default function Content(props: any) {
 
     return (
         <React.Fragment>
-            <Container
+            <div
                 id="feed"
-                fixed
+                //fixed
                 className={classes.root}
-                //style={{ transform: `scale(${scaleX})`}}
-                //style={{ top: headerBottom }} //, transform: `scale(${scaleX})` }}
-                //style={{ top: headerBottom, transform: `scale(${scaleX}, ${scaleY})` }}
                 >
                 {!isLoading ? <React.Fragment>
                     <Route exact path="/">
@@ -137,9 +147,13 @@ export default function Content(props: any) {
                     <Route path={getActiveStep(6)} component={Outro}/>
                     <Route path={getActiveStep(7)} component={Done}/>
                     <Redirect to={getActiveStep(currentStep)}/>                    
-                </React.Fragment> : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
-
-            </Container>
+                </React.Fragment>
+                :
+                <CircularProgress
+                    size={theme.spacing(10)}
+                    className={classes.circularProgress}
+                />}
+            </div>
         </React.Fragment>
     );
 }

@@ -23,21 +23,18 @@ const geoUrl: string = "https://raw.githubusercontent.com/zcreativelabs/react-si
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         geoMap: {
-            /*position: 'absolute',
+            position: 'absolute',
             top: '50%',
             left: '50%',
-            marginTop: -geoSize * 0.5,
-            marginLeft: -geoSize * 0.5,
-            width: geoSize,
-            height: geoSize,
-            zIndex: -1,*/
+            transformOrigin: 'center',
+            transform: `translate(-50%, -50%)`,
         },
     })
 );
 
 export default function Part2(props: any) {
     const theme = useTheme();
-    //const classes = useStyles();
+    const classes = useStyles();
     const style = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },
@@ -51,12 +48,12 @@ export default function Part2(props: any) {
             <animated.div
                 style={style}
                 >
-                <div>
+                <div className={classes.geoMap}>
                     <ComposableMap
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{
-                            center: [15, 61],
-                            scale: 1000,
+                            //center: [15, 61],
+                            //scale: 1000,
                         }}
                         >
                         <ZoomableGroup zoom={1}>
