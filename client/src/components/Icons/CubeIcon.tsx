@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function CubeIcon() {
     return (
         <svg
@@ -8,8 +6,8 @@ export default function CubeIcon() {
             height="26"
             fill="none"
             viewBox="0 0 26 26"
-        >
-            <path fill="#00FF97" d="M11 0l11 6.5v13L11 26 0 19.5v-13L11 0z"></path>
+            >
+            <path fill="#00FF97" d="M11 0l11 6.5v13L11 26 0 19.5v-13L11 0z"/>
         </svg>
     );
 }

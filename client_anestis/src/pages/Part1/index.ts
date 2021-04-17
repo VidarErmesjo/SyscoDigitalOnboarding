@@ -1,0 +1,1 @@
+export { default as Part1 } from './Part1';

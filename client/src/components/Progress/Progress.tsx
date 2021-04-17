@@ -11,6 +11,8 @@ import {
     StepIconProps,
     StepLabel,
     Stepper,
+    SvgIcon,
+    SvgIconProps,
     makeStyles,
     Theme,
     Typography,
@@ -20,24 +22,21 @@ import {
 } from '@material-ui/core';
 
 // Ikoner
-import {
-    Check as CheckIcon,
-} from '@material-ui/icons';
-
-import { StepperIcon } from './../Icons';
+import { SyscoActiveIcon, SyscoCompletedIcon, SyscoTodoIcon, SyscoDoneIcon } from './../Icons/SyscoStepIcon';
 
 // Animasjon
-import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
 // Route
 import { useHistory } from 'react-router-dom';
 
+// API
 import { Zustand, steps } from '../../Zustand';
-import { getActiveStep } from '../Content/Content';
+import { getActiveStep } from '../../api';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
-        top: 30,
+        top: 32,
         width: 'auto',
     },
     active: {
@@ -51,7 +50,7 @@ const CustomConnector = withStyles((theme: Theme) => ({
         },
     },
     line: {
-        height: 4,
+        height: 1,
         border: 0,
         backgroundColor: theme.palette.text.primary,
         transition: theme.transitions.duration.standard + 'ms',
@@ -60,29 +59,29 @@ const CustomConnector = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
-        root: {
-            display: 'flex',
-            color: theme.palette.text.secondary,
-            backgroundColor: theme.palette.primary.main,
-            zIndex: 1,
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            //borderColor: theme.palette.primary.main,
-            //border: '0.5em',
-            justifyContent: 'center',
-            alignItems: 'center',
-            transition: theme.transitions.duration.enteringScreen + 'ms',
-        },
-        active: {
-            borderColor: 'transparent',// theme.palette.secondary.main,
-            //borderStyle: 'solid',
-            //boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
-        },
-        completed: {
-            backgroundColor: 'transparent',// theme.palette.secondary.main,
-            borderStyle: 'none',
-        },
+        // root: {
+        //     display: 'flex',
+        //     //color: theme.palette.text.primary,
+        //     backgroundColor: theme.palette.primary.main,
+        //     zIndex: 1,
+        //     width: 40,
+        //     height: 40,
+        //     borderRadius: '50%',
+        //     //borderColor: theme.palette.primary.main,
+        //     border: '0.5em',
+        //     justifyContent: 'center',
+        //     alignItems: 'center',
+        //     transition: theme.transitions.duration.enteringScreen + 'ms',
+        // },
+        // active: {
+        //     borderColor: theme.palette.secondary.main,
+        //     borderStyle: 'solid',
+        //     boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
+        // },
+        // completed: {
+        //     backgroundColor: theme.palette.secondary.main,
+        //     borderStyle: 'none',
+        // },
         stepper: {
             backgroundColor: 'transparent',
         },
@@ -94,15 +93,79 @@ const useStyles = makeStyles((theme: Theme) =>
             opacity: 0.4,
             borderRadius: 4,
         },
+        iconButton: {
+            transition: theme.transitions.duration.short + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
+        },
+        stepConnector: {
+            position: 'absolute',
+            top: 18,
+            width: 'auto',
+            left: `calc(-50% + 20px)`,
+            right: `calc(50% + 20px)`,
+            //flex:'1 1 auto',
+        },
+        stepLabel: {
+            '& .MuiStepLabel-label.MuiStepLabel-alternativeLabel': {
+                //margin: 0,
+            },
+        },
+        root: {
+            transition: theme.transitions.duration.short + 'ms',
+            userSelect: 'none',
+        },
+        active: {
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
+        },
+        completed: {
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
+        },
     }),
 );
 
-function CustomStepIcon({active, completed, ...props}: StepIconProps) {
+function SyscoStepConnector(props: SvgIconProps): JSX.Element {
+    const classes = useStyles();
+
+    return (
+        <SvgIcon
+            viewBox="0 0 141 11"
+            className={classes.stepConnector}
+            >
+            <rect width="141" height="11" fill="#fff" rx="5.5"></rect>
+        </SvgIcon>
+    );
+}
+
+function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
+    const classes = useStyles();
     const theme = useTheme();
   
     return (
-        <IconButton color="secondary">
-            <StepperIcon active={active} completed={completed}/>
+        <IconButton
+            color="secondary"
+            disabled={!active && !completed}
+            className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed})}
+            >
+            {active ? <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.standard }}
+                >
+                {props => <SyscoActiveIcon color="inherit" style={props}/>}
+            </Spring> : !completed ? <SyscoTodoIcon/> : null}
+            {completed && <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.standard }}
+                >
+                {props => <SyscoCompletedIcon color="inherit" style={props}/>}
+            </Spring>}
         </IconButton>
     );
 }
@@ -126,8 +189,9 @@ export default function SessionProgress(props: any) {
             <Stepper
                 alternativeLabel
                 activeStep={store.currentStep}
-                //connector={null}
-                connector={<CustomConnector/>}
+                connector={null}
+                //connector={<SyscoStepConnector/>}
+                //connector={<CustomConnector/>}
                 //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
                 {...props}
@@ -135,8 +199,9 @@ export default function SessionProgress(props: any) {
                 {steps.map((label: string, index: number) => (
                     <Step key={index}>
                         <StepLabel
-                            StepIconComponent={CustomStepIcon}
+                            StepIconComponent={SyscoStepIcon}
                             onClick={() => handleOnClick(index)}
+                            className={classes.stepLabel}
                             >                            
                             {!constricted && <Typography
                                 color="textPrimary"

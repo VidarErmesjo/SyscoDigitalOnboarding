@@ -19,13 +19,8 @@ const chevronSize = 100;
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         chevron: {
-            color: theme.palette.secondary.main,
             fontSize: theme.typography.pxToRem(chevronSize),
-            transition: theme.transitions.duration.short + 'ms',
             zIndex: theme.zIndex.mobileStepper,
-            '&:hover': {
-                color: theme.palette.text.primary,
-            },
         },
         constrictedChevron: {
             fontSize: theme.typography.pxToRem(chevronSize * 0.5),
@@ -36,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
             marginTop: theme.typography.pxToRem(-chevronSize * 0.5),
             width: theme.typography.pxToRem(chevronSize),
             height: theme.typography.pxToRem(chevronSize),
+            transition: theme.transitions.duration.short + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
         },
 	}),
 );
@@ -52,7 +51,7 @@ export default function Controls(props: any) {
 
     return (
         <React.Fragment>
-            <IconButton
+            {true ? <IconButton
                 color="secondary"
                 onClick={previousStep}
                 disabled={currentStep < 1
@@ -62,9 +61,9 @@ export default function Controls(props: any) {
                 className={classes.iconButton}
                 style={{ left: 0 }}
                 >
-                <ChevronLeftIcon className={classes.chevron}/>
-            </IconButton>
-            <IconButton
+                <ChevronLeftIcon color="inherit" className={classes.chevron}/>
+            </IconButton>: null}
+            {true ? <IconButton
                 color="secondary"
                 onClick={nextStep}
                 disabled={currentStep > totalSteps - 1
@@ -74,8 +73,8 @@ export default function Controls(props: any) {
                 className={classes.iconButton}
                 style={{ right: 0 }}
                 >
-                <ChevronRightIcon className={classes.chevron}/>
-            </IconButton>
+                <ChevronRightIcon color="inherit" className={classes.chevron}/>
+            </IconButton> : null}
         </React.Fragment>
     );
 }

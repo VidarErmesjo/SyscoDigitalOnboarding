@@ -64,8 +64,18 @@ const CustomTooltip = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+        accountCircle: {
+            color: theme.palette.secondary.main,
+            transition: theme.transitions.duration.short + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },  
+        },
 		iconButton: {
 			transition: theme.transitions.duration.standard + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },  
 		},
     })
 );
@@ -117,7 +127,7 @@ export default function SessionButton(props: any) {
                             color="secondary"
                             className={classes.iconButton}
                             >
-                            <AccountCircleIcon color="secondary"/>
+                            <AccountCircleIcon color="inherit"/>
                         </IconButton>
                     </CustomTooltip>
                     <Typography

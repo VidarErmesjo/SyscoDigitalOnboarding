@@ -28,6 +28,9 @@ import TextField from './TextFieldWrapper';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
+        button: {
+            //backgroundColor: '#000',
+        },
         form: {
             '& > *': {
                 marginTop: theme.spacing(3),               
@@ -106,6 +109,7 @@ export default function SignupForm(props: any) {
                                     size="small"
                                     startIcon={<PlayCircle/>}
                                     type="submit"
+                                    className={classes.button}
                                     >
                                     Start
                                 </Button>              

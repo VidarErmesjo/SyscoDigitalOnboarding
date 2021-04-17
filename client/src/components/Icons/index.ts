@@ -1,11 +1,11 @@
 import AccountIcon from './AccountIcon';
 import CubeIcon from './CubeIcon';
-import StepperIcon from './StepperIcon';
+import SyscoStepIcon from './SyscoStepIcon';
 import WavingPersonIcon from './WavingPersonIcon';
 
 export {
     AccountIcon,
     CubeIcon,
-    StepperIcon,
+    SyscoStepIcon,
     WavingPersonIcon
 };

@@ -1,5 +1,5 @@
 import SyscoCard from './SyscoCard';
-import SyscoLogo from './SyscoLogo';
+import SyscoLogo from '../Icons/SyscoLogo';
 import SyscoModal from './SyscoModal';
 import SyscoTextButtonBulleted from './SyscoTextButtonBulleted';
 import SyscoTextField from './SyscoTextField';

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// MUI
 import {
     Backdrop,
     CircularProgress,
@@ -11,51 +12,38 @@ import {
     useTheme
 } from '@material-ui/core';
 
+// Route
 import {
     Redirect,
     Route,
     useHistory,
 } from 'react-router-dom';
 
-// Animation
-import {
-    animated,
-    useSpring
-} from 'react-spring';
-
+// API
 import { Zustand } from '../../Zustand';
-import { Signup } from '../../pages/Signup';
-import { Intro } from '../../pages/Intro';
+import { getActiveStep } from './../../api';
+
+// Pages
+import {
+    Signup,
+    Intro,
+    Presentation,
+    YourOffice,
+    Onboarding,
+    Security,
+    OurFocus,
+    Outro
+} from '../../pages';
+
+// Usikker på denne. Flyttes?
 import SyscoProfile from '../../pages/Intro/SyscoProfile';
-import { Part1 } from '../../pages/Part1';
-import { Part2 } from '../../pages/Part2';
-import { Part3 } from '../../pages/Part3';
-import { Part4 } from '../../pages/Part4';
-import { Part5 } from '../../pages/Part5';
-import { Outro } from '../../pages/Outro';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         root: {
-            //position: 'relative',
-
             display: 'flex',
-            //flex: `0 0 row`,
             justifyContent: 'center',
             alignItems: 'center',
-
-            /*borderColor: '#FF0000',
-            borderWidth: 1,
-            borderStyle: 'solid',*/
-
-            /*position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transformOrigin: 'center',
-            transform: `translate(-50%, -50%)`,
-            textAlign: 'center',
-            width: '80vw',*/
-            //height: '80vh',
 			zIndex: 0,
         },
         circularProgress: {
@@ -67,40 +55,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Done() {
     return <Typography>Done!</Typography>
-}
-
-export function getActiveStep(step: number) {
-    var name;
-    switch(step) {
-        case 0:
-            name = "/intro"
-            break;
-        case 1:
-            name = "/generisk-presentasjon"
-            break;
-        case 2:
-            name = "/tilpasset-presentasjon"
-            break;
-        case 3:
-            name = "/hva-skjer-naar-du-er-ansatt"
-            break;
-        case 4:
-            name = "/har-du-alt-du-trenger-av-kontoer"
-            break;
-        case 5:
-            name = "/noe-motiverende-for-foerste-dagen"
-            break;
-        case 6:
-            name = "/outro"
-            break;
-        case 7:
-            name = "/oppsummering"
-            break;  
-        default:
-            name = "/"
-            break;
-    }
-    return name
 }
 
 export default function Content(props: any) {
@@ -120,10 +74,6 @@ export default function Content(props: any) {
         }
     },[user, history]);
 
-    const headerBottom = document.getElementById('header')?.getClientRects()[0].height;
-    const scaleX = window.innerWidth / window.screen.availWidth;
-    //const scaleY = window.innerHeight / window.screen.availHeight;
-
     return (
         <React.Fragment>
             <div
@@ -139,11 +89,11 @@ export default function Content(props: any) {
                     </Route> 
                     <Route path="/sysco-profile" component={SyscoProfile}/>
                     <Route path={getActiveStep(0)} component={Intro}/>
-                    <Route path={getActiveStep(1)} component={Part1}/>
-                    <Route path={getActiveStep(2)} component={Part2}/>
-                    <Route path={getActiveStep(3)} component={Part3}/>
-                    <Route path={getActiveStep(4)} component={Part4}/>
-                    <Route path={getActiveStep(5)} component={Part5}/>
+                    <Route path={getActiveStep(1)} component={Presentation}/>
+                    <Route path={getActiveStep(2)} component={YourOffice}/>
+                    <Route path={getActiveStep(3)} component={Onboarding}/>
+                    <Route path={getActiveStep(4)} component={Security}/>
+                    <Route path={getActiveStep(5)} component={OurFocus}/>
                     <Route path={getActiveStep(6)} component={Outro}/>
                     <Route path={getActiveStep(7)} component={Done}/>
                     <Redirect to={getActiveStep(currentStep)}/>                    

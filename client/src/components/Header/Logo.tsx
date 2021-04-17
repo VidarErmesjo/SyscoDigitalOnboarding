@@ -21,6 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			marginTop: theme.spacing(1.5),
 			marginRight: theme.spacing(1.5),
 		},
+		anestisLogo: {
+			width: window.screen.availWidth * 0.055,
+			height: (361 * window.screen.availWidth / 1745) * 0.05,
+			maxHeight: 'fill-available',
+			marginTop: theme.spacing(1.5),
+			marginRight: theme.spacing(1.5),
+		},
     })
 );
 
