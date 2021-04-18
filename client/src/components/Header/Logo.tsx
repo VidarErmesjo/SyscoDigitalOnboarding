@@ -20,7 +20,7 @@ export default function Logo(props: any) {
                 {...props}
                 >
                 {props => <IconButton style={props} disabled>
-                    <SyscoLogo style={{ fontSize: 128 }}/>
+                    <SyscoLogo style={{ fontSize: 128, color: '#FFF' }}/>
                 </IconButton>}
             </Spring>          
         </React.Fragment>

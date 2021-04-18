@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useTheme } from '@material-ui/core';
+
 import {
     SyscoCard,
     SyscoTextButtonBulleted
@@ -11,6 +13,7 @@ import {
 
 type Point = [number, number];
 
+// Posisjoner hentet fra Figma.
 const bullets = [
     {
         offset: [166, 139] as Point,
@@ -49,7 +52,7 @@ const bullets = [
 
 function Content() {
     return (
-        <div>
+        <React.Fragment>
             {bullets.map((bullet, index) => (
                 <SyscoTextButtonBulleted
                     key={index}
@@ -57,19 +60,22 @@ function Content() {
                     offset={bullet.offset}
                 />
             ))}
-        </div>
+        </React.Fragment>
     );
 }
 
-export default function FrequentlyAskedQuestions() {
+export default function FrequentlyAskedQuestions(props: any) {
+    const theme = useTheme();
+
     return (
         <React.Fragment>
             <SyscoCard
                 color="secondary"
-                heading="Ofte stiltes spørsmål til fadder"
-                iconText="Fadder"
+                title="Ofte stiltes spørsmål til fadder"
+                category="Fadder"
                 icon={<WavingPersonIcon/>}
                 content={<Content/>}
+                {...props}
                 />
         </React.Fragment>
     );

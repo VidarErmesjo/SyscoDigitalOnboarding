@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'space-between',
 			alignItems: 'center',
 		},
-		logo: {
-			padding: 12,
-			transform: `scale(2),`
-		},
     })
 );
 
@@ -39,7 +35,7 @@ export default function Header(props: any) {
 		<React.Fragment>
 			<header id="header" className={classes.root}>
 				<span><SessionButton/></span>
-				<span>SECTION</span>
+				<span></span>
 				<span><Logo/></span>
 			</header>
 		</React.Fragment>
