@@ -18,12 +18,17 @@ import {
 
 import Markers from './Markers';
 
+// Har lokal kopi i /assets
 const geoUrl: string = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json";
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         geoMap: {
-            position: 'relative',
+            /*flex: '0 0 row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',*/
+
+            //position: 'relative',
             /*top: '50%',
             left: '50%',
             transformOrigin: 'center',
@@ -32,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function CountryMap(props: any) {
+export default function YourOffice(props: any) {
     const theme = useTheme();
     const classes = useStyles();
     const style = useSpring({

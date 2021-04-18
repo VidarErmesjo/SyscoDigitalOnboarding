@@ -12,7 +12,7 @@ import {
     ChevronRight as ChevronRightIcon
 } from '@material-ui/icons';
 
-import { Zustand } from './../../Zustand';
+import { Zustand } from '../../store';
 
 const chevronSize = 100;
 

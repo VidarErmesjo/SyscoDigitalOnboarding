@@ -5,7 +5,7 @@ import create from 'zustand';
     https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
 */
 
-import { steps } from './steps';
+import { steps } from '../api';
 
 // Typer og metoder
 interface Store {

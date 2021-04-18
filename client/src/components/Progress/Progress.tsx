@@ -22,7 +22,12 @@ import {
 } from '@material-ui/core';
 
 // Ikoner
-import { SyscoActiveIcon, SyscoCompletedIcon, SyscoTodoIcon, SyscoDoneIcon } from './../Icons/SyscoStepIcon';
+import {
+    SyscoActiveIcon,
+    SyscoCompletedIcon,
+    SyscoTodoIcon,
+    SyscoDoneIcon
+} from './../Icons/SyscoStepIcon';
 
 // Animasjon
 import { Spring } from 'react-spring/renderprops';
@@ -31,8 +36,11 @@ import { Spring } from 'react-spring/renderprops';
 import { useHistory } from 'react-router-dom';
 
 // API
-import { Zustand, steps } from '../../Zustand';
-import { getActiveStep } from '../../api';
+import { Zustand } from './../../store';
+import {
+    getActiveStep,
+    steps
+} from '../../api';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {

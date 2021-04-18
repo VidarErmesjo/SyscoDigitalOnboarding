@@ -20,7 +20,7 @@ import {
 } from 'react-router-dom';
 
 // API
-import { Zustand } from '../../Zustand';
+import { Zustand } from '../../store';
 import { getActiveStep } from './../../api';
 
 // Pages

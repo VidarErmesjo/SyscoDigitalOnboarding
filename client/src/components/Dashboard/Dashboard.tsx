@@ -7,7 +7,7 @@ import {
     Theme
 } from '@material-ui/core';
 
-import { Zustand } from './../../Zustand';
+import { Zustand } from '../../store';
 import { Content } from './../Content';
 import { Controls } from './../Controls';
 import { Footer } from './../Footer';

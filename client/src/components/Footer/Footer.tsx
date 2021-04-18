@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 
 import {
-    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -10,9 +9,8 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
-import { Zustand } from '../../Zustand';
 import { Progress } from '../Progress';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -33,26 +31,20 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Footer(props: any) {
-    const user = Zustand.useStore((state: any) => state.user);
     const classes = useStyles();
     const theme = useTheme();
     const constricted = useMediaQuery('(max-width:666px)');
 
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: user ? 1 : 0 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
-
     return (
         <React.Fragment>
             <footer className={clsx(classes.root, {[classes.constricted]: constricted})}>
-                <animated.div
-                    style={style}
-                    {...props}
+                <Spring
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    config={{ duration: theme.transitions.duration.enteringScreen }}
                     >
-                    <Progress/>
-                </animated.div>
+                    {props => <div style={props}><Progress/></div>}
+                </Spring>
             </footer>
         </React.Fragment>
     );

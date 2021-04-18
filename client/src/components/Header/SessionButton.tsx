@@ -17,8 +17,9 @@ import {
 } from '@material-ui/icons';
 
 import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
-import { Zustand } from '../../Zustand';
+import { Zustand } from '../../store';
 
 interface FadeProps {
     children?: React.ReactElement;
@@ -87,18 +88,47 @@ export default function SessionButton(props: any) {
 	]);
 
     const classes = useStyles();
-
     const theme = useTheme();
-   
-	const style = useSpring({
-		from: { opacity: 0 },
-		to: { opacity: user ? 1 : 0 },
-		config: { duration: theme.transitions.duration.enteringScreen }
-	});
 
     return (
         <React.Fragment>
-            {user && <animated.div
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: user ? 1 : 0 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                {...props}
+                >
+                {props => <span style={props}>
+                    <CustomTooltip
+                        title={
+                            <React.Fragment>
+                                <Typography
+                                    variant="caption"
+                                    >
+                                    Avslutt Onboarding
+                                </Typography>
+                            </React.Fragment>
+                        }
+                        //TransitionComponent={Fade}
+                        >
+                        <IconButton 
+                            onClick={signOut} 
+                            color="secondary"
+                            className={classes.iconButton}
+                            >
+                            <AccountCircleIcon color="inherit"/>
+                        </IconButton>
+                    </CustomTooltip>
+                    <Typography
+                        variant="caption"
+                        color="textPrimary"
+                        style={{ userSelect: 'none' }}
+                        >
+                        {user}
+                    </Typography>
+                </span>}
+            </Spring>
+            {/* {user && <animated.div
                 style={style}
                 {...props}
                 >
@@ -138,7 +168,7 @@ export default function SessionButton(props: any) {
                         {user}
                     </Typography>
                 </Box>
-            </animated.div>}
+            </animated.div>} */}
         </React.Fragment>
     );
 }

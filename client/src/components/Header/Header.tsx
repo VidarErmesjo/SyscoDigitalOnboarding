@@ -20,6 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
 			width:'100%',
 			height: theme.spacing(7),
 			zIndex: theme.zIndex.appBar,
+			display: 'flex',
+			flex: '0 0 row',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+		},
+		logo: {
+			padding: 12,
+			transform: `scale(2),`
 		},
     })
 );
@@ -30,8 +38,9 @@ export default function Header(props: any) {
 	return (
 		<React.Fragment>
 			<header id="header" className={classes.root}>
-				<SessionButton/>
-				<Logo/>
+				<span><SessionButton/></span>
+				<span>SECTION</span>
+				<span><Logo/></span>
 			</header>
 		</React.Fragment>
 	);
