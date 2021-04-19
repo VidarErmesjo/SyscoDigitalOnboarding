@@ -20,6 +20,7 @@ import {
 } from 'react-router-dom';
 
 // API
+import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 import { getActiveStep } from './../../api';
 
@@ -31,6 +32,7 @@ import {
     YourOffice,
     Onboarding,
     Security,
+    Motivation,
     OurFocus,
     Outro
 } from '../../pages';
@@ -58,11 +60,12 @@ function Done() {
 }
 
 export default function Content(props: any) {
-    const [isLoading, user, currentStep] = Zustand.useStore((state: any) => [
+    const [isLoading, user, currentStep] = Zustand.useStore(state => [
         state.isLoading,
         state.user,
         state.currentStep,
-    ]);
+    ], shallow);
+
     const classes = useStyles();
     const theme = useTheme();
 
@@ -85,7 +88,7 @@ export default function Content(props: any) {
                     <Route exact path="/">
                         {!user
                         ? <Signup/>
-                        : <Redirect to={getActiveStep(currentStep)}/>}
+                        : <Redirect to={getActiveStep(currentStep!)}/>}
                     </Route> 
                     <Route path="/sysco-profile" component={SyscoProfile}/>
                     <Route path={getActiveStep(0)} component={Intro}/>
@@ -94,9 +97,9 @@ export default function Content(props: any) {
                     <Route path={getActiveStep(3)} component={Onboarding}/>
                     <Route path={getActiveStep(4)} component={Security}/>
                     <Route path={getActiveStep(5)} component={OurFocus}/>
-                    <Route path={getActiveStep(6)} component={Outro}/>
+                    <Route path={getActiveStep(6)} component={Motivation}/>
                     <Route path={getActiveStep(7)} component={Done}/>
-                    <Redirect to={getActiveStep(currentStep)}/>                    
+                    <Redirect to={getActiveStep(currentStep!)}/>                    
                 </React.Fragment>
                 :
                 <CircularProgress

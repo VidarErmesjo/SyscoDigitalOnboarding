@@ -34,12 +34,16 @@ import {
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        root: {
+            position: 'relative',
+            transform: `scale(0.75)`,
+            userSelect: 'none',
+        },
         actions: {
             padding: 0,
         },
         card: {
             flexBasis: '100%',
-            //textAlign: 'center',
             justifyContent: 'center',
             margin: theme.spacing(5),
         },
@@ -48,12 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
             left: '50%',
             transform: `translateX(-50%)`,
             padding: 0,
-            userSelect: 'none',
         },
         content: {
             display: 'flex',
             padding: 0,
-            userSelect: 'none',
         },
     }),
 );
@@ -103,6 +105,7 @@ interface SyscoModalProps extends DialogProps {
 
 export default function SyscoModal(props: SyscoModalProps): JSX.Element {
     const {handleClose, title, icon, left, right, ...rest} = props;
+
     const classes = useStyles();
     const theme = useTheme();
 
@@ -116,7 +119,7 @@ export default function SyscoModal(props: SyscoModalProps): JSX.Element {
     // Bytte fra flex til Mui Grid? Vil vi ha gitte størrelse og kvadratisk uttrykk for innhold?
 
     return (
-        <React.Fragment >
+        <React.Fragment>
             <Dialog
                 fullWidth
                 maxWidth="lg"
@@ -126,6 +129,7 @@ export default function SyscoModal(props: SyscoModalProps): JSX.Element {
                 disableEscapeKeyDown
                 PaperProps={PaperProps}
                 //TransitionComponent={Fade}
+                //className={classes.root}
                 {...rest}                
                 >
                 <DialogActions className={classes.actions}>

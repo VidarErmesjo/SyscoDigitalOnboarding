@@ -1,1 +1,1 @@
-export { default as Zustand } from './Zustand';
+export { default as Zustand } from './store';

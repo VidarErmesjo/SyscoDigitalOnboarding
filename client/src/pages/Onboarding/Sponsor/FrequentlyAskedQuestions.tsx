@@ -5,11 +5,11 @@ import { useTheme } from '@material-ui/core';
 import {
     SyscoCard,
     SyscoTextButtonBulleted
-} from '../../components/Custom';
+} from './../../../components/Custom';
 
 import {
     WavingPersonIcon
-} from '../../components/Icons';
+} from './../../../components/Icons';
 
 type Point = [number, number];
 
@@ -74,8 +74,7 @@ export default function FrequentlyAskedQuestions(props: any) {
                 title="Ofte stiltes spørsmål til fadder"
                 category="Fadder"
                 icon={<WavingPersonIcon/>}
-                content={<Content/>}
-                {...props}
+                content={<Content/>}            
                 />
         </React.Fragment>
     );

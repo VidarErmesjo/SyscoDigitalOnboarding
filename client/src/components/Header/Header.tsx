@@ -5,7 +5,13 @@ import {
 	createStyles,
 	makeStyles,
 	Theme,
+	Typography
 } from '@material-ui/core';
+
+import { steps } from './../../api';
+
+import shallow from 'zustand/shallow';
+import { Zustand } from './../../store';
 
 import SessionButton from './SessionButton';
 import Logo from './Logo';
@@ -25,18 +31,34 @@ const useStyles = makeStyles((theme: Theme) =>
 			justifyContent: 'space-between',
 			alignItems: 'center',
 		},
+		heading: {
+			position: 'absolute',
+			top: '50%',
+			left: '50%',
+			transform: `translate(-50%, -50%)`,
+			userSelect: 'none',
+		}
     })
 );
 
 export default function Header(props: any) {
+	const currentStep = Zustand.useStore(state => state.currentStep);
+
 	const classes = useStyles();
+	const heading = steps?.[currentStep!];
 
 	return (
 		<React.Fragment>
 			<header id="header" className={classes.root}>
-				<span><SessionButton/></span>
-				<span></span>
-				<span><Logo/></span>
+				<SessionButton/>
+				<Typography
+					variant="h5"
+					color="secondary"
+					className={classes.heading}
+					>
+					{heading} (1 / n)
+				</Typography>
+				<Logo/>
 			</header>
 		</React.Fragment>
 	);

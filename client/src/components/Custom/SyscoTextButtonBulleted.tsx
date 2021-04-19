@@ -22,6 +22,13 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             alignItems: 'center',
         },
+        iconButton: {
+            transition: theme.transitions.duration.standard + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+                background: 'none',
+            },
+        },
     }),
 );
 
@@ -45,7 +52,9 @@ export default function SyscoTextButtonBulleted(props: Props): JSX.Element {
                 >
                 <IconButton
                     color="secondary"
+                    disableRipple
                     onClick={() => alert("You clicked me!")}
+                    className={classes.iconButton}
                     >
                     <CubeIcon/>
                     <Typography

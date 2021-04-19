@@ -4,8 +4,8 @@
 
 import { steps } from '.';
 
-export default function getActiveStep(step: number) {
-    const output: string = "/" + steps[step]?.toLowerCase()?.replace(' ','-');
+export default function getActiveStep(step: number | undefined) {
+    const output: string = "/" + steps[step!]?.toLowerCase()?.replaceAll(' ','-');
 
     return output === "/undefined" ? "/" : output;
 }

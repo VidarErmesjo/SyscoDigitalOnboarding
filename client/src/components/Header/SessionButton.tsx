@@ -19,6 +19,7 @@ import {
 import { useSpring, animated } from 'react-spring';
 import { Spring } from 'react-spring/renderprops';
 
+import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 
 interface FadeProps {
@@ -82,10 +83,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function SessionButton(props: any) {
-    const [user, signOut] = Zustand.useStore((state: any) => [
+    const [user, signOut] = Zustand.useStore(state => [
 		state.user,
 		state.signOut
-	]);
+	], shallow);
 
     const classes = useStyles();
     const theme = useTheme();

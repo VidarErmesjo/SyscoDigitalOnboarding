@@ -7,7 +7,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
 import {
     ComposableMap,
@@ -37,23 +37,18 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function YourOffice(props: any) {
+export default function YourOffice() {
     const theme = useTheme();
     const classes = useStyles();
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
-
-    //console.log(document.getElementById('feed')?.clientWidth);
     
     return (
         <React.Fragment>
-            <animated.div
-                style={style}
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
-                <div className={classes.geoMap}>
+                {props => <div style={props} className={classes.geoMap}>
                     <ComposableMap
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{
@@ -64,8 +59,7 @@ export default function YourOffice(props: any) {
                         <ZoomableGroup zoom={1}>
                             <Geographies geography={geoUrl}>
                                 {({geographies}) => geographies
-                                    .map(geo =>
-                                    <Geography
+                                    .map(geo => <Geography
                                         key={geo.rsmKey}
                                         geography={geo}
                                         fill={theme.palette.primary.main}
@@ -86,8 +80,8 @@ export default function YourOffice(props: any) {
                             <Markers/>
                         </ZoomableGroup>
                     </ComposableMap>
-                </div>
-            </animated.div>
+                </div>}  
+            </Spring>
         </React.Fragment>
     );
 }

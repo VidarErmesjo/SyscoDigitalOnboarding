@@ -5,7 +5,7 @@ import { YourOffice } from './YourOffice';
 import { Onboarding } from './Onboarding';
 import { Security } from './Security';
 import { OurFocus } from './OurFocus';
-import { Social } from './Social';
+import { Motivation } from './Motivation';
 import { Outro } from './Outro';
 
 export {
@@ -16,6 +16,6 @@ export {
     Onboarding,
     Security,
     OurFocus,
-    Social,
+    Motivation,
     Outro
 }

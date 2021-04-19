@@ -4,13 +4,13 @@
 
 const steps = [
     "Introduksjonsvideo",
-    "Presentasjon",
+    "Presentasjon av bedriften",
     "Ditt kontor",
     "Onboarding",
     "Datasikkerhet",
-    "Satsingsområder",
-    "Sosialt",
-    "Outro"
+    "Våre satsingsområder",
+    "Motivasjon for ansatte",
+    "Oppsummering"
 ];
 
 export default steps;

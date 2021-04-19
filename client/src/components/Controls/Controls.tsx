@@ -12,6 +12,7 @@ import {
     ChevronRight as ChevronRightIcon
 } from '@material-ui/icons';
 
+import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 
 const chevronSize = 100;
@@ -40,13 +41,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Controls(props: any) {
-    const [isLoading, currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore((state: any) => [
+    const [isLoading, currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore(state => [
         state.isLoading,
         state.currentStep,
         state.totalStep,
         state.nextStep,
         state.previousStep
-    ]);
+    ], shallow);
     const classes = useStyles();
 
     return (
@@ -54,7 +55,7 @@ export default function Controls(props: any) {
             {true ? <IconButton
                 color="secondary"
                 onClick={previousStep}
-                disabled={currentStep < 1
+                disabled={currentStep! < 1
                     ? true
                     : false
                     || isLoading}
@@ -66,7 +67,7 @@ export default function Controls(props: any) {
             {true ? <IconButton
                 color="secondary"
                 onClick={nextStep}
-                disabled={currentStep > totalSteps - 1
+                disabled={currentStep! > totalSteps - 1
                     ? true
                     : false
                     || isLoading}

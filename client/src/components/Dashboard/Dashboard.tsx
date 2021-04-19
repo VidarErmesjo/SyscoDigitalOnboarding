@@ -55,7 +55,8 @@ export function useWindowSize() {
 }
 
 export default function Dashbord(props: any) {
-    const user = Zustand.useStore((state: any) => state.user);    
+    const user = Zustand.useStore(state => state.user);
+       
     const classes = useStyles();
 
     useWindowSize();

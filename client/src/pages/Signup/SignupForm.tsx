@@ -13,7 +13,7 @@ import {
     PlayCircleFilled as PlayCircle
 } from '@material-ui/icons';
 
-import { useSpring, animated } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
 import {
     Formik,
@@ -24,7 +24,6 @@ import {
 import { Zustand } from '../../store';
 import * as Yup from 'yup';
 import TextField from './TextFieldWrapper';
-//import SyscoTextField from './../../components/Custom/SyscoTextField';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -49,14 +48,10 @@ interface Values {
 }
 
 export default function SignupForm(props: any) {
-    const signIn = Zustand.useStore((state: any) => state.signIn);
+    const signIn = Zustand.useStore(state => state.signIn);
+
     const classes = useStyles();
     const theme = useTheme();
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
 
     const initialValues = {
         email: '',
@@ -73,10 +68,12 @@ export default function SignupForm(props: any) {
 
     return (
         <React.Fragment>
-            <animated.div
-                style={style}
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
-                <Formik
+                {() => <Formik
                     initialValues={{...initialValues}}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
@@ -116,8 +113,49 @@ export default function SignupForm(props: any) {
                             </Grid>
                         </Grid>
                     </Form>
-                </Formik>
-            </animated.div>
+                </Formik>}
+            </Spring>
+                {/* <Formik
+                    initialValues={{...initialValues}}
+                    validationSchema={validationSchema}
+                    onSubmit={onSubmit}
+                    >
+                    <Form className={classes.form}>
+                        <Grid
+                            container
+                            direction="row"
+                            justify="center"
+                            alignItems="center"
+                            >
+                            <Grid
+                                item
+                                xs={12}
+                                zeroMinWidth
+                                >
+                                <TextField
+                                    name="email"
+                                    label="SYSCO epost"
+                                    placeholder="navn.navnesen@sysco.no"
+                                    color="secondary"
+                                    variant="outlined"
+                                    size="small"
+                                    className={classes.textField}
+                                
+                                />
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    size="small"
+                                    startIcon={<PlayCircle/>}
+                                    type="submit"
+                                    className={classes.button}
+                                    >
+                                    Start
+                                </Button>              
+                            </Grid>
+                        </Grid>
+                    </Form>
+                </Formik> */}
         </React.Fragment>
     );  
 }

@@ -1,16 +1,10 @@
 import React from 'react';
-
-import {
-    Typography,
-    useTheme
-} from '@material-ui/core';
-
+import { useTheme } from '@material-ui/core';
 import { Spring } from 'react-spring/renderprops';
 
-import { FrequentlyAskedQuestions } from './Sponsor';
-import { StepByStep } from './Accounts';
+import Social from './Social';
 
-export default function Part3() {
+export default function Motivation() {
     const theme = useTheme();
 
     return (
@@ -20,11 +14,8 @@ export default function Part3() {
                 to={{ opacity: 1 }}
                 config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
-                {props => <div style={props}>
-                    <StepByStep/>
-                {/* <FrequentlyAskedQuestions/> */}
-                </div>}
+                {props => <div style={props}><Social/></div>}
             </Spring>
         </React.Fragment>
     );
-};
+}

@@ -1,28 +1,29 @@
 import {
     SvgIcon,
-    SvgIconProps
+    SvgIconProps,
+    useTheme
 } from '@material-ui/core';
 
 export default function AccountIcon({color, ...props}: SvgIconProps): JSX.Element {
+    const theme = useTheme();
+
     return (
         <SvgIcon
             fill={color}
             fontSize="large"
-            viewBox="0 0 44 44"
+            viewBox="0 0 40 40"
+            style={{ marginRight: theme.spacing(1) }}
             {...props}
             >
             <path
                 fillRule="evenodd"
-                d="M30.563 24.072c2.511 1.705 4.271 4.015 4.271 7.095v5.5h7.333v-5.5c0-3.997-6.544-6.362-11.605-7.095z"
+                d="M27.781 21.883c2.284 1.55 3.884 3.65 3.884 6.45v5h6.666v-5c0-3.633-5.95-5.783-10.55-6.45z"
                 clipRule="evenodd"
             />
-            <path
-                fill="#fff"
-                d="M16.501 22a7.333 7.333 0 100-14.667 7.333 7.333 0 000 14.667z"
-            />
+            <path d="M14.999 20a6.667 6.667 0 100-13.333 6.667 6.667 0 000 13.333z"/>
             <path
                 fillRule="evenodd"
-                d="M27.5 22a7.331 7.331 0 007.334-7.333 7.331 7.331 0 00-7.333-7.334c-.862 0-1.669.184-2.439.44a10.963 10.963 0 010 13.787c.77.257 1.577.44 2.439.44zM16.5 23.833c-4.894 0-14.666 2.457-14.666 7.334v5.5h29.333v-5.5c0-4.877-9.771-7.334-14.666-7.334z"
+                d="M24.998 20a6.665 6.665 0 006.667-6.667 6.665 6.665 0 00-6.667-6.666c-.783 0-1.517.166-2.217.4a9.966 9.966 0 010 12.533c.7.233 1.434.4 2.217.4zM15 21.667c-4.45 0-13.334 2.233-13.334 6.666v5h26.667v-5c0-4.433-8.884-6.666-13.334-6.666z"
                 clipRule="evenodd"
             />
         </SvgIcon>

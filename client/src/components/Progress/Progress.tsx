@@ -179,7 +179,8 @@ function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
 }
 
 export default function SessionProgress(props: any) {
-    const store = Zustand.useStore(); 
+    const currentStep = Zustand.useStore(state => state.currentStep);
+    
     const classes = useStyles();
 
     // Endre på layout når bredden blir for liten.
@@ -196,7 +197,7 @@ export default function SessionProgress(props: any) {
         <React.Fragment>
             <Stepper
                 alternativeLabel
-                activeStep={store.currentStep}
+                activeStep={currentStep}
                 connector={null}
                 //connector={<SyscoStepConnector/>}
                 //connector={<CustomConnector/>}
