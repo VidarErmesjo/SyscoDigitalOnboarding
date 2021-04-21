@@ -4,10 +4,9 @@
 
 const steps = [
     "Introduksjonsvideo",
-    "Presentasjon av bedriften",
+    "Dette er SYSCO",
     "Ditt kontor",
     "Onboarding",
-    "Datasikkerhet",
     "Våre satsingsområder",
     "Motivasjon for ansatte",
     "Oppsummering"
