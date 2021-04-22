@@ -15,9 +15,12 @@ interface Store {
 
     // Session
     user: string | null;
-    isLoading: boolean;
     signIn: (email: string | null) => void;
     signOut: () => void;
+    data: [];
+    setData: (payload: []) => void;
+    isLoading: boolean;
+    setIsLoading: (state: boolean) => void;
 
     // Stepper
     currentStep: number | undefined;
@@ -26,7 +29,8 @@ interface Store {
     previousStep: () => void;
 
     // Map
-    //geoMap: undefined | string;
+    geoMap: string;
+    setGeoMap: (data: string) => void;
 }
 
 const timeout = 1000;
@@ -36,8 +40,7 @@ const storageName = "SyscoDigitalOnboarding";
 const useStore = create<Store>(persist(devtools((set, get) => ({
     // Session
     user: null,
-    isLoading: false,
-    signIn: async (email: null | string) => {
+    signIn: async (email: string | null) => {
         if(!get().isLoading) {
             set({
                 isLoading: true,
@@ -52,11 +55,20 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
             set({
                 isLoading: true,
                 currentStep: undefined,
+                data: [],
                 user: null
             });
             localStorage.removeItem(storageName);
             setTimeout(() => set(({isLoading: false})), timeout);
         }
+    },
+    data: [],
+    setData: async (payload: []) => {
+            set({ data: payload });
+    },
+    isLoading: false,
+    setIsLoading: async (state: boolean) => {
+        set({ isLoading: state });
     },
 
     // Stepper
@@ -80,8 +92,12 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
             setTimeout(() => set({isLoading: false}), timeout);
         }
     },
-    // Map => må buffres
-    //geoMap: "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json",
+
+    // Verdenskart (klode)
+    geoMap: "",
+    setGeoMap: async (data: string) => {
+        set({ geoMap: data });
+    }
 
 })), { name: storageName, getStorage: () => localStorage}));
 

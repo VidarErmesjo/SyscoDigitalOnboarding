@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-simple-maps": "^1.0.3"
+    "@types/react-simple-maps": "^1.0.3",
+    "miragejs": "^0.1.41"
   }
 }

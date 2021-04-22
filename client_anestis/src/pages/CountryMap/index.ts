@@ -1,1 +1,0 @@
-export { default as CountryMap } from './Part2';

@@ -2,12 +2,14 @@ import React from 'react';
 
 import {
     createStyles,
-    Grid,
+    CircularProgress,
     makeStyles,
-    Theme
+    Theme,
+    useTheme
 } from '@material-ui/core';
 
 import { Zustand } from '../../store';
+import shallow from 'zustand/shallow';
 import { Content } from './../Content';
 import { Controls } from './../Controls';
 import { Footer } from './../Footer';
@@ -35,35 +37,58 @@ const useStyles = makeStyles((theme: Theme) =>
         item: {
             width: '100vw',
         },
+        circularProgress: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
+            color: theme.palette.secondary.main,
+            zIndex: theme.zIndex.mobileStepper,
+        },
 	}),
 );
 
-// Håndterer skalering av innholdet
-export function useWindowSize() {
-    const [size, setSize] = React.useState([0, 0]);
-
-    React.useLayoutEffect(() => {
-        function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
-        }
-        window.addEventListener('resize', updateSize);
-        updateSize();    
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
-
-    return size;
-}
-
 export default function Dashbord(props: any) {
-    const user = Zustand.useStore(state => state.user);
+    const [user, data, setData, geoMap, setGeoMap] = Zustand.useStore(state => [
+        state.user,
+        state.data,
+        state.setData,
+        state.geoMap,
+        state.setGeoMap], shallow);
+
+    // Last inn kursdata
+    React.useEffect(() => {
+        fetch('/api/onboarding').then(response => {
+            return response.json();
+        }).then(payload => {
+            setData(payload);
+        }).catch(error => {
+            console.log(error);
+        })
+        return () => {}
+    }, [user]);
+
+    // Last inn kartdata
+    React.useEffect(() => {
+        fetch('/api/map').then(response => {
+            return response.json();
+        }).then(payload => {
+            setGeoMap(payload);
+        }).catch(error => {
+            console.log(error);
+        })
+
+        return () => {}
+    }, [user]);
        
     const classes = useStyles();
 
-    useWindowSize();
+    const theme = useTheme();
 
     return (
         <React.Fragment>
-            <div className={classes.root}>
+            {data && geoMap
+            ? <div className={classes.root}>
                 <header className={classes.item}>
                     <Header/>
                 </header>
@@ -75,23 +100,7 @@ export default function Dashbord(props: any) {
                 </footer>
                 {user && <Controls/>}
             </div>
-            {/* <Grid
-                container
-                className={classes.root}
-                >
-                <Grid item xs={12}>
-                    <Header/>
-                </Grid>                
-                <Grid item xs={12}>
-                    <Content/>
-                </Grid>
-                {user &&  <React.Fragment>
-                    <Grid item xs={12}>
-                        <Footer/>
-                    </Grid>
-                    <Controls/>
-                </React.Fragment>}
-            </Grid> */}
+            : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
         </React.Fragment>        
     );
 }

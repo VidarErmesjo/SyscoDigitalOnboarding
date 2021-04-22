@@ -6,7 +6,7 @@ import YouTube from 'react-youtube';
 
 import { useHistory } from 'react-router-dom';
 
-import { animated, useSpring } from 'react-spring';
+import { Spring } from 'react-spring/renderprops';
 
 export default function Video() {
     const videoCode = "oSY89RSi8UU";
@@ -14,26 +14,22 @@ export default function Video() {
     const theme = useTheme();
 
     const history = useHistory();
-
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
-
-    const handleOnEnd = () => history.push("/sysco-profile");
+    const handleOnEnd = () => alert("Video ended!");// history.push("/sysco-profile");
 
     return (
         <React.Fragment>
-            <animated.div style={style}>
-                <YouTube
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                >
+                {props => <div style={props}><YouTube
                     videoId={videoCode}
                     containerClassName="embed embed-youtube"
-                    //onStateChange={(e) => checkElapsedTime(e)}
                     opts={{ playerVars: { autoplay: 1 }}}
                     onEnd={handleOnEnd}
-                />
-            </animated.div>
+                /></div>}
+            </Spring>
         </React.Fragment>
     );
 }

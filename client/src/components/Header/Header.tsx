@@ -53,10 +53,10 @@ export default function Header(props: any) {
 				<SessionButton/>
 				<Typography
 					variant="h5"
-					color="secondary"
+					color="textPrimary"
 					className={classes.heading}
 					>
-					{heading} (1 / n)
+					{heading}
 				</Typography>
 				<Logo/>
 			</header>

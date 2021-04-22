@@ -16,10 +16,11 @@ import {
     ZoomableGroup
 } from 'react-simple-maps';
 
-import Markers from './Markers';
+import { Zustand } from './../../store';
+import shallow from 'zustand/shallow';
 
-// Har lokal kopi i /assets
-const geoUrl: string = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-50m.json";
+import Markers from './Markers';
+import CountryMap from './CountryMap';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -28,16 +29,17 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'flex-start',
             alignItems: 'flex-start',*/
 
-            //position: 'relative',
-            /*top: '50%',
+            position: 'absolute',
+            top: '50%',
             left: '50%',
             transformOrigin: 'center',
-            transform: `translate(-50%, -50%)`,*/
+            transform: `translate(-50%, -50%)`,
         },
     })
 );
 
 export default function YourOffice() {
+    const [geoMap] = Zustand.useStore(state => [state.geoMap], shallow);
     const theme = useTheme();
     const classes = useStyles();
     
@@ -49,15 +51,16 @@ export default function YourOffice() {
                 config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
                 {props => <div style={props} className={classes.geoMap}>
-                    <ComposableMap
+                    <CountryMap/>
+                    {/* <ComposableMap
                         projection="geoAzimuthalEqualArea"
                         projectionConfig={{
-                            //center: [15, 61],
-                            //scale: 1000,
+                            center: [15, 61],
+                            scale: 1000,
                         }}
                         >
                         <ZoomableGroup zoom={1}>
-                            <Geographies geography={geoUrl}>
+                            <Geographies geography={geoMap?.toString()}>
                                 {({geographies}) => geographies
                                     .map(geo => <Geography
                                         key={geo.rsmKey}
@@ -79,7 +82,7 @@ export default function YourOffice() {
                             </Geographies>
                             <Markers/>
                         </ZoomableGroup>
-                    </ComposableMap>
+                    </ComposableMap> */}
                 </div>}  
             </Spring>
         </React.Fragment>

@@ -15,8 +15,6 @@ import {
 
 import { useSpring, animated } from 'react-spring';
 
-import { useWindowSize } from './../../components/Dashboard/Dashboard';
-
 import SignupForm from './SignupForm';
 import Wave from './Wave';
 
@@ -39,8 +37,6 @@ export default function Signup(props: any) {
         to: { opacity: 1 },
         config: { duration: theme.transitions.duration.enteringScreen }
     });
-
-    const [width, height] = useWindowSize();
 
     return (
         <React.Fragment>

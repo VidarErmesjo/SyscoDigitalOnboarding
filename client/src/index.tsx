@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
-//import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import theme from './theme';
 
 import reportWebVitals from './reportWebVitals';
+import { makeServer } from './server';
+
+if(process.env.NODE_ENV === "development") {
+	makeServer({ environment: "development" })
+}
 
 ReactDOM.render(
 	<React.StrictMode>		

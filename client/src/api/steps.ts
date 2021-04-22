@@ -9,7 +9,7 @@ const steps = [
     "Onboarding",
     "Våre satsingsområder",
     "Motivasjon for ansatte",
-    "Oppsummering"
+    "Avsluttning"
 ];
 
 export default steps;

@@ -10,10 +10,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Point } from "react-simple-maps";
-
 import { CubeIcon } from './../Icons';
-import { useWindowSize } from "../Dashboard/Dashboard";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
             '&:hover': {
                 color: theme.palette.secondary.dark,
                 background: 'none',
+                transform: `scale(1.5)`,
             },
         },
     }),

@@ -37,6 +37,8 @@ import {
     Outro
 } from '../../pages';
 
+import Figma1 from './../../pages/Presentation/Figma1';
+
 // Usikker på denne. Flyttes?
 import SyscoProfile from '../../pages/Intro/SyscoProfile';
 
@@ -75,7 +77,7 @@ export default function Content(props: any) {
         if(!user) {
             history.replace("/");
         }
-    },[user, history]);
+    }, [user, history]);
 
     return (
         <React.Fragment>
@@ -90,15 +92,16 @@ export default function Content(props: any) {
                         ? <Signup/>
                         : <Redirect to={getActiveStep(currentStep!)}/>}
                     </Route> 
-                    <Route path="/sysco-profile" component={SyscoProfile}/>
-                    <Route path={getActiveStep(0)} component={Intro}/>
-                    <Route path={getActiveStep(1)} component={Presentation}/>
-                    <Route path={getActiveStep(2)} component={YourOffice}/>
-                    <Route path={getActiveStep(3)} component={Onboarding}/>
-                    <Route path={getActiveStep(4)} component={Security}/>
-                    <Route path={getActiveStep(5)} component={OurFocus}/>
-                    <Route path={getActiveStep(6)} component={Motivation}/>
-                    <Route path={getActiveStep(7)} component={Done}/>
+                    <Route exact path="/signup" component={Signup}/>
+                    <Route exact path={getActiveStep(0)} component={Intro}/>
+                    <Route exact path={getActiveStep(1)} component={Presentation}/>
+                    <Route exact path={getActiveStep(1) + "/1"} component={Figma1}/>
+                    <Route exact path={getActiveStep(2)} component={YourOffice}/>
+                    <Route exact path={getActiveStep(3)} component={Onboarding}/>
+                    <Route exact path={getActiveStep(4)} component={OurFocus}/>
+                    <Route exact path={getActiveStep(5)} component={Motivation}/>
+                    <Route exact path={getActiveStep(6)} component={Outro}/>
+                    <Route exact path={getActiveStep(7)} component={Done}/>
                     <Redirect to={getActiveStep(currentStep!)}/>                    
                 </React.Fragment>
                 :

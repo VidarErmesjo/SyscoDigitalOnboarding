@@ -1,0 +1,139 @@
+[
+    {
+        "title": "Introduksjonsvideo",
+        "unlocked": true,
+        "completed": false
+    },
+    {
+        "title": "Dette er SYSCO",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    },
+    {
+        "title": "Ditt kontor",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    },
+    {
+        "title": "Onboarding",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    },
+    {
+        "title": "Våre satsingsområder",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    },
+    {
+        "title": "Motivasjon for ansatte",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    },
+    {
+        "title": "Avsluttning",
+        "unlocked": true,
+        "completed": false,
+        "routes": [
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            },
+            {
+                "title": "",
+                "unlocked": true,
+                "completed": false
+            }
+        ]
+    }
+]

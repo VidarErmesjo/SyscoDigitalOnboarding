@@ -1,1 +1,0 @@
-export { default as FrequentlyAskedQ } from './Part3';

@@ -6,8 +6,6 @@ import {
     Theme
 } from '@material-ui/core';
 
-import { useWindowSize } from './../../components/Dashboard/Dashboard';
-
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         wave: {
@@ -19,9 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Wave() {
     const classes = useStyles();
-
-    const [width, height] = useWindowSize();
-
 
     return (
         <React.Fragment>

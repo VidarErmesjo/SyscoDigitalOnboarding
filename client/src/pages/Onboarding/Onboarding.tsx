@@ -21,8 +21,8 @@ export default function Part3() {
                 config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
                 {props => <div style={props}>
-                    <StepByStep/>
-                {/* <FrequentlyAskedQuestions/> */}
+                    {/* <StepByStep/> */}
+                <FrequentlyAskedQuestions/>
                 </div>}
             </Spring>
         </React.Fragment>

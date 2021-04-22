@@ -37,6 +37,7 @@ import { useHistory } from 'react-router-dom';
 
 // API
 import { Zustand } from './../../store';
+import shallow from 'zustand/shallow';
 import {
     getActiveStep,
     steps
@@ -123,6 +124,9 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             transition: theme.transitions.duration.short + 'ms',
             userSelect: 'none',
+            /*'&:hover': {
+                transform: `scale(1.2345)`,
+            },*/
         },
         active: {
             '&:hover': {
@@ -179,7 +183,7 @@ function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
 }
 
 export default function SessionProgress(props: any) {
-    const currentStep = Zustand.useStore(state => state.currentStep);
+    const [currentStep, data] = Zustand.useStore(state => [state.currentStep, state.data], shallow);
     
     const classes = useStyles();
 
@@ -193,6 +197,11 @@ export default function SessionProgress(props: any) {
         history.push(getActiveStep(index));
     };
 
+    const values = JSON.stringify(data);
+    //console.log(values);
+    //console.log(data, data.length > 0);
+    //console.log(steps);
+
     return (
         <React.Fragment>
             <Stepper
@@ -204,7 +213,7 @@ export default function SessionProgress(props: any) {
                 //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
                 {...props}
-                >
+                >   
                 {steps.map((label: string, index: number) => (
                     <Step key={index}>
                         <StepLabel
