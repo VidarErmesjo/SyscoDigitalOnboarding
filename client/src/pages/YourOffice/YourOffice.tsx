@@ -25,10 +25,6 @@ import CountryMap from './CountryMap';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
         geoMap: {
-            /*flex: '0 0 row',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',*/
-
             position: 'absolute',
             top: '50%',
             left: '50%',

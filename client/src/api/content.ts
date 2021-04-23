@@ -11,10 +11,10 @@ import {
     Motivation,
     OurFocus,
     Outro
-} from './../pages';
+} from '../pages';
 
 // Del 2
-import { EmptyPage } from './../pages/Presentation';
+import { EmptyPage } from '../pages/Presentation';
 
 export const content = [
     {
