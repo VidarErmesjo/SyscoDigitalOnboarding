@@ -7,10 +7,9 @@ import {
 } from '@material-ui/core';
 
 import { Spring } from 'react-spring/renderprops';
-import { useSpring, animated } from 'react-spring';
 
-import { SyscoCard } from './../../../components/Custom';
-import { AccountIcon } from './../../../components/Icons';
+import { SyscoCard } from './../../components/Custom';
+import { AccountIcon } from './../../components/Icons';
 
 function Stepper({color, strokeDashoffset, ...props}: SvgIconProps) {
 	const theme = useTheme();

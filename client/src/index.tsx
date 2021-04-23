@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import theme from './theme';
-
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { makeServer } from './server';
+import theme from './theme';
 
 if(process.env.NODE_ENV === "development") {
 	makeServer({ environment: "development" })
@@ -15,7 +15,11 @@ ReactDOM.render(
 	<React.StrictMode>		
 		<ThemeProvider theme={theme}>
 			<CssBaseline/>
-			<App/>
+			<BrowserRouter>
+				<Switch>
+					<App/>
+				</Switch>
+			</BrowserRouter>
 		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

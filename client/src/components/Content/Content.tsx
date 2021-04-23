@@ -14,33 +14,23 @@ import {
 
 // Route
 import {
+    BrowserRouter,
+    Link,
     Redirect,
     Route,
     useHistory,
+    useParams,
+    useRouteMatch,
+    Switch
 } from 'react-router-dom';
 
 // API
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 import { getActiveStep } from './../../api';
+import { content } from './../../api/steps';
 
-// Pages
-import {
-    Signup,
-    Intro,
-    Presentation,
-    YourOffice,
-    Onboarding,
-    Security,
-    Motivation,
-    OurFocus,
-    Outro
-} from '../../pages';
-
-import Figma1 from './../../pages/Presentation/Figma1';
-
-// Usikker på denne. Flyttes?
-import SyscoProfile from '../../pages/Intro/SyscoProfile';
+import { Signup } from './../../pages';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -51,6 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
 			zIndex: 0,
         },
         circularProgress: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
             color: theme.palette.secondary.main,
             zIndex: theme.zIndex.mobileStepper,
         },
@@ -58,15 +52,75 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function Done() {
-    return <Typography>Done!</Typography>
+    return <Typography color="secondary" variant="h3">Done!</Typography>
 }
 
+function Page(props: any) {
+    const { categoryId, subCategoryId }: any = useParams();
+    const { url } = useRouteMatch();
+
+    const Component = content.find(({ id }) => id === categoryId)
+        ?.pages.find(({ id }: any) => id === subCategoryId)
+        ?.component;
+
+    return (
+        <React.Fragment>
+            <Route
+                path={`${url}`}
+                component={Component}
+                {...props}
+                />
+        </React.Fragment>
+    );
+}
+
+function Category() {
+    const { categoryId }: any = useParams();
+    const { path, url } = useRouteMatch();
+    const category = content.find(({ id }) => id === categoryId);
+
+    return (
+        <React.Fragment>
+            <ul>
+                {category?.pages?.map((subCategory: any) => (
+                    <li key={subCategory.id}>
+                        <Link to={`${url}/${subCategory.id}`}>
+                            {subCategory.title}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <Route path={`${path}/:subCategoryId`} component={Page}/>
+        </React.Fragment>
+    );
+}
+
+function Categories() {
+    const { path, url } = useRouteMatch();
+
+    return (
+        <React.Fragment>
+            <ul>
+                {content.map(({ title, id }: any) => (
+                    <li key={id}>
+                        <Link to={`${url}/${id}`}>
+                            {title}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <Route path={`${path}/:categoryId`} component={Category}/>
+        </React.Fragment>
+    );
+}
+
+const folder = "/sider";
 export default function Content(props: any) {
     const [isLoading, user, currentStep] = Zustand.useStore(state => [
         state.isLoading,
         state.user,
-        state.currentStep,
-    ], shallow);
+        state.currentStep
+    ]);
 
     const classes = useStyles();
     const theme = useTheme();
@@ -79,37 +133,24 @@ export default function Content(props: any) {
         }
     }, [user, history]);
 
+    //console.log(currentStep + "," + getActiveStep(currentStep));
+
     return (
-        <React.Fragment>
-            <div
-                id="feed"
-                //fixed
-                className={classes.root}
-                >
-                {!isLoading ? <React.Fragment>
-                    <Route exact path="/">
-                        {!user
-                        ? <Signup/>
-                        : <Redirect to={getActiveStep(currentStep!)}/>}
-                    </Route> 
-                    <Route exact path="/signup" component={Signup}/>
-                    <Route exact path={getActiveStep(0)} component={Intro}/>
-                    <Route exact path={getActiveStep(1)} component={Presentation}/>
-                    <Route exact path={getActiveStep(1) + "/1"} component={Figma1}/>
-                    <Route exact path={getActiveStep(2)} component={YourOffice}/>
-                    <Route exact path={getActiveStep(3)} component={Onboarding}/>
-                    <Route exact path={getActiveStep(4)} component={OurFocus}/>
-                    <Route exact path={getActiveStep(5)} component={Motivation}/>
-                    <Route exact path={getActiveStep(6)} component={Outro}/>
-                    <Route exact path={getActiveStep(7)} component={Done}/>
-                    <Redirect to={getActiveStep(currentStep!)}/>                    
-                </React.Fragment>
-                :
-                <CircularProgress
-                    size={theme.spacing(10)}
-                    className={classes.circularProgress}
-                />}
-            </div>
-        </React.Fragment>
+        <Container fixed className={classes.root}>
+            {user &&
+            <ul>
+                <li><Link to={folder}>Sider</Link></li>
+            </ul>}
+            {!isLoading ? <React.Fragment> 
+                <Route exact path="/">
+                    {!user && <Signup/>}
+                    {/* {!user
+                    ? <Signup/>
+                    : <Redirect to={getActiveStep(0)}/>} */}
+                </Route> 
+                <Route path={folder} component={Categories}/>
+            </React.Fragment>
+            : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
+        </Container>
     );
 }

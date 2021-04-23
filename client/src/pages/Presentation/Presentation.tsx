@@ -1,24 +1,12 @@
 import React from 'react';
-import {
-    Switch,
-    Route,
-    Link,
-    useParams,
-    useRouteMatch
-} from "react-router-dom";
-
 import { Typography } from '@material-ui/core';
 
 import { Info as InfoIcon } from '@material-ui/icons';
 
 import SyscoModal from '../../components/Custom/SyscoModal';
 
-import Figma1 from './Figma1';
-
 export default function Presentation(props: any) {
     const [open, setOpen] = React.useState(false);
-
-    let { path, url } = useRouteMatch();
 
     const handleOpen = () => setOpen(true);
 
@@ -44,27 +32,15 @@ export default function Presentation(props: any) {
 
     return (
         <React.Fragment>
-            <ul>
-                <li><Link to={`${url}/1`}><button>Figma 1</button></Link></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <Switch>
-                <Route exact path={path}>
-                    <button onClick={handleOpen}>Modal</button>
-                    <SyscoModal
-                        title="Tittel på modalen"
-                        icon={<InfoIcon/>}
-                        left={<LeftComponent/>}
-                        right={<RightComponent/>}
-                        open={open}
-                        handleClose={handleClose}
-                    />
-                </Route>
-                <Route exact path={`${path}/:id`}>
-                    <Figma1/>
-                </Route>
-            </Switch>
+            <button onClick={handleOpen}>Modal</button>
+                <SyscoModal
+                    title="Tittel på modalen"
+                    icon={<InfoIcon/>}
+                    left={<LeftComponent/>}
+                    right={<RightComponent/>}
+                    open={open}
+                    handleClose={handleClose}
+                />
         </React.Fragment>
     );
 };

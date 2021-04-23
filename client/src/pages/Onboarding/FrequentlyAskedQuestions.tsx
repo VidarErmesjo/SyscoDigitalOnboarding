@@ -5,11 +5,11 @@ import { useTheme } from '@material-ui/core';
 import {
     SyscoCard,
     SyscoTextButtonBulleted
-} from './../../../components/Custom';
+} from './../../components/Custom';
 
 import {
     WavingPersonIcon
-} from './../../../components/Icons';
+} from './../../components/Icons';
 
 type Point = [number, number];
 

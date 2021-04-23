@@ -1,41 +1,8 @@
-import React from 'react';
-
-import {
-    createStyles,
-    makeStyles,
-    Theme,
-    useTheme
-} from '@material-ui/core';
-
-import { Spring } from 'react-spring/renderprops';
-
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-        countryMap: {
-            display: 'flex',
-            flex: '0 0 row',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-
-            /*position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transformOrigin: 'center',
-            transform: `scale(2)`,*/
-        },
-    })
-);
-
 export default function CountryMap() {
-    const classes = useStyles();
-
     return (
         <svg
             width="222.639"
             height="276.59"
-            className={classes.countryMap}
-            style={{ transform: `scale(1.5)`}}
             >
             <style id="style2770" type="text/css"/>
             <path
@@ -541,150 +508,6 @@ export default function CountryMap() {
                 Molde
             </tspan>
             </text>
-            <path
-            style={{ marker: "none" }}
-            id="path3061"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M81.858 82.123c72.947 16.429 79.615-20.43 79.615-20.43"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
-            <path
-            style={{ marker: "none" }}
-            id="path3833"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M95.647 73.229c34.173 108.434-72.153 100.664-72.153 100.664"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
-            <path
-            style={{ marker: "none" }}
-            id="path3875"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M22.412 172.635c-5.586-81.819 58.817-90.69 58.817-90.69"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
-            <path
-            style={{ marker: "none" }}
-            id="path3877"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M21.523 173.893c-15.444 12.157-5.202 34.501-5.202 34.501"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
-            <path
-            style={{ marker: "none" }}
-            id="path3879"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M22.22 173.737c53.888 12.157 32.45 95.001 32.45 95.001"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
-            <path
-            style={{ marker: "none" }}
-            id="path3881"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M16.554 237.098c5.576 22.779 35.487 34.02 38.6 30.675"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
             <rect
             id="rect2591"
             width="4.493"
@@ -721,30 +544,6 @@ export default function CountryMap() {
                 Oslo
             </tspan>
             </text>
-            <path
-            style={{ marker: "none" }}
-            id="path2597"
-            fill="none"
-            fillOpacity="1"
-            fillRule="evenodd"
-            stroke="red"
-            strokeDasharray="none"
-            strokeDashoffset="0"
-            strokeLinecap="butt"
-            strokeLinejoin="miter"
-            strokeMiterlimit="4"
-            strokeOpacity="1"
-            strokeWidth="0.69"
-            markerEnd="none"
-            markerMid="none"
-            markerStart="none"
-            d="M95.89 73.545c30.688 108.667 28.918 119.717 28.918 119.717"
-            display="inline"
-            enableBackground="accumulate"
-            opacity="1"
-            overflow="visible"
-            visibility="visible"
-            ></path>
         </svg>
         );
 }

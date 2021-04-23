@@ -39,9 +39,10 @@ import { useHistory } from 'react-router-dom';
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
 import {
-    getActiveStep,
-    steps
+    getActiveStep
 } from '../../api';
+
+import { content } from '../../api/content';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
@@ -213,8 +214,25 @@ export default function SessionProgress(props: any) {
                 //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
                 {...props}
-                >   
-                {steps.map((label: string, index: number) => (
+                >
+                {content.map((category, index) => (
+                    <Step key={index}>
+                         <StepLabel
+                            StepIconComponent={SyscoStepIcon}
+                            onClick={() => handleOnClick(index)}
+                            className={classes.stepLabel}
+                            >                            
+                            {!constricted && <Typography
+                                color="textPrimary"
+                                variant="caption"
+                                style={{ userSelect: 'none'}}
+                                >
+                                {category.title}
+                            </Typography>}
+                        </StepLabel>                       
+                    </Step>        
+                ))}
+                {/* {steps.map((title: string, index: number) => (
                     <Step key={index}>
                         <StepLabel
                             StepIconComponent={SyscoStepIcon}
@@ -226,10 +244,10 @@ export default function SessionProgress(props: any) {
                                 variant="caption"
                                 style={{ userSelect: 'none'}}
                                 >
-                                {label}
+                                {title}
                             </Typography>}
                         </StepLabel>
-                    </Step>))}
+                    </Step>))} */}
             </Stepper>
         </React.Fragment>
     );

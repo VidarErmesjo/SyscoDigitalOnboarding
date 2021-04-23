@@ -1,11 +1,7 @@
 import React from 'react';
-
-import { useTheme } from '@material-ui/core';
-
 import YouTube from 'react-youtube';
-
+import { useTheme } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-
 import { Spring } from 'react-spring/renderprops';
 
 export default function Video() {
@@ -14,7 +10,7 @@ export default function Video() {
     const theme = useTheme();
 
     const history = useHistory();
-    const handleOnEnd = () => alert("Video ended!");// history.push("/sysco-profile");
+    const handleOnEnd = () => history.push("../dette-er-sysco/0");
 
     return (
         <React.Fragment>

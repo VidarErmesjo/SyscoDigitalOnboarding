@@ -3,15 +3,11 @@ import {
     createStyles,
     makeStyles,
     Theme,
+    Typography,
     useTheme
 } from '@material-ui/core';
 
 import { Spring } from 'react-spring/renderprops';
-
-
-import FrequentlyAskedQuestions from './FrequentlyAskedQuestions';
-import StepByStep from './StepByStep';
-
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -25,7 +21,15 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Onboarding() {
+function Content() {
+    return (
+        <React.Fragment>
+            <Typography color="secondary" variant="h3">Innhold</Typography>
+        </React.Fragment>
+    );
+}
+
+export default function EmptyPage() {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -37,10 +41,9 @@ export default function Onboarding() {
                 config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
                 {props => <div style={props} className={classes.root}>
-                    {/* <StepByStep/> */}
-                <FrequentlyAskedQuestions/>
+                    <Content/>                
                 </div>}
-            </Spring>
+            </Spring>     
         </React.Fragment>
     );
-};
+}

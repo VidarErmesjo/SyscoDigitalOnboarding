@@ -1,9 +1,9 @@
+import content from './content';
 import getActiveStep from './getActiveStep';
 import useWindowSize from './useWindowSize';
-import steps from './steps';
 
 export {
+    content,
     getActiveStep,
-    useWindowSize,
-    steps
+    useWindowSize
 }
