@@ -8,7 +8,7 @@ import {
 	Typography
 } from '@material-ui/core';
 
-import { steps } from './../../api';
+import { content } from './../../api';
 
 import shallow from 'zustand/shallow';
 import { Zustand } from './../../store';
@@ -45,7 +45,8 @@ export default function Header(props: any) {
 	const currentStep = Zustand.useStore(state => state.currentStep);
 
 	const classes = useStyles();
-	const heading = steps?.[currentStep!];
+	// Dypere array-struktur => må ordne mer.
+	//const heading = content?.[currentStep!];
 
 	return (
 		<React.Fragment>
@@ -56,7 +57,7 @@ export default function Header(props: any) {
 					color="textPrimary"
 					className={classes.heading}
 					>
-					{heading}
+					{/* {heading.title!} */} TITTEL
 				</Typography>
 				<Logo/>
 			</header>

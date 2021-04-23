@@ -6,7 +6,7 @@ import { devtools, persist } from 'zustand/middleware';
     https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
 */
 
-import { steps } from '../api';
+import { content } from '../api';
 
 // Typer og metoder
 interface Store {
@@ -73,7 +73,7 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
 
     // Stepper
     currentStep: undefined,
-    totalSteps: steps.length,
+    totalSteps: 30, // content.length,
     nextStep: async () => {    
         if(!get().isLoading) {
             set({

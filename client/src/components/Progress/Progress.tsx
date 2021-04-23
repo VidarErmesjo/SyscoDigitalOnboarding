@@ -198,11 +198,6 @@ export default function SessionProgress(props: any) {
         history.push(getActiveStep(index));
     };
 
-    const values = JSON.stringify(data);
-    //console.log(values);
-    //console.log(data, data.length > 0);
-    //console.log(steps);
-
     return (
         <React.Fragment>
             <Stepper
@@ -232,22 +227,6 @@ export default function SessionProgress(props: any) {
                         </StepLabel>                       
                     </Step>        
                 ))}
-                {/* {steps.map((title: string, index: number) => (
-                    <Step key={index}>
-                        <StepLabel
-                            StepIconComponent={SyscoStepIcon}
-                            onClick={() => handleOnClick(index)}
-                            className={classes.stepLabel}
-                            >                            
-                            {!constricted && <Typography
-                                color="textPrimary"
-                                variant="caption"
-                                style={{ userSelect: 'none'}}
-                                >
-                                {title}
-                            </Typography>}
-                        </StepLabel>
-                    </Step>))} */}
             </Stepper>
         </React.Fragment>
     );

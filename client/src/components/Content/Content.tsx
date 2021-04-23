@@ -28,7 +28,7 @@ import {
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 import { getActiveStep } from './../../api';
-import { content } from './../../api/steps';
+import { content } from '../../api/content';
 
 import { Signup } from './../../pages';
 
