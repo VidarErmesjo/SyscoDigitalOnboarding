@@ -12,9 +12,17 @@ import {
     OurFocus,
     Outro
 } from '../pages';
+import FrequentlyAskedQuestions from '../pages/Onboarding/FrequentlyAskedQuestions';
+import StepByStep from '../pages/Onboarding/StepByStep';
 
 // Del 2
 import { EmptyPage } from '../pages/Presentation';
+
+// Del 3
+import { CountryMap } from '../pages/YourOffice';
+
+// Del 4
+import { Social } from '../pages/Motivation';
 
 export const content = [
     {
@@ -34,7 +42,7 @@ export const content = [
         pages: [
             {
                 id: "0",
-                title: "0",
+                title: "Forside",
                 component: Presentation,    // Dette skal være forsiden!
             },
             {
@@ -89,9 +97,14 @@ export const content = [
         title: "Din avdeling",
         pages: [
             {
-                id: "kart",
-                title: "Kart",
+                id: "0",
+                title: "Forside",
                 component: YourOffice,
+            },
+            {
+                id: "1",
+                title: "Kart",
+                component: CountryMap,
             },
             {
                 id: "stord",
@@ -131,7 +144,7 @@ export const content = [
         pages: [
             {
                 id: "0",
-                title: "0",
+                title: "Forside",
                 component: Onboarding,
             },
             {
@@ -161,13 +174,13 @@ export const content = [
             },
             {
                 id: "6",
-                title: "6",
-                component: null,
+                title: "Step - By - Step",
+                component: StepByStep,
             },
             {
                 id: "7",
-                title: "7",
-                component: null,
+                title: "Fadder - FAQ",
+                component: FrequentlyAskedQuestions,
             },
             {
                 id: "8",
@@ -203,7 +216,7 @@ export const content = [
         pages: [
             {
                 id: "0",
-                title: "0",
+                title: "Forside",
                 component: Motivation,
             },
             {
@@ -219,7 +232,7 @@ export const content = [
             {
                 id: "3",
                 title: "3",
-                component: null,
+                component: Social,
             },
             {
                 id: "4",

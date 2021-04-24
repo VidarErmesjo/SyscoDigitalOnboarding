@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 
 import { Spring } from 'react-spring/renderprops';
-import { SyscoLogo } from './../Icons';
+import { SyscoLogo } from './../Custom';
 
 export default function Logo(props: any) {
     const theme = useTheme();

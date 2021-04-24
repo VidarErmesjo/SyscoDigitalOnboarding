@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
 			zIndex: 0,
         },
         circularProgress: {
@@ -133,24 +137,22 @@ export default function Content(props: any) {
         }
     }, [user, history]);
 
-    //console.log(currentStep + "," + getActiveStep(currentStep));
-
     return (
-        <Container fixed className={classes.root}>
-            {user &&
-            <ul>
-                <li><Link to={folder}>Sider</Link></li>
-            </ul>}
-            {!isLoading ? <React.Fragment> 
-                <Route exact path="/">
-                    {!user && <Signup/>}
-                    {/* {!user
-                    ? <Signup/>
-                    : <Redirect to={getActiveStep(0)}/>} */}
-                </Route> 
-                <Route path={folder} component={Categories}/>
-            </React.Fragment>
-            : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
-        </Container>
+        <React.Fragment>
+            <div>
+                {user && <ul>
+                    <li><Link to={folder}>Sider</Link></li>
+                </ul>}
+            </div>
+            <Container fixed className={classes.root}>
+                {!isLoading ? <React.Fragment> 
+                    <Route exact path="/">
+                        {!user && <Signup/>}
+                    </Route> 
+                    <Route path={folder} component={Categories}/>
+                </React.Fragment>
+                : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
+            </Container>
+        </React.Fragment>
     );
 }

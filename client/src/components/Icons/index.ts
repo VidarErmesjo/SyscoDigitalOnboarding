@@ -4,7 +4,6 @@ import MoodIcon from './MoodIcon';
 import OutdoorGrillIcon from './OutdoorGrillIcon';
 import SportsHandballIcon from './SportsHandballIcon';
 import SportsVolleyballIcon from './SportsVolleyballIcon';
-import SyscoLogo from './SyscoLogo';
 import SyscoStepIcon from './SyscoStepIcon';
 import WavingPersonIcon from './WavingPersonIcon';
 
@@ -15,7 +14,6 @@ export {
     OutdoorGrillIcon,
     SportsHandballIcon,
     SportsVolleyballIcon,
-    SyscoLogo,
     SyscoStepIcon,
     WavingPersonIcon,
 };

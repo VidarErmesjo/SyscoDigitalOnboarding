@@ -1,46 +1,146 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import {
+    Box,
+    createStyles,
+    makeStyles,
+    Theme,
+    Typography,
+    IconButton,
+    useTheme
+} from '@material-ui/core';
+
+import { Spring } from 'react-spring/renderprops';
 
 import { Info as InfoIcon } from '@material-ui/icons';
 
-import SyscoModal from '../../components/Custom/SyscoModal';
+import {
+    SyscoCard,
+    SyscoPage,
+    SyscoLogo
+} from '../../components/Custom';
 
-export default function Presentation(props: any) {
-    const [open, setOpen] = React.useState(false);
+const itemSpacing = 24;
 
-    const handleOpen = () => setOpen(true);
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+        root: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
+        },
+        title: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: theme.spacing(-itemSpacing),
+            marginBottom: theme.spacing(4),
+        },
+        content: {
+            position: 'relative',
+            width: 1540,
+            height: 820,
+            backgroundColor: theme.palette.primary.main,
 
-    const handleClose = () => setOpen(false);
+            //transform: `scale(0.75)`,
+            userSelect: 'none',
+        },
+        container: {
+            display: 'flex',
+            flex: '0 0 row',
+            gap: theme.spacing(itemSpacing),
+            justifyContent: 'center',
+            alignContent: 'space-evenly',
+            textAlign: 'center',
+            marginTop: theme.spacing(-itemSpacing),
+            marginLeft: theme.spacing(itemSpacing),
+            marginRight: theme.spacing(itemSpacing),
+        },
+        item: {
+            width: '100%',
+        },
+    })
+);
 
-    function LeftComponent() {
+function Content() {
+    const classes = useStyles();
+    const theme = useTheme();
+
+    const Logo = (): JSX.Element => {
         return (
-            <Typography color="secondary" variant="body1">
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
-            </Typography>
-        )
+            <Box
+                marginTop={theme.typography.pxToRem(theme.spacing(10))}
+                marginLeft={theme.typography.pxToRem(theme.spacing(2))}
+                >
+                <SyscoLogo color="secondary" style={{ fontSize: 512 }}/>
+            </Box>
+        );
     }
 
-    function RightComponent() {
+    const whoAreWeText = "Vi er 200 spesialister fra 20 land, fordelt på 8 kontorer i Skandinavia. Sammen skaper vi digitale suksesshistorier i meningsfulle bransjer.";
+    const whatWeDoText = "Vi leverer smarte applikasjoner til energibransjen, spesialiserte konsulenter og sikker drift og overvåkning av IT-infrastruktur og databaser.";
+    const weAreProblemSolversText = "Med teknologiske superkrefter og dyp bransjekunnskap hjelper vi deg med å snu kompliserte utfordringer til digitale suksesshistorier.";
+ 
+    return (
+        <section className={classes.content}>
+            <div className={classes.title}>
+                <IconButton style={{ color: theme.palette.secondary.main }} disabled>
+                    <Typography color="secondary" variant="h2">Dette er</Typography>
+                    <Logo/>
+                </IconButton> 
+            </div>
+            <div className={classes.container}>
+                <SyscoCard
+                    title="Hvem er vi?"
+                    icon={null}
+                    content={whoAreWeText}
+                    onClick={() => alert(whoAreWeText)}                     
+                />
+                <SyscoCard
+                    title="Hva vi gjør"
+                    icon={null}
+                    content={whatWeDoText}
+                    onClick={() => alert(whatWeDoText)}                     
+                />
+                <SyscoCard
+                    title="Vi er problemløsere"
+                    icon={null}
+                    content={weAreProblemSolversText}
+                    onClick={() => alert(weAreProblemSolversText)}                     
+                />
+            </div>       
+        </section>
+    );
+}
+export default function Presentation(): JSX.Element {
+    const classes = useStyles();
+    const theme = useTheme();
+
+    const Component = (): JSX.Element => {
         return (
             <React.Fragment>
-                <img src="https://picsum.photos/200"/>
-                <img src="https://picsum.photos/100"/>
-                <img src="https://picsum.photos/400/200"/>
+                <SyscoPage
+                    title={null}
+                    category="DEL 1"
+                    icon={null}
+                    content={<Content/>}
+                    color="secondary"
+                />    
             </React.Fragment>
         );
     }
 
     return (
         <React.Fragment>
-            <button onClick={handleOpen}>Modal</button>
-                <SyscoModal
-                    title="Tittel på modalen"
-                    icon={<InfoIcon/>}
-                    left={<LeftComponent/>}
-                    right={<RightComponent/>}
-                    open={open}
-                    handleClose={handleClose}
-                />
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                >
+                {props => <div className={classes.root} style={props}>
+                    <Component/>
+                </div>}
+            </Spring>
         </React.Fragment>
     );
 };

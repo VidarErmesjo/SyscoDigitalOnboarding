@@ -1,18 +1,20 @@
 import React from "react";
 
 import {
-    Box,
-    ButtonBase,
     createStyles,
-    Icon,
     IconButton,
     makeStyles,
-    PropTypes,
     Theme,
     Typography,
     useTheme,
-    withStyles,
 } from '@material-ui/core';
+
+import { Spring } from 'react-spring/renderprops';
+
+import {
+    SyscoCard,
+    SyscoPage
+} from './../../components/Custom';
 
 import {
     MoodIcon,
@@ -26,13 +28,10 @@ const itemSpacing = 24;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            position: 'relative',
-            width: 1540,
-            height: 820,
-            backgroundColor: theme.palette.primary.main,
-
-            transform: `scale(0.75)`,
-            userSelect: 'none',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
         },
         title: {
             display: 'flex',
@@ -42,6 +41,15 @@ const useStyles = makeStyles((theme: Theme) =>
             marginBottom: theme.spacing(8),
         },
         content: {
+            position: 'relative',
+            width: 1540,
+            height: 820,
+            backgroundColor: theme.palette.primary.main,
+
+            //transform: `scale(0.75)`,
+            userSelect: 'none',
+        },
+        container: {
             display: 'flex',
             flex: '0 0 row',
             gap: theme.spacing(itemSpacing),
@@ -49,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignContent: 'space-evenly',
             textAlign: 'center',
             marginLeft: theme.spacing(itemSpacing),
-            marginRight: theme.spacing(itemSpacing),
+            marginRight: theme.spacing(itemSpacing),           
         },
         item: {
             width: '33.33%',
@@ -65,39 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-interface CardProps {
-    title: string | null;
-    icon: React.ReactNode | null;
-    content: string | null;
-    onClick: () => void;
-}
-
-function Card({title, icon, content, onClick}: CardProps): JSX.Element {
-    const classes = useStyles();
-
-    return (
-        <span className={classes.item}>
-            <IconButton
-                color="secondary"
-                onClick={onClick}
-                disableRipple
-                className={classes.iconButton}
-                >
-                {icon}
-                {title}
-            </IconButton>
-            <Typography
-                color="textPrimary"
-                variant="body1"
-                >
-                {content}
-            </Typography>
-
-        </span>
-    );
-}
-
-export default function Social() {
+function Content() {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -106,32 +82,28 @@ export default function Social() {
 
     return (
         <React.Fragment>
-            <section className={classes.root}>
+            <section className={classes.content}>
                 <div className={classes.title}>
                     <IconButton style={{ color: theme.palette.text.primary }} disabled>
                         <SportsVolleyballIcon/>
-                        <Typography
-                            color="inherit"
-                            variant="h3"
-                            className={classes.title}
-                            >
+                        <Typography color="inherit" variant="h3">
                             {title}
                         </Typography>
                     </IconButton></div>
-                <div className={classes.content}>
-                    <Card
+                <div className={classes.container}>
+                    <SyscoCard
                         title="After work"
                         icon={<OutdoorGrillIcon/>}
                         content={afterWorkText}
                         onClick={() => alert("After work")}                     
                     />
-                    <Card
+                    <SyscoCard
                         title="Bedriftslag"
                         icon={<SportsHandballIcon/>}
                         content={afterWorkText}  
                         onClick={() => alert("Bedriftslag")}                      
                     />
-                    <Card
+                    <SyscoCard
                         title="Annen moro"
                         icon={<MoodIcon/>}
                         content={afterWorkText}
@@ -142,3 +114,36 @@ export default function Social() {
         </React.Fragment>
     );
 }
+
+export default function Social(): JSX.Element {
+    const classes = useStyles();
+    const theme = useTheme();
+
+    const Component = (): JSX.Element => {
+        return (
+            <React.Fragment>
+                <SyscoPage
+                    title={null}
+                    category="DEL 1"
+                    icon={null}
+                    content={<Content/>}
+                    color="secondary"
+                />    
+            </React.Fragment>
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                >
+                {props => <div className={classes.root} style={props}>
+                    <Component/>
+                </div>}
+            </Spring>
+        </React.Fragment>
+    );
+};

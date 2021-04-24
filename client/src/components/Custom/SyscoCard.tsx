@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
     Box,
@@ -13,84 +13,54 @@ import {
     useTheme,
     withStyles,
 } from '@material-ui/core';
-import clsx from 'clsx';
+
+const itemSpacing = 24;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            position: 'relative',
-            width: 1540,
-            height: 820,
-            backgroundColor: theme.palette.primary.main,
-
-            transform: `scale(0.75)`,
-            userSelect: 'none',
+        item: {
+            width: '33.33%',
         },
-        title: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-        },
-        content: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignContent: 'center',
+        iconButton: {
+            transition: theme.transitions.duration.standard + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+                background: 'none',
+                transform: `scale(1.5)`,
+            },
         },
     }),
 );
 
 interface SyscoCardProps {
-    color: 'primary' | 'secondary';
     title: string | null;
-    icon: React.ReactNode;
-    category: string | null;
-    content: React.ReactNode | null;
+    icon: React.ReactNode | null;
+    content: string | null;
+    onClick: () => void;
 }
 
-export default function SyscoCard(props: SyscoCardProps): JSX.Element {
-    const {color, title, icon, category, content} = props;
-
+export default function SyscoCard({title, icon, content, onClick}: SyscoCardProps): JSX.Element {
     const classes = useStyles();
-    const theme = useTheme();
 
     return (
-        <React.Fragment>
-            <section className={classes.root}>
-                <IconButton
-                    disabled
-                    style={{
-                        color: color === "primary"
-                        ? theme.palette.text.primary
-                        : theme.palette.secondary.main
-                    }}
-                    >
-                    {icon}
-                    <Typography
-                        color={
-                            color === "primary"
-                            ? "textPrimary"
-                            : "secondary"
-                        }
-                        variant="h5"
-                        >
-                        {category}
-                    </Typography>
-                </IconButton>
-                <Typography
-                    color={
-                        color === "primary"
-                        ? "secondary"
-                        : "textPrimary"
-                    }
-                    variant="h4"
-                    className={classes.title}
-                    >
-                    <em>{title}</em>
+        <span className={classes.item}>
+            <IconButton
+                color="secondary"
+                onClick={onClick}
+                disableRipple
+                className={classes.iconButton}
+                >
+                {icon}
+                <Typography color="inherit" variant="h4" noWrap>
+                    {title}
                 </Typography>
-                <span className={classes.content}>
-                    {content}
-                </span>
-            </section>
-        </React.Fragment>
+            </IconButton>
+            <Typography
+                color="textPrimary"
+                variant="body1"
+                >
+                {content}
+            </Typography>
+        </span>
     );
 }

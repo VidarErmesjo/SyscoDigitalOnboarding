@@ -545,5 +545,5 @@ export default function CountryMap() {
             </tspan>
             </text>
         </svg>
-        );
+    );
 }

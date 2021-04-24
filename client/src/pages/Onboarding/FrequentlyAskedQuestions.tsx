@@ -1,15 +1,34 @@
 import React from "react";
 
-import { useTheme } from '@material-ui/core';
+import {
+    createStyles,
+    makeStyles,
+    Theme,
+    useTheme
+} from '@material-ui/core';
+
+import { Spring } from 'react-spring/renderprops';
 
 import {
-    SyscoCard,
+    SyscoPage,
     SyscoTextButtonBulleted
 } from './../../components/Custom';
 
 import {
     WavingPersonIcon
 } from './../../components/Icons';
+import classes from "*.module.css";
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+        root: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
+        },
+    }),
+);
 
 type Point = [number, number];
 
@@ -64,18 +83,31 @@ function Content() {
     );
 }
 
-export default function FrequentlyAskedQuestions(props: any) {
+export default function FrequentlyAskedQuestions() {
+    const classes = useStyles();
     const theme = useTheme();
 
-    return (
-        <React.Fragment>
-            <SyscoCard
+    const Component = (): JSX.Element =>  {
+        return (
+            <SyscoPage
                 color="secondary"
                 title="Ofte stiltes spørsmål til fadder"
                 category="Fadder"
                 icon={<WavingPersonIcon/>}
                 content={<Content/>}            
-                />
+            />
+        );
+    }
+
+    return (
+        <React.Fragment>
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                >
+                {props => <div className={classes.root} style={props}><Component/></div>}
+            </Spring>
         </React.Fragment>
     );
 }

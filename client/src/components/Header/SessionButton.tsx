@@ -129,47 +129,6 @@ export default function SessionButton(props: any) {
                     </Typography>
                 </span>}
             </Spring>
-            {/* {user && <animated.div
-                style={style}
-                {...props}
-                >
-                <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    marginLeft={theme.spacing(0.05)}
-                    marginTop={theme.spacing(0.05)}
-                    {...props}
-                    >
-                    <CustomTooltip
-                        title={
-                            <React.Fragment>
-                                <Typography
-                                    variant="caption"
-                                    >
-                                    Avslutt Onboarding
-                                </Typography>
-                            </React.Fragment>
-                        }
-                        //TransitionComponent={Fade}
-                        >
-                        <IconButton 
-                            onClick={signOut} 
-                            color="secondary"
-                            className={classes.iconButton}
-                            >
-                            <AccountCircleIcon color="inherit"/>
-                        </IconButton>
-                    </CustomTooltip>
-                    <Typography
-                        variant="caption"
-                        color="textPrimary"
-                        style={{ userSelect: 'none' }}
-                        >
-                        {user}
-                    </Typography>
-                </Box>
-            </animated.div>} */}
         </React.Fragment>
     );
 }

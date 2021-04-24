@@ -1,15 +1,31 @@
 import React from "react";
 
 import {
+	Box,
+	createStyles,
+	makeStyles,
 	SvgIcon,
 	SvgIconProps,
+	Theme,
 	useTheme
 } from '@material-ui/core';
 
 import { Spring } from 'react-spring/renderprops';
 
-import { SyscoCard } from './../../components/Custom';
+import { SyscoPage } from './../../components/Custom';
 import { AccountIcon } from './../../components/Icons';
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+        root: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transformOrigin: 'center',
+            transform: `translate(-50%, -50%)`,
+        },
+    })
+);
 
 function Stepper({color, strokeDashoffset, ...props}: SvgIconProps) {
 	const theme = useTheme();
@@ -62,15 +78,30 @@ function Content() {
 }
 
 export default function StepByStep(): JSX.Element {
-	return (
-		<React.Fragment>
-			<SyscoCard
+	const classes = useStyles();
+	const theme = useTheme();
+
+	const Component = (): JSX.Element => {
+		return (
+			<SyscoPage
 				title="Step - By - Step"
 				category="Brukerkontoer"
 				icon={<AccountIcon/>}
 				content={<Content/>}
 				color="primary"
 			/>
+		);
+	}
+
+	return (
+		<React.Fragment>
+			<Spring
+				from={{ opacity: 0 }}
+				to={{ opacity: 1 }}
+				config={{ duration: theme.transitions.duration.enteringScreen }}
+				>
+				{props => <div className={classes.root} style={props}><Component/></div>}
+			</Spring>
 		</React.Fragment>
 	);
 }
