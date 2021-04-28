@@ -11,7 +11,7 @@ import {
 
 import { Zustand } from './store';
 import shallow from 'zustand/shallow';
-import { useRoutes } from './api';
+import { getRoutes } from './api';
 import { Content } from './components/Content'
 import { Controls } from './components/Controls';
 import { Footer } from './components/Footer';
@@ -45,16 +45,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-    const [user, data, setData, geoMap, setGeoMap] = Zustand.useStore(state => [
+    const [user, routes, setRoutes, geoMap, setGeoMap] = Zustand.useStore(state => [
         state.user,
-        state.data,
-        state.setData,
+        state.routes,
+        state.setRoutes,
         state.geoMap,
         state.setGeoMap], shallow);
 
 	// Låse scrolling
 	document.body.style.overflow = 'hidden';
 
+/*
     // Last inn kursdata
     React.useEffect(() => {
         fetch('/api/onboarding').then(response => {
@@ -67,7 +68,7 @@ export default function App() {
         })
 
         return () => {}
-    }, [user]);
+    }, [user]);*/
 
     // Last inn kartdata
     React.useEffect(() => {
@@ -82,7 +83,13 @@ export default function App() {
         return () => {}
     }, [user]);
 
-    const routes = useRoutes();
+
+    //const routes = useRoutes();
+    React.useEffect(() => {
+        console.log("ComponentDidMount");
+        setRoutes(getRoutes());
+        return () => console.log("ComponentDidUnmounted");
+    }, [])
        
     const classes = useStyles();
 
@@ -96,7 +103,7 @@ export default function App() {
 
     return (
         <React.Fragment>
-            {data && geoMap
+            {geoMap
             ? <div className={classes.root}>
                 <header className={classes.item}>
                     <Header/>

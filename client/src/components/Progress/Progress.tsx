@@ -41,7 +41,7 @@ import shallow from 'zustand/shallow';
 import {
     getActiveStep,
     getRouteFromStep,
-    useRoutes
+    getRoutes
 } from '../../api';
 
 import { config } from '../../api/config';
@@ -193,7 +193,6 @@ export default function SessionProgress(props: any) {
     // Endre på layout når bredden blir for liten.
     const constricted = useMediaQuery('(max-width:666px)');
 
-    const routes = useRoutes();
     const history = useHistory();
     function handleOnClick(index: number) {
         // Mer ...
@@ -214,7 +213,7 @@ export default function SessionProgress(props: any) {
                 className={classes.stepper}
                 {...props}
                 >
-                {config.map((part: any, index: number) => (
+                {/*config.map((part: any, index: number) => (
                     <Step key={index}>
                          <StepLabel
                             StepIconComponent={SyscoStepIcon}
@@ -230,7 +229,7 @@ export default function SessionProgress(props: any) {
                             </Typography>}
                         </StepLabel>                       
                     </Step>        
-                ))}
+                ))*/}
             </Stepper>
         </React.Fragment>
     );

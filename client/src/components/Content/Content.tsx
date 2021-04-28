@@ -27,7 +27,7 @@ import {
 // API
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
-import { getActiveStep, useRoutes } from './../../api';
+import { getRouteFromStep, getRoutes } from './../../api';
 import { config } from '../../api/config';
 
 import { Signup } from './../../pages';
@@ -67,8 +67,6 @@ function Page(props: any) {
         ?.pages.find(({ id }: any) => id === subCategoryId)
         ?.component;
 
-    console.log(url);
-
     return (
         <React.Fragment>
             <Route
@@ -87,7 +85,7 @@ function Category() {
 
     return (
         <React.Fragment>
-            <ul>
+            {/* <ul>
                 {category?.pages?.map((subCategory: any) => (
                     <li key={subCategory.id}>
                         <Link to={`${url}/${subCategory.id}`}>
@@ -95,7 +93,7 @@ function Category() {
                         </Link>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
             <Route path={`${path}/:subCategoryId`} component={Page}/>
         </React.Fragment>
     );
@@ -106,7 +104,7 @@ function Categories() {
 
     return (
         <React.Fragment>
-            <ul>
+            {/* <ul>
                 {config.map(({ title, id }: any) => (
                     <li key={id}>
                         <Link to={`${url}/${id}`}>
@@ -114,7 +112,7 @@ function Categories() {
                         </Link>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
             <Route path={`${path}/:categoryId`} component={Category}/>
         </React.Fragment>
     );
@@ -138,24 +136,23 @@ export default function Content() {
         }
     }, [user, history]);
 
-    //const routes = useRoutes();
-    //console.log(routes);
     const root = "/sysco-digital-onboarding";
+    const currentRoute = getRouteFromStep(currentStep);
 
     return (
         <React.Fragment>
-            <div>
+            {/* <div>
                 {user && <ul>
                     <li><Link to={root}>Sider</Link></li>
                 </ul>}
-            </div>
+            </div> */}
             <Container fixed className={classes.root}>
                 {!isLoading ? <React.Fragment> 
-                    {/* <Route exact path="/">
+                    <Route exact path="/">
                         {!user && <Signup/>}
-                    </Route> 
-                    <Route path={root} component={Categories}/> */}
-                    <Route path={root} component={!user ? Signup : Categories}/>
+                    </Route>
+                    <Route path={root} component={Categories}/>
+                    <Redirect to={currentRoute}/>
                 </React.Fragment>
                 : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
             </Container>

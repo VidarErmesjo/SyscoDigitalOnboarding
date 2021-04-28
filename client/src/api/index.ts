@@ -1,13 +1,13 @@
 import config from './config';
 import getActiveStep from './getActiveStep';
 import getRouteFromStep from './getRouteFromStep';
-import useRoutes from './useRoutes';
+import getRoutes from './getRoutes';
 import useWindowSize from './useWindowSize';
 
 export {
     config,
     getActiveStep,
     getRouteFromStep,
-    useRoutes,
+    getRoutes,
     useWindowSize
 }

@@ -85,7 +85,7 @@ export const config = [
         title: "Dette er SYSCO",
         pages: [
             {
-                id: "generelt-om-sysco",
+                id: "0",
                 title: "Generelt om SYSCO",
                 component: Presentation,
             },

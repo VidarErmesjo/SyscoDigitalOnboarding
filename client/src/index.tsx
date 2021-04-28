@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import App from './App';
+import theme from './theme';
 import reportWebVitals from './reportWebVitals';
 import { makeServer } from './server';
-import theme from './theme';
 
 if(process.env.NODE_ENV === "development") {
 	makeServer({ environment: "development" })

@@ -2,7 +2,7 @@ import { createServer } from "miragejs"
 
 // Data som skal hentes fra "back-end".
 import onboardingData from './assets/onboarding-data.json';
-import { useRoutes } from './api';
+import { getRoutes } from './api';
 
 // Verdenskart
 import worldMap from './assets/world-map.json';

@@ -24,16 +24,18 @@ interface Store {
 
     // Navigation
     currentStep: number | undefined;
-    totalSteps: number;
+    totalSteps: number | undefined;
     nextStep: () => void;
     previousStep: () => void;
+    routes: string[];
+    setRoutes: (routes: string[]) => void;
 
     // Map
     geoMap: string;
     setGeoMap: (data: string) => void;
 }
 
-const timeout = 1000;
+const timeout = 500;
 const storageName = "SyscoDigitalOnboarding";
 
 // Initialverdier og metodeimplementasjon
@@ -45,7 +47,8 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
             set({
                 isLoading: true,
                 user: email,
-                currentStep: 0
+                currentStep: 0,
+                totalSteps: get().routes.length,
             });
             setTimeout(() => set(({isLoading: false})), timeout);
         }
@@ -74,7 +77,7 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
 
     // Navigation
     currentStep: undefined,
-    totalSteps: 30, // config.length,
+    totalSteps: undefined,
     nextStep: async () => {    
         if(!get().isLoading) {
             set({
@@ -92,6 +95,10 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
             });
             setTimeout(() => set({isLoading: false}), timeout);
         }
+    },
+    routes: [],
+    setRoutes: async (routes: string[]) => {
+        set({routes: routes});
     },
 
     // Verdenskart (klode)
