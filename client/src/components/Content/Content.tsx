@@ -27,8 +27,8 @@ import {
 // API
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
-import { getActiveStep } from './../../api';
-import { content } from '../../api/content';
+import { getActiveStep, useRoutes } from './../../api';
+import { config } from '../../api/config';
 
 import { Signup } from './../../pages';
 
@@ -63,9 +63,11 @@ function Page(props: any) {
     const { categoryId, subCategoryId }: any = useParams();
     const { url } = useRouteMatch();
 
-    const Component = content.find(({ id }) => id === categoryId)
+    const Component = config.find(({ id }) => id === categoryId)
         ?.pages.find(({ id }: any) => id === subCategoryId)
         ?.component;
+
+    console.log(url);
 
     return (
         <React.Fragment>
@@ -81,7 +83,7 @@ function Page(props: any) {
 function Category() {
     const { categoryId }: any = useParams();
     const { path, url } = useRouteMatch();
-    const category = content.find(({ id }) => id === categoryId);
+    const category = config.find(({ id }) => id === categoryId);
 
     return (
         <React.Fragment>
@@ -105,7 +107,7 @@ function Categories() {
     return (
         <React.Fragment>
             <ul>
-                {content.map(({ title, id }: any) => (
+                {config.map(({ title, id }: any) => (
                     <li key={id}>
                         <Link to={`${url}/${id}`}>
                             {title}
@@ -118,8 +120,7 @@ function Categories() {
     );
 }
 
-const folder = "/sider";
-export default function Content(props: any) {
+export default function Content() {
     const [isLoading, user, currentStep] = Zustand.useStore(state => [
         state.isLoading,
         state.user,
@@ -137,19 +138,24 @@ export default function Content(props: any) {
         }
     }, [user, history]);
 
+    //const routes = useRoutes();
+    //console.log(routes);
+    const root = "/sysco-digital-onboarding";
+
     return (
         <React.Fragment>
             <div>
                 {user && <ul>
-                    <li><Link to={folder}>Sider</Link></li>
+                    <li><Link to={root}>Sider</Link></li>
                 </ul>}
             </div>
             <Container fixed className={classes.root}>
                 {!isLoading ? <React.Fragment> 
-                    <Route exact path="/">
+                    {/* <Route exact path="/">
                         {!user && <Signup/>}
                     </Route> 
-                    <Route path={folder} component={Categories}/>
+                    <Route path={root} component={Categories}/> */}
+                    <Route path={root} component={!user ? Signup : Categories}/>
                 </React.Fragment>
                 : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
             </Container>

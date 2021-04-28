@@ -11,6 +11,7 @@ import {
 
 import { Zustand } from './store';
 import shallow from 'zustand/shallow';
+import { useRoutes } from './api';
 import { Content } from './components/Content'
 import { Controls } from './components/Controls';
 import { Footer } from './components/Footer';
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Dashbord(props: any) {
+export default function App() {
     const [user, data, setData, geoMap, setGeoMap] = Zustand.useStore(state => [
         state.user,
         state.data,
@@ -59,10 +60,12 @@ export default function Dashbord(props: any) {
         fetch('/api/onboarding').then(response => {
             return response.json();
         }).then(payload => {
-            setData(payload);
+            //setData(payload)
+            setData(routes);
         }).catch(error => {
             console.log(error);
         })
+
         return () => {}
     }, [user]);
 
@@ -78,10 +81,18 @@ export default function Dashbord(props: any) {
 
         return () => {}
     }, [user]);
+
+    const routes = useRoutes();
        
     const classes = useStyles();
 
     const theme = useTheme();
+
+    /* TODO:
+        I begynnelsen => Oversikt: "Det er X slides, det er Y antall deler og dette vil ta ca. Z minutter"
+        Introvideo først?
+        Stor kule (del) venstre med underpunkter mot venstre.
+    */
 
     return (
         <React.Fragment>

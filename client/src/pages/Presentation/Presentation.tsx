@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginTop: theme.spacing(-itemSpacing),
             marginBottom: theme.spacing(4),
         },
-        content: {
+        config: {
             position: 'relative',
             width: 1540,
             height: 820,
@@ -82,7 +82,7 @@ function Content() {
     const weAreProblemSolversText = "Med teknologiske superkrefter og dyp bransjekunnskap hjelper vi deg med å snu kompliserte utfordringer til digitale suksesshistorier.";
  
     return (
-        <section className={classes.content}>
+        <section className={classes.config}>
             <div className={classes.title}>
                 <IconButton style={{ color: theme.palette.secondary.main }} disabled>
                     <Typography color="secondary" variant="h2">Dette er</Typography>
@@ -93,19 +93,19 @@ function Content() {
                 <SyscoCard
                     title="Hvem er vi?"
                     icon={null}
-                    content={whoAreWeText}
+                    config={whoAreWeText}
                     onClick={() => alert(whoAreWeText)}                     
                 />
                 <SyscoCard
                     title="Hva vi gjør"
                     icon={null}
-                    content={whatWeDoText}
+                    config={whatWeDoText}
                     onClick={() => alert(whatWeDoText)}                     
                 />
                 <SyscoCard
                     title="Vi er problemløsere"
                     icon={null}
-                    content={weAreProblemSolversText}
+                    config={weAreProblemSolversText}
                     onClick={() => alert(weAreProblemSolversText)}                     
                 />
             </div>       

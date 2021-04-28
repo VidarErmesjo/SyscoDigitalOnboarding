@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
             transform: `translateX(-50%)`,
             padding: 0,
         },
-        content: {
+        config: {
             display: 'flex',
             padding: 0,
         },
@@ -148,7 +148,7 @@ export default function SyscoModal(props: SyscoModalProps): JSX.Element {
                         <CloseIcon color="secondary"/>
                     </IconButton>
                 </DialogActions>
-                <DialogContent className={classes.content}>
+                <DialogContent className={classes.config}>
                     <div className={classes.card}>
                         {left ? left : <Typography color="textSecondary" variant="body1">Left</Typography>}
                     </div>

@@ -12,8 +12,8 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
-import { SyscoPage } from './../../components/Custom';
-import { AccountIcon } from './../../components/Icons';
+import { SyscoPage } from '../../../components/Custom';
+import { AccountIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -77,7 +77,7 @@ function Content() {
 	);
 }
 
-export default function StepByStep(): JSX.Element {
+export default function Page6(): JSX.Element {
 	const classes = useStyles();
 	const theme = useTheme();
 

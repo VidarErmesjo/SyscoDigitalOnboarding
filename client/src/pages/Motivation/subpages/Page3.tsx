@@ -14,14 +14,14 @@ import { Spring } from 'react-spring/renderprops';
 import {
     SyscoCard,
     SyscoPage
-} from './../../components/Custom';
+} from '../../../components/Custom';
 
 import {
     MoodIcon,
     OutdoorGrillIcon,
     SportsHandballIcon,
     SportsVolleyballIcon,
-} from '../../components/Icons';
+} from '../../../components/Icons';
 
 const itemSpacing = 24;
 
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
             marginTop: theme.spacing(8),
             marginBottom: theme.spacing(8),
         },
-        content: {
+        config: {
             position: 'relative',
             width: 1540,
             height: 820,
@@ -82,7 +82,7 @@ function Content() {
 
     return (
         <React.Fragment>
-            <section className={classes.content}>
+            <section className={classes.config}>
                 <div className={classes.title}>
                     <IconButton style={{ color: theme.palette.text.primary }} disabled>
                         <SportsVolleyballIcon/>
@@ -94,19 +94,19 @@ function Content() {
                     <SyscoCard
                         title="After work"
                         icon={<OutdoorGrillIcon/>}
-                        content={afterWorkText}
+                        config={afterWorkText}
                         onClick={() => alert("After work")}                     
                     />
                     <SyscoCard
                         title="Bedriftslag"
                         icon={<SportsHandballIcon/>}
-                        content={afterWorkText}  
+                        config={afterWorkText}  
                         onClick={() => alert("Bedriftslag")}                      
                     />
                     <SyscoCard
                         title="Annen moro"
                         icon={<MoodIcon/>}
-                        content={afterWorkText}
+                        config={afterWorkText}
                         onClick={() => alert("Annen moro")}                     
                     />                   
                 </div>
@@ -115,7 +115,7 @@ function Content() {
     );
 }
 
-export default function Social(): JSX.Element {
+export default function Page3(): JSX.Element {
     const classes = useStyles();
     const theme = useTheme();
 

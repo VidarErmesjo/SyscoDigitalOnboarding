@@ -39,10 +39,12 @@ import { useHistory } from 'react-router-dom';
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
 import {
-    getActiveStep
+    getActiveStep,
+    getRouteFromStep,
+    useRoutes
 } from '../../api';
 
-import { content } from '../../api/content';
+import { config } from '../../api/config';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
@@ -191,11 +193,13 @@ export default function SessionProgress(props: any) {
     // Endre på layout når bredden blir for liten.
     const constricted = useMediaQuery('(max-width:666px)');
 
+    const routes = useRoutes();
     const history = useHistory();
     function handleOnClick(index: number) {
         // Mer ...
+        const routes = getRouteFromStep(index);
         
-        history.push(getActiveStep(index));
+        //history.push(getRouteFromStep(index));
     };
 
     return (
@@ -210,7 +214,7 @@ export default function SessionProgress(props: any) {
                 className={classes.stepper}
                 {...props}
                 >
-                {content.map((category, index) => (
+                {config.map((part: any, index: number) => (
                     <Step key={index}>
                          <StepLabel
                             StepIconComponent={SyscoStepIcon}
@@ -222,7 +226,7 @@ export default function SessionProgress(props: any) {
                                 variant="caption"
                                 style={{ userSelect: 'none'}}
                                 >
-                                {category.title}
+                                {part.title}
                             </Typography>}
                         </StepLabel>                       
                     </Step>        

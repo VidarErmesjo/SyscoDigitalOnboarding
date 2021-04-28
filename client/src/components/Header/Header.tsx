@@ -8,7 +8,7 @@ import {
 	Typography
 } from '@material-ui/core';
 
-import { content } from './../../api';
+import { config } from './../../api';
 
 import shallow from 'zustand/shallow';
 import { Zustand } from './../../store';
@@ -46,7 +46,7 @@ export default function Header(props: any) {
 
 	const classes = useStyles();
 	// Dypere array-struktur => må ordne mer.
-	//const heading = content?.[currentStep!];
+	//const heading = config?.[currentStep!];
 
 	return (
 		<React.Fragment>

@@ -1,6 +1,6 @@
 import React from 'react';
+
 import {
-    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -12,8 +12,7 @@ import { Spring } from 'react-spring/renderprops';
 
 import {
     SyscoPage,
-    SyscoLine,
-} from './../../components/Custom';
+} from '../../../components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -23,12 +22,11 @@ const useStyles = makeStyles((theme: Theme) =>
             left: '50%',
             transform: `translate(-50%, -50%)`,
         },
-        config: {
+        content: {
             display: 'flex',
-            flexDirection: 'column',
+            flex: '0 0 column',
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: theme.spacing(28),
         },
         item: {
             width: '100%',
@@ -39,19 +37,14 @@ const useStyles = makeStyles((theme: Theme) =>
 function Content() {
     const classes = useStyles();
 
-    const Title = (): JSX.Element => {
-        return (<Typography color="secondary" variant="h1">Onboarding</Typography>);
-    }
-
     return (
-        <div className={classes.config}>
-            <Box component={Title} className={classes.item}/>
-            <Box component={SyscoLine} className={classes.item}/>
+        <div className={classes.content}>
+            <Typography color="secondary" variant="h1">Side 1</Typography>
         </div>
     );
 }
 
-export default function Onboarding() {
+export default function Page1() {
     const classes = useStyles();
     const theme = useTheme();
 
@@ -59,25 +52,25 @@ export default function Onboarding() {
         return (
             <SyscoPage
                 title={null}
-                category="DEL 3"
+                category={null}
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-            />      
+            />           
         );
     }
-
+    
     return (
         <React.Fragment>
-			<Spring
-				from={{ opacity: 0 }}
-				to={{ opacity: 1 }}
-				config={{ duration: theme.transitions.duration.enteringScreen }}
-				>
-				{props => <div className={classes.root} style={props}>
+            <Spring
+                from={{ opacity: 0 }}
+                to={{ opacity: 1 }}
+                config={{ duration: theme.transitions.duration.enteringScreen }}
+                >
+                {props => <div className={classes.root} style={props}>
                     <Component/>
-                </div>}
-			</Spring>
+                </div>}  
+            </Spring>
         </React.Fragment>
     );
-};
+}

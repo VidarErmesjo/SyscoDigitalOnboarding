@@ -12,12 +12,11 @@ import { Spring } from 'react-spring/renderprops';
 import {
     SyscoPage,
     SyscoTextButtonBulleted
-} from './../../components/Custom';
+} from '../../../components/Custom';
 
 import {
     WavingPersonIcon
-} from './../../components/Icons';
-import classes from "*.module.css";
+} from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -83,7 +82,7 @@ function Content() {
     );
 }
 
-export default function FrequentlyAskedQuestions() {
+export default function Page7() {
     const classes = useStyles();
     const theme = useTheme();
 

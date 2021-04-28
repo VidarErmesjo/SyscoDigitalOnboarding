@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
             left: '50%',
             transform: `translate(-50%, -50%)`,
         },
-        content: {
+        config: {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -44,7 +44,7 @@ function Content() {
     }
 
     return (
-        <div className={classes.content}>
+        <div className={classes.config}>
             <Box component={Title} className={classes.item}/>
             <Box component={SyscoLine} className={classes.item}/>
         </div>

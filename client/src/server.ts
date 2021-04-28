@@ -2,9 +2,11 @@ import { createServer } from "miragejs"
 
 // Data som skal hentes fra "back-end".
 import onboardingData from './assets/onboarding-data.json';
+import { useRoutes } from './api';
 
 // Verdenskart
 import worldMap from './assets/world-map.json';
+import { JSONAPISerializer } from "miragejs/serializer";
 
 export function makeServer({ environment = "test" } = {}) {
     let server = createServer({
@@ -12,7 +14,8 @@ export function makeServer({ environment = "test" } = {}) {
             this.namespace = "api"
 
             this.get('onboarding', () => {
-                return {onboardingData}
+                //const routes = useRoutes();
+                return  {onboardingData}
             })
 
             this.get('map', () => {

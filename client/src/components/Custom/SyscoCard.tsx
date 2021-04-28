@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface SyscoCardProps {
     title: string | null;
     icon: React.ReactNode | null;
-    content: string | null;
+    config: string | null;
     onClick: () => void;
 }
 
-export default function SyscoCard({title, icon, content, onClick}: SyscoCardProps): JSX.Element {
+export default function SyscoCard({title, icon, config, onClick}: SyscoCardProps): JSX.Element {
     const classes = useStyles();
 
     return (
@@ -59,7 +59,7 @@ export default function SyscoCard({title, icon, content, onClick}: SyscoCardProp
                 color="textPrimary"
                 variant="body1"
                 >
-                {content}
+                {config}
             </Typography>
         </span>
     );

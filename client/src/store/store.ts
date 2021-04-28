@@ -6,7 +6,7 @@ import { devtools, persist } from 'zustand/middleware';
     https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
 */
 
-import { content } from '../api';
+import { config } from '../api';
 
 // Typer og metoder
 interface Store {
@@ -17,12 +17,12 @@ interface Store {
     user: string | null;
     signIn: (email: string | null) => void;
     signOut: () => void;
-    data: [];
-    setData: (payload: []) => void;
+    data: any[];
+    setData: (payload: any[]) => void;
     isLoading: boolean;
     setIsLoading: (state: boolean) => void;
 
-    // Stepper
+    // Navigation
     currentStep: number | undefined;
     totalSteps: number;
     nextStep: () => void;
@@ -63,7 +63,8 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
         }
     },
     data: [],
-    setData: async (payload: []) => {
+    setData: async (payload: any[]) => {
+            console.log(payload);
             set({ data: payload });
     },
     isLoading: false,
@@ -71,9 +72,9 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
         set({ isLoading: state });
     },
 
-    // Stepper
+    // Navigation
     currentStep: undefined,
-    totalSteps: 30, // content.length,
+    totalSteps: 30, // config.length,
     nextStep: async () => {    
         if(!get().isLoading) {
             set({
