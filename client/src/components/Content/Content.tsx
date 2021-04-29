@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function Page(props: any) {
     const { categoryId, subCategoryId }: any = useParams();
-    const { url } = useRouteMatch();
+    const { path } = useRouteMatch();
 
     const Component = config.find(({ id }) => id === categoryId)
         ?.pages?.find(({ id }: any) => id === subCategoryId)
@@ -66,7 +66,7 @@ function Page(props: any) {
     return (
         <React.Fragment>
             <Route
-                path={`${url}`}
+                path={`${path}`}
                 component={Component}
                 {...props}
                 />
@@ -77,7 +77,9 @@ function Page(props: any) {
 function Category() {
     const { categoryId }: any = useParams();
     const { path, url } = useRouteMatch();
-    const category = config.find(({ id }) => id === categoryId);
+
+    // Har vi forside?
+    //const Component = config.find(({ id }) => id === categoryId)?.component;
 
     return (
         <React.Fragment>
@@ -141,6 +143,7 @@ export default function Content() {
                     <li><Link to={root}>Sider</Link></li>
                 </ul>}
             </div> */}
+            <div><Typography color="textPrimary" variant="caption">Current step: {currentStep}</Typography></div>
             <Container fixed className={classes.root}>
                 {!isLoading ? <React.Fragment> 
                     <Route exact path="/">

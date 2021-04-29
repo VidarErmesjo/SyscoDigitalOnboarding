@@ -31,13 +31,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Point = [number, number];
 
-interface IBullets {
+type BulletProps = {
     value: string;
     offset: Point;
 }
 
 // Posisjoner hentet fra Figma.
-const bullets: IBullets[] = [
+const bullets: BulletProps[] = [
     {
         value: "Hvordan er organisasjonsstrukturen i SYSCO?",
         offset: [157, 83] as Point,
@@ -96,6 +96,7 @@ function Content() {
                     key={index}
                     value={bullet.value}
                     offset={bullet.offset}
+                    onClick={(event) => alert(event.target)}
                 />
             ))}
         </React.Fragment>

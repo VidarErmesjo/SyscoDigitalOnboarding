@@ -4,7 +4,7 @@ import getCategoryFromRoute from './getCategoryFromRoute';
 export default function getPagesFromRoute(route: string): RouteNode[] {
     // OBS! Sett til = [] om du ikke vil ha med hovedkategorien i output.
     const category = getCategoryFromRoute(route);
-    var pages: RouteNode[] = [{ id: category.id, title: category.title }];
+    var pages: RouteNode[] = [];//[{ id: category.id, title: category.title }];
 
     // Vi er kun interessert i tredje element.
     route = route.split("/")[2];

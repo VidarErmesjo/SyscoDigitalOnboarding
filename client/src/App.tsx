@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
 
 import {
     createStyles,
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
             display: 'flex',
-            //flex: '0 0  100% column',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
@@ -46,10 +44,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-    const [user, routes, setRoutes, geoMap, setGeoMap] = Zustand.useStore(state => [
+    const [user, geoMap, setGeoMap] = Zustand.useStore(state => [
         state.user,
-        state.routes,
-        state.setRoutes,
         state.geoMap,
         state.setGeoMap], shallow);
 
@@ -84,20 +80,13 @@ export default function App() {
         return () => {}
     }, [user]);
 
-    // Unødvendig?
-    React.useEffect(() => {
-        setRoutes(getRoutes());
-        return () => {};
-    }, [])
-       
     const classes = useStyles();
-
     const theme = useTheme();
 
     /* TODO:
         I begynnelsen => Oversikt: "Det er X slides, det er Y antall deler og dette vil ta ca. Z minutter"
         Introvideo først?
-        Stor kule (del) venstre med underpunkter mot venstre.
+        Stor kule (del) venstre med underpunkter mot høyre.
     */
 
     return (

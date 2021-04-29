@@ -33,10 +33,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
     value: string;
     offset: [number, number];
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function SyscoTextButtonBulleted(props: Props): JSX.Element {
-    const { value, offset } = props;
+    const { value, offset, onClick } = props;
 
     const classes = useStyles();
 
@@ -51,7 +52,7 @@ export default function SyscoTextButtonBulleted(props: Props): JSX.Element {
                 <IconButton
                     color="secondary"
                     disableRipple
-                    onClick={() => alert("You clicked me!")}
+                    onClick={onClick}
                     className={classes.iconButton}
                     >
                     <CubeIcon/>

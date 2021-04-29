@@ -67,7 +67,7 @@ export const root = "/sysco-digital-onboarding";
 export type RouteNode = {
     id: string | undefined;
     title: string | undefined;
-    component?: React.ComponentType<JSX.Element>;
+    component?: React.ComponentType<JSX.Element> | null;
     pages?: RouteNode[];
 }
 
@@ -75,10 +75,11 @@ export const config: RouteNode[] = [
     {
         id: "introduksjon",
         title: "Introduksjon",
+        component: Intro,
         pages: [
             {
                 id: "0",
-                title: "Informasjon om SYSCO Digital Onboarding",
+                title: "Introduksjon",
                 component: Intro,
             },
             {
@@ -91,10 +92,11 @@ export const config: RouteNode[] = [
     {
         id: "dette-er-sysco",
         title: "Dette er SYSCO",
+        component: Presentation,
         pages: [
             {
                 id: "0",
-                title: "Generelt om SYSCO",
+                title: "Dette er SYSCO",
                 component: Presentation,
             },
             {
@@ -147,10 +149,11 @@ export const config: RouteNode[] = [
     {
         id: "din-avdeling",
         title: "Din avdeling",
+        component: YourOffice,
         pages: [
             {
                 id: "0",
-                title: "Forside",
+                title: "Din avdeling",
                 component: YourOffice,
             },
             {
@@ -193,10 +196,11 @@ export const config: RouteNode[] = [
     {
         id: "onboarding",
         title: "Onboarding",
+        component: Onboarding,
         pages: [
             {
                 id: "0",
-                title: "Forside",
+                title: "Onboarding",
                 component: Onboarding,
             },
             {
@@ -226,12 +230,12 @@ export const config: RouteNode[] = [
             },
             {
                 id: "6",
-                title: "Step - By - Step",
+                title: "6",
                 component: Onboarding6,
             },
             {
                 id: "7",
-                title: "Fadder - FAQ",
+                title: "7",
                 component: Onboarding7,
             },
             {
@@ -265,10 +269,11 @@ export const config: RouteNode[] = [
     {
         id: "motivasjon-for-ansatte",
         title: "Motivasjon for ansatte",
+        component: Motivation,
         pages: [
             {
                 id: "0",
-                title: "Forside",
+                title: "Motivasjon for ansatte",
                 component: Motivation,
             },
             {
@@ -306,21 +311,22 @@ export const config: RouteNode[] = [
     {
         id: "avsluttning",
         title: "Avsluttning",
+        component: Outro,
         pages: [
             {
                 id: "0",
-                title: "0",
+                title: "Avsluttning",
                 component: Outro,
             },
             {
                 id: "1",
                 title: "1",
-                //component: null,
+                component: null,
             },
             {
                 id: "2",
                 title: "2",
-                //component: null,
+                component: null,
             },
         ],
     },
