@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
             display: 'flex',
-            flex: '0 0 column',
+            //flex: '0 0  100% column',
+            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
 
@@ -83,12 +84,10 @@ export default function App() {
         return () => {}
     }, [user]);
 
-
-    //const routes = useRoutes();
+    // Unødvendig?
     React.useEffect(() => {
-        console.log("ComponentDidMount");
         setRoutes(getRoutes());
-        return () => console.log("ComponentDidUnmounted");
+        return () => {};
     }, [])
        
     const classes = useStyles();

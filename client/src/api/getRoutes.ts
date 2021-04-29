@@ -1,13 +1,10 @@
-import config from './config';
+import config, { root } from './config';
 
-export default function useRoutes(): string[] {
-    const root = "/sysco-digital-onboarding";
+export default function getRoutes(): string[] {
     var routes: string[] = [];
-    config.forEach((part) => {
-        //const route = `/root/${part.id}`;
-        //routes.push(route);
 
-        part.pages.forEach((page) => {
+    config.forEach((part) => {
+        part.pages?.forEach((page) => {
             const route = `${root}/${part.id}/${page.id}`;
             routes.push(route);
         })

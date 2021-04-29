@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         content: {
             display: 'flex',
-            flex: '0 0 column',
+            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
         },

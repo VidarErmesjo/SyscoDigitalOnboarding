@@ -1,14 +1,16 @@
 import React from 'react';
 
 import {
-	Box,
 	createStyles,
 	makeStyles,
 	Theme,
-	Typography
+	Typography,
+	useTheme
 } from '@material-ui/core';
 
-import { config } from './../../api';
+import { Spring } from 'react-spring/renderprops';
+
+import { getCategoryFromRoute, getRouteFromStep } from './../../api';
 
 import shallow from 'zustand/shallow';
 import { Zustand } from './../../store';
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 			height: theme.spacing(7),
 			zIndex: theme.zIndex.appBar,
 			display: 'flex',
-			flex: '0 0 row',
+			flexDirection: 'row',
 			justifyContent: 'space-between',
 			alignItems: 'center',
 		},
@@ -41,24 +43,42 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Header(props: any) {
-	const currentStep = Zustand.useStore(state => state.currentStep);
+export default function Header() {
+	const [user, currentStep, isLoading] = Zustand.useStore(state => [
+		state.user,
+		state.currentStep,
+		state.isLoading
+	]);
 
 	const classes = useStyles();
-	// Dypere array-struktur => må ordne mer.
-	//const heading = config?.[currentStep!];
+	const theme = useTheme();
+	const category = getCategoryFromRoute(getRouteFromStep(currentStep));
+
+	const Heading = (): JSX.Element => {
+		return (
+			<Spring
+				from={{ opacity: 0 }}
+				to={{ opacity: user ?  1 : 0 }}
+				config={{ duration: theme.transitions.duration.enteringScreen }}
+				>
+				{props => <div style={props}>
+					<Typography
+						variant="h6"
+						color="textPrimary"
+						className={classes.heading}
+						>
+						{category.title?.toString()}
+					</Typography>
+				</div>}
+			</Spring>
+		);
+	}
 
 	return (
 		<React.Fragment>
 			<header id="header" className={classes.root}>
 				<SessionButton/>
-				<Typography
-					variant="h5"
-					color="textPrimary"
-					className={classes.heading}
-					>
-					{/* {heading.title!} */} TITTEL
-				</Typography>
+				{!isLoading && <Heading/>}
 				<Logo/>
 			</header>
 		</React.Fragment>

@@ -28,7 +28,7 @@ import {
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 import { getRouteFromStep, getRoutes } from './../../api';
-import { config } from '../../api/config';
+import config, { root } from '../../api/config';
 
 import { Signup } from './../../pages';
 
@@ -55,16 +55,12 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Done() {
-    return <Typography color="secondary" variant="h3">Done!</Typography>
-}
-
 function Page(props: any) {
     const { categoryId, subCategoryId }: any = useParams();
     const { url } = useRouteMatch();
 
     const Component = config.find(({ id }) => id === categoryId)
-        ?.pages.find(({ id }: any) => id === subCategoryId)
+        ?.pages?.find(({ id }: any) => id === subCategoryId)
         ?.component;
 
     return (
@@ -128,7 +124,7 @@ export default function Content() {
     const classes = useStyles();
     const theme = useTheme();
 
-    // Hvis user === null => omdiriger browser til root.
+    // Omdiriger browser til innlogging ved avsluttet Onboarding.
     const history = useHistory();
     React.useEffect(() => {
         if(!user) {
@@ -136,7 +132,6 @@ export default function Content() {
         }
     }, [user, history]);
 
-    const root = "/sysco-digital-onboarding";
     const currentRoute = getRouteFromStep(currentStep);
 
     return (

@@ -31,40 +31,60 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Point = [number, number];
 
+interface IBullets {
+    value: string;
+    offset: Point;
+}
+
 // Posisjoner hentet fra Figma.
-const bullets = [
+const bullets: IBullets[] = [
     {
-        offset: [166, 139] as Point,
+        value: "Hvordan er organisasjonsstrukturen i SYSCO?",
+        offset: [157, 83] as Point,
     },
     {
-        offset: [182, 687] as Point,
+        value: "Hvordan får jeg tilgang til ulike apps?",
+        offset: [162, 618] as Point,
     },
     {
-        offset: [156, 1134] as Point,
+        value: "Hvordan får jeg bestilt utstyr?",
+        offset: [136, 1065] as Point,
     },
     {
-        offset: [263, 435] as Point,
+        value: "Når får jeg lønn?",
+        offset: [243, 366] as Point,
     },
     {
-        offset: [264, 941] as Point,
+        value: "Hvordan får jeg tilgang til ulike apps eller systemer?",
+        offset: [244, 872] as Point,
     },
     {
-        offset: [362, 222] as Point,
+        value: "Hvilke forsikringsordninger og helesegoder finnes?",
+        offset: [342, 153] as Point,
     },
     {
-        offset: [350, 701] as Point,
+        value: "Hvordan skaffer jeg meg mobil?",
+        offset: [332, 714] as Point,
     },
     {
-        offset: [459, 565] as Point,
+        value: "Hvem bør jeg kontakte hvis jeg har noen spørsmål?",
+        offset: [448, 366] as Point,
     },
     {
-        offset: [447, 1009] as Point,
+        value: "Dekker SYSCO mobilabonement og internett hjemme?",
+        offset: [427, 940] as Point,
     },
     {
-        offset: [581, 254] as Point,
+        value: "Er det kjernetid?",
+        offset: [523, 797] as Point,
     },
     {
-        offset: [555, 884] as Point,
+        value: "Hvor lang lunsj er det, og får man dekket lunsjtid og mat?",
+        offset: [561, 185] as Point,
+    },
+    {
+        value: "Hvor kan jeg få faglig hjelp hvis jeg trenger det?",
+        offset: [587, 951] as Point,
     },
 ]
 
@@ -74,7 +94,7 @@ function Content() {
             {bullets.map((bullet, index) => (
                 <SyscoTextButtonBulleted
                     key={index}
-                    value="Hvor får jeg bestilt datautstyr?"
+                    value={bullet.value}
                     offset={bullet.offset}
                 />
             ))}

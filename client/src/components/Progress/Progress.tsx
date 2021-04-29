@@ -39,16 +39,20 @@ import { useHistory } from 'react-router-dom';
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
 import {
-    getActiveStep,
+    getCategoryFromRoute,
+    getPages,
+    getPagesFromRoute,
     getRouteFromStep,
     getRoutes
 } from '../../api';
 
-import { config } from '../../api/config';
+import config from '../../api/config';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
-        top: 32,
+        top: `calc(50% - 10px)`,
+        left: `calc(-50% + 30px)`,
+        right: `calc(50% + 30px)`,
         width: 'auto',
     },
     active: {
@@ -62,8 +66,9 @@ const CustomConnector = withStyles((theme: Theme) => ({
         },
     },
     line: {
-        height: 1,
+        height: 5,
         border: 0,
+        borderRadius: '10%',
         backgroundColor: theme.palette.text.primary,
         transition: theme.transitions.duration.standard + 'ms',
     },
@@ -114,14 +119,14 @@ const useStyles = makeStyles((theme: Theme) =>
         stepConnector: {
             position: 'absolute',
             top: 18,
-            width: 'auto',
-            left: `calc(-50% + 20px)`,
-            right: `calc(50% + 20px)`,
+            width: 'auto',// '50px',
+            //left: `calc(-50% + 20px)`,
+            //right: `calc(50% + 20px)`,
             //flex:'1 1 auto',
         },
         stepLabel: {
             '& .MuiStepLabel-label.MuiStepLabel-alternativeLabel': {
-                //margin: 0,
+                margin: 0,
             },
         },
         root: {
@@ -190,29 +195,51 @@ export default function SessionProgress(props: any) {
     
     const classes = useStyles();
 
-    // Endre på layout når bredden blir for liten.
-    const constricted = useMediaQuery('(max-width:666px)');
-
-    const history = useHistory();
-    function handleOnClick(index: number) {
-        // Mer ...
-        const routes = getRouteFromStep(index);
-        
-        //history.push(getRouteFromStep(index));
-    };
+    const category = getCategoryFromRoute(getRouteFromStep(currentStep!));
+    const pages = getPagesFromRoute(getRouteFromStep(currentStep!));
 
     return (
         <React.Fragment>
             <Stepper
                 alternativeLabel
-                activeStep={currentStep}
-                connector={null}
+                //orientation="vertical"
+                activeStep={0}
+                //connector={null}
                 //connector={<SyscoStepConnector/>}
-                //connector={<CustomConnector/>}
+                connector={<CustomConnector/>}
                 //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
                 {...props}
                 >
+                {/* <Step key={category.id}>
+                    <StepLabel
+                        StepIconComponent={SyscoStepIcon}
+                        //onClick={() => handleOnClick(index)}
+                        className={classes.stepLabel}
+                        >                            
+                        {!constricted && <Typography
+                            color="textPrimary"
+                            variant="caption"
+                            style={{ userSelect: 'none'}}
+                            >
+                            {category.title}
+                        </Typography>}
+                    </StepLabel>
+                </Step> */}
+                {pages.map((page) => <Step key={page.id}>
+                    <StepLabel
+                        StepIconComponent={SyscoStepIcon}
+                        className={classes.stepLabel}
+                        >                            
+                        <Typography
+                            color="textPrimary"
+                            variant="caption"
+                            style={{ userSelect: 'none'}}
+                            >
+                            {page.title}
+                        </Typography>
+                    </StepLabel>                       
+                </Step>)}
                 {/*config.map((part: any, index: number) => (
                     <Step key={index}>
                          <StepLabel

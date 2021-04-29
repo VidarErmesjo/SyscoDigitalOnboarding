@@ -9,9 +9,10 @@ import {
     YourOffice,
     Onboarding,
     Motivation,
-    OurFocus,
     Outro
 } from '../pages';
+
+import { Video } from './../pages/Intro/subpages';
 
 // Del 2 - "Presentasjon"
 import {
@@ -61,22 +62,29 @@ import {
     Page6 as Motivation6,
 } from '../pages/Motivation/subpages';
 
-type SyscoDigitalOnboardingType = {
-    id: string;
-    title: string;
-    component?: JSX.Element;
-    pages?: SyscoDigitalOnboardingType;
+export const root = "/sysco-digital-onboarding";
+
+export type RouteNode = {
+    id: string | undefined;
+    title: string | undefined;
+    component?: React.ComponentType<JSX.Element>;
+    pages?: RouteNode[];
 }
 
-export const config = [
+export const config: RouteNode[] = [
     {
-        id: "introduksjonsvideo",
-        title: "Introduksjonsvideo",
+        id: "introduksjon",
+        title: "Introduksjon",
         pages: [
             {
-                id: "spill-av",
-                title: "Spill av",
+                id: "0",
+                title: "Informasjon om SYSCO Digital Onboarding",
                 component: Intro,
+            },
+            {
+                id: "1",
+                title: "Introduksjonsvideo",
+                component: Video,
             },
         ],
     },
@@ -307,12 +315,12 @@ export const config = [
             {
                 id: "1",
                 title: "1",
-                component: null,
+                //component: null,
             },
             {
                 id: "2",
                 title: "2",
-                component: null,
+                //component: null,
             },
         ],
     },

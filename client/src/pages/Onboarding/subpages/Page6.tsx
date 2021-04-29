@@ -50,13 +50,14 @@ function Stepper({color, strokeDashoffset, ...props}: SvgIconProps) {
 			<path strokeWidth="7" d="M636.504 223L636.504 163"/>
 			<path strokeWidth="7" d="M839.504 163L839.504 103"/>
 			<path strokeWidth="7" d="M1042.5 103L1042.5 43"/>
-			{/* <circle cx="20.5" cy="338.5" r="20.5" fill="#00FF97"/>
+
+			<circle cx="20.5" cy="338.5" r="20.5" fill="#00FF97"/>
 			<circle cx="230.5" cy="310.5" r="10.5" fill="#00FF97"/>
 			<circle cx="433.504" cy="250.5" r="10.5" fill="#00FF97"/>
 			<circle cx="636.504" cy="190.5" r="10.5" fill="#00FF97"/>
 			<circle cx="839.504" cy="130.5" r="10.5" fill="#00FF97"/>
 			<circle cx="1042.5" cy="70.5" r="10.5" fill="#00FF97"/>
-			<path id="arrow" d="M1247.33 16.458v46.084l36.21-23.042-36.21-23.042z"/> */}
+			<path id="arrow" d="M1247.33 16.458v46.084l36.21-23.042-36.21-23.042z"/>
 		</svg>
 	);
 }
