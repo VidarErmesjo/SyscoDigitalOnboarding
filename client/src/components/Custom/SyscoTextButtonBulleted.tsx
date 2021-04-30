@@ -10,7 +10,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { CubeIcon } from './../Icons';
+import { CubeIcon } from '../icons';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -24,23 +24,26 @@ const useStyles = makeStyles((theme: Theme) =>
             '&:hover': {
                 color: theme.palette.secondary.dark,
                 background: 'none',
-                transform: `scale(1.5)`,
+                transform: `scale(1.25)`,
+                //boxShadow: `0px 0px 10px 10px ${theme.palette.secondary.main}`,
+            },
+            '&.MuiButtonBase-root': {
+                //backgroundColor: 'none',
+                //borderRadius: 0,
             },
         },
     }),
 );
 
-interface Props {
+export interface SyscoTextButtonBulletedProps {
+    [key: string]: any;
     value: string;
     offset: [number, number];
-    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+    onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function SyscoTextButtonBulleted(props: Props): JSX.Element {
-    const { value, offset, onClick } = props;
-
+export default function SyscoTextButtonBulleted({value, offset, onClick}: SyscoTextButtonBulletedProps) {
     const classes = useStyles();
-
     const theme = useTheme();
 
     return (
@@ -65,6 +68,7 @@ export default function SyscoTextButtonBulleted(props: Props): JSX.Element {
                     </Typography>
                 </IconButton>
             </div>
+
         </React.Fragment>
     );
 }

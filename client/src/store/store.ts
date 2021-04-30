@@ -6,7 +6,7 @@ import { devtools, persist } from 'zustand/middleware';
     https://dev.to/karanpratapsingh/simplify-your-store-a-brief-introduction-to-zustand-250h
 */
 
-import { config } from '../api';
+import { getRoutes } from '../api';
 
 // Typer og metoder
 interface Store {
@@ -48,7 +48,7 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
                 isLoading: true,
                 user: email,
                 currentStep: 0,
-                totalSteps: get().routes.length,
+                totalSteps: getRoutes().length,
             });
             setTimeout(() => set(({isLoading: false})), timeout);
         }

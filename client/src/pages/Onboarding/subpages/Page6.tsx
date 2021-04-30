@@ -13,7 +13,7 @@ import {
 import { Spring } from 'react-spring/renderprops';
 
 import { SyscoPage } from '../../../components/Custom';
-import { AccountIcon } from '../../../components/Icons';
+import { AccountIcon } from '../../../components/icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

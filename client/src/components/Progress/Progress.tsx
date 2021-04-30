@@ -27,7 +27,7 @@ import {
     SyscoCompletedIcon,
     SyscoTodoIcon,
     SyscoDoneIcon
-} from './../Icons/SyscoStepIcon';
+} from '../icons/SyscoStepIcon';
 
 // Animasjon
 import { Spring } from 'react-spring/renderprops';
@@ -194,6 +194,7 @@ export default function SessionProgress(props: any) {
     const [currentStep, data] = Zustand.useStore(state => [state.currentStep, state.data], shallow);
     
     const classes = useStyles();
+    const theme = useTheme();
 
     const category = getCategoryFromRoute(getRouteFromStep(currentStep!));
     const pages = getPagesFromRoute(getRouteFromStep(currentStep!));
@@ -209,7 +210,7 @@ export default function SessionProgress(props: any) {
                 connector={<CustomConnector/>}
                 //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
-                {...props}
+
                 >
                 {/* <Step key={category.id}>
                     <StepLabel
