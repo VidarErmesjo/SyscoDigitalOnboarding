@@ -81,42 +81,20 @@ function Page(props: any) {
 }
 
 function Category() {
-    const { categoryId }: any = useParams();
-    const { path, url } = useRouteMatch();
-
-    // Har vi forside?
-    //const Component = config.find(({ id }) => id === categoryId)?.component;
+    const { path } = useRouteMatch();
 
     return (
         <React.Fragment>
-            {/* <ul>
-                {category?.pages?.map((subCategory: any) => (
-                    <li key={subCategory.id}>
-                        <Link to={`${url}/${subCategory.id}`}>
-                            {subCategory.title}
-                        </Link>
-                    </li>
-                ))}
-            </ul> */}
             <Route path={`${path}/:subCategoryId`} component={Page}/>
         </React.Fragment>
     );
 }
 
 function Categories() {
-    const { path, url } = useRouteMatch();
+    const { path } = useRouteMatch();
 
     return (
         <React.Fragment>
-            {/* <ul>
-                {config.map(({ title, id }: any) => (
-                    <li key={id}>
-                        <Link to={`${url}/${id}`}>
-                            {title}
-                        </Link>
-                    </li>
-                ))}
-            </ul> */}
             <Route path={`${path}/:categoryId`} component={Category}/>
         </React.Fragment>
     );
@@ -144,11 +122,6 @@ export default function Content() {
 
     return (
         <React.Fragment>
-            {/* <div>
-                {user && <ul>
-                    <li><Link to={root}>Sider</Link></li>
-                </ul>}
-            </div> */}
             <Container fixed className={classes.root}>
                 {!isLoading ? <React.Fragment> 
                     <Route exact path="/">

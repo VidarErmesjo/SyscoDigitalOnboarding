@@ -1,137 +1,92 @@
 import React from 'react';
 
 import {
-    Box,
-    ButtonBase,
     createStyles,
     Modal,
-    Paper,
-    Icon,
-    IconButton,
     makeStyles,
-    PropTypes,
     Theme,
-    Typography,
     useTheme,
-    withStyles,
 } from '@material-ui/core';
-
-import { Route, useRouteMatch } from 'react-router-dom';
 
 import { Spring } from 'react-spring/renderprops';
 
-import { CloseIcon, ShadowedCubeIcon } from './../icons';
-
-import { Overlay6 } from './../../pages/Onboarding/subpages/Overlays';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: `translate(-50%, -50%)`,
             zIndex: theme.zIndex.mobileStepper,
+
         },
-        small: {
+        overlay: {
             position: 'relative',
             width: 860,
-            height: 311,
 
             transform: `scale(0.75)`,
             
             backgroundColor: theme.palette.text.primary,
             userSelect: 'none',
-
-            border: '1px solid #000000',
-            boxSizing: 'border-box',
-            boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)`,
-            backdropFilter: `blur(4px)`,
-        },
-        large: {
-            position: 'relative',
-            width: 860,
-            height: 767,
-
-            transform: `scale(0.75)`,
-            
-            backgroundColor: theme.palette.text.primary,
-            userSelect: 'none',
-
-            border: '1px solid #000000',
-            boxSizing: 'border-box',
-            boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)`,
-            backdropFilter: `blur(4px)`,
         },
         title: {
+            display: 'flex',
+            height: 79,
+            justifyContent: 'center',
+            alignItems: 'center',
+            
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.background.default,
+            fontFamily: theme.typography.fontFamily,
             fontSize: 30,
-            marginTop: theme.spacing(-1),
+            fontStyle: 'italic',
+            fontWeight: theme.typography.fontWeightRegular,
+
             textShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
         },
-        closeIcon: {
-            position: 'absolute',
-            width: 42,
-            height: 42,
-            left: 811,
-            top: 7,
+        content: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'left',
+
+            padding: `1em 1em 1em 1em`,
+
+            color: theme.palette.text.secondary,
+            backgroundColor: theme.palette.background.paper,
+
+            fontFamily: theme.typography.fontFamily,
+            fontSize: 25,
+            fontWeight: theme.typography.fontWeightRegular,
+            textShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
         },
-        paper: {
-            backgroundColor: 'transparent',
-        }
     }),
 );
 
 interface SyscoOverlayProps {
-    variant: "small" | "large";
     title?: string;
     open: boolean;
-    content?: React.ComponentType<JSX.Element> | null | undefined;
+    content?: React.ReactNode | null | undefined;
     handleClose: () => void;
 }
 
 
 export default function SyscoOverlay(props: SyscoOverlayProps) {
-    const {variant, title, open, content, handleClose} = props;
+    const {title, open, content, handleClose} = props;
 
     const classes = useStyles();
     const theme = useTheme();
 
-    const { path } = useRouteMatch();
-
-    const Content = () => content;// as JSX.Element;
-
     const Component = () => {
         return (
             <section className={classes.root}>
-                <div className={variant === "small" ? classes.small : classes.large}>                  
-                    <IconButton
-                        color="secondary"
-                        disabled
-                        style={{
-                            color: theme.palette.text.secondary,
-                            justifyContent: 'center',
-                            alignItems: 'flex-start'
-                        }}
-                        >
-                        <ShadowedCubeIcon color="inherit"/>
-                        <Typography
-                            color="inherit"
-                            className={classes.title}
-                            >
-                            <em>{title}</em>
-                        </Typography>
-                    </IconButton>
-                    <IconButton
-                        color="secondary"
-                        onClick={handleClose}
-                        className={classes.closeIcon}
-                        >
-                        <CloseIcon color="inherit"/>
-                    </IconButton>
-                    <Typography color="secondary">{content}</Typography>
+                <div className={classes.overlay}>
+                    <span className={classes.title}>
+                        {title}
+                    </span>                 
+                    <span className={classes.content}>
+                        {content}
+                    </span>
                 </div>
             </section>
         );
@@ -141,6 +96,7 @@ export default function SyscoOverlay(props: SyscoOverlayProps) {
         <React.Fragment>
             <Modal
                 open={open}
+                onClick={handleClose}
                 >
                 <Spring
                     from={{ opacity: 0 }}

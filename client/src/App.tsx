@@ -96,9 +96,9 @@ export default function App() {
                 <header className={classes.item}>
                     <Header/>
                 </header>
-                <section className={classes.item}>
+                <main className={classes.item}>
                     <Content/>
-                </section>
+                </main>
                 <footer className={classes.item}>
                     {user && <Footer/>}
                 </footer>

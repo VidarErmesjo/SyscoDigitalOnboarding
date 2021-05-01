@@ -9,6 +9,8 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
+import { Zustand } from '../../store';
+
 import { Progress } from '../Progress';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,7 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-export default function Footer(props: any) {
+export default function Footer() {
+    // TODO: Lag tilstand som blanker ut når vi går fra en del til en annen!!
+    const [isLoading] = Zustand.useStore(state => [state.isLoading]);
     const classes = useStyles();
     const theme = useTheme();
 
@@ -37,7 +41,7 @@ export default function Footer(props: any) {
                     to={{ opacity: 1 }}
                     config={{ duration: theme.transitions.duration.enteringScreen }}
                     >
-                    {props => <div style={props}><Progress/></div>}
+                    {props => <div style={props}>{true && <Progress/>}</div>}
                 </Spring>
             </footer>
         </React.Fragment>

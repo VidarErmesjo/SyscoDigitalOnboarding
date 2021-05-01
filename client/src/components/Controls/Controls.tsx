@@ -67,7 +67,7 @@ export default function Controls(props: any) {
             <IconButton
                 color="secondary"
                 onClick={nextStep}
-                disabled={currentStep! > totalSteps - 1
+                disabled={currentStep! >= totalSteps
                     ? true
                     : false
                     || isLoading}

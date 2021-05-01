@@ -32,7 +32,7 @@ const theme = createMuiTheme({
         background: syscoBackground,
     },
     typography: {
-        fontFamily: "Arial Regular",
+        fontFamily: 'Arial',
     },
     transitions: {
         duration: {

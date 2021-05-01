@@ -93,8 +93,8 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 
 interface SyscoModalProps extends DialogProps {
     // Innhold
-    left?: null | React.ReactNode;
-    right?: null | React.ReactNode;
+    left?: React.ReactNode | null;
+    right?: React.ReactNode | null;
 
     // Tittel ikon
     icon?: React.ReactElement<SvgIconProps>;
