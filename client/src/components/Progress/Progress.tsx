@@ -21,14 +21,6 @@ import {
     useTheme,
 } from '@material-ui/core';
 
-// Ikoner
-import {
-    SyscoActiveIcon,
-    SyscoCompletedIcon,
-    SyscoTodoIcon,
-    SyscoDoneIcon
-} from '../icons/SyscoStepIcon';
-
 // Animasjon
 import { Spring } from 'react-spring/renderprops';
 
@@ -39,6 +31,7 @@ import { useHistory } from 'react-router-dom';
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
 import {
+    calculateActiveStep,
     getCategoryFromRoute,
     getPages,
     getPagesFromRoute,
@@ -46,11 +39,9 @@ import {
     getRoutes
 } from '../../api';
 
-import config from '../../api/config';
-
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
-        top: `calc(50% - 10px)`,
+        top: `calc(50% - 1.4em)`,
         left: `calc(-50% + 30px)`,
         right: `calc(50% + 30px)`,
         width: 'auto',
@@ -58,17 +49,20 @@ const CustomConnector = withStyles((theme: Theme) => ({
     active: {
         '& $line': {
             backgroundColor: theme.palette.text.primary,
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.secondary.main}`,
         },
     },
     completed: {
         '& $line': {
-            backgroundColor: theme.palette.secondary.main,
+            //backgroundColor: theme.palette.secondary.main,
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.light}`,
         },
     },
     line: {
-        height: 5,
+        height: '0.25em',
         border: 0,
-        borderRadius: '10%',
+        boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
+        borderRadius: '0.25em',
         backgroundColor: theme.palette.text.primary,
         transition: theme.transitions.duration.standard + 'ms',
     },
@@ -76,161 +70,88 @@ const CustomConnector = withStyles((theme: Theme) => ({
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
-        // root: {
-        //     display: 'flex',
-        //     //color: theme.palette.text.primary,
-        //     backgroundColor: theme.palette.primary.main,
-        //     zIndex: 1,
-        //     width: 40,
-        //     height: 40,
-        //     borderRadius: '50%',
-        //     //borderColor: theme.palette.primary.main,
-        //     border: '0.5em',
-        //     justifyContent: 'center',
-        //     alignItems: 'center',
-        //     transition: theme.transitions.duration.enteringScreen + 'ms',
-        // },
-        // active: {
-        //     borderColor: theme.palette.secondary.main,
-        //     borderStyle: 'solid',
-        //     boxShadow: '0 4px 10px 0 rgba(0,255,0,.25)',
-        // },
-        // completed: {
-        //     backgroundColor: theme.palette.secondary.main,
-        //     borderStyle: 'none',
-        // },
-        stepper: {
-            backgroundColor: 'transparent',
-        },
-        linearProgress: {
-            position: "absolute",
-            top: 0,
-            width: "100%",
-            height: "100%",
-            opacity: 0.4,
-            borderRadius: 4,
-        },
-        iconButton: {
-            transition: theme.transitions.duration.short + 'ms',
-            '&:hover': {
-                color: theme.palette.secondary.dark,
-            },
-        },
-        stepConnector: {
-            position: 'absolute',
-            top: 18,
-            width: 'auto',// '50px',
-            //left: `calc(-50% + 20px)`,
-            //right: `calc(50% + 20px)`,
-            //flex:'1 1 auto',
-        },
-        stepLabel: {
-            '& .MuiStepLabel-label.MuiStepLabel-alternativeLabel': {
-                margin: 0,
-            },
-        },
         root: {
-            transition: theme.transitions.duration.short + 'ms',
-            userSelect: 'none',
-            /*'&:hover': {
-                transform: `scale(1.2345)`,
-            },*/
+            display: 'flex',
+            backgroundColor: theme.palette.primary.main,
+            zIndex: 1,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            borderColor: theme.palette.primary.main,
+            borderStyle: 'solid',
+            border: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
+            //transition: theme.transitions.duration.enteringScreen + 'ms',
         },
         active: {
-            '&:hover': {
-                color: theme.palette.secondary.dark,
-            },
+            borderColor: theme.palette.secondary.main,
+            borderStyle: 'solid',
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.light}`,
         },
         completed: {
-            '&:hover': {
-                color: theme.palette.secondary.dark,
-            },
+            backgroundColor: theme.palette.secondary.main,
+            borderStyle: 'none',
+        },
+        stepper: {
+            backgroundColor: 'transparent',
         },
     }),
 );
 
-function SyscoStepConnector(props: SvgIconProps): JSX.Element {
-    const classes = useStyles();
+export function SyscoCompletedIcon({color, ...props}: SvgIconProps): JSX.Element {
+    const theme = useTheme();
 
     return (
         <SvgIcon
-            viewBox="0 0 141 11"
-            className={classes.stepConnector}
+            fontSize="large"
+            viewBox="0 0 77 77"
+            {...props}
             >
-            <rect width="141" height="11" fill="#fff" rx="5.5"></rect>
+            <path
+                fill={theme.palette.primary.main}
+                fillRule="evenodd"
+                d="M62.657 24.732a5.716 5.716 0 10-9.714-6.03l-16.27 26.212-12.866-11.72a6.458 6.458 0 00-8.698 9.55l16.582 15.103c.408.372.852.682 1.318.93a5.716 5.716 0 009.054-.868l20.594-33.177z"
+                clipRule="evenodd"
+            />
         </SvgIcon>
     );
 }
 
 function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
     const classes = useStyles();
-    const theme = useTheme();
-  
+
     return (
-        <IconButton
-            color="secondary"
-            disabled={!active && !completed}
-            className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed})}
-            >
-            {active ? <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.standard }}
-                >
-                {props => <SyscoActiveIcon color="inherit" style={props}/>}
-            </Spring> : !completed ? <SyscoTodoIcon/> : null}
-            {completed && <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.standard }}
-                >
-                {props => <SyscoCompletedIcon color="inherit" style={props}/>}
-            </Spring>}
-        </IconButton>
+        <span className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed})}>
+            {completed && <SyscoCompletedIcon/>}
+        </span>
     );
 }
 
-export default function SessionProgress(props: any) {
+export default function Progress() {
     const [currentStep, data] = Zustand.useStore(state => [state.currentStep, state.data], shallow);
     
     const classes = useStyles();
     const theme = useTheme();
 
     const category = getCategoryFromRoute(getRouteFromStep(currentStep!));
-    const pages = getPagesFromRoute(getRouteFromStep(currentStep!));
+
+    const pages = React.useMemo(() => getPagesFromRoute(getRouteFromStep(currentStep!)), [currentStep]);
+
+    const activeStep = React.useMemo(() => calculateActiveStep(currentStep!), [currentStep]);
 
     return (
         <React.Fragment>
             <Stepper
                 alternativeLabel
-                //orientation="vertical"
-                activeStep={0}
-                //connector={null}
-                //connector={<SyscoStepConnector/>}
+                activeStep={activeStep}
                 connector={<CustomConnector/>}
-                //connector={<LinearProgress color="secondary" variant="determinate" value={66}className={classes.linearProgress}/>}
                 className={classes.stepper}
-
+                //nonLinear
                 >
-                {/* <Step key={category.id}>
-                    <StepLabel
-                        StepIconComponent={SyscoStepIcon}
-                        //onClick={() => handleOnClick(index)}
-                        className={classes.stepLabel}
-                        >                            
-                        {!constricted && <Typography
-                            color="textPrimary"
-                            variant="caption"
-                            style={{ userSelect: 'none'}}
-                            >
-                            {category.title}
-                        </Typography>}
-                    </StepLabel>
-                </Step> */}
                 {pages.map((page) => <Step key={page.id}>
                     <StepLabel
                         StepIconComponent={SyscoStepIcon}
-                        className={classes.stepLabel}
                         >                            
                         <Typography
                             color="textPrimary"
@@ -241,23 +162,6 @@ export default function SessionProgress(props: any) {
                         </Typography>
                     </StepLabel>                       
                 </Step>)}
-                {/*config.map((part: any, index: number) => (
-                    <Step key={index}>
-                         <StepLabel
-                            StepIconComponent={SyscoStepIcon}
-                            onClick={() => handleOnClick(index)}
-                            className={classes.stepLabel}
-                            >                            
-                            {!constricted && <Typography
-                                color="textPrimary"
-                                variant="caption"
-                                style={{ userSelect: 'none'}}
-                                >
-                                {part.title}
-                            </Typography>}
-                        </StepLabel>                       
-                    </Step>        
-                ))*/}
             </Stepper>
         </React.Fragment>
     );

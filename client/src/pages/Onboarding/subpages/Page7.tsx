@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-function Overlay6(props: any) {
+function Overlay6() {
     return (
         <React.Fragment>
             <Typography color="secondary">
@@ -45,90 +45,79 @@ function Overlay6(props: any) {
 
 type Point = [number, number];
 
-type BulletProps = {
-    value: string;
-    offset: Point;
-    variant: "small" | "large";
-    content: React.ComponentType<JSX.Element>;
-}
-
 // Posisjoner hentet fra Figma.
-const bullets: BulletProps[] = [
+const bullets: IBulletPoints[] = [
     {
         value: "Hvordan er organisasjonsstrukturen i SYSCO?",
         offset: [157, 83] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvordan får jeg tilgang til ulike apps?",
         offset: [162, 618] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvordan får jeg bestilt utstyr?",
         offset: [136, 1065] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Når får jeg lønn?",
         offset: [243, 366] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvordan får jeg tilgang til ulike apps eller systemer?",
         offset: [244, 872] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvilke forsikringsordninger og helesegoder finnes?",
         offset: [342, 153] as Point,
         variant: "large",
-        content: Overlay6,
+        component: Overlay6,
     },
     {
         value: "Hvordan skaffer jeg meg mobil?",
         offset: [332, 714] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvem bør jeg kontakte hvis jeg har noen spørsmål?",
         offset: [448, 366] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Dekker SYSCO mobilabonement og internett hjemme?",
         offset: [427, 940] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Er det kjernetid?",
         offset: [523, 797] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvor lang lunsj er det, og får man dekket lunsjtid og mat?",
         offset: [561, 185] as Point,
         variant: "small",
-        content: null!,
     },
     {
         value: "Hvor kan jeg få faglig hjelp hvis jeg trenger det?",
         offset: [587, 951] as Point,
         variant: "large",
-        content: null!,
     },
 ]
 
-function ButtonOverlayWrapper({value, offset, variant, content}: BulletProps) {
+interface IBulletPoints {
+    value: string;
+    offset: Point;
+    variant: "small" | "large";
+    component?: React.ComponentType<JSX.Element> | null | undefined;
+}
+
+function ButtonOverlayWrapper({value, offset, variant, component}: IBulletPoints) {
     const [open, setOpen] = React.useState(false);
 
     const theme = useTheme();
@@ -143,7 +132,7 @@ function ButtonOverlayWrapper({value, offset, variant, content}: BulletProps) {
                 open={open}
                 variant={variant}
                 title={value}
-                content={content}
+                content={component}
                 handleClose={handleClose}
             />
         </React.Fragment>
@@ -158,7 +147,7 @@ function Content() {
                 value={bullet.value}
                 offset={bullet.offset}
                 variant={bullet.variant}
-                content={bullet.content}
+                component={bullet.component}
             />)}
         </React.Fragment>
     );

@@ -67,7 +67,7 @@ export const root = "/sysco-digital-onboarding";
 export type RouteNode = {
     id: string | undefined;
     title: string | undefined;
-    component?: React.ComponentType<JSX.Element> | null;
+    component?: React.ComponentType<JSX.Element> | null | undefined;
     pages?: RouteNode[];
 }
 
@@ -255,17 +255,6 @@ export const config: RouteNode[] = [
             },
         ],
     },
-    // {
-    //     id: "våre-satsingsområder",
-    //     title: "Våre satsingsområder",
-    //     pages: [
-    //         {
-    //             id: "0",
-    //             title: "0",
-    //             component: OurFocus,
-    //         },
-    //     ],
-    // },
     {
         id: "motivasjon-for-ansatte",
         title: "Motivasjon for ansatte",

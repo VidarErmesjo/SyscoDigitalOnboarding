@@ -7,7 +7,7 @@ export default function getPagesFromRoute(route: string): RouteNode[] {
     var pages: RouteNode[] = [];//[{ id: category.id, title: category.title }];
 
     // Vi er kun interessert i tredje element.
-    route = route.split("/")[2];
+    route = route?.split("/")[2];
 
     // Let etter route i oppsett.
     config.forEach((element) => {

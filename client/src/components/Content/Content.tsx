@@ -55,6 +55,12 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+function TheEnd() {
+    return (
+        <Typography color="secondary" variant="h1">Ferdig!</Typography>
+    );
+}
+
 function Page(props: any) {
     const { categoryId, subCategoryId }: any = useParams();
     const { path } = useRouteMatch();
@@ -67,7 +73,7 @@ function Page(props: any) {
         <React.Fragment>
             <Route
                 path={`${path}`}
-                component={Component}
+                component={Component ?? TheEnd}
                 {...props}
                 />
         </React.Fragment>
@@ -143,7 +149,6 @@ export default function Content() {
                     <li><Link to={root}>Sider</Link></li>
                 </ul>}
             </div> */}
-            <div><Typography color="textPrimary" variant="caption">Current step: {currentStep}</Typography></div>
             <Container fixed className={classes.root}>
                 {!isLoading ? <React.Fragment> 
                     <Route exact path="/">

@@ -46,18 +46,18 @@ export function SyscoActiveIcon({color, ...props}: SvgIconProps): JSX.Element {
     return (
         <SvgIcon
             fontSize="large"
-            viewBox="0 0 77 77"
+            viewBox="0 0 80 80"
             {...props}
             >
             <circle
-                cx="38.5"
-                cy="38.5"
-                r="38.5"
+                cx="40"
+                cy="40"
+                r="40"
                 fill={color}
             />
             <circle
-                cx="38.5"
-                cy="38.5"
+                cx="40"
+                cy="40"
                 r="26.5" 
                 fill={theme.palette.primary.main} 
             />

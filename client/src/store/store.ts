@@ -78,23 +78,25 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
     // Navigation
     currentStep: undefined,
     totalSteps: undefined,
-    nextStep: async () => {    
-        if(!get().isLoading) {
-            set({
-                isLoading: true,
-                currentStep: get().currentStep! + 1
-            });
-            setTimeout(() => set({isLoading: false}), timeout);
-        }
+    nextStep: async () => {
+        if(get().currentStep! < get().totalSteps!)
+            if(!get().isLoading) {
+                set({
+                    isLoading: true,
+                    currentStep: get().currentStep! + 1
+                });
+                setTimeout(() => set({isLoading: false}), timeout);
+            }
     },    
     previousStep: async () => {
-        if(!get().isLoading) {
-            set({
-                isLoading: true,
-                currentStep: get().currentStep! - 1
-            });
-            setTimeout(() => set({isLoading: false}), timeout);
-        }
+        if(get().currentStep! > 0)
+            if(!get().isLoading) {
+                set({
+                    isLoading: true,
+                    currentStep: get().currentStep! - 1
+                });
+                setTimeout(() => set({isLoading: false}), timeout);
+            }
     },
     routes: [],
     setRoutes: async (routes: string[]) => {

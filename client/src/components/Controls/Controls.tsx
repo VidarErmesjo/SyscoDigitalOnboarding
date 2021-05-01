@@ -52,7 +52,7 @@ export default function Controls(props: any) {
 
     return (
         <React.Fragment>
-            {true ? <IconButton
+            <IconButton
                 color="secondary"
                 onClick={previousStep}
                 disabled={currentStep! < 1
@@ -63,8 +63,8 @@ export default function Controls(props: any) {
                 style={{ left: 0 }}
                 >
                 <ChevronLeftIcon color="inherit" className={classes.chevron}/>
-            </IconButton>: null}
-            {true ? <IconButton
+            </IconButton>
+            <IconButton
                 color="secondary"
                 onClick={nextStep}
                 disabled={currentStep! > totalSteps - 1
@@ -75,7 +75,7 @@ export default function Controls(props: any) {
                 style={{ right: 0 }}
                 >
                 <ChevronRightIcon color="inherit" className={classes.chevron}/>
-            </IconButton> : null}
+            </IconButton>
         </React.Fragment>
     );
 }

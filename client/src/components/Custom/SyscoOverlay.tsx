@@ -16,7 +16,7 @@ import {
     withStyles,
 } from '@material-ui/core';
 
-import { Route } from 'react-router-dom';
+import { Route, useRouteMatch } from 'react-router-dom';
 
 import { Spring } from 'react-spring/renderprops';
 
@@ -88,7 +88,7 @@ interface SyscoOverlayProps {
     variant: "small" | "large";
     title?: string;
     open: boolean;
-    content: React.ComponentType<JSX.Element>;
+    content?: React.ComponentType<JSX.Element> | null | undefined;
     handleClose: () => void;
 }
 
@@ -99,7 +99,9 @@ export default function SyscoOverlay(props: SyscoOverlayProps) {
     const classes = useStyles();
     const theme = useTheme();
 
-    const Content = () => content;
+    const { path } = useRouteMatch();
+
+    const Content = () => content;// as JSX.Element;
 
     const Component = () => {
         return (

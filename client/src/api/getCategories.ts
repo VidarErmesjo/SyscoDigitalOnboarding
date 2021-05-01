@@ -1,9 +1,8 @@
-import config from './config';
+import config, { RouteNode } from './config';
 
-export default function getCategories(): string[] {
-    var categories: string[] = [];
-
-    config.forEach((category) => categories.push(category.title!));
+export default function getCategories(): RouteNode[] {
+    var categories: RouteNode[] = [];
+    config.forEach((part) => categories.push(part));
 
     return categories;
 }

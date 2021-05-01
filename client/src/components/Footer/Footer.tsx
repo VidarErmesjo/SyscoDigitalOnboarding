@@ -1,11 +1,9 @@
 import React from 'react';
-import clsx from 'clsx';
 
 import {
     createStyles,
     makeStyles,
     Theme,
-    useMediaQuery,
     useTheme
 } from '@material-ui/core';
 
@@ -20,24 +18,20 @@ const useStyles = makeStyles((theme: Theme) =>
             left: 0,
             bottom: 0,
 			width: '100%',
-            height: theme.spacing(17),
+            height: theme.spacing(14),
 			zIndex: 100,
             backgroundColor: theme.palette.background.default,
 		},
-        constricted: {
-            height: theme.spacing(14),
-        },
     })
 );
 
 export default function Footer(props: any) {
     const classes = useStyles();
     const theme = useTheme();
-    const constricted = useMediaQuery('(max-width:666px)');
 
     return (
         <React.Fragment>
-            <footer className={clsx(classes.root, {[classes.constricted]: constricted})}>
+            <footer className={classes.root}>
                 <Spring
                     from={{ opacity: 0 }}
                     to={{ opacity: 1 }}
