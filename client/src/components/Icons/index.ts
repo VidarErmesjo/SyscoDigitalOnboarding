@@ -1,6 +1,7 @@
 import AccountIcon from './AccountIcon';
 import CloseIcon from './CloseIcon';
 import CubeIcon from './CubeIcon';
+import GeoMarkerIcon from './GeoMarkerIcon';
 import MoodIcon from './MoodIcon';
 import OutdoorGrillIcon from './OutdoorGrillIcon';
 import ShadowedCubeIcon from './ShadowedCubeIcon';
@@ -13,6 +14,7 @@ export {
     AccountIcon,
     CloseIcon,
     CubeIcon,
+    GeoMarkerIcon,
     MoodIcon,
     OutdoorGrillIcon,
     ShadowedCubeIcon,

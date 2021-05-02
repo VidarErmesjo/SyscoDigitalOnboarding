@@ -6,7 +6,6 @@ import { getRoutes } from './api';
 
 // Verdenskart
 import worldMap from './assets/world-map.json';
-import { JSONAPISerializer } from "miragejs/serializer";
 
 export function makeServer({ environment = "test" } = {}) {
     let server = createServer({

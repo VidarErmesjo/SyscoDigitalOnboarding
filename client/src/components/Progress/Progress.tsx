@@ -41,7 +41,7 @@ import {
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
-        top: `calc(50% - 1.4em)`,
+        top: `calc(50% - 21.5px)`,
         left: `calc(-50% + 30px)`,
         right: `calc(50% + 30px)`,
         width: 'auto',
@@ -54,12 +54,11 @@ const CustomConnector = withStyles((theme: Theme) => ({
     },
     completed: {
         '& $line': {
-            //backgroundColor: theme.palette.secondary.main,
-            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.light}`,
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         },
     },
     line: {
-        height: '0.25em',
+        height: theme.typography.pxToRem(9),// '0.25em',
         border: 0,
         boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         borderRadius: '0.25em',

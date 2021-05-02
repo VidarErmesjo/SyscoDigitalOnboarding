@@ -31,7 +31,7 @@ interface Store {
     setRoutes: (routes: string[]) => void;
 
     // Map
-    geoMap: string;
+    geoMap: any;
     setGeoMap: (data: string) => void;
 }
 
@@ -104,8 +104,8 @@ const useStore = create<Store>(persist(devtools((set, get) => ({
     },
 
     // Verdenskart (klode)
-    geoMap: "",
-    setGeoMap: async (data: string) => {
+    geoMap: undefined,
+    setGeoMap: async (data: any) => {
         set({ geoMap: data });
     }
 

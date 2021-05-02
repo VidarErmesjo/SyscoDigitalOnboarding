@@ -69,13 +69,15 @@ export default function App() {
 
     // Last inn kartdata
     React.useEffect(() => {
-        fetch('/api/map').then(response => {
-            return response.json();
-        }).then(payload => {
-            setGeoMap(payload);
-        }).catch(error => {
-            console.log(error);
-        })
+        if(!geoMap)
+            fetch('/api/map').then(response => {
+                return response.json();
+            }).then(payload => {
+                console.log(payload);
+                setGeoMap(payload);
+            }).catch(error => {
+                console.log(error);
+            })
 
         return () => {}
     }, [user]);

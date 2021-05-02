@@ -50,19 +50,19 @@ function Content() {
                 <Typography color="textPrimary" variant="h4">
                     Velkommen til SYSCO Digital Onboarding.
                     <br/><br/>
-                    <Typography color="textPrimary" variant="h5">
-                        Denne prosessen vil ta deg igjennom <strong style={{ color: theme.palette.secondary.main }}>{categoryCount}</strong> deler, bestående av totalt <strong style={{ color: theme.palette.secondary.main }}>{pageCount}</strong> sider, og den vil ta ca. <strong style={{ color: theme.palette.secondary.main }}>Z</strong> minutter å gjennomføre.
-                        <br/><br/>
-                        Du kan navigere deg frem og tilbake i prosessen ved å benytte deg av <strong style={{ color: theme.palette.secondary.main}}>de grønne navigasjonspilene</strong> du finner på venstre og høyre side av denne teksten.
-                        <br/><br/><br/>
-                        <Typography
-                            color="secondary"
-                            variant="h4"
-                            style={{ textAlign: 'center' }}
-                            >
-                            Lykke til :)
-                        </Typography>
-                    </Typography>
+                </Typography>
+                <Typography color="textPrimary" variant="h5">
+                    Denne prosessen vil ta deg igjennom <strong style={{ color: theme.palette.info.main }}>{categoryCount}</strong> deler, bestående av totalt <strong style={{ color: theme.palette.info.main }}>{pageCount}</strong> sider, og den vil ta ca. <strong style={{ color: theme.palette.info.main }}>Z</strong> minutter å gjennomføre.
+                    <br/><br/>
+                    Du kan navigere deg frem og tilbake i prosessen ved å benytte deg av <strong style={{ color: theme.palette.secondary.main}}>de grønne navigasjonspilene</strong> du finner på venstre og høyre side av denne teksten.
+                    <br/><br/><br/>
+                </Typography>
+                <Typography
+                    color="secondary"
+                    variant="h4"
+                    style={{ textAlign: 'center' }}
+                    >
+                    Lykke til :)
                 </Typography>
             </React.Fragment>
         );

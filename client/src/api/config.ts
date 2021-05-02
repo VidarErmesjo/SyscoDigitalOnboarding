@@ -30,8 +30,8 @@ import {
 // Del 3 - "Ditt kontor"
 import {
     Bergen,
-    CountryMap,
     Haugesund,
+    Norway,
     Ølen,
     Oslo,
     Stavanger,
@@ -159,7 +159,7 @@ export const config: RouteNode[] = [
             {
                 id: "1",
                 title: "Kart",
-                component: CountryMap,
+                component: Norway,
             },
             {
                 id: "stord",
