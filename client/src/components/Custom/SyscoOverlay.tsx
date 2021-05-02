@@ -79,7 +79,7 @@ export default function SyscoOverlay(props: SyscoOverlayProps) {
 
     const Component = () => {
         return (
-            <section className={classes.root}>
+            <section className={classes.root} style={{ outline: 'none' }}>
                 <div className={classes.overlay}>
                     <span className={classes.title}>
                         {title}

@@ -93,19 +93,19 @@ function Content() {
                 <SyscoCard
                     title="Hvem er vi?"
                     icon={null}
-                    config={whoAreWeText}
+                    content={whoAreWeText}
                     onClick={() => alert(whoAreWeText)}                     
                 />
                 <SyscoCard
                     title="Hva vi gjør"
                     icon={null}
-                    config={whatWeDoText}
+                    content={whatWeDoText}
                     onClick={() => alert(whatWeDoText)}                     
                 />
                 <SyscoCard
                     title="Vi er problemløsere"
                     icon={null}
-                    config={weAreProblemSolversText}
+                    content={weAreProblemSolversText}
                     onClick={() => alert(weAreProblemSolversText)}                     
                 />
             </div>       

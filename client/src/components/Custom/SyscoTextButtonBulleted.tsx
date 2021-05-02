@@ -25,18 +25,13 @@ const useStyles = makeStyles((theme: Theme) =>
                 color: theme.palette.secondary.dark,
                 background: 'none',
                 transform: `scale(1.25)`,
-                //boxShadow: `0px 0px 10px 10px ${theme.palette.secondary.main}`,
-            },
-            '&.MuiButtonBase-root': {
-                //backgroundColor: 'none',
-                //borderRadius: 0,
             },
         },
     }),
 );
 
 export interface SyscoTextButtonBulletedProps {
-    [key: string]: any;
+    //[key: string]: any;
     value: string;
     offset: [number, number];
     onClick: React.MouseEventHandler<HTMLButtonElement>;

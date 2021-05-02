@@ -17,7 +17,7 @@ export default function getCategoryFromRoute(route: string): RouteNode {
         }
     })
 
-    console.log(category);
+    //console.log(category);
 
     return category;// === undefined ? [] : category;
 }

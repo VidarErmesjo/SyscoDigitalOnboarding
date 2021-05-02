@@ -4,6 +4,7 @@ import {
     createStyles,
     IconButton,
     makeStyles,
+    SvgIconProps,
     Theme,
     Typography,
     useTheme,
@@ -35,9 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface SyscoPageProps {
     color: 'primary' | 'secondary';
-    title: string | null;
-    icon: React.ReactNode;
-    category: string | null;
+    title: React.ReactNode | string | null;
+    icon: JSX.Element | null;
+    category: React.ReactNode | string | null;
     content: React.ReactNode | null;
 }
 

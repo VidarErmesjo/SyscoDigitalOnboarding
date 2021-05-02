@@ -94,19 +94,19 @@ function Content() {
                     <SyscoCard
                         title="After work"
                         icon={<OutdoorGrillIcon/>}
-                        config={afterWorkText}
+                        content={afterWorkText}
                         onClick={() => alert("After work")}                     
                     />
                     <SyscoCard
                         title="Bedriftslag"
                         icon={<SportsHandballIcon/>}
-                        config={afterWorkText}  
+                        content={afterWorkText}  
                         onClick={() => alert("Bedriftslag")}                      
                     />
                     <SyscoCard
                         title="Annen moro"
                         icon={<MoodIcon/>}
-                        config={afterWorkText}
+                        content={afterWorkText}
                         onClick={() => alert("Annen moro")}                     
                     />                   
                 </div>

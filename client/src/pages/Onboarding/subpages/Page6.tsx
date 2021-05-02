@@ -1,12 +1,11 @@
 import React from "react";
 
 import {
-	Box,
 	createStyles,
 	makeStyles,
-	SvgIcon,
 	SvgIconProps,
 	Theme,
+	Typography,
 	useTheme
 } from '@material-ui/core';
 
@@ -21,11 +20,129 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transformOrigin: 'center',
             transform: `translate(-50%, -50%)`,
         },
+		linkText: {
+			transition: theme.transitions.duration.standard + 'ms',
+			color: theme.palette.info.main,
+			'&:hover': {
+				color: theme.palette.info.dark,
+				transform: `scale(1.25)`,
+				marginLeft: theme.spacing(4),
+			},
+			fontSize: 14,
+			lineHeight: '16px',
+			marginTop: theme.spacing(3),
+		},
     })
 );
+
+type Point = [number, number];
+
+interface IStepByStep {
+	offset: Point;
+	title: string;
+	text: string;
+	linkText?: string;
+	link?: string;
+}
+
+const steps: IStepByStep[] = [
+	{
+		offset: [517, 200],
+		title: "Lage passord...",
+		text: "Det første du må gjøre, er å lage deg et passord, Passordet ditt oppretter du på portalen til SYSCO (Se link under). Her bruker du epostadressen din som brukernavn. Følg veiledningen på nettsiden for å sette passordet.",
+		linkText: "Portalen: pwportal.sysco.no.",
+		link: "http://pwportal.sysco.no"
+	},
+	{
+		offset: [462, 416],
+		title: "Last ned Office-pakken",
+		text: "Laget deg passord i portalen? Herlig! Da må du laste ned Office Pakken!",
+		linkText: "Inn på: portal.office.com",
+		link: "http://portal.office.com",
+	},
+	{
+		offset: [394, 618],
+		title: "Logger på WIKI",
+		text: "Din epostadresse er: navn.navnesent@sysco.no	Brukernavn til Wiki er: xxxxx",
+		linkText: "Inn på: wiki.sysco.no",
+		link: "http://wiki.sysco.no",
+	},
+	{
+		offset: [344, 813],
+		title: "Logger på Sharefile",
+		text: "Dette er SYSCO`s løsning til fillagring. Du bruker passord og brukernavn fra tidligere.",
+		linkText: "Inn på: sysco.sharefile.eu",
+		link: "http://sysco.sharefile.eu",
+	},
+	{
+		offset: [278, 1017],
+		title: "Logger på Visma Severa",
+		text: "Dette er SYSCO`s løsning til timeregistrering. Passord skal ha kommet på mail.",
+		linkText: "Inn på: secure.severa.com",
+		link: "http://secure.severa.com",
+	},
+	{
+		offset: [219, 1215],
+		title: "Logg på Workspace",
+		text: "...",
+		linkText: "Inn på: sysco.facebook.com",
+		link: "http://sysco.facebook.com",
+	},
+]
+
+function Steps() {
+	const offsetShift = 24;
+	const classes = useStyles();
+	const theme = useTheme();
+
+	return (
+		<React.Fragment>
+			{steps.map((step, index) => (
+				<span
+					key={index}
+					style={{
+						position: 'absolute',
+						top: step.offset[0] - offsetShift,
+						left: step.offset[1] - offsetShift,
+						zIndex: 1000,
+					}}
+					>
+					<Typography
+						color="textPrimary"
+						style={{ fontSize: 14, lineHeight: '16px' }}
+						>
+						{step.title}
+					</Typography>
+					<Typography
+						color="secondary"
+						style={{
+							width: 196,
+							fontSize: 12,
+							lineHeight: '16px',
+							marginTop: theme.spacing(1),
+						}}
+						>
+						{step.text}
+					</Typography>
+					<a
+						href={step.link}
+						target="_blank"
+						style={{ textDecoration: 'none' }}
+						>
+						<Typography
+							//color="error"
+							className={classes.linkText}
+							>
+							{step.linkText}
+						</Typography>
+					</a>
+				</span>
+			))}
+		</React.Fragment>
+	);
+}
 
 function Stepper({color, strokeDashoffset, ...props}: SvgIconProps) {
 	const theme = useTheme();
@@ -62,9 +179,12 @@ function Stepper({color, strokeDashoffset, ...props}: SvgIconProps) {
 	);
 }
 
+/*
+*
+*	Tanken her er å animere stegene.
+*
+*/
 function Content() {
-	const theme = useTheme();
-
 	return (
 		<React.Fragment>
 			<Spring
@@ -74,6 +194,7 @@ function Content() {
 				>
 				{props => <Stepper color="secondary" strokeDashoffset={props.x}/>}
 			</Spring>
+			<Steps/>
 		</React.Fragment>
 	);
 }
@@ -82,10 +203,12 @@ export default function Page6(): JSX.Element {
 	const classes = useStyles();
 	const theme = useTheme();
 
+	const Title = (): JSX.Element => <span style={{ fontSize: 60 }}>Step - By - Step</span>
+
 	const Component = (): JSX.Element => {
 		return (
 			<SyscoPage
-				title="Step - By - Step"
+				title={<Title/>}
 				category="Brukerkontoer"
 				icon={<AccountIcon/>}
 				content={<Content/>}

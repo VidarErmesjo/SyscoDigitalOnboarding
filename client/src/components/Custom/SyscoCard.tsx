@@ -7,7 +7,7 @@ import {
     Icon,
     IconButton,
     makeStyles,
-    PropTypes,
+    SvgIconProps,
     Theme,
     Typography,
     useTheme,
@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface SyscoCardProps {
-    title: string | null;
-    icon: React.ReactNode | null;
-    config: string | null;
-    onClick: () => void;
+    title: React.ReactNode | string | null;
+    icon?: JSX.Element | null;
+    content: React.ReactNode | string | null;
+    onClick?: () => void;
 }
 
-export default function SyscoCard({title, icon, config, onClick}: SyscoCardProps): JSX.Element {
+export default function SyscoCard({title, icon, content, onClick}: SyscoCardProps): JSX.Element {
     const classes = useStyles();
 
     return (
@@ -51,7 +51,7 @@ export default function SyscoCard({title, icon, config, onClick}: SyscoCardProps
                 className={classes.iconButton}
                 >
                 {icon}
-                <Typography color="inherit" variant="h4" noWrap>
+                <Typography color="inherit" variant="h4" noWrap style={{ marginLeft: '0.25em'}}>
                     {title}
                 </Typography>
             </IconButton>
@@ -59,7 +59,7 @@ export default function SyscoCard({title, icon, config, onClick}: SyscoCardProps
                 color="textPrimary"
                 variant="body1"
                 >
-                {config}
+                {content}
             </Typography>
         </span>
     );
