@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export interface SyscoTextButtonBulletedProps {
-    //[key: string]: any;
     value: string;
     offset: [number, number];
     onClick: React.MouseEventHandler<HTMLButtonElement>;

@@ -15,10 +15,7 @@ import {
     SyscoTextButtonBulleted
 } from '../../../components/Custom';
 
-import {
-    WavingPersonIcon
-} from '../../../components/icons'; 
-import theme from "../../../theme";
+import { WavingPersonIcon } from '../../../components/icons'; 
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -169,6 +166,12 @@ function Overlay12() {
 
 type Point = [number, number];
 
+interface IBulletPoints {
+    value: string;
+    offset: Point;
+    content: JSX.Element | null | undefined;
+}
+
 // Posisjoner hentet fra Figma.
 const bullets: IBulletPoints[] = [
     {
@@ -232,12 +235,6 @@ const bullets: IBulletPoints[] = [
         content: <Overlay12/>,
     },
 ]
-
-interface IBulletPoints {
-    value: string;
-    offset: Point;
-    content: JSX.Element | null | undefined;
-}
 
 function ButtonOverlayWrapper({value, offset, content}: IBulletPoints) {
     const [open, setOpen] = React.useState(false);

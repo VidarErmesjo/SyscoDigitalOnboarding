@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface SyscoOverlayProps {
-    title?: string;
+    title?: React.ReactNode | string | null;
     open: boolean;
     content?: React.ReactNode | null | undefined;
     handleClose: () => void;
