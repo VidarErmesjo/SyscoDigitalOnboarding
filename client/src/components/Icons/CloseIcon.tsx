@@ -8,6 +8,7 @@ export default function CloseIcon(props: SvgIconProps) {
             fill="none"
             fontSize="large"
             viewBox="0 0 42 42"
+            {...props}
             >
             <path
                 fill="#323232"

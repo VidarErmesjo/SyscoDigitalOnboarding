@@ -91,6 +91,7 @@ const useStyles = makeStyles((theme: Theme) =>
         completed: {
             backgroundColor: theme.palette.secondary.main,
             borderStyle: 'none',
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         },
         stepper: {
             backgroundColor: 'transparent',

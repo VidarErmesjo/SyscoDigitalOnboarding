@@ -4,6 +4,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
+    Typography,
     useTheme
 } from '@material-ui/core';
 
@@ -21,6 +22,25 @@ const useStyles = makeStyles((theme: Theme) =>
             left: '50%',
             transform: `translate(-50%, -50%)`,
         },
+        marker: {
+            position: 'absolute',
+            transition: theme.transitions.duration.standard + 'ms',
+            '&:hover': {
+                color: theme.palette.error.light,
+                transform: `scale(1.5) translateY(-10px)`,
+                zIndex: theme.zIndex.mobileStepper,
+
+            },
+        },
+        markerTitle: {
+            position: 'absolute',
+            top: -25,
+            left: '50%',
+            textShadow: `-2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000`,
+            transform: `translateX(-50%)`,
+            fontWeight: theme.typography.fontWeightBold,
+            zIndex: theme.zIndex.mobileStepper,
+        },
     })
 );
 
@@ -31,47 +51,56 @@ interface IMarkers {
 
 const markers: IMarkers[] = [
     {
-        offset: [0, 0],
+        offset: [125, 190],
         title: "Bergen",
     },
     {
-        offset: [0, 0],
+        offset: [280, 190],
         title: "Haugesund",
     },
     {
-        offset: [0, 0],
+        offset: [250, 230],
         title: "Ølen",
     },
     {
-        offset: [400, 500],
+        offset: [195, 660],
         title: "Oslo",
     },
     {
-        offset: [0, 0],
+        offset: [360, 225],
         title: "Stavanger",
     },
     {
-        offset: [0, 0],
+        offset: [220, 205],
         title: "Stord",
     },
 ]
 
 function Markers() {
+    const classes = useStyles();
     const theme = useTheme();
+
 
     return (
         <React.Fragment>
             {markers.map((marker, index) => (
                 <span
                     key={index}
+                    onClick={() => alert(`Du har trykka på ${marker.title}. Var det så snilt av deg?`)}
+                    className={classes.marker}
                     style={{
-                        position: 'absolute',
                         top: marker.offset[0],
                         left: marker.offset[1],
-                        zIndex: theme.zIndex.mobileStepper,
                     }}
                     >
                     <GeoMarkerIcon color="error"/>
+                    <Typography
+                        color="textPrimary"
+                        variant="subtitle1"
+                        className={classes.markerTitle}
+                        >
+                        {marker.title}
+                    </Typography>
                 </span>
             ))}
         </React.Fragment>
@@ -80,12 +109,12 @@ function Markers() {
 
 function Component() {
     return (
-        <React.Fragment>
+        <div style={{ transform: `scale(1)`}}>
             <g>
-                <Markers/>
                 <NorwayMap/>
+                <Markers/>
             </g>
-        </React.Fragment>
+        </div>
     );
 }
 
@@ -100,7 +129,7 @@ export default function Norway() {
                 to={{ opacity: 1 }}
                 config={{ duration: theme.transitions.duration.enteringScreen }}
                 >
-                {props => <div className={classes.root} style={props}><Component/></div>}
+                {props => <div id="kart" className={classes.root} style={props}><Component/></div>}
             </Spring>
         </React.Fragment>
     );

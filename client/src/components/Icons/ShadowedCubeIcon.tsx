@@ -9,6 +9,7 @@ export default function Polygon(props: SvgIconProps) {
             fill="none"
             fontSize="large"
             viewBox="0 0 30 34"
+            {...props}
             >
             <g filter="url(#filter0_d)">
                 <path fill="#00FF97" d="M15 0l11 6.5v13L15 26 4 19.5v-13L15 0z"></path>
