@@ -80,7 +80,6 @@ function Markers() {
     const classes = useStyles();
     const theme = useTheme();
 
-
     return (
         <React.Fragment>
             {markers.map((marker, index) => (
@@ -109,11 +108,9 @@ function Markers() {
 
 function Component() {
     return (
-        <div style={{ transform: `scale(1)`}}>
-            <g>
-                <NorwayMap/>
-                <Markers/>
-            </g>
+        <div style={{ transform: `scale(1)`}}>         
+            <NorwayMap/>
+            <Markers/>
         </div>
     );
 }

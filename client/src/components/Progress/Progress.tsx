@@ -4,8 +4,6 @@ import clsx from 'clsx';
 // Material UI
 import {
     createStyles,
-    IconButton,
-    LinearProgress,
     Step,
     StepConnector,
     StepIconProps,
@@ -30,14 +28,6 @@ import { useHistory } from 'react-router-dom';
 // API
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
-import {
-    calculateActiveStep,
-    getCategoryFromRoute,
-    getPages,
-    getPagesFromRoute,
-    getRouteFromStep,
-    getRoutes
-} from '../../api';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
@@ -129,16 +119,18 @@ function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
 }
 
 export default function Progress() {
-    const [currentStep, data] = Zustand.useStore(state => [state.currentStep, state.data], shallow);
+    const [user, currentStep, getPagesByCategory, calculateActiveStep] = Zustand.useStore(state => [
+        state.user,
+        state.currentStep,
+        state.getPagesByCategory,
+        state.calculateActiveStep
+    ], shallow);
     
     const classes = useStyles();
-    const theme = useTheme();
 
-    const category = getCategoryFromRoute(getRouteFromStep(currentStep!));
+    const pages = React.useMemo(() => getPagesByCategory(), [currentStep]);
 
-    const pages = React.useMemo(() => getPagesFromRoute(getRouteFromStep(currentStep!)), [currentStep]);
-
-    const activeStep = React.useMemo(() => calculateActiveStep(currentStep!), [currentStep]);
+    const activeStep = React.useMemo(() => calculateActiveStep(), [currentStep]);
 
     return (
         <React.Fragment>
@@ -147,9 +139,13 @@ export default function Progress() {
                 activeStep={activeStep}
                 connector={<CustomConnector/>}
                 className={classes.stepper}
-                //nonLinear
+                nonLinear
                 >
-                {pages.map((page) => <Step key={page.id}>
+                {pages.map((page, index) => <Step
+                    key={index}
+                    active={page.active}
+                    completed={page.active ? false : page.completed}
+                    >
                     <StepLabel
                         StepIconComponent={SyscoStepIcon}
                         >                            

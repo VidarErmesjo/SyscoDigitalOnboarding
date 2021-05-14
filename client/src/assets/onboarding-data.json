@@ -1,139 +1,237 @@
-[
-    {
-        "title": "Introduksjonsvideo",
-        "unlocked": true,
-        "completed": false
-    },
-    {
-        "title": "Dette er SYSCO",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+{
+   "id":"sysco-digital-onboarding",
+   "title":"Sysco Digital Onboarding",
+   "categories":[
+      {
+         "id":"introduksjon",
+         "title":"Introduksjon",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Introduksjon",
+               "component":"intro"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
-            },
-            {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"1",
+               "title":"Introduksjonsvideo",
+               "component":"video"
             }
-        ]
-    },
-    {
-        "title": "Din avdeling",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+         ]
+      },
+      {
+         "id":"dette-er-sysco",
+         "title":"Dette er SYSCO",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Dette er SYSCO",
+               "component":"presentation"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"1",
+               "title":"1",
+               "component":"presentation1"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"2",
+               "title":"2",
+               "component":"presentation2"
+            },
+            {
+               "id":"3",
+               "title":"3",
+               "component":"presentation3"
+            },
+            {
+               "id":"4",
+               "title":"4",
+               "component":"presentation4"
+            },
+            {
+               "id":"5",
+               "title":"5",
+               "component":"presentation5"
+            },
+            {
+               "id":"6",
+               "title":"6",
+               "component":"presentation6"
+            },
+            {
+               "id":"7",
+               "title":"7",
+               "component":"presentation7"
+            },
+            {
+               "id":"8",
+               "title":"8",
+               "component":"presentation8"
+            },
+            {
+               "id":"9",
+               "title":"9",
+               "component":"presentation9"
             }
-        ]
-    },
-    {
-        "title": "Onboarding",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+         ]
+      },
+      {
+         "id":"din-avdeling",
+         "title":"Din avdeling",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Din avdeling",
+               "component":"yourOffice"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"1",
+               "title":"Kart",
+               "component":"norway"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"stord",
+               "title":"Stord",
+               "component":"stord"
+            },
+            {
+               "id":"bergen",
+               "title":"Bergen",
+               "component":"bergen"
+            },
+            {
+               "id":"haugesund",
+               "title":"Haugesund",
+               "component":"haugesund"
+            },
+            {
+               "id":"stavanger",
+               "title":"Stavanger",
+               "component":"stavanger"
+            },
+            {
+               "id":"oslo",
+               "title":"Oslo",
+               "component":"oslo"
+            },
+            {
+               "id":"ølen",
+               "title":"Ølen",
+               "component":"ølen"
             }
-        ]
-    },
-    {
-        "title": "Våre satsingsområder",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+         ]
+      },
+      {
+         "id":"onboarding",
+         "title":"Onboarding",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Onboarding",
+               "component":"onboarding"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"1",
+               "title":"1",
+               "component":"onboarding1"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"2",
+               "title":"2",
+               "component":"onboarding2"
+            },
+            {
+               "id":"3",
+               "title":"3",
+               "component":"onboarding3"
+            },
+            {
+               "id":"4",
+               "title":"4",
+               "component":"onboarding4"
+            },
+            {
+               "id":"5",
+               "title":"5",
+               "component":"onboarding5"
+            },
+            {
+               "id":"6",
+               "title":"6",
+               "component":"onboarding6"
+            },
+            {
+               "id":"7",
+               "title":"7",
+               "component":"onboarding7"
+            },
+            {
+               "id":"8",
+               "title":"8",
+               "component":"onboarding8"
+            },
+            {
+               "id":"9",
+               "title":"9",
+               "component":"onboarding9"
+            },
+            {
+               "id":"10",
+               "title":"10",
+               "component":"onboarding10"
             }
-        ]
-    },
-    {
-        "title": "Motivasjon for ansatte",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+         ]
+      },
+      {
+         "id":"motivasjon-for-ansatte",
+         "title":"Motivasjon for ansatte",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Motivasjon for ansatte",
+               "component":"motivation"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"1",
+               "title":"1",
+               "component":"motivation1"
             },
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"2",
+               "title":"2",
+               "component":"motivation2"
+            },
+            {
+               "id":"3",
+               "title":"3",
+               "component":"motivation3"
+            },
+            {
+               "id":"4",
+               "title":"4",
+               "component":"motivation4"
+            },
+            {
+               "id":"5",
+               "title":"5",
+               "component":"motivation5"
+            },
+            {
+               "id":"6",
+               "title":"6",
+               "component":"motivation6"
             }
-        ]
-    },
-    {
-        "title": "Avsluttning",
-        "unlocked": true,
-        "completed": false,
-        "routes": [
+         ]
+      },
+      {
+         "id":"avsluttning",
+         "title":"Avsluttning",
+         "pages":[
             {
-                "title": "",
-                "unlocked": true,
-                "completed": false
-            },
-            {
-                "title": "",
-                "unlocked": true,
-                "completed": false
-            },
-            {
-                "title": "",
-                "unlocked": true,
-                "completed": false
+               "id":"0",
+               "title":"Avsluttning",
+               "component":"outro"
             }
-        ]
-    }
-]
+         ]
+      }
+   ]
+}

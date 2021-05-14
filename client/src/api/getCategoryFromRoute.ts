@@ -11,6 +11,7 @@ export default function getCategoryFromRoute(route: string): RouteNode {
         if(part.id?.includes(route!)) {
             category.id = part.id;
             category.title = part.title;
+            //category = part;
             //category.push(element.id);// = element.title;
             //category.push(element.title);
             return;

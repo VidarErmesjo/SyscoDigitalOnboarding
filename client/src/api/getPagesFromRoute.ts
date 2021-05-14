@@ -13,7 +13,7 @@ export default function getPagesFromRoute(route: string): RouteNode[] {
     config.forEach((element) => {
         if(element.id?.includes(route!)) {
             element.pages?.map((page) => {
-                pages.push({ id: page.id, title: page.title })
+                pages.push({ id: page.id, title: page.title, completed: page.completed })
             })
             //category.push(element.id);// = element.title;
             //category.push(element.title);

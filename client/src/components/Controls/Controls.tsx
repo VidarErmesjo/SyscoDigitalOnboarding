@@ -7,6 +7,8 @@ import {
     Theme
 } from '@material-ui/core';
 
+import { useRouteMatch, useLocation } from 'react-router-dom';
+
 import {
     ChevronLeft as ChevronLeftIcon,
     ChevronRight as ChevronRightIcon
@@ -40,14 +42,15 @@ const useStyles = makeStyles((theme: Theme) =>
 	}),
 );
 
-export default function Controls(props: any) {
+export default function Controls() {
     const [isLoading, currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore(state => [
         state.isLoading,
         state.currentStep,
-        state.totalStep,
+        state.totalSteps,
         state.nextStep,
-        state.previousStep
+        state.previousStep,
     ], shallow);
+
     const classes = useStyles();
 
     return (
@@ -67,7 +70,7 @@ export default function Controls(props: any) {
             <IconButton
                 color="secondary"
                 onClick={nextStep}
-                disabled={currentStep! >= totalSteps
+                disabled={currentStep! >= totalSteps!
                     ? true
                     : false
                     || isLoading}

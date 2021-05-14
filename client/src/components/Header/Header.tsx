@@ -3,17 +3,8 @@ import React from 'react';
 import {
 	createStyles,
 	makeStyles,
-	Theme,
-	Typography,
-	useTheme
+	Theme
 } from '@material-ui/core';
-
-import { Spring } from 'react-spring/renderprops';
-
-import { getCategoryFromRoute, getRouteFromStep } from './../../api';
-
-import shallow from 'zustand/shallow';
-import { Zustand } from './../../store';
 
 import SessionButton from './SessionButton';
 import Logo from './Logo';
@@ -44,41 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header() {
-	const [user, currentStep, isLoading] = Zustand.useStore(state => [
-		state.user,
-		state.currentStep,
-		state.isLoading
-	]);
-
 	const classes = useStyles();
-	const theme = useTheme();
-	const category = getCategoryFromRoute(getRouteFromStep(currentStep));
-
-	const Heading = (): JSX.Element => {
-		return (
-			<Spring
-				from={{ opacity: 0 }}
-				to={{ opacity: user ?  1 : 0 }}
-				config={{ duration: theme.transitions.duration.enteringScreen }}
-				>
-				{props => <div style={props}>
-					<Typography
-						variant="h6"
-						color="textPrimary"
-						className={classes.heading}
-						>
-						{category.title?.toString()}
-					</Typography>
-				</div>}
-			</Spring>
-		);
-	}
 
 	return (
 		<React.Fragment>
 			<header id="header" className={classes.root}>
 				<SessionButton/>
-				{!isLoading && <Heading/>}
 				<Logo/>
 			</header>
 		</React.Fragment>

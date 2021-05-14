@@ -11,7 +11,7 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
-import { getCategories, getPages } from './../../api';
+import { Zustand } from './../../store';
 
 import { SyscoPage, SyscoLine } from '../../components/Custom';
 
@@ -37,11 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function Content() {
+    const [getCategories, getRoutes] = Zustand.useStore(state => [state.getCategories, state.getRoutes]);
     const classes = useStyles();
     const theme = useTheme();
 
     const categoryCount = getCategories().length;
-    const pageCount = getPages().length;
+    const pageCount = getRoutes().length;
 
     const Title = (): JSX.Element => <Typography color="secondary" variant="h1">Introduksjon</Typography>
     const Text = (): JSX.Element => {

@@ -1,36 +1,25 @@
 import React from 'react';
 
-// MUI
 import {
-    Backdrop,
     CircularProgress,
     Container,
     createStyles,
     makeStyles,
     Theme,
-    Typography,
     useTheme
 } from '@material-ui/core';
 
-// Route
 import {
-    BrowserRouter,
-    Link,
     Redirect,
     Route,
     useHistory,
-    useParams,
-    useRouteMatch,
-    Switch
 } from 'react-router-dom';
 
-// API
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
-import { getRouteFromStep, getRoutes } from './../../api';
-import config, { root } from '../../api/config';
 
 import { Signup } from './../../pages';
+import Components from './../../components';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -55,57 +44,15 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function TheEnd() {
-    return (
-        <Typography color="secondary" variant="h1">Ferdig!</Typography>
-    );
-}
-
-function Page(props: any) {
-    const { categoryId, subCategoryId }: any = useParams();
-    const { path } = useRouteMatch();
-
-    const Component = config.find(({ id }) => id === categoryId)
-        ?.pages?.find(({ id }: any) => id === subCategoryId)
-        ?.component;
-
-    return (
-        <React.Fragment>
-            <Route
-                path={`${path}`}
-                component={Component ?? TheEnd}
-                {...props}
-                />
-        </React.Fragment>
-    );
-}
-
-function Category() {
-    const { path } = useRouteMatch();
-
-    return (
-        <React.Fragment>
-            <Route path={`${path}/:subCategoryId`} component={Page}/>
-        </React.Fragment>
-    );
-}
-
-function Categories() {
-    const { path } = useRouteMatch();
-
-    return (
-        <React.Fragment>
-            <Route path={`${path}/:categoryId`} component={Category}/>
-        </React.Fragment>
-    );
-}
-
 export default function Content() {
-    const [isLoading, user, currentStep] = Zustand.useStore(state => [
+    const [isLoading, user, currentStep, getCurrentRoute, getRoutes, data] = Zustand.useStore(state => [
         state.isLoading,
         state.user,
-        state.currentStep
-    ]);
+        state.currentStep,
+        state.getCurrentRoute,
+        state.getRoutes,
+        state.data
+    ], shallow);
 
     const classes = useStyles();
     const theme = useTheme();
@@ -118,7 +65,18 @@ export default function Content() {
         }
     }, [user, history]);
 
-    const currentRoute = getRouteFromStep(currentStep);
+    // Henter inn alle baner.
+    const routes = React.useMemo(() => 
+        getRoutes().map(({ path, component }, key) => {
+            return <Route
+                exact
+                path={path}
+                component={Components[component]}
+                key={key}
+            />}
+    ), [user]);
+
+    const currentRoute = React.useMemo(() => getCurrentRoute().path!, [currentStep]);
 
     return (
         <React.Fragment>
@@ -127,8 +85,8 @@ export default function Content() {
                     <Route exact path="/">
                         {!user && <Signup/>}
                     </Route>
-                    <Route path={root} component={Categories}/>
-                    <Redirect to={currentRoute}/>
+                    {routes}
+                    {user && <Redirect exact to={currentRoute}/>}
                 </React.Fragment>
                 : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
             </Container>

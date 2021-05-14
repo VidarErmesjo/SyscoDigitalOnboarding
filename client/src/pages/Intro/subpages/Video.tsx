@@ -4,10 +4,11 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    useTheme
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+
 import { Spring } from 'react-spring/renderprops';
+
+import { Zustand } from '../../../store';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -22,10 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Video() {
     const classes = useStyles();
-    const theme = useTheme();
+    const [nextStep] = Zustand.useStore(state => [state.nextStep]);
 
-    const history = useHistory();
-    const handleOnEnd = () => history.push("../dette-er-sysco/0");
+    const handleOnEnd = () => nextStep();
 
     const Component = (): JSX.Element => {
         const videoCode = "oSY89RSi8UU";

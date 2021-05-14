@@ -2,6 +2,8 @@
 *   Modifikasjoner her vil gi endringer i programmets flyt of innhold.
 */
 
+import React from 'react';
+
 // Hovedkategorier
 import {
     Intro,
@@ -62,12 +64,13 @@ import {
     Page6 as Motivation6,
 } from '../pages/Motivation/subpages';
 
-export const root = "/sysco-digital-onboarding";
+export const root = "sysco-digital-onboarding";
 
 export type RouteNode = {
     id: string | undefined;
     title: string | undefined;
-    component?: React.ComponentType<JSX.Element> | null | undefined;
+    completed?: boolean;
+    component?: React.ComponentType<JSX.Element>;
     pages?: RouteNode[];
 }
 
@@ -160,6 +163,7 @@ export const config: RouteNode[] = [
                 id: "1",
                 title: "Kart",
                 component: Norway,
+                completed: true,
             },
             {
                 id: "stord",
@@ -310,12 +314,10 @@ export const config: RouteNode[] = [
             {
                 id: "1",
                 title: "1",
-                component: null,
             },
             {
                 id: "2",
                 title: "2",
-                component: null,
             },
         ],
     },

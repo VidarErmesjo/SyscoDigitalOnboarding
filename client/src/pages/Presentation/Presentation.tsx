@@ -11,8 +11,6 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
-import { Info as InfoIcon } from '@material-ui/icons';
-
 import {
     SyscoCard,
     SyscoPage,

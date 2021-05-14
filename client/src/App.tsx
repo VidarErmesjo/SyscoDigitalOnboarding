@@ -10,7 +10,7 @@ import {
 
 import { Zustand } from './store';
 import shallow from 'zustand/shallow';
-import { getRoutes } from './api';
+
 import { Content } from './components/Content'
 import { Controls } from './components/Controls';
 import { Footer } from './components/Footer';
@@ -44,56 +44,35 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-    const [user, geoMap, setGeoMap] = Zustand.useStore(state => [
+    const [user, data, setData] = Zustand.useStore(state => [
         state.user,
-        state.geoMap,
-        state.setGeoMap], shallow);
+        state.data,
+        state.setData
+    ], shallow);
 
 	// Låse scrolling
 	document.body.style.overflow = 'hidden';
 
-/*
     // Last inn kursdata
     React.useEffect(() => {
-        fetch('/api/onboarding').then(response => {
-            return response.json();
-        }).then(payload => {
-            //setData(payload)
-            setData(routes);
-        }).catch(error => {
-            console.log(error);
-        })
-
-        return () => {}
-    }, [user]);*/
-
-    // Last inn kartdata
-    React.useEffect(() => {
-        if(!geoMap)
-            fetch('/api/map').then(response => {
+        if(!data)
+            fetch('/api/onboarding').then((response) => {
                 return response.json();
-            }).then(payload => {
-                console.log(payload);
-                setGeoMap(payload);
+            }).then((payload) => {
+                setData(payload);
             }).catch(error => {
                 console.log(error);
             })
 
         return () => {}
-    }, [user]);
+    }, [user, data, setData]);
 
     const classes = useStyles();
     const theme = useTheme();
 
-    /* TODO:
-        I begynnelsen => Oversikt: "Det er X slides, det er Y antall deler og dette vil ta ca. Z minutter"
-        Introvideo først?
-        Stor kule (del) venstre med underpunkter mot høyre.
-    */
-
     return (
         <React.Fragment>
-            {geoMap
+            {data
             ? <div className={classes.root}>
                 <header className={classes.item}>
                     <Header/>
