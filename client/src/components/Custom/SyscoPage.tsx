@@ -4,7 +4,6 @@ import {
     createStyles,
     IconButton,
     makeStyles,
-    SvgIconProps,
     Theme,
     Typography,
     useTheme,
@@ -40,17 +39,19 @@ interface SyscoPageProps {
     icon: JSX.Element | null;
     category: React.ReactNode | string | null;
     content: React.ReactNode | null;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 export default function SyscoPage(props: SyscoPageProps): JSX.Element {
-    const {color, title, icon, category, content} = props;
+    const {color, title, icon, category, content, style} = props;
 
     const classes = useStyles();
     const theme = useTheme();
 
     return (
         <React.Fragment>
-            <section className={classes.root}>
+            <section className={classes.root} style={style}>
                 <IconButton
                     disabled
                     style={{

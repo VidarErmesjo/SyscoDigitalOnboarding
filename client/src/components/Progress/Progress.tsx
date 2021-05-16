@@ -1,7 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-
-// Material UI
 import {
     createStyles,
     Step,
@@ -15,17 +13,9 @@ import {
     Theme,
     Typography,
     withStyles,
-    useMediaQuery,
     useTheme,
 } from '@material-ui/core';
 
-// Animasjon
-import { Spring } from 'react-spring/renderprops';
-
-// Route
-import { useHistory } from 'react-router-dom';
-
-// API
 import { Zustand } from './../../store';
 import shallow from 'zustand/shallow';
 
@@ -48,7 +38,7 @@ const CustomConnector = withStyles((theme: Theme) => ({
         },
     },
     line: {
-        height: theme.typography.pxToRem(9),// '0.25em',
+        height: theme.typography.pxToRem(9),
         border: 0,
         boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         borderRadius: '0.25em',
@@ -71,7 +61,6 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
-            //transition: theme.transitions.duration.enteringScreen + 'ms',
         },
         active: {
             borderColor: theme.palette.secondary.main,
@@ -83,13 +72,18 @@ const useStyles = makeStyles((theme: Theme) =>
             borderStyle: 'none',
             boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         },
+        /*error: {
+            borderColor: theme.palette.background.paper,// theme.palette.secondary.light,
+            borderStyle: 'solid',
+            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.secondary.main}`,
+        },*/
         stepper: {
             backgroundColor: 'transparent',
         },
     }),
 );
 
-export function SyscoCompletedIcon({color, ...props}: SvgIconProps): JSX.Element {
+function SyscoCompletedIcon({color, ...props}: SvgIconProps): JSX.Element {
     const theme = useTheme();
 
     return (
@@ -108,19 +102,22 @@ export function SyscoCompletedIcon({color, ...props}: SvgIconProps): JSX.Element
     );
 }
 
-function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
+function SyscoStepIcon({active, completed, error}: StepIconProps): JSX.Element {
     const classes = useStyles();
 
     return (
-        <span className={clsx(classes.root, {[classes.active]: active, [classes.completed]: completed})}>
-            {completed && <SyscoCompletedIcon/>}
+        <span className={clsx(classes.root, {
+            [classes.active]: active,
+            [classes.completed]: completed,
+            //[classes.active]: error,
+            })}>
+            {(completed) && <SyscoCompletedIcon/>}
         </span>
     );
 }
 
 export default function Progress() {
-    const [user, currentStep, getPagesByCategory, calculateActiveStep] = Zustand.useStore(state => [
-        state.user,
+    const [currentStep, getPagesByCategory, calculateActiveStep] = Zustand.useStore(state => [
         state.currentStep,
         state.getPagesByCategory,
         state.calculateActiveStep
@@ -141,13 +138,14 @@ export default function Progress() {
                 className={classes.stepper}
                 nonLinear
                 >
-                {pages.map((page, index) => <Step
+                {pages.filter((item) => !item.isChild).map((page, index) => <Step
                     key={index}
                     active={page.active}
                     completed={page.active ? false : page.completed}
                     >
                     <StepLabel
                         StepIconComponent={SyscoStepIcon}
+                        error={page.active && page.completed}
                         >                            
                         <Typography
                             color="textPrimary"

@@ -3,8 +3,11 @@ import React from 'react';
 import {
 	createStyles,
 	makeStyles,
-	Theme
+	Theme,
+	useTheme
 } from '@material-ui/core';
+
+import { Zustand } from './../../store';
 
 import SessionButton from './SessionButton';
 import Logo from './Logo';
@@ -35,11 +38,17 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Header() {
+	const [user] = Zustand.useStore(state => [state.user]);
 	const classes = useStyles();
+	const theme = useTheme();
 
 	return (
 		<React.Fragment>
-			<header id="header" className={classes.root}>
+			<header
+				id="header"
+				className={classes.root}
+				//style={{ backgroundColor: user ? theme.palette.background.default : theme.palette.primary.main }}
+				>
 				<SessionButton/>
 				<Logo/>
 			</header>

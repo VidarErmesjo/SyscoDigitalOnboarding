@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.background.default,
 			height: '100vh',
             margin: 0,
+
+            transition: theme.transitions.duration.enteringScreen + 'ms',
 		},
         item: {
             width: '100vw',
@@ -72,20 +74,23 @@ export default function App() {
 
     return (
         <React.Fragment>
-            {data
-            ? <div className={classes.root}>
-                <header className={classes.item}>
-                    <Header/>
-                </header>
-                <main className={classes.item}>
-                    <Content/>
-                </main>
-                <footer className={classes.item}>
-                    {user && <Footer/>}
-                </footer>
-                {user && <Controls/>}
-            </div>
-            : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
+            {data && data.categories?.length! > 0 ?
+                <div
+                    className={classes.root}
+                    //style={{ backgroundColor: user ? theme.palette.primary.main : theme.palette.background.default }}
+                    >
+                    <header className={classes.item}>
+                        <Header/>
+                    </header>
+                    <main className={classes.item}>
+                        <Content/>
+                    </main>
+                    <footer className={classes.item}>
+                        {user && <Footer/>}
+                    </footer>
+                    {user && <Controls/>}
+                </div>
+                : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
         </React.Fragment>        
     );
 }

@@ -7,12 +7,12 @@
          "title":"Introduksjon",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Introduksjon",
                "component":"intro"
             },
             {
-               "id":"1",
+               "id":"video",
                "title":"Introduksjonsvideo",
                "component":"video"
             }
@@ -23,7 +23,7 @@
          "title":"Dette er SYSCO",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Dette er SYSCO",
                "component":"presentation"
             },
@@ -79,44 +79,86 @@
          "title":"Din avdeling",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Din avdeling",
                "component":"yourOffice"
             },
             {
-               "id":"1",
+               "id":"kart",
                "title":"Kart",
                "component":"norway"
             },
             {
-               "id":"stord",
+               "id":"stord-kontoret",
                "title":"Stord",
-               "component":"stord"
+               "component":"stordOffice",
+               "isParent": true
+            },
+            {
+               "id":"stord",
+               "title":"",
+               "component":"stord",
+               "isChild": true
+            },
+            {
+               "id":"bergen-kontoret",
+               "title":"Bergen",
+               "component":"bergenOffice",
+               "isParent": true
             },
             {
                "id":"bergen",
-               "title":"Bergen",
-               "component":"bergen"
+               "title":"",
+               "component":"bergen",
+               "isChild": true
+            },
+            {
+               "id":"haugesund-kontoret",
+               "title":"Haugesund",
+               "component":"haugesundOffice",
+               "isParent": true
             },
             {
                "id":"haugesund",
-               "title":"Haugesund",
-               "component":"haugesund"
+               "title":"",
+               "component":"haugesund",
+               "isChild": true
+            },
+            {
+               "id":"stavanger-kontoret",
+               "title":"Stavanger",
+               "component":"stavangerOffice",
+               "isParent": true
             },
             {
                "id":"stavanger",
-               "title":"Stavanger",
-               "component":"stavanger"
+               "title":"",
+               "component":"stavanger",
+               "isChild": true
+            },
+            {
+               "id":"oslo-kontoret",
+               "title":"Oslo",
+               "component":"osloOffice",
+               "isParent": true
             },
             {
                "id":"oslo",
-               "title":"Oslo",
-               "component":"oslo"
+               "title":"",
+               "component":"oslo",
+               "isChild": true
+            },
+            {
+               "id":"ølen-kontoret",
+               "title":"Ølen",
+               "component":"ølenOffice",
+               "isParent": true
             },
             {
                "id":"ølen",
-               "title":"Ølen",
-               "component":"ølen"
+               "title":"",
+               "component":"ølen",
+               "isChild": true
             }
          ]
       },
@@ -125,7 +167,7 @@
          "title":"Onboarding",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Onboarding",
                "component":"onboarding"
             },
@@ -186,7 +228,7 @@
          "title":"Motivasjon for ansatte",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Motivasjon for ansatte",
                "component":"motivation"
             },
@@ -227,7 +269,7 @@
          "title":"Avsluttning",
          "pages":[
             {
-               "id":"0",
+               "id":"",
                "title":"Avsluttning",
                "component":"outro"
             }

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
         overlay: {
             position: 'relative',
             width: 860,
+            minHeight: 311,
 
             transform: `scale(0.75)`,
             

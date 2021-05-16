@@ -29,12 +29,18 @@ import {
 // Del 3 - "Ditt kontor"
 import {
     Bergen,
+    BergenOffice,
     Haugesund,
+    HaugesundOffice,
     Norway,
     Ølen,
+    ØlenOffice,
     Oslo,
+    OsloOffice,
     Stavanger,
-    Stord
+    StavangerOffice,
+    Stord,
+    StordOffice
 } from './pages/YourOffice/subpages';
 
 // Del 4 - "Onboarding""
@@ -80,13 +86,19 @@ const Components: ICompontents = {
     presentation8: Presentation8,
     presentation9: Presentation9,
     yourOffice: YourOffice,
-    bergen: Bergen,
-    haugesund: Haugesund,
     norway: Norway,
+    bergen: Bergen,
+    bergenOffice: BergenOffice,
+    haugesund: Haugesund,
+    haugesundOffice: HaugesundOffice,
     ølen: Ølen,
+    ølenOffice: ØlenOffice,
     oslo: Oslo,
+    osloOffice: OsloOffice,
     stavanger: Stavanger,
+    stavangerOffice: StavangerOffice,
     stord: Stord,
+    stordOffice: StordOffice,
     onboarding: Onboarding,
     onboarding1: Onboarding1,
     onboarding2: Onboarding2,

@@ -1,12 +1,10 @@
 import React from 'react';
 
 import {
-    CircularProgress,
     Container,
     createStyles,
     makeStyles,
-    Theme,
-    useTheme
+    Theme
 } from '@material-ui/core';
 
 import {
@@ -33,29 +31,18 @@ const useStyles = makeStyles((theme: Theme) =>
             transform: `translate(-50%, -50%)`,
 			zIndex: 0,
         },
-        circularProgress: {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: `translate(-50%, -50%)`,
-            color: theme.palette.secondary.main,
-            zIndex: theme.zIndex.mobileStepper,
-        },
     })
 );
 
 export default function Content() {
-    const [isLoading, user, currentStep, getCurrentRoute, getRoutes, data] = Zustand.useStore(state => [
-        state.isLoading,
+    const [user, currentStep, getCurrentRoute, getRoutes] = Zustand.useStore(state => [
         state.user,
         state.currentStep,
         state.getCurrentRoute,
         state.getRoutes,
-        state.data
     ], shallow);
 
     const classes = useStyles();
-    const theme = useTheme();
 
     // Omdiriger browser til innlogging ved avsluttet Onboarding.
     const history = useHistory();
@@ -73,22 +60,22 @@ export default function Content() {
                 path={path}
                 component={Components[component]}
                 key={key}
-            />}
+            />
+        }
     ), [user]);
 
-    const currentRoute = React.useMemo(() => getCurrentRoute().path!, [currentStep]);
+    const currentRoute = React.useMemo(() => getCurrentRoute().path, [currentStep]);
 
     return (
         <React.Fragment>
             <Container fixed className={classes.root}>
-                {!isLoading ? <React.Fragment> 
+                <React.Fragment> 
                     <Route exact path="/">
                         {!user && <Signup/>}
                     </Route>
                     {routes}
                     {user && <Redirect exact to={currentRoute}/>}
                 </React.Fragment>
-                : <CircularProgress size={theme.spacing(10)} className={classes.circularProgress}/>}
             </Container>
         </React.Fragment>
     );

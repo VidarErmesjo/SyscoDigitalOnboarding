@@ -1,8 +1,6 @@
-import { SvgIcon, SvgIconProps, useTheme } from '@material-ui/core';
+import { SvgIcon, SvgIconProps} from '@material-ui/core';
 
-export default function GeoMarkerIcon({color, ...props}: SvgIconProps): JSX.Element {
-    const theme = useTheme();
-
+export default function GeoMarkerIcon({color, className, ...props}: SvgIconProps): JSX.Element {
     return (
         <SvgIcon
             color={color}

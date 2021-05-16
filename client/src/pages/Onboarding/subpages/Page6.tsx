@@ -129,6 +129,7 @@ function Steps() {
 					<a
 						href={step.link}
 						target="_blank"
+						rel="noreferrer"
 						style={{ textDecoration: 'none' }}
 						>
 						<Typography

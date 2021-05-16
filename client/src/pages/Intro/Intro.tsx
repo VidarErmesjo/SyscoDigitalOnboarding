@@ -53,7 +53,7 @@ function Content() {
                     <br/><br/>
                 </Typography>
                 <Typography color="textPrimary" variant="h5">
-                    Denne prosessen vil ta deg igjennom <strong style={{ color: theme.palette.info.main }}>{categoryCount}</strong> deler, bestående av totalt <strong style={{ color: theme.palette.info.main }}>{pageCount}</strong> sider, og den vil ta ca. <strong style={{ color: theme.palette.info.main }}>Z</strong> minutter å gjennomføre.
+                    Denne prosessen vil ta deg igjennom <strong style={{ color: theme.palette.info.main, fontSize: 32 }}>{categoryCount}</strong> deler, bestående av totalt <strong style={{ color: theme.palette.info.main, fontSize: 32 }}>{pageCount}</strong> sider, og den vil ta ca. <strong style={{ color: theme.palette.info.main, fontSize: 32 }}>Z</strong> minutter å gjennomføre.
                     <br/><br/>
                     Du kan navigere deg frem og tilbake i prosessen ved å benytte deg av <strong style={{ color: theme.palette.secondary.main}}>de grønne navigasjonspilene</strong> du finner på venstre og høyre side av denne teksten.
                     <br/><br/><br/>

@@ -8,6 +8,8 @@ import {
     useTheme
 } from '@material-ui/core';
 
+import { Zustand } from './../../../store';
+
 import { Spring } from 'react-spring/renderprops';
 
 import NorwayMap from './NorwayMap';
@@ -24,9 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         marker: {
             position: 'absolute',
+            color: theme.palette.error.main,
             transition: theme.transitions.duration.standard + 'ms',
             '&:hover': {
-                color: theme.palette.error.light,
+                color: theme.palette.error.dark,
                 transform: `scale(1.5) translateY(-10px)`,
                 zIndex: theme.zIndex.mobileStepper,
 
@@ -77,22 +80,33 @@ const markers: IMarkers[] = [
 ]
 
 function Markers() {
+    const [currentStep, getPages, gotoStep] = Zustand.useStore(state => [
+        state.currentStep,
+        state.getPages,
+        state.gotoStep
+    ])
+    const pages = getPages();
     const classes = useStyles();
-    const theme = useTheme();
+
+    const handleOnClick = (marker: IMarkers) => {
+        const page = pages.find(({ title }) => title === marker.title);
+        const step = pages.indexOf(page!);
+        gotoStep(step === -1 ? currentStep : step);
+    }
 
     return (
         <React.Fragment>
             {markers.map((marker, index) => (
                 <span
                     key={index}
-                    onClick={() => alert(`Du har trykka på ${marker.title}. Var det så snilt av deg?`)}
+                    onClick={() => handleOnClick(marker)}
                     className={classes.marker}
                     style={{
                         top: marker.offset[0],
                         left: marker.offset[1],
                     }}
                     >
-                    <GeoMarkerIcon color="error"/>
+                    <GeoMarkerIcon className={classes.marker}/>
                     <Typography
                         color="textPrimary"
                         variant="subtitle1"

@@ -27,9 +27,6 @@ import TextField from './TextFieldWrapper';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        button: {
-            //backgroundColor: '#000',
-        },
         form: {
             '& > *': {
                 marginTop: theme.spacing(3),               
@@ -58,11 +55,18 @@ export default function SignupForm(props: any) {
     };
     
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Ugyldig epost!').required('Vennligs skriv inn gyldig SYSCO epost.'),
+        email: Yup.string().email('Ugyldig brukernavn!').required('Vennligs skriv inn gyldig brukernavn.'),
     });
 
     const onSubmit = (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
         setSubmitting(false);
+        fetch('/api/signup').then((response) => {
+            return response.json();
+        }).then((payload) => {
+            console.log(payload);
+        }).catch(error => {
+            console.log(error);
+        })
         signIn(values.email);
     };
 
@@ -97,8 +101,7 @@ export default function SignupForm(props: any) {
                                     color="secondary"
                                     variant="outlined"
                                     size="small"
-                                    className={classes.textField}
-                                
+                                    className={classes.textField}                                
                                 />
                                 <Button
                                     variant="outlined"
@@ -106,7 +109,6 @@ export default function SignupForm(props: any) {
                                     size="small"
                                     startIcon={<PlayCircle/>}
                                     type="submit"
-                                    className={classes.button}
                                     >
                                     Start
                                 </Button>              

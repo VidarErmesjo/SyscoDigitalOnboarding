@@ -116,21 +116,21 @@ function Images() {
                 left="145px"
                 top="142px"
                 >
-                <img src={FadderBig} alt="Large hexagonally shaped image of person."/>
+                <img src={FadderBig} alt="Large hexagonally shaped frame of person."/>
             </Box>
             <Box
                 position="absolute"
                 left="475px"
                 top="176px"
                 >
-                <img src={FadderMedium} alt="Medium sized hexagonally shaped image of person."/>
+                <img src={FadderMedium} alt="Medium sized hexagonally shaped frame of person."/>
             </Box>
             <Box
                 position="absolute"
                 left="375px"
                 top="410px"
                 >
-                <img src={FadderSmall} alt="Small hexagonally shaped image of person."/>
+                <img src={FadderSmall} alt="Small hexagonally shaped frame of person."/>
             </Box>
         </span>
     );

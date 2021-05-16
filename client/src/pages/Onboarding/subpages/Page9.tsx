@@ -16,7 +16,6 @@ import {
 } from '../../../components/Custom';
 
 import { AssignmentIcon } from '../../../components/icons';
-import classes from '*.module.css';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
