@@ -8,8 +8,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-// Icons
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Assignment as AssignmentIcon } from '@material-ui/icons';
 
 import {
     SyscoPage,
@@ -43,46 +42,43 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.content}>
-            <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
-                <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
-                <Typography color="secondary" variant="h4">
-                    <h4 style={{ marginLeft: '10px' }}>
-                        Hva vi gjør
-                    </h4> 
-                </Typography>
-            </div>
-            <div>
-                <p className={classes.whiteColor} 
-                    style={{
-                        maxWidth: '65vw', 
-                        fontSize: 34, 
-                        marginLeft: '32vw', 
-                        borderLeft: '10px solid #00FF97', 
-                        paddingLeft: '35px',
-                        height: 'inherit',
-                        position: 'relative',
-                        top: '10vw',
-                        right: '10vw'
-                    }}>
-                    Hva gjør vi egentlig i Sysco? Jo, vi lager programvare til 
-                    <strong>energisektoren!</strong> Vi samler inn og lagrer 
-                    data fra bransjens kjernesystemer og andre relevante datakilder.
-                    Dataene bruker vi til å gi ny, verdifull innsikt som både effektiviserer
-                    arbeidsoppgaver og forbedrer resultatet.
-                </p>
-            </div>
-        </div>
-    );
-}
-
 export default function Page3() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Content = () => {   
+        return (
+            <div className={classes.content}>
+                <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
+                    <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
+                    <Typography color="secondary" variant="h4">
+                        <h4 style={{ marginLeft: '10px' }}>
+                            Hva vi gjør
+                        </h4> 
+                    </Typography>
+                </div>
+                <div>
+                    <p className={classes.whiteColor} 
+                        style={{
+                            maxWidth: '65vw', 
+                            fontSize: 34, 
+                            marginLeft: '32vw', 
+                            borderLeft: '10px solid #00FF97', 
+                            paddingLeft: '35px',
+                            height: 'inherit',
+                            position: 'relative',
+                            top: '10vw',
+                            right: '10vw'
+                        }}>
+                        Hva gjør vi egentlig i Sysco? Jo, vi lager programvare til 
+                        <strong>energisektoren!</strong> Vi samler inn og lagrer 
+                        data fra bransjens kjernesystemer og andre relevante datakilder.
+                        Dataene bruker vi til å gi ny, verdifull innsikt som både effektiviserer
+                        arbeidsoppgaver og forbedrer resultatet.
+                    </p>
+                </div>
+            </div>
+        );
+    }    
 
     const Component = (): JSX.Element => {
         return (

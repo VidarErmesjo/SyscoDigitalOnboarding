@@ -8,8 +8,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-// Icons
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import { Assignment as AssignmentIcon } from '@material-ui/icons';
 
 import {
     SyscoPage,
@@ -43,43 +42,40 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.content}>
-            <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
-                <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
-                <Typography color="secondary" variant="h4">
-                    <h4 style={{ marginLeft: '10px' }}>
-                        Hva vi gjør
-                    </h4> 
-                </Typography>
-            </div>
-            <div 
-                className={classes.whiteColor} 
-                style={{
-                    fontSize: 32, 
-                    marginTop: '10vw', 
-                    display: 'flex', 
-                    justifyContent: 'center',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}>
-                <h2>
-                    I hvilken sektorer innenfor energi jobber vi?
-                </h2>
-                <div style={{borderTop: '8px solid #00FF97', width: '30vw'}}>
-                        
-                </div>
-            </div>
-        </div>
-    );
-}
-
 export default function Page4() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Content = () => {
+        return (
+            <div className={classes.content}>
+                <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
+                    <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
+                    <Typography color="secondary" variant="h4">
+                        <h4 style={{ marginLeft: '10px' }}>
+                            Hva vi gjør
+                        </h4> 
+                    </Typography>
+                </div>
+                <div 
+                    className={classes.whiteColor} 
+                    style={{
+                        fontSize: 32, 
+                        marginTop: '10vw', 
+                        display: 'flex', 
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                    }}>
+                    <h2>
+                        I hvilken sektorer innenfor energi jobber vi?
+                    </h2>
+                    <div style={{borderTop: '8px solid #00FF97', width: '30vw'}}>
+                            
+                    </div>
+                </div>
+            </div>
+        );
+    }    
 
     const Component = (): JSX.Element => {
         return (
