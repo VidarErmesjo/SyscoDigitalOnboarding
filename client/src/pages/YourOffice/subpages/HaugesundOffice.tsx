@@ -9,15 +9,13 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import HaugesundOfficeBig from '../../../assets/Polygons/HaugesundOfficeBig.svg';
-import HaugesundOfficeMedium from '../../../assets/Polygons/HaugesundOfficeMedium.svg';
-import HaugesundOfficeSmall from '../../../assets/Polygons/HaugesundOfficeSmall.svg';
+import HaugesundOfficeBig from '../../../assets/polygons/HaugesundOfficeBig.svg';
+import HaugesundOfficeMedium from '../../../assets/polygons/HaugesundOfficeMedium.svg';
+import HaugesundOfficeSmall from '../../../assets/polygons/HaugesundOfficeSmall.svg';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -132,7 +130,6 @@ export default function HaugesundOffice() {
     </React.Fragment> 
 
     const Component = (): JSX.Element => {
-        const scale = 820 / 671 * 0.75;
         return (
             <SyscoPage
                 title={<Title/>}
@@ -140,22 +137,16 @@ export default function HaugesundOffice() {
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-                style={{ width: 1268, height: 671, transform: `scale(${scale})` }}
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

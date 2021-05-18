@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -8,11 +9,14 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
+
+import BergenBig from './../../../assets/polygons/BergenBig.svg';
+import BergenMedium from './../../../assets/polygons/BergenMedium.svg';
+import BergenSmall from './../../../assets/polygons/BergenSmall.svg';
+
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -28,49 +32,95 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             alignItems: 'center',
         },
-        item: {
-            width: '100%',
-        },
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.content}>
-            <Typography color="secondary" variant="h1">Bergen</Typography>
-        </div>
-    );
-}
+const text = <React.Fragment>
+    <em>
+    “Av sosiale happenings arrangerer julebord og et par lunsjer i året hvor vi går på restaurant. Det er veldig hyggelig”
+    </em>
+</React.Fragment>
 
 export default function Bergen() {
     const classes = useStyles();
     const theme = useTheme();
 
+    const Title = () => <div className={classes.content}>
+        <Typography
+            color ="secondary"
+            style={{
+                fontSize: "40px",
+                fontStyle: "normal",
+                lineHeight: "46px"
+            }}
+            >
+            BERGEN
+        </Typography>
+    </div>
+
+    const Content = () => <React.Fragment>
+        <Box
+            position="absolute"
+            left="355px"
+            top="273px"
+            >
+            <img src={BergenBig} alt="Two people talking at the Bergen office."/>
+        </Box>
+        <Box
+            position="absolute"
+            left="256px"
+            top="158px"
+            >
+            <img src={BergenMedium} alt="Bridge."/>
+        </Box>
+        <Box
+            position="absolute"
+            left="197px"
+            top="299px"
+            >
+            <img src={BergenSmall} alt="VR-man."/>
+        </Box>
+        <Box
+            position="absolute"
+            left="668px"
+            top="264px"
+            width="431px"
+            height="71px"
+            borderLeft={`5px solid ${theme.palette.secondary.main}`}
+            >
+            <Typography
+                color="textPrimary"
+                style={{
+                    fontSize: "20px",
+                    fontStyle: "italic",
+                    fontFamily: theme.typography.fontFamily,
+                    lineHeight: "23px",
+                    marginLeft: "16.5px"
+                }}
+                >
+                {text}
+            </Typography>
+        </Box>
+    </React.Fragment> 
+
     const Component = (): JSX.Element => {
         return (
             <SyscoPage
-                title={null}
+                title={<Title/>}
                 category={null}
                 icon={null}
                 content={<Content/>}
                 color="secondary"
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

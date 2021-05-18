@@ -9,13 +9,11 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import StavangerOfficeProfile from './../../../assets/Polygons/StavangerOfficeProfile.svg';
+import StavangerOfficeProfile from './../../../assets/polygons/StavangerOfficeProfile.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -56,17 +54,17 @@ const profileText = <React.Fragment>
 </React.Fragment>
 
 const leftBox = <React.Fragment>
-    <li><strong>Hva skiller Stavangerkontoret seg ut fra de andre kontorene?</strong></li>
+    <li style={{ listStyle: "square" }}><strong>Hva skiller Stavangerkontoret seg ut fra de andre kontorene?</strong></li>
     <br/>
     Vi er et ganske lite kontor, med 12 ansatte. Mange av våre ansatte har jobbet sammen i mange år (15+) i forskjellige selskaper, men startet sammen i SYSCO EnergyX sommeren 2019. Vi er nye i SYSCO, og sånn sett skiller vi oss ut fra resten av gjengen. 
 </React.Fragment>
 
 const rightBox = <React.Fragment>
-    <li><strong>Hva med det sosiale?</strong></li>
+    <li style={{ listStyle: "square" }}><strong>Hva med det sosiale?</strong></li>
     <br/>
     Vi pleier å ha et månedlig avdelingsmøte, med ca 30 min med informasjon, status, økonomi, salg etc. Etter dette har vi 1.5 time med et tema som en av de ansatte kan mye om. Presentasjon, diskusjon, knowledge sharing og litt mat og prat. I corona hjemmekontorfasen hadde vi en 15 min daglig digital kaffe drøs – de som ville ringte inn på teams for å skravle. Vi hadde også en månedlig digital lønnings pils.
     <br/><br/>
-    <li><strong>Hvordan er kontoret organisert?</strong></li>
+    <li style={{ listStyle: "square" }}><strong>Hvordan er kontoret organisert?</strong></li>
     <br/>
     Vi er kun en avdeling, har delt ansvaret mellom meg og Geir Olav Hagen. Jeg har HR/ansatte, Geir Olav økonomi og annen admin
 </React.Fragment>
@@ -157,7 +155,6 @@ export default function StavangerOffice() {
     </Box>
 
     const Component = (): JSX.Element => {
-        const scale = 820 / 671 * 0.75;
         return (
             <SyscoPage
                 title={<Title/>}
@@ -165,22 +162,16 @@ export default function StavangerOffice() {
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-                style={{ width: 1268, height: 671, transform: `scale(${scale})` }}
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

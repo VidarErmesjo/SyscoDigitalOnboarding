@@ -8,7 +8,8 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
+// Icons
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import {
     SyscoPage,
@@ -25,11 +26,19 @@ const useStyles = makeStyles((theme: Theme) =>
         content: {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: '100%'
         },
         item: {
             width: '100%',
+        },
+        flexRow: {
+            display: 'flex',
+            alignItems: 'center',
+            marginLeft: '15px',
+            justifyContent: 'flex-start'
+        },
+        whiteColor: {
+            color: "#FFFFFF"
         },
     })
 );
@@ -39,7 +48,34 @@ function Content() {
 
     return (
         <div className={classes.content}>
-            <Typography color="secondary" variant="h1">Side 3</Typography>
+            <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
+                <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
+                <Typography color="secondary" variant="h4">
+                    <h4 style={{ marginLeft: '10px' }}>
+                        Hva vi gjør
+                    </h4> 
+                </Typography>
+            </div>
+            <div>
+                <p className={classes.whiteColor} 
+                    style={{
+                        maxWidth: '65vw', 
+                        fontSize: 34, 
+                        marginLeft: '32vw', 
+                        borderLeft: '10px solid #00FF97', 
+                        paddingLeft: '35px',
+                        height: 'inherit',
+                        position: 'relative',
+                        top: '10vw',
+                        right: '10vw'
+                    }}>
+                    Hva gjør vi egentlig i Sysco? Jo, vi lager programvare til 
+                    <strong>energisektoren!</strong> Vi samler inn og lagrer 
+                    data fra bransjens kjernesystemer og andre relevante datakilder.
+                    Dataene bruker vi til å gi ny, verdifull innsikt som både effektiviserer
+                    arbeidsoppgaver og forbedrer resultatet.
+                </p>
+            </div>
         </div>
     );
 }
@@ -62,15 +98,9 @@ export default function Page3() {
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

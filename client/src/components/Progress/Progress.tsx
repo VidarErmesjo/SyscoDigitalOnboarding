@@ -51,18 +51,19 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.primary.light,
             zIndex: 1,
             width: 40,
             height: 40,
             borderRadius: '50%',
-            borderColor: theme.palette.primary.main,
+            borderColor: theme.palette.primary.light,
             borderStyle: 'solid',
             border: '0.5em',
             justifyContent: 'center',
             alignItems: 'center',
         },
         active: {
+            backgroundColor: theme.palette.primary.main,
             borderColor: theme.palette.secondary.main,
             borderStyle: 'solid',
             boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.light}`,
@@ -72,11 +73,6 @@ const useStyles = makeStyles((theme: Theme) =>
             borderStyle: 'none',
             boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.primary.main}`,
         },
-        /*error: {
-            borderColor: theme.palette.background.paper,// theme.palette.secondary.light,
-            borderStyle: 'solid',
-            boxShadow: `0em 0em 0.25em 0.25em ${theme.palette.secondary.main}`,
-        },*/
         stepper: {
             backgroundColor: 'transparent',
         },
@@ -102,14 +98,13 @@ function SyscoCompletedIcon({color, ...props}: SvgIconProps): JSX.Element {
     );
 }
 
-function SyscoStepIcon({active, completed, error}: StepIconProps): JSX.Element {
+function SyscoStepIcon({active, completed}: StepIconProps): JSX.Element {
     const classes = useStyles();
 
     return (
         <span className={clsx(classes.root, {
             [classes.active]: active,
-            [classes.completed]: completed,
-            //[classes.active]: error,
+            [classes.completed]: completed
             })}>
             {(completed) && <SyscoCompletedIcon/>}
         </span>
@@ -125,9 +120,9 @@ export default function Progress() {
     
     const classes = useStyles();
 
-    const pages = React.useMemo(() => getPagesByCategory(), [currentStep]);
+    const pages = React.useMemo(() => getPagesByCategory(), [currentStep, getPagesByCategory]);
 
-    const activeStep = React.useMemo(() => calculateActiveStep(), [currentStep]);
+    const activeStep = React.useMemo(() => calculateActiveStep(), [currentStep, calculateActiveStep]);
 
     return (
         <React.Fragment>

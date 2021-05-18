@@ -6,6 +6,7 @@ import {
     Presentation,
     YourOffice,
     Onboarding,
+    Social,
     Motivation,
     Outro
 } from './pages';
@@ -57,14 +58,19 @@ import {
     Page10 as Onboarding10,
 } from './pages/Onboarding/subpages';
 
-// Del 5 - "Motiverende for ansatte"
+// Del 5 - "Sosialt i SYSCO"
+import {
+    Page1 as Social1,
+    Page2 as Social2,
+    Page3 as Social3,
+    Page4 as Social4,
+    Page5 as Social5,
+    Page6 as Social6,
+} from './pages/Social/subpages';
+
+// Del 6 - "Motiverende for ansatte"
 import {
     Page1 as Motivation1,
-    Page2 as Motivation2,
-    Page3 as Motivation3,
-    Page4 as Motivation4,
-    Page5 as Motivation5,
-    Page6 as Motivation6,
 } from './pages/Motivation/subpages';
 
 interface ICompontents {
@@ -110,13 +116,15 @@ const Components: ICompontents = {
     onboarding8: Onboarding8,
     onboarding9: Onboarding9,
     onboarding10: Onboarding10,
+    social: Social,
+    social1: Social1,
+    social2: Social2,
+    social3: Social3,
+    social4: Social4,
+    social5: Social5,
+    social6: Social6,
     motivation: Motivation,
     motivation1: Motivation1,
-    motivation2: Motivation2,
-    motivation3: Motivation3,
-    motivation4: Motivation4,
-    motivation5: Motivation5,
-    motivation6: Motivation6,
     outro: Outro
 }
 

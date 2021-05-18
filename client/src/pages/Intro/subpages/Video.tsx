@@ -6,8 +6,6 @@ import {
     Theme,
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import { Zustand } from '../../../store';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,14 +39,9 @@ export default function Video() {
 
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                >
-                {props => <div className={classes.root} style={props}>
+            <div className={classes.root}>
                     <Component/>
-                </div>}
-            </Spring>
+                </div>
         </React.Fragment>
     );
 };

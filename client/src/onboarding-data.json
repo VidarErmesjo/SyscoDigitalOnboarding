@@ -224,6 +224,47 @@
          ]
       },
       {
+         "id":"sosialt-i-sysco",
+         "title":"Sosialt i SYSCO",
+         "pages":[
+            {
+               "id":"",
+               "title":"Sosialt i SYSCO",
+               "component":"social"
+            },
+            {
+               "id":"1",
+               "title":"1",
+               "component":"social1"
+            },
+            {
+               "id":"2",
+               "title":"2",
+               "component":"social2"
+            },
+            {
+               "id":"3",
+               "title":"3",
+               "component":"social3"
+            },
+            {
+               "id":"4",
+               "title":"4",
+               "component":"social4"
+            },
+            {
+               "id":"5",
+               "title":"5",
+               "component":"social5"
+            },
+            {
+               "id":"6",
+               "title":"6",
+               "component":"social6"
+            }
+         ]
+      },
+      {
          "id":"motivasjon-for-ansatte",
          "title":"Motivasjon for ansatte",
          "pages":[
@@ -233,44 +274,19 @@
                "component":"motivation"
             },
             {
-               "id":"1",
-               "title":"1",
+               "id":"oppsummering",
+               "title":"Oppsummering",
                "component":"motivation1"
-            },
-            {
-               "id":"2",
-               "title":"2",
-               "component":"motivation2"
-            },
-            {
-               "id":"3",
-               "title":"3",
-               "component":"motivation3"
-            },
-            {
-               "id":"4",
-               "title":"4",
-               "component":"motivation4"
-            },
-            {
-               "id":"5",
-               "title":"5",
-               "component":"motivation5"
-            },
-            {
-               "id":"6",
-               "title":"6",
-               "component":"motivation6"
             }
          ]
       },
       {
-         "id":"avsluttning",
-         "title":"Avsluttning",
+         "id":"quiz",
+         "title":"Quiz",
          "pages":[
             {
                "id":"",
-               "title":"Avsluttning",
+               "title":"Quiz",
                "component":"outro"
             }
          ]

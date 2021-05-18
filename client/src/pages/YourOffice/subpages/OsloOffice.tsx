@@ -9,15 +9,13 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import OsloOfficeBig from '../../../assets/Polygons/OsloOfficeBig.svg';
-import OsloOfficeMedium from '../../../assets/Polygons/OsloOfficeMedium.svg';
-import OsloOfficeSmall from '../../../assets/Polygons/OsloOfficeSmall.svg';
+import OsloOfficeBig from '../../../assets/polygons/OsloOfficeBig.svg';
+import OsloOfficeMedium from '../../../assets/polygons/OsloOfficeMedium.svg';
+import OsloOfficeSmall from '../../../assets/polygons/OsloOfficeSmall.svg';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -134,7 +132,6 @@ export default function OsloOffice() {
     </React.Fragment> 
 
     const Component = (): JSX.Element => {
-        const scale = 820 / 671 * 0.75;
         return (
             <SyscoPage
                 title={<Title/>}
@@ -142,22 +139,16 @@ export default function OsloOffice() {
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-                style={{ width: 1268, height: 671, transform: `scale(${scale})` }}
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

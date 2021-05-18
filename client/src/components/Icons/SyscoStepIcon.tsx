@@ -1,25 +1,10 @@
 import React from "react";
 
 import {
-    createStyles,
-    makeStyles,
-    Theme,
     SvgIcon,
     SvgIconProps,
     useTheme
 } from '@material-ui/core';
-
-import { Spring } from 'react-spring/renderprops';
-
-const useStyles = makeStyles((theme: Theme) => 
-    createStyles({
-        root: {
-            '&:hover': {
-                fill: theme.palette.secondary.dark,
-            },
-        },
-    }),
-);
 
 export function SyscoTodoIcon(props: SvgIconProps): JSX.Element {
     const theme = useTheme();

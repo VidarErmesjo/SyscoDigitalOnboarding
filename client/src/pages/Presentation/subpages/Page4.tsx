@@ -8,7 +8,8 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
+// Icons
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import {
     SyscoPage,
@@ -25,11 +26,19 @@ const useStyles = makeStyles((theme: Theme) =>
         content: {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center',
+            width: '100%'
+        },
+        flexRow: {
+            display: 'flex',
             alignItems: 'center',
+            marginLeft: '15px',
+            justifyContent: 'flex-start'
         },
         item: {
             width: '100%',
+        },
+        whiteColor: {
+            color: "#FFFFFF"
         },
     })
 );
@@ -39,7 +48,31 @@ function Content() {
 
     return (
         <div className={classes.content}>
-            <Typography color="secondary" variant="h1">Side 4</Typography>
+            <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
+                <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
+                <Typography color="secondary" variant="h4">
+                    <h4 style={{ marginLeft: '10px' }}>
+                        Hva vi gjør
+                    </h4> 
+                </Typography>
+            </div>
+            <div 
+                className={classes.whiteColor} 
+                style={{
+                    fontSize: 32, 
+                    marginTop: '10vw', 
+                    display: 'flex', 
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}>
+                <h2>
+                    I hvilken sektorer innenfor energi jobber vi?
+                </h2>
+                <div style={{borderTop: '8px solid #00FF97', width: '30vw'}}>
+                        
+                </div>
+            </div>
         </div>
     );
 }
@@ -59,18 +92,12 @@ export default function Page4() {
             />           
         );
     }
-    
+
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

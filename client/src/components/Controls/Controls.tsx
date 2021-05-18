@@ -11,13 +11,16 @@ import { useRouteMatch, useLocation } from 'react-router-dom';
 
 import {
     ChevronLeft as ChevronLeftIcon,
-    ChevronRight as ChevronRightIcon
+    ChevronRight as ChevronRightIcon,
+    ZoomIn as ZoomInIcon,
+    ZoomOut as ZoomOutIcon
 } from '@material-ui/icons';
 
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
 
 const chevronSize = 100;
+const zoomSize = 100;
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -25,15 +28,23 @@ const useStyles = makeStyles((theme: Theme) =>
             fontSize: theme.typography.pxToRem(chevronSize),
             zIndex: theme.zIndex.mobileStepper,
         },
-        constrictedChevron: {
-            fontSize: theme.typography.pxToRem(chevronSize * 0.5),
-        },
         iconButton: {
             position: 'fixed',
             top: '50%',
             marginTop: theme.typography.pxToRem(-chevronSize * 0.5),
-            width: theme.typography.pxToRem(chevronSize),
-            height: theme.typography.pxToRem(chevronSize),
+            transition: theme.transitions.duration.short + 'ms',
+            '&:hover': {
+                color: theme.palette.secondary.dark,
+            },
+        },
+        zoom: {
+            fontSize: theme.typography.pxToRem(zoomSize),
+            zIndex: theme.zIndex.mobileStepper,
+        },
+        zoomButton: {
+            position: 'fixed',
+            right: 0,
+            marginTop: theme.typography.pxToRem(-zoomSize * 0.5),
             transition: theme.transitions.duration.short + 'ms',
             '&:hover': {
                 color: theme.palette.secondary.dark,
@@ -43,18 +54,27 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Controls() {
-    const [isLoading, currentStep, totalSteps, nextStep, previousStep] = Zustand.useStore(state => [
+    const [
+        isLoading,
+        currentStep,
+        totalSteps,
+        nextStep,
+        previousStep,
+        zoomIn,
+        zoomOut
+    ] = Zustand.useStore(state => [
         state.isLoading,
         state.currentStep,
         state.totalSteps,
         state.nextStep,
         state.previousStep,
+        state.zoomIn,
+        state.zoomOut
     ], shallow);
 
     const classes = useStyles();
 
-    return (
-        <React.Fragment>
+    const Navigation = () => <React.Fragment>
             <IconButton
                 color="secondary"
                 onClick={previousStep}
@@ -79,6 +99,31 @@ export default function Controls() {
                 >
                 <ChevronRightIcon color="inherit" className={classes.chevron}/>
             </IconButton>
+    </React.Fragment>
+
+    const Zoom = () => <React.Fragment>
+        <IconButton
+            color="secondary"
+            onClick={zoomIn}
+            className={classes.zoomButton}
+            style={{ top: "15%" }}
+            >
+            <ZoomInIcon color="inherit" className={classes.zoom}/>
+        </IconButton>
+        <IconButton
+            color="secondary"
+            onClick={zoomOut}
+            className={classes.zoomButton}
+            style={{ top: "30%" }}
+            >
+            <ZoomOutIcon color="inherit" className={classes.zoom}/>
+        </IconButton>
+    </React.Fragment>
+
+    return (
+        <React.Fragment>
+            <Navigation/>
+            <Zoom/>
         </React.Fragment>
     );
 }

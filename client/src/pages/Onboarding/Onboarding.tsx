@@ -8,8 +8,6 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
     SyscoLine,
@@ -36,24 +34,20 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    const Title = (): JSX.Element => {
-        return (<Typography color="secondary" variant="h1">Onboarding</Typography>);
-    }
-
-    return (
-        <div className={classes.config}>
-            <Box component={Title} className={classes.item}/>
-            <Box component={SyscoLine} className={classes.item}/>
-        </div>
-    );
-}
-
 export default function Onboarding() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Title = (): JSX.Element => <Typography
+        color="secondary"
+        variant="h1"
+        >
+        Onboarding
+    </Typography>
+
+    const Content = () => <div className={classes.config}>
+        <Box component={Title} className={classes.item}/>
+        <Box component={SyscoLine} className={classes.item}/>
+    </div>
 
     const Component = (): JSX.Element => {
         return (
@@ -69,15 +63,9 @@ export default function Onboarding() {
 
     return (
         <React.Fragment>
-			<Spring
-				from={{ opacity: 0 }}
-				to={{ opacity: 1 }}
-				config={{ duration: theme.transitions.duration.enteringScreen }}
-				>
-				{props => <div className={classes.root} style={props}>
+            <div className={classes.root}>
                     <Component/>
-                </div>}
-			</Spring>
+                </div>
         </React.Fragment>
     );
 };

@@ -9,8 +9,6 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
-import { Zustand } from '../../store';
-
 import { Progress } from '../Progress';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,14 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
             height: theme.spacing(14),
 			zIndex: 100,
-            backgroundColor: theme.palette.background.default,
+            backgroundColor: 'none',
 		},
     })
 );
 
 export default function Footer() {
-    // TODO: Lag tilstand som blanker ut når vi går fra en del til en annen!!
-    const [isLoading] = Zustand.useStore(state => [state.isLoading]);
+    // TODO: Lag tilstand som blanker ut når vi går fra en del til en annen?
+    //const [isLoading] = Zustand.useStore(state => [state.isLoading]);
     const classes = useStyles();
     const theme = useTheme();
 

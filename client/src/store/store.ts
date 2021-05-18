@@ -65,15 +65,21 @@ interface IStore {
     getPages: () => Page[];
     getPagesByCategory: () => Page[];
 
-    // Navigation
+    // Controls
     currentStep: number;
     totalSteps: number;
+    stepDirection: direction;
     nextStep: () => void;
     previousStep: () => void;
     gotoStep: (step: number) => void;
+
+    scale: number;
+    zoomIn: () => void;
+    zoomOut: () => void;
 }
 
-const timeout = 250;
+const timeout = 100;
+const increment = 0.05;
 const storageName = "SyscoDigitalOnboarding";
 
 enum direction {
@@ -91,7 +97,6 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             set({
                 isLoading: true,
                 user: email,
-                currentStep: 0,
                 totalSteps: totalSteps,
             });
             get().getCurrentPage().active = true;
@@ -103,6 +108,9 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             set({
                 isLoading: true,
                 currentStep: 0,
+                totalSteps: 0,
+                scale: 1,
+                stepDirection: direction.right,
                 data: null,
                 user: null
             });
@@ -136,13 +144,12 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
 
     // API
     calculateActiveStep: (): number =>{
-        const data = get().data;
         const category = get().getCurrentCategory();
         const categories = get().getCategories();
         const currentStep = get().currentStep;
 
         // Lag liste med antall sider per kategori.
-        const offsets = data?.categories.map((category) => category.pages.length);
+        const offsets = get().data?.categories.map((category) => category.pages.length);
 
         // Finn indeks til liste ovenfor.
         const index = categories.indexOf(categories.find(({ id }) => id === category.id)!);
@@ -155,15 +162,13 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         return currentStep - offset;
     },
     getCategories: (): Category[] => {
-        const data = get().data;
-        const categories = data?.categories.map((category) => category);
+        const categories = get().data?.categories.map((category) => category);
 
         return categories === undefined ? [] : categories;
     },
     getCurrentCategory: (): Category => {
-        const data = get().data;
         const currentRoute = get().getCurrentRoute().path.split("/")[2];
-        const category = data?.categories.find(({ id }) => id === currentRoute);
+        const category = get().data?.categories.find(({ id }) => id === currentRoute);
 
         return category === undefined ? { id: "", title: "", pages: [] } : category;
     },
@@ -210,9 +215,10 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         return pages;
     },
 
-    // Navigation
+    // Controls
     currentStep: 0,
     totalSteps: 0,
+    stepDirection: direction.right,
     nextStep: async () => {
         const currentStep = get().currentStep;
         const totalSteps = get().totalSteps;
@@ -227,9 +233,9 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                 const nextPage = get().getCurrentPage(1);
                 const previousPage = get().getCurrentPage(-1);
 
-                console.log(`${currentPage.id}.active: ${currentPage.active}, ${currentPage.id}.completed: ${currentPage.completed}`);
-                console.log(`${nextPage.id}.active: ${nextPage.active}, ${nextPage.id}.completed: ${nextPage.completed}`);
-                console.log(`${previousPage.id}.active: ${previousPage.active}, ${previousPage.id}.completed: ${previousPage.completed}`);
+                //console.log(`${currentPage.id}.active: ${currentPage.active}, ${currentPage.id}.completed: ${currentPage.completed}`);
+                //console.log(`${nextPage.id}.active: ${nextPage.active}, ${nextPage.id}.completed: ${nextPage.completed}`);
+                //console.log(`${previousPage.id}.active: ${previousPage.active}, ${previousPage.id}.completed: ${previousPage.completed}`);
 
                 // Normalt tilfelle
                 if(!(currentPage.isParent && nextPage.isChild)) {
@@ -252,6 +258,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                 if(currentStep < totalSteps - 1 ) {
                     set({
                         isLoading: true,
+                        stepDirection: direction.right,
                         currentStep: get().currentStep! + 1
                     });
                     get().getCurrentPage().active = true;
@@ -273,6 +280,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
 
                 set({
                     isLoading: true,
+                    stepDirection: direction.left,
                     currentStep: get().currentStep! - 1 * skip
                 });
                 get().getCurrentPage().active = true;
@@ -288,10 +296,16 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             currentStep: step
         });
 
-        const page = get().getCurrentPage(); 
-        page.active = true;
+        get().getCurrentPage().active = true; 
         setTimeout(() => set({ isLoading: false }), timeout);
-    }
+    },
+    scale: 1,
+    zoomIn: () => {
+        set(state => ({ scale: state.scale + increment }));
+    },
+    zoomOut: () => {
+        set(state => ({ scale: state.scale - increment }));
+    },
 })), { name: storageName, getStorage: () => localStorage}));
 
 const Zustand = { useStore };

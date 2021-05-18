@@ -8,8 +8,6 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
@@ -62,15 +60,9 @@ export default function Page1() {
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
+            <div className={classes.root}>
                     <Component/>
-                </div>}  
-            </Spring>
+                </div>
         </React.Fragment>
     );
 }

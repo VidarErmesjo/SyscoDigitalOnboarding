@@ -9,15 +9,13 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import ØlenOfficeBig from '../../../assets/Polygons/ØlenOfficeBig.svg';
-import ØlenOfficeMedium from '../../../assets/Polygons/ØlenOfficeMedium.svg';
-import ØlenOfficeSmall from '../../../assets/Polygons/ØlenOfficeSmall.svg';
+import ØlenOfficeBig from '../../../assets/polygons/ØlenOfficeBig.svg';
+import ØlenOfficeMedium from '../../../assets/polygons/ØlenOfficeMedium.svg';
+import ØlenOfficeSmall from '../../../assets/polygons/ØlenOfficeSmall.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -123,7 +121,6 @@ export default function ØlenOffice() {
     </React.Fragment> 
 
     const Component = (): JSX.Element => {
-        const scale = 820 / 671 * 0.75;
         return (
             <SyscoPage
                 title={<Title/>}
@@ -131,22 +128,16 @@ export default function ØlenOffice() {
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-                style={{ width: 1268, height: 671, transform: `scale(${scale})` }}
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

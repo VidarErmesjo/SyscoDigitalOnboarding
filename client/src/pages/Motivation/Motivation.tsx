@@ -8,8 +8,6 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
     SyscoLine
@@ -40,7 +38,7 @@ function Content() {
     const classes = useStyles();
 
     const Title = (): JSX.Element => {
-        return (<Typography color="secondary" variant="h1">Sosialt i SYSCO</Typography>);
+        return (<Typography color="secondary" variant="h1">Snart er det din tur!</Typography>);
     }
 
     return (
@@ -53,13 +51,12 @@ function Content() {
 
 export default function Motivation() {
     const classes = useStyles();
-    const theme = useTheme();
 
     const Component = (): JSX.Element => {
         return (
             <SyscoPage
                 title={null}
-                category="DEL 4"
+                category="DEL 5"
                 icon={null}
                 content={<Content/>}
                 color="secondary"
@@ -69,15 +66,9 @@ export default function Motivation() {
 
     return (
         <React.Fragment>
-			<Spring
-				from={{ opacity: 0 }}
-				to={{ opacity: 1 }}
-				config={{ duration: theme.transitions.duration.enteringScreen }}
-				>
-				{props => <div className={classes.root} style={props}>
+            <div className={classes.root}>
                     <Component/>
-                </div>}
-			</Spring>
+                </div>
         </React.Fragment>
     );
 };

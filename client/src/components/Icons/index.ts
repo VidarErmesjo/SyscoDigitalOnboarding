@@ -3,6 +3,7 @@ import AssignmentIcon from './AssignmentIcon';
 import CloseIcon from './CloseIcon';
 import CubeIcon from './CubeIcon';
 import GeoMarkerIcon from './GeoMarkerIcon';
+import HexagonIcon from './Hexagon';
 import MoodIcon from './MoodIcon';
 import OutdoorGrillIcon from './OutdoorGrillIcon';
 import ShadowedCubeIcon from './ShadowedCubeIcon';
@@ -18,6 +19,7 @@ export {
     CloseIcon,
     CubeIcon,
     GeoMarkerIcon,
+    HexagonIcon,
     MoodIcon,
     OutdoorGrillIcon,
     ShadowedCubeIcon,

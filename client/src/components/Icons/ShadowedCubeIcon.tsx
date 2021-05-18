@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from '@material-ui/core';
+import { SvgIconProps } from '@material-ui/core';
 
 export default function Polygon(props: SvgIconProps) {
     return (

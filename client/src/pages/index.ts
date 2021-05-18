@@ -3,7 +3,7 @@ import { Intro } from './Intro';
 import { Presentation } from './Presentation';
 import { YourOffice } from './YourOffice';
 import { Onboarding } from './Onboarding';
-import { OurFocus } from './OurFocus';
+import { Social } from './Social';
 import { Motivation } from './Motivation';
 import { Outro } from './Outro';
 
@@ -13,7 +13,7 @@ export {
     Presentation,
     YourOffice,
     Onboarding,
-    OurFocus,
+    Social,
     Motivation,
     Outro
 }

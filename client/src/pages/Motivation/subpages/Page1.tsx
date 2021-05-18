@@ -1,14 +1,13 @@
 import React from 'react';
 
 import {
+    Box,
     createStyles,
     makeStyles,
     Theme,
     Typography,
     useTheme
 } from '@material-ui/core';
-
-import { Spring } from 'react-spring/renderprops';
 
 import {
     SyscoPage,
@@ -29,29 +28,111 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
         },
         item: {
-            width: '100%',
+            width: 516,
+            height: 138,
+            backgroundColor: `rgba(42, 52, 63, 0.91)`,
+            margin: theme.typography.pxToRem(25),
         },
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.content}>
-            <Typography color="secondary" variant="h1">Side 1</Typography>
-        </div>
-    );
+interface IBoxContent {
+    title: string;
+    content: string;
 }
+
+const boxContent: IBoxContent[] = [
+    {
+        title: "Velkommen",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+    {
+        title: "Fadder?",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+    {
+        title: "Om SYSCO",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+    {
+        title: "Brukerkontoer",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+    {
+        title: "Prosjekter",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+    {
+        title: "Personalhåndbok",
+        content: "I tillegg har Oslo faste lønningspils på Oslo S, gaming- og spillkvelder på Lysaker kontoret, treningsgrupper for fotball og løping, lunsj-quiz, og middager."
+    },
+]
 
 export default function Page1() {
     const classes = useStyles();
     const theme = useTheme();
 
-    const Component = (): JSX.Element => {
+    const Title = () => <div className={classes.content}>
+        <Typography
+            color ="textPrimary"
+            style={{
+                fontSize: "40px",
+                fontStyle: "normal",
+                lineHeight: "46px"
+            }}
+            >
+            OPPSUMMERING
+        </Typography>
+    </div>
+
+    const Content = () => <Box
+        position="absolute"
+        top="141px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        >
+        {boxContent.map((item) => (
+            <span className={classes.item}>
+                <Typography
+                    color="textPrimary"
+                    style={{
+                        position: "absolute",
+                        fontSize: "20px",
+                        lineHeight: "23px",
+                        marginLeft: theme.typography.pxToRem(14),
+                        marginTop: theme.typography.pxToRem(14)
+                    }}
+                    >
+                    {item.title}
+                </Typography>
+                <ul style={{
+                        color: theme.palette.secondary.main,
+                        fontSize: 24,
+                        listStyle: "square",
+                        marginTop: theme.typography.pxToRem(40)
+                    }}>
+                    <li>
+                        <Typography
+                            color="textPrimary"
+                            style={{
+                                fontSize: "14px",
+                                lineHeight: "16.1px"
+                            }}
+                            >
+                            {item.content}
+                        </Typography>
+                    </li>
+                </ul>
+            </span>
+        ))}
+    </Box>
+
+    const Component = () => {
         return (
             <SyscoPage
-                title={null}
+                title={<Title/>}
                 category={null}
                 icon={null}
                 content={<Content/>}
@@ -62,15 +143,9 @@ export default function Page1() {
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
+            <div className={classes.root}>
                     <Component/>
-                </div>}  
-            </Spring>
+                </div>
         </React.Fragment>
     );
 }

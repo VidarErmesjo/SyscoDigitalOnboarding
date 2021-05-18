@@ -117,47 +117,6 @@ export default function SignupForm(props: any) {
                     </Form>
                 </Formik>}
             </Spring>
-                {/* <Formik
-                    initialValues={{...initialValues}}
-                    validationSchema={validationSchema}
-                    onSubmit={onSubmit}
-                    >
-                    <Form className={classes.form}>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                            >
-                            <Grid
-                                item
-                                xs={12}
-                                zeroMinWidth
-                                >
-                                <TextField
-                                    name="email"
-                                    label="SYSCO epost"
-                                    placeholder="navn.navnesen@sysco.no"
-                                    color="secondary"
-                                    variant="outlined"
-                                    size="small"
-                                    className={classes.textField}
-                                
-                                />
-                                <Button
-                                    variant="outlined"
-                                    color="secondary"
-                                    size="small"
-                                    startIcon={<PlayCircle/>}
-                                    type="submit"
-                                    className={classes.button}
-                                    >
-                                    Start
-                                </Button>              
-                            </Grid>
-                        </Grid>
-                    </Form>
-                </Formik> */}
         </React.Fragment>
     );  
 }

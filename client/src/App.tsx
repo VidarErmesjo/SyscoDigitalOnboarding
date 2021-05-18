@@ -74,7 +74,7 @@ export default function App() {
 
     return (
         <React.Fragment>
-            {data && data.categories?.length! > 0 ?
+            {data && data.categories.length > 0 ?
                 <div
                     className={classes.root}
                     //style={{ backgroundColor: user ? theme.palette.primary.main : theme.palette.background.default }}

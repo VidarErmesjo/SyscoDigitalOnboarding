@@ -4,13 +4,10 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
 
 import { Zustand } from './../../../store';
-
-import { Spring } from 'react-spring/renderprops';
 
 import NorwayMap from './NorwayMap';
 
@@ -58,12 +55,16 @@ const markers: IMarkers[] = [
         title: "Bergen",
     },
     {
-        offset: [280, 190],
-        title: "Haugesund",
+        offset: [220, 205],
+        title: "Stord",
     },
     {
         offset: [250, 230],
         title: "Ølen",
+    },
+    {
+        offset: [280, 190],
+        title: "Haugesund",
     },
     {
         offset: [195, 660],
@@ -72,10 +73,6 @@ const markers: IMarkers[] = [
     {
         offset: [360, 225],
         title: "Stavanger",
-    },
-    {
-        offset: [220, 205],
-        title: "Stord",
     },
 ]
 
@@ -120,28 +117,23 @@ function Markers() {
     );
 }
 
-function Component() {
-    return (
-        <div style={{ transform: `scale(1)`}}>         
-            <NorwayMap/>
-            <Markers/>
-        </div>
-    );
-}
-
 export default function Norway() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Component = () => {
+        return (
+            <div style={{ transform: `scale(1)`}}>         
+                <NorwayMap/>
+                <Markers/>
+            </div>
+        );
+    }
 
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div id="kart" className={classes.root} style={props}><Component/></div>}
-            </Spring>
+            <div id="kart" className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

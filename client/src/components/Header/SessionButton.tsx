@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-	Box,
 	createStyles,
 	IconButton,
 	makeStyles,
@@ -16,45 +15,10 @@ import {
 	AccountCircle as AccountCircleIcon,
 } from '@material-ui/icons';
 
-import { useSpring, animated } from 'react-spring';
 import { Spring } from 'react-spring/renderprops';
 
 import shallow from 'zustand/shallow';
 import { Zustand } from '../../store';
-
-interface FadeProps {
-    children?: React.ReactElement;
-    in: boolean;
-    onEnter?: () => {};
-    onExited?: () => {};
-}
-
-//const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
-function Fade(props: FadeProps) {
-    const { in: open, children, onEnter, onExited, ...other } = props;
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: open ? 1 : 0 },
-        onStart: () => {
-        if (open && onEnter) {
-            onEnter();
-        }
-        },
-        onRest: () => {
-        if (!open && onExited) {
-            onExited();
-        }
-        },
-    });
-
-    return (
-        <animated.div
-            //ref={ref} 
-            style={style} {...other}>
-            {children}
-        </animated.div>
-    );
-};
 
 const CustomTooltip = withStyles((theme: Theme) => ({
 	tooltip: {

@@ -9,17 +9,15 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
 import { WavingPersonIcon } from '../../../components/icons';
 
-import FadderBig from '../../../assets/Polygons/FadderBig.svg';
-import FadderMedium from '../../../assets/Polygons/FadderMedium.svg';
-import FadderSmall from '../../../assets/Polygons/FadderSmall.svg';
+import FadderBig from '../../../assets/polygons/FadderBig.svg';
+import FadderMedium from '../../../assets/polygons/FadderMedium.svg';
+import FadderSmall from '../../../assets/polygons/FadderSmall.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -150,7 +148,6 @@ function Content() {
 
 export default function Page8() {
     const classes = useStyles();
-    const theme = useTheme();
 
     const Title = () => <Typography
         color="textPrimary"
@@ -171,15 +168,9 @@ export default function Page8() {
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

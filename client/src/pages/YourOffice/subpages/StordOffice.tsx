@@ -9,15 +9,13 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import StordOfficeBig from '../../../assets/Polygons/StordOfficeBig.svg';
-import StordOfficeMedium from '../../../assets/Polygons/StordOfficeMedium.svg';
-import StordOfficeSmall from '../../../assets/Polygons/StordOfficeSmall.svg';
+import StordOfficeBig from '../../../assets/polygons/StordOfficeBig.svg';
+import StordOfficeMedium from '../../../assets/polygons/StordOfficeMedium.svg';
+import StordOfficeSmall from '../../../assets/polygons/StordOfficeSmall.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -143,7 +141,6 @@ export default function StordOffice() {
     </React.Fragment>
 
     const Component = (): JSX.Element => {
-        const scale = 820 / 671 * 0.75;
         return (
             <SyscoPage
                 title={<Title/>}
@@ -151,22 +148,16 @@ export default function StordOffice() {
                 icon={null}
                 content={<Content/>}
                 color="secondary"
-                style={{ width: 1268, height: 671, transform: `scale(${scale})` }}
+                style={{ width: 1268, height: 671 }}
             />           
         );
     }
     
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
-                >
-                {props => <div className={classes.root} style={props}>
-                    <Component/>
-                </div>}  
-            </Spring>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }
