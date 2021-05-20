@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -11,6 +12,10 @@ import {
 import {
     SyscoPage,
 } from '../../../components/Custom';
+
+import { CheckIcon } from '../../../components/icons';
+
+import Background from '../../../assets/images/ElhubProsjektet.png';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,29 +37,58 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.content}>
-            <Typography color="secondary" variant="h1">Side 7</Typography>
-        </div>
-    );
-}
+const title = "ELHUB-PROSJEKTET";
+const text = "Hvordan ser egentlig et vanlig prosjekt hos SYSCO ut? De neste sidene er en liten oppsummering av prosjektet “Elhub”"
 
 export default function Page7() {
     const classes = useStyles();
     const theme = useTheme();
 
-    const Component = (): JSX.Element => {
+    const Content = () => <React.Fragment>
+        <Box
+            position="absolute"
+            left="495px"
+            top="311px"
+            width="563px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            >
+            <Typography
+                style={{
+                    color: theme.palette.info.main,
+                    fontSize: 50,
+                    fontWeight: 700,
+                    lineHeight: "57.5px",
+                }}
+                >
+                {title}
+            </Typography>
+            <Typography
+                color="textPrimary"
+                style={{
+                    fontSize: 18,
+                    fontWeight: 700,
+                    lineHeight: "20.7px",
+                    textAlign: "center"
+                }}
+                >
+                {text}
+            </Typography>
+        </Box>
+    </React.Fragment>
+
+    const Component = () => {
         return (
             <SyscoPage
                 title={null}
-                category={null}
-                icon={null}
+                category="Vi er problemløsere"
+                icon={<CheckIcon fontSize="large"/>}
                 content={<Content/>}
                 color="secondary"
-            />           
+                style={{ backgroundImage: `url(${Background})` }}
+            />       
         );
     }
     

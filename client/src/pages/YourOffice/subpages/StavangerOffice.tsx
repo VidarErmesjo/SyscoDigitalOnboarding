@@ -50,6 +50,9 @@ const profileText = <React.Fragment>
     <br/>
     <br/>
     Tittel: Director Deliveries EnergyX
+    <br/>
+    <br/>
+    Mail: ulf.marius.forness@sysco.no
 
 </React.Fragment>
 

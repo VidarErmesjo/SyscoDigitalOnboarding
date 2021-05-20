@@ -14,7 +14,9 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CakeIcon from '@material-ui/icons/Cake';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 
-import { HexagonIcon } from '../../../components/icons';
+import HexagonImage, { IHexagonImage } from '../../../components/Custom/HexagonImage';
+
+import LisaOffice from '../../../assets/images/LisaOffice.png';
 
 import { SyscoPage, SyscoLogo } from '../../../components/Custom';
 
@@ -76,64 +78,52 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+const hexagons: IHexagonImage[] = [
+    {
+        minWidth: "258px", 
+        minHeight: "300px", 
+        positionLeft: "214px",
+        positionTop: "206px", 
+        imageURL: LisaOffice // "https://i.imgur.com/Yfh3aXT.png"
+    },
+    {
+        minWidth: "192px",
+        minHeight: "193px", 
+        positionLeft: "494px",
+        positionTop: "293px",
+        //imageURL: "https://i.imgur.com/2RZuwfa.png"
+        imageURL: LisaOffice
+    },
+    {
+        minWidth: "152px", 
+        minHeight: "152px",
+        positionLeft: "417px",
+        positionTop: "448px",
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
+    }
+]
+
 export default function Page1() {
     const classes = useStyles();
+    const theme = useTheme();
 
     const Content = () => {
-        /* const IconArray = [
-            {
-                minWdith: "240px",
-                minHeight: "220px",
-                positionTop: "8vw",
-                positionLeft: "7vw",
-                imageURL: "https://i.imgur.com/Yfh3aXT.png"
-            },
-            {
-                minWidth: "130px",
-                minHeight: "120px",
-                positionTop: "6vw",
-                positionLeft: "16vw",
-                imageURL: "https://i.imgur.com/2RZuwfa.png"
-            },
-            {
-                minWidth: "180px",
-                minHeight: "180px", 
-                positionBottom: "11vw",
-                positionLeft: "21vw",
-                imageURL: "https://i.imgur.com/HHsQUcZ.png"
-            }
-        ] */
         return (
             <div className={classes.content}>
                 <div className={classes.divider}>
                     <div className={classes.leftSide}>
-                        
-                        <HexagonIcon 
-                            minWidth="240px" 
-                            minHeight="220px" 
-                            positionTop="8vw" 
-                            positionLeft="7vw"
-                            imageURL="https://i.imgur.com/Yfh3aXT.png"
-                            key={1}
-                        />
-                        <HexagonIcon 
-                            minWidth="130px" 
-                            minHeight="120px" 
-                            positionTop="6vw"
-                            positionLeft="16vw"
-                            imageURL="https://i.imgur.com/2RZuwfa.png"
-                            key={2}
-                        />
-                        <HexagonIcon 
-                            minWidth="180px" 
-                            minHeight="180px" 
-                            positionBottom="11vw"
-                            positionLeft="21vw"
-                            imageURL="https://i.imgur.com/HHsQUcZ.png"
-                            key={3}
-                        />
+                        {hexagons.map((hexagon, index) => (
+                            <HexagonImage 
+                                minWidth={hexagon.minWidth} 
+                                minHeight={hexagon.minHeight}
+                                positionLeft={hexagon.positionLeft}
+                                positionTop={hexagon.positionTop}
+                                imageURL={hexagon.imageURL}
+                                key={index}
+                            />
+                        ))}
                     </div>
-                    <div className={classes.rightSide} style={{marginTop: '2vw'}}>
+                    <div className={classes.rightSide} style={{ marginTop: '2vw'}} >
                         <div className={classes.innerDividerTwo}>
                             <div>
                                 {/* Logo */}
@@ -141,8 +131,7 @@ export default function Page1() {
                                     <SyscoLogo 
                                         className={classes.whiteColor} 
                                         style={{ fontSize: 318, marginTop: '-4vw' }}
-                                    />
-                                    
+                                    />                                    
                                 </div>
                                 <div className={classes.whiteColor} >
                                     <p style={{ fontSize: 52, marginTop: '-4vw', marginLeft: '15px' }}>
@@ -159,7 +148,15 @@ export default function Page1() {
                                 </div>
                             </div>
                             <div>
-                                <svg height="370" width="370" style={{marginRight: '35px', position: 'absolute', marginLeft: '4vw', marginTop: '6vw'}}>
+                                <svg
+                                    height="370"
+                                    width="370"
+                                    style={{
+                                        marginRight: '35px',
+                                        position: 'absolute',
+                                        marginLeft: '4vw',
+                                        marginTop: '6vw'
+                                    }}>
                                     <circle cx="350" cy="350" r="300"  stroke-width="5" fill="none" />
                                     <image 
                                         className='img-circle' 
@@ -177,27 +174,51 @@ export default function Page1() {
                         <div className={classes.innerDivider}>
                             {/* ---------------------------- LEFT SIDE ------------------------- */}
                             <div>
-                                <div className={classes.flexRow + ' ' + classes.whiteColor} style={{marginTop: '-1vw'}}>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <p style={{fontSize: 28}}>
+                                <div
+                                    className={classes.flexRow + ' ' + classes.whiteColor}
+                                    style={{ marginTop: '-1vw' }}
+                                    >
+                                    <ArrowRightIcon
+                                        style={{ color: theme.palette.secondary.main }}
+                                        fontSize="large"
+                                    />
+                                    <p style={{ fontSize: 28 }}>
                                         Demografi
                                     </p>
                                 </div>
-                                <div className={classes.flexRow + ' ' + classes.whiteColor} style={{marginTop: '-2vw'}}>
-                                    <PinDropIcon style={{color: '#FFFFFF'}} fontSize="large" />
-                                    <p style={{fontSize: 22, marginLeft: '15px', }}>
+                                <div
+                                    className={classes.flexRow + ' ' + classes.whiteColor}
+                                    style={{ marginTop: '-2vw' }}
+                                    >
+                                    <PinDropIcon
+                                        style={{ color: theme.palette.background.paper }}
+                                        fontSize="large"
+                                    />
+                                    <p style={{ fontSize: 22, marginLeft: '15px' }}>
                                         Hovedkontor i Haugesund
                                     </p>
                                 </div>
-                                <div className={classes.flexRow + ' ' + classes.whiteColor} style={{marginTop: '-2vw'}}>
-                                    <CakeIcon style={{color: '#FFFFFF'}} fontSize="large" />
-                                    <p style={{fontSize: 22, marginLeft: '15px'}}>
+                                <div
+                                    className={classes.flexRow + ' ' + classes.whiteColor}
+                                    style={{ marginTop: '-2vw' }}
+                                    >
+                                    <CakeIcon
+                                        style={{ color: theme.palette.background.paper }}
+                                        fontSize="large"
+                                        />
+                                    <p style={{ fontSize: 22, marginLeft: '15px' }}>
                                     Etablert 2. juli 2004
                                     </p>
                                 </div>
-                                <div className={classes.flexRow + ' ' + classes.whiteColor} style={{marginTop: '-2vw'}}>
-                                    <LocationCityIcon style={{color: '#FFFFFF'}} fontSize="large" />
-                                    <p style={{fontSize: 20, marginLeft: '15px'}}>
+                                <div
+                                    className={classes.flexRow + ' ' + classes.whiteColor}
+                                    style={{ marginTop: '-2vw' }}
+                                    >
+                                    <LocationCityIcon
+                                        style={{ color: theme.palette.background.paper }}
+                                        fontSize="large"
+                                    />
+                                    <p style={{ fontSize: 20, marginLeft: '15px' }}>
                                     Eies av det norske investerings-selskapet <br />
                                     Credo Partners med Ferd som største investor
                                     </p>
@@ -205,13 +226,25 @@ export default function Page1() {
                             </div>
                             {/* ---------------------------- RIGHT SIDE ------------------------- */}
                             <div>
-                                <div className={classes.flexRow + ' ' + classes.whiteColor} style={{marginTop: '-1vw'}}>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <p style={{fontSize: 28}}>
+                                <div
+                                    className={classes.flexRow + ' ' + classes.whiteColor}
+                                    style={{ marginTop: '-1vw' }}>
+                                    <ArrowRightIcon
+                                        style={{ color: theme.palette.secondary.main }}
+                                        fontSize="large"
+                                    />
+                                    <p style={{ fontSize: 28 }}>
                                         Styret
                                     </p>
                                 </div>
-                                <ul style={{fontSize: 22, marginLeft: '15px', marginTop: '-1vw' }} className={classes.whiteColor}>
+                                <ul
+                                    style={{
+                                        fontSize: 22,
+                                        marginLeft: '15px',
+                                        marginTop: '-1vw'
+                                    }} 
+                                    className={classes.whiteColor}
+                                    >
                                     <li>
                                         Administrenrende direktør: Dagfinn Ringås
                                     </li>

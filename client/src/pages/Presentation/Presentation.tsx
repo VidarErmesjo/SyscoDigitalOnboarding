@@ -15,6 +15,8 @@ import {
     SyscoLogo
 } from '../../components/Custom';
 
+import { AssignmentIcon, AvatarIcon, CheckIcon } from '../../components/icons';
+
 const itemSpacing = 24;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -38,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
             height: 820,
             backgroundColor: theme.palette.primary.main,
 
-            //transform: `scale(0.75)`,
             userSelect: 'none',
         },
         container: {
@@ -88,19 +89,19 @@ function Content() {
             <div className={classes.container}>
                 <SyscoCard
                     title="Hvem er vi?"
-                    icon={null}
+                    icon={<AvatarIcon/>}
                     content={whoAreWeText}
                     onClick={() => alert(whoAreWeText)}                     
                 />
                 <SyscoCard
                     title="Hva vi gjør"
-                    icon={null}
+                    icon={<AssignmentIcon/>}
                     content={whatWeDoText}
                     onClick={() => alert(whatWeDoText)}                     
                 />
                 <SyscoCard
                     title="Vi er problemløsere"
-                    icon={null}
+                    icon={<CheckIcon/>}
                     content={weAreProblemSolversText}
                     onClick={() => alert(weAreProblemSolversText)}                     
                 />

@@ -15,7 +15,6 @@ import {
     useLocation,
 } from 'react-router-dom';
 
-import { Spring, Transition} from 'react-spring/renderprops';
 import { animated, useTransition } from 'react-spring';
 
 import shallow from 'zustand/shallow';
@@ -72,8 +71,7 @@ export default function Content() {
     const from = React.useMemo(() => stepDirection === 0 ? "-200%" : "200%", [currentStep]);
     const leave = React.useMemo(() => stepDirection === 1 ? "-200%" : "200%", [currentStep]);
 
-    const location = useLocation();
-    const transitions = useTransition(location, location => location.pathname, {
+    const transitions = useTransition(useLocation(), location => location.pathname, {
         from: { opacity: 0, transform: `translateX(${from})` },
         enter: { opacity: 1, transform: `translateX(0%)` },
         leave: { opacity: 0, transform: `translateX(${leave})` }
@@ -97,31 +95,14 @@ export default function Content() {
                         exact
                         to={currentRoute}
                     />}
-                    {transitions.map(({ item: location, props, key }) => (
-                        <animated.div style={props} key={key}>
+                    {transitions.map(({ item: location, props, key }) => {
+                        //console.log(location.pathname);
+                        return <animated.div style={props} key={key}>
                             <Switch location={location}>
                                 {routes}
                             </Switch>
                         </animated.div>
-                    ))}
-{/* 
-                    <Transition
-                        //native
-                        //reset
-                        //unique
-                        items={currentStep}
-                        from={{ transform: `translateX(${from})` }}
-                        enter={{ transform: `translateX(0%)` }}
-                        leave={{ transform: `translateX(${leave})` }}
-                        >
-                        {currentStep => style => <animated.div
-                            style={{ ...style }}
-                            >
-                            {routes}
-                        </animated.div>}                        
-                    </Transition>
-                    {user && <Redirect exact to={currentRoute}/>}   */}
-
+                    })}
                 </React.Fragment>
             </Container>
         </React.Fragment>

@@ -44,12 +44,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Page4() {
     const classes = useStyles();
+    const theme = useTheme();
 
     const Content = () => {
         return (
             <div className={classes.content}>
                 <div className={classes.flexRow} style={{ marginLeft: '40px', marginTop: '-20px' }}>
-                    <AssignmentIcon style={{color: '#00FF97'}} fontSize="large" />
+                    <AssignmentIcon color="secondary" fontSize="large" />
                     <Typography color="secondary" variant="h4">
                         <h4 style={{ marginLeft: '10px' }}>
                             Hva vi gjør
@@ -69,15 +70,13 @@ export default function Page4() {
                     <h2>
                         I hvilken sektorer innenfor energi jobber vi?
                     </h2>
-                    <div style={{borderTop: '8px solid #00FF97', width: '30vw'}}>
-                            
-                    </div>
+                    <div style={{ borderTop: `8px solid ${theme.palette.secondary.main}`, width: '30vw' }}/>
                 </div>
             </div>
         );
     }    
 
-    const Component = (): JSX.Element => {
+    const Component = () => {
         return (
             <SyscoPage
                 title={null}

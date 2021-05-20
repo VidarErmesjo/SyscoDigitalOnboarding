@@ -1,13 +1,9 @@
 import React from "react";
 
 import {
-    Box,
-    ButtonBase,
     createStyles,
-    Icon,
     IconButton,
     makeStyles,
-    SvgIconProps,
     Theme,
     Typography,
     useTheme,
@@ -41,6 +37,7 @@ interface SyscoCardProps {
 
 export default function SyscoCard({title, icon, content, onClick}: SyscoCardProps): JSX.Element {
     const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <span className={classes.item}>
@@ -51,13 +48,26 @@ export default function SyscoCard({title, icon, content, onClick}: SyscoCardProp
                 className={classes.iconButton}
                 >
                 {icon}
-                <Typography color="inherit" variant="h4" noWrap style={{ marginLeft: '0.25em'}}>
+                <Typography
+                    color="inherit"
+                    noWrap
+                    style={{
+                        fontSize: 34,
+                        lineHeight: "39.1px",
+                        marginLeft: theme.spacing(1)
+                    }}
+                    >
                     {title}
                 </Typography>
             </IconButton>
             <Typography
                 color="textPrimary"
-                variant="body1"
+                style={{
+                    fontSize: 24,
+                    lineHeight: "27.6px",
+                    fontStyle: "normal",
+                    fontWeight: "normal"
+                }}
                 >
                 {content}
             </Typography>

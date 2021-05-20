@@ -9,7 +9,8 @@ import {
 
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import { HexagonIcon } from '../../../components/icons';
+import HexagonImage, { IHexagonImage } from '../../../components/Custom/HexagonImage';
+
 
 import {
     SyscoPage
@@ -73,79 +74,103 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
+const hexagons: IHexagonImage[] = [
+    {
+        minWidth: "192px", 
+        minHeight: "193px", 
+        positionLeft: "302px",
+        positionTop: "179px", 
+        imageURL: "https://i.imgur.com/Yfh3aXT.png"
+    },
+    {
+        minWidth: "152px",
+        minHeight: "152px", 
+        positionLeft: "233px",
+        positionTop: "344px",
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
+    },
+    {
+        minWidth: "258px", 
+        minHeight: "300px",
+        positionLeft: "406px",
+        positionTop: "313px",
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
+    }
+]
+
+interface IFacts {
+    title: string;
+    value: string;
+}
+
+const facts: IFacts[] = [
+    {
+        title: "Kunder",
+        value: "500"
+    },
+    {
+        title: "Omsetning",
+        value: "385"
+    },
+    {
+        title: "Land",
+        value: "3"
+    },
+    {
+        title: "Eierskap",
+        value: "Privat"
+    },
+    {
+        title: "Energikunder",
+        value: "100"
+    },
+    {
+        title: "Ansatte",
+        value: "235"
+    }
+]
+
 export default function Page2() {
     const classes = useStyles();
+    const theme = useTheme();
 
-    const Content = () => {
-    
+    const Content = () => {    
         return (
             <div className={classes.content}>
                 <div className={classes.divider}>
                     <div className={classes.leftSide}>
-                        
-                        <HexagonIcon 
-                            minWidth="240px" 
-                            minHeight="220px" 
-                            positionTop="8vw" 
-                            positionLeft="7vw"
-                            imageURL="https://i.imgur.com/Yfh3aXT.png"
-                            key={1}
-                        />
-                        <HexagonIcon 
-                            minWidth="130px" 
-                            minHeight="120px" 
-                            positionTop="6vw"
-                            positionLeft="16vw"
-                            imageURL="https://i.imgur.com/2RZuwfa.png"
-                            key={2}
-                        />
-                        <HexagonIcon 
-                            minWidth="180px" 
-                            minHeight="180px" 
-                            positionBottom="11vw"
-                            positionLeft="21vw"
-                            imageURL="https://i.imgur.com/HHsQUcZ.png"
-                            key={3}
-                        />
+                        {hexagons.map((hexagon, index) => (
+                            <HexagonImage 
+                                minWidth={hexagon.minWidth} 
+                                minHeight={hexagon.minHeight} 
+                                positionLeft={hexagon.positionLeft}
+                                positionTop={hexagon.positionTop} 
+                                imageURL={hexagon.imageURL}
+                                key={index}
+                            />
+                        ))}                     
                     </div>
-                    <div className={classes.rightSide + ' ' + classes.whiteColor} style={{marginTop: '5vw'}}>
-                        <div style={{marginLeft: '5vw', fontSize: '28px'}}>
-                            <ul style={{listStyleType: 'none', marginTop: '5vw', fontSize: 32}}>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" /> 
-                                    <strong>500</strong> Kunder
-                                </li>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <strong>385</strong> Omsetning
-                                </li>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <strong>3</strong> Land
-                                </li>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <strong>Privat</strong> Eierskap
-                                </li>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <strong>100</strong> Energikunder
-                                </li>
-                                <li>
-                                    <ArrowRightIcon style={{color: '#00FF97'}} fontSize="large" />
-                                    <strong>235</strong> Ansatte
-                                </li>
+                    <div className={classes.rightSide + ' ' + classes.whiteColor} style={{ marginTop: '5vw' }}>
+                        <div style={{ marginLeft: '5vw', fontSize: '28px' }}>
+                            <ul style={{ listStyleType: 'none', marginTop: '5vw', fontSize: 32 }}>
+                                {facts.map((fact, index) => (
+                                    <li key={index}>
+                                        <ArrowRightIcon
+                                            style={{ color: theme.palette.secondary.main }}
+                                            fontSize="large"
+                                            /> 
+                                        <strong>{fact.value}</strong> {fact.title}
+                                    </li>
+                                ))}
                             </ul>
                         </div>
-                        
-                           
                     </div>
                 </div> 
             </div>
         );
     }
 
-    const Component = (): JSX.Element => {
+    const Component = () => {
         return (
             <SyscoPage
                 title={null}

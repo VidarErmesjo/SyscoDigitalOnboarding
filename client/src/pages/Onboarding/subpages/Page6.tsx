@@ -22,6 +22,12 @@ const useStyles = makeStyles((theme: Theme) =>
             left: '50%',
             transform: `translate(-50%, -50%)`,
         },
+		content: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
 		linkText: {
 			transition: theme.transitions.duration.standard + 'ms',
 			color: theme.palette.info.main,
@@ -133,7 +139,6 @@ function Steps() {
 						style={{ textDecoration: 'none' }}
 						>
 						<Typography
-							//color="error"
 							className={classes.linkText}
 							>
 							{step.linkText}
@@ -203,9 +208,19 @@ function Content() {
 export default function Page6(): JSX.Element {
 	const classes = useStyles();
 
-	const Title = (): JSX.Element => <span style={{ fontSize: 60 }}>Step - By - Step</span>
+	const Title = () => <div className={classes.content}>
+		<Typography
+			color="secondary"
+			style={{
+				fontSize: 60,
+				lineHeight:"68.99px"
+			}}
+			>
+			Step - By - Step
+		</Typography>
+	</div>
 
-	const Component = (): JSX.Element => {
+	const Component = () => {
 		return (
 			<SyscoPage
 				title={<Title/>}

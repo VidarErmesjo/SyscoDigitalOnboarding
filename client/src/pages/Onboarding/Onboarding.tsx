@@ -4,8 +4,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
 
 import {
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Onboarding() {
     const classes = useStyles();
 
-    const Title = (): JSX.Element => <Typography
+    const Title = () => <Typography
         color="secondary"
         variant="h1"
         >
@@ -49,7 +48,7 @@ export default function Onboarding() {
         <Box component={SyscoLine} className={classes.item}/>
     </div>
 
-    const Component = (): JSX.Element => {
+    const Component = () => {
         return (
             <SyscoPage
                 title={null}
@@ -68,4 +67,4 @@ export default function Onboarding() {
                 </div>
         </React.Fragment>
     );
-};
+}

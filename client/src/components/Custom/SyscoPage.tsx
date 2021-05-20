@@ -67,7 +67,11 @@ export default function SyscoPage(props: SyscoPageProps): JSX.Element {
                             ? "textPrimary"
                             : "secondary"
                         }
-                        variant="h5"
+                        style={{
+                            fontSize: 40,
+                            lineHeight: "46px",
+                            zIndex: theme.zIndex.mobileStepper
+                        }}
                         >
                         {category}
                     </Typography>
