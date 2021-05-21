@@ -5,8 +5,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme,
+    Typography
 } from '@material-ui/core';
 
 import {
@@ -100,7 +99,6 @@ const items: IItem[] = [
 
 export default function Page1() {
     const classes = useStyles();
-    const theme = useTheme();
 
     const Title = () => <div className={classes.title}>
         <Box

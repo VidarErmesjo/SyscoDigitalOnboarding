@@ -100,9 +100,9 @@ export default function Page9() {
         <Box
             position="absolute"
             left="-1px"
-            bottom="0px"
+            bottom="-1px"
             width="1542px"
-            height="502px"
+            height="504px"
             style={{ backgroundColor: theme.palette.background.default }}
             >
             <Box
@@ -134,17 +134,23 @@ export default function Page9() {
                     <ul
                         style={{
                             listStyle: "square",
-                            fontSize: 40,
+                            fontSize: 30,
                             color: theme.palette.secondary.main
-                            }}
+                        }}
                         >
-                        {listItems.map((item, index) => {
+                        {listItems.map((item, index) => ( 
                             <li key={index}>
-                                <Typography color="textPrimary">
+                                <Typography
+                                    color="textPrimary"
+                                    style={{
+                                        fontSize: 20,
+                                        lineHeight: "23px"
+                                    }}
+                                    >
                                     {item}
                                 </Typography>
                             </li>
-                        })}
+                        ))}
                     </ul>
                 </div>
                 <div className={classes.item}>

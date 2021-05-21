@@ -93,7 +93,7 @@ function Overlay1() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay2() {
     return (
@@ -125,7 +125,7 @@ function Overlay2() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay3() {
     return (
@@ -162,7 +162,7 @@ function Overlay3() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay4() {
     return (
@@ -201,7 +201,7 @@ function Overlay4() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay5() {
     return (
@@ -239,7 +239,7 @@ function Overlay5() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay6() {
     return (
@@ -265,14 +265,14 @@ function Overlay6() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay7() {
     return (
         <React.Fragment>
         </React.Fragment>
     );
-};
+}
 
 function Overlay8() {
     return (
@@ -309,7 +309,7 @@ function Overlay8() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay9() {
     return (
@@ -346,7 +346,7 @@ function Overlay9() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay10() {
     return (
@@ -383,7 +383,7 @@ function Overlay10() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay11() {
     return (
@@ -415,7 +415,7 @@ function Overlay11() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay12() {
     const theme = useTheme();
@@ -443,7 +443,7 @@ function Overlay12() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay13() {
     const theme = useTheme();
@@ -471,7 +471,7 @@ function Overlay13() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 function Overlay14() {
     const theme = useTheme();
@@ -499,7 +499,7 @@ function Overlay14() {
             </Typography>
         </React.Fragment>
     );
-};
+}
 
 type ListItem = {
     title: string;
@@ -620,14 +620,15 @@ function ButtonOverlayWrapper({title, content}: ListItem) {
         <Typography style={{
                 fontSize: 30,
                 lineHeight: '34,5px',
-                textShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`
+                textShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+                marginLeft: theme.spacing(14)
             }}>
             {title}
         </Typography>
         <UpRightArrowIcon color="secondary" style={{ marginLeft: theme.spacing(1) }}/>
     </Box>
 
-    const Content = () => content!;
+    const Content = () => content;
 
     return (
         <React.Fragment>
@@ -674,29 +675,6 @@ function SyscoBox({listItem}: ISyscoBox) {
     );
 }
 
-function Content() {
-    const classes = useStyles();
-
-    return (
-        <span className={classes.content}>
-            <Box
-                position="absolute"
-                left="98px"
-                top="137px"
-                >
-                <SyscoBox listItem={leftContent}/>
-            </Box>
-            <Box
-                position="absolute"
-                left="785px"
-                top="137px"
-                >
-                <SyscoBox listItem={rightContent}/>
-            </Box>
-        </span>
-    );
-}
-
 export default function Page10() {
     const classes = useStyles();
     const theme = useTheme();
@@ -719,6 +697,25 @@ export default function Page10() {
             style={{ marginLeft: theme.spacing(2) }}
         />
     </Box>
+
+    const Content = () => <React.Fragment>
+            <span className={classes.content}>
+                <Box
+                    position="absolute"
+                    left="98px"
+                    top="137px"
+                    >
+                    <SyscoBox listItem={leftContent}/>
+                </Box>
+                <Box
+                    position="absolute"
+                    left="785px"
+                    top="137px"
+                    >
+                    <SyscoBox listItem={rightContent}/>
+                </Box>
+            </span>
+    </React.Fragment>
 
     const Component = (): JSX.Element => {
         return (

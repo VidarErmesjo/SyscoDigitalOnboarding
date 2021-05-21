@@ -84,15 +84,14 @@ const hexagons: IHexagonImage[] = [
         minHeight: "300px", 
         positionLeft: "214px",
         positionTop: "206px", 
-        imageURL: LisaOffice // "https://i.imgur.com/Yfh3aXT.png"
+        imageURL: "https://i.imgur.com/Yfh3aXT.png"
     },
     {
         minWidth: "192px",
         minHeight: "193px", 
         positionLeft: "494px",
         positionTop: "293px",
-        //imageURL: "https://i.imgur.com/2RZuwfa.png"
-        imageURL: LisaOffice
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
         minWidth: "152px", 
@@ -154,7 +153,7 @@ export default function Page1() {
                                     style={{
                                         marginRight: '35px',
                                         position: 'absolute',
-                                        marginLeft: '4vw',
+                                        //marginLeft: '2vw',
                                         marginTop: '6vw'
                                     }}>
                                     <circle cx="350" cy="350" r="300"  stroke-width="5" fill="none" />

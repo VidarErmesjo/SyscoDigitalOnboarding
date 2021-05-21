@@ -5,6 +5,7 @@ import CheckIcon from './CheckIcon';
 import CloseIcon from './CloseIcon';
 import CubeIcon from './CubeIcon';
 import GeoMarkerIcon from './GeoMarkerIcon';
+import LoginIcon from './LoginIcon';
 import MoodIcon from './MoodIcon';
 import OutdoorGrillIcon from './OutdoorGrillIcon';
 import PeopleIcon from './PeopleIcon';
@@ -24,6 +25,7 @@ export {
     CloseIcon,
     CubeIcon,
     GeoMarkerIcon,
+    LoginIcon,
     MoodIcon,
     OutdoorGrillIcon,
     PeopleIcon,

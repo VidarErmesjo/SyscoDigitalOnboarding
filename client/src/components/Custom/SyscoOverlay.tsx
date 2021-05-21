@@ -33,8 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
         title: {
             display: 'flex',
             height: 79,
-            justifyContent: 'center',
-            alignItems: 'center',
             
             color: theme.palette.text.primary,
             backgroundColor: theme.palette.background.default,
@@ -67,14 +65,13 @@ const useStyles = makeStyles((theme: Theme) =>
 interface SyscoOverlayProps {
     title?: React.ReactNode | string | null;
     open: boolean;
-    content?: React.ReactNode | null | undefined;
+    content: React.ReactNode | null | undefined;
+    style?: React.CSSProperties;
     handleClose: () => void;
 }
 
 
-export default function SyscoOverlay(props: SyscoOverlayProps) {
-    const {title, open, content, handleClose} = props;
-
+export default function SyscoOverlay({title, open, content, handleClose}: SyscoOverlayProps) {
     const classes = useStyles();
     const theme = useTheme();
 

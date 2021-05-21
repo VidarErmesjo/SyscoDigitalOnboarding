@@ -1,9 +1,11 @@
 import React from "react";
 
 import {
+    Box,
     createStyles,
     makeStyles,
     Theme,
+    Typography,
     useTheme
 } from '@material-ui/core';
 
@@ -235,7 +237,26 @@ const bullets: IBulletPoints[] = [
 ]
 
 function ButtonOverlayWrapper({value, offset, content}: IBulletPoints) {
+    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+
+    const Title = () => <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        >
+        <Typography
+            color="textPrimary"
+            style={{
+                fontSize: 30,
+                fontStyle: "italic",
+                lineHeight: "34.5px",
+                marginLeft: theme.spacing(8)
+            }}
+            >
+            {value}
+        </Typography>
+    </Box>
 
     const Content = () => content!;
 
@@ -247,7 +268,7 @@ function ButtonOverlayWrapper({value, offset, content}: IBulletPoints) {
             <SyscoTextButtonBulleted value={value} offset={offset} onClick={handleOpen}/>
             <SyscoOverlay
                 open={open}
-                title={value}
+                title={<Title/>}
                 content={<Content/>}
                 handleClose={handleClose}
             />
@@ -255,22 +276,17 @@ function ButtonOverlayWrapper({value, offset, content}: IBulletPoints) {
     );
 }
 
-function Content() {
-    return (
-        <React.Fragment>
-            {bullets.map((bullet, index) => <ButtonOverlayWrapper
-                key={index}
-                value={bullet.value}
-                offset={bullet.offset}
-                content={bullet.content}
-            />)}
-        </React.Fragment>
-    );
-}
-
 export default function Page7() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Content = () => <React.Fragment>
+        {bullets.map((bullet, index) => <ButtonOverlayWrapper
+            key={index}
+            value={bullet.value}
+            offset={bullet.offset}
+            content={bullet.content}
+        />)}
+    </React.Fragment>
 
     const Component = (): JSX.Element =>  {
         return (

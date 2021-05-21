@@ -95,9 +95,9 @@ export default function Page8() {
         <Box
             position="absolute"
             left="-1px"
-            bottom="0px"
+            bottom="-1px"
             width="1542px"
-            height="502px"
+            height="504px"
             style={{ backgroundColor: theme.palette.background.default }}
             >
             <Box
