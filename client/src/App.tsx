@@ -67,8 +67,9 @@ export default function App() {
                 if(!response.ok)
                     console.log("Using local backup data. ;)");
 
-                return response.ok ? response.json() : JSON.stringify(onboardingData);
+                return response.ok ? response.json() : JSON.parse(JSON.stringify(onboardingData));
             }).then((payload) => {
+                console.log(payload);
                 setData(payload);
             }).catch(error => {
                 console.log(error);
