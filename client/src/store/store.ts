@@ -259,7 +259,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                     set({
                         isLoading: true,
                         stepDirection: direction.right,
-                        currentStep: get().currentStep! + 1
+                        currentStep: currentStep + 1
                     });
                     get().getCurrentPage().active = true;
                 }
@@ -267,7 +267,8 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             }
     },    
     previousStep: async () => {
-        if(get().currentStep! > 0)
+        const currentStep = get().currentStep;
+        if(currentStep > 0)
             if(!get().isLoading) {
                 const currentPage = get().getCurrentPage();
                 const previousPage = get().getCurrentPage(-1);
@@ -288,8 +289,9 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             }
     },
     gotoStep: async (step: number) => {
-        const currentStep = get().currentStep;  
-        step = step < 0 ? currentStep : step >= get().totalSteps ? currentStep : step;
+        const currentStep = get().currentStep;
+        const totalSteps = get().totalSteps;
+        step = step < 0 ? currentStep : (step >= totalSteps ? currentStep : step);
 
         set({
             isLoading: true,
