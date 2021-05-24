@@ -5,8 +5,7 @@ import {
     createStyles,
     Grid,
     makeStyles,
-    Theme,
-    useTheme
+    Theme
 } from '@material-ui/core';
 
 import {
@@ -17,7 +16,7 @@ import {
     Formik,
     Form,
     FormikHelpers,
-    useFormik
+    //useFormik
 } from 'formik';
 
 import { Zustand } from '../../store';
@@ -47,8 +46,7 @@ export default function SignupForm(props: any) {
     const signIn = Zustand.useStore(state => state.signIn);
 
     const classes = useStyles();
-    const theme = useTheme();
-   // const formik = useFormic(initialValues, validationSchema);
+    //const formik = useFormik(initialValues, validationSchema);
 
     const initialValues = {
         email: '',
@@ -65,7 +63,6 @@ export default function SignupForm(props: any) {
         fetch('/api/signup').then((response) => {
             return response.json();
         }).then((payload) => {
-            console.log(payload);
         }).catch(error => {
             console.log(error);
         })

@@ -103,7 +103,7 @@ export default function Page9() {
             bottom="-1px"
             width="1542px"
             height="504px"
-            style={{ backgroundColor: theme.palette.background.default }}
+            style={{ backgroundColor: theme.palette.primary.main }}
             >
             <Box
                 display="flex"

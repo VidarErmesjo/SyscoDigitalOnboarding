@@ -16,6 +16,8 @@ import { Controls } from './components/Controls';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 
+import onboardingData from './onboarding-data.json';
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
 
 			color: theme.palette.primary.main,
-			backgroundColor: theme.palette.primary.main,// theme.palette.background.default,
+			backgroundColor: theme.palette.primary.main,
 			height: '100vh',
             margin: 0,
 
@@ -61,7 +63,8 @@ export default function App() {
     React.useEffect(() => {
         if(!data)
             fetch('/api/onboarding').then((response) => {
-                return response.json();
+                // Bruk "lokal" backup hvis ikke OK-respons ;)
+                return response.ok ? response.json() : JSON.stringify(onboardingData);
             }).then((payload) => {
                 setData(payload);
             }).catch(error => {

@@ -120,9 +120,9 @@ export default function Progress() {
     
     const classes = useStyles();
 
-    const pages = React.useMemo(() => getPagesByCategory(), [getPagesByCategory]);
+    const pages = React.useMemo(() => getPagesByCategory(), [currentStep, getPagesByCategory]);
 
-    const activeStep = React.useMemo(() => calculateActiveStep(currentStep), [currentStep, calculateActiveStep]);
+    const activeStep = React.useMemo(() => calculateActiveStep(), [currentStep, calculateActiveStep]);
 
     // WCAG
     // https://www.uutilsynet.no/wcag-standarden/sidetittel-navigasjon/221

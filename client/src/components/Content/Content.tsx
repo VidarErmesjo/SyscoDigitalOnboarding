@@ -68,9 +68,8 @@ export default function Content() {
     ), [user, getRoutes]);
 
     const currentRoute = React.useMemo(() => getCurrentRoute().path, [currentStep, getCurrentRoute]);
-
-    const from = React.useMemo(() => stepDirection === 0 ? "-200%" : "200%", [currentStep, stepDirection]);
-    const leave = React.useMemo(() => stepDirection === 1 ? "-200%" : "200%", [currentStep, stepDirection]);
+    const from = React.useMemo(() => stepDirection === 0 ? "-200%" : "200%", [stepDirection]);
+    const leave = React.useMemo(() => stepDirection === 1 ? "-200%" : "200%", [stepDirection]);
 
     const transitions = useTransition(useLocation(), location => location.pathname, {
         from: { opacity: 0, transform: `translateX(${from})` },

@@ -13,12 +13,12 @@ import { devtools, persist } from 'zustand/middleware';
     [Jamfør funksjonene nextStep, previousStep.]
 */
 
-type Route = {
+export type Route = {
     path: string;
     component: string;
 }
 
-type Page = {
+export type Page = {
     id: string;
     title: string;
     path: string;
@@ -30,13 +30,13 @@ type Page = {
     isChild: boolean;
 }
 
-type Category = {
+export type Category = {
     id: string;
     title: string;
     pages: Page[];
 }
 
-interface IOnboardingData {
+export interface IOnboardingData {
     id: string;
     title: string;
     categories: Category[];
@@ -62,6 +62,7 @@ interface IStore {
     getCurrentCategory: () => Category;
     getCurrentPage: (offset?: number) => Page;
     getCurrentRoute: () => Route;
+    getRoute: (step: number) => Route;
     getRoutes: () => Route[];
     getPage: (step: number) => Page; 
     getPages: () => Page[];
@@ -193,6 +194,18 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         const currentStep = get().currentStep;
 
         return routes[currentStep === undefined ? 0 : currentStep];        
+    },
+    getRoute: (step: number): Route => {
+        const routes = get().getRoutes();
+        const totalSteps = get().totalSteps;
+
+        const index = step < 0
+            ? 0
+            : step >= totalSteps
+            ? totalSteps
+            : step; 
+
+        return routes[index];
     },
     getRoutes: (): Route[] => {
         const routes = get().data?.categories
