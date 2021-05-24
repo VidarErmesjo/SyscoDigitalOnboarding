@@ -1,8 +1,6 @@
-import { SvgIcon, SvgIconProps, useTheme } from "@material-ui/core";
+import { SvgIcon, SvgIconProps } from "@material-ui/core";
 
 export default function Icon({color, style, ...props}: SvgIconProps) {
-    const theme = useTheme();
-
     return (
         <SvgIcon
             color={color}

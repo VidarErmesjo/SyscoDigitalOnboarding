@@ -120,9 +120,16 @@ export default function Progress() {
     
     const classes = useStyles();
 
-    const pages = React.useMemo(() => getPagesByCategory(), [currentStep, getPagesByCategory]);
+    const pages = React.useMemo(() => getPagesByCategory(), [getPagesByCategory]);
 
-    const activeStep = React.useMemo(() => calculateActiveStep(), [currentStep, calculateActiveStep]);
+    const activeStep = React.useMemo(() => calculateActiveStep(currentStep), [currentStep, calculateActiveStep]);
+
+    // WCAG
+    // https://www.uutilsynet.no/wcag-standarden/sidetittel-navigasjon/221
+    // 2.2.1
+    React.useEffect(() => {
+        document.title = `Sysco Digital Onboarding | ${pages[activeStep].title}`;
+    }, [activeStep, currentStep, pages])
 
     return (
         <React.Fragment>

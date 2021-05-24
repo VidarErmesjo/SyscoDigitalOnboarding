@@ -4,8 +4,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
 
 import {
@@ -34,24 +33,19 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-function Content() {
-    const classes = useStyles();
-
-    const Title = (): JSX.Element => {
-        return (<Typography color="secondary" variant="h1">Sosialt i SYSCO</Typography>);
-    }
-
-    return (
-        <div className={classes.config}>
-            <Box component={Title} className={classes.item}/>
-            <Box component={SyscoLine} className={classes.item}/>
-        </div>
-    );
-}
-
 export default function Social() {
     const classes = useStyles();
-    const theme = useTheme();
+
+    const Title = () => <Typography color="secondary" variant="h1">Sosialt i SYSCO</Typography>;
+
+    const Content = () => {    
+        return (
+            <div className={classes.config}>
+                <Box component={Title} className={classes.item}/>
+                <Box component={SyscoLine} className={classes.item}/>
+            </div>
+        );
+    }
 
     const Component = (): JSX.Element => {
         return (

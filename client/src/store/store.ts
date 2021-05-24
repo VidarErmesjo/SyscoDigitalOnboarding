@@ -57,11 +57,13 @@ interface IStore {
     setIsLoading: (state: boolean) => void;
 
     // API
+    calculateActiveStep: (step?: number) => number;
     getCategories: () => Category[];
     getCurrentCategory: () => Category;
     getCurrentPage: (offset?: number) => Page;
     getCurrentRoute: () => Route;
     getRoutes: () => Route[];
+    getPage: (step: number) => Page; 
     getPages: () => Page[];
     getPagesByCategory: () => Page[];
 
@@ -143,10 +145,10 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
     },
 
     // API
-    calculateActiveStep: (): number =>{
+    calculateActiveStep: (step?: number): number =>{
         const category = get().getCurrentCategory();
         const categories = get().getCategories();
-        const currentStep = get().currentStep;
+        const currentStep = step ? step : get().currentStep;
 
         // Lag liste med antall sider per kategori.
         const offsets = get().data?.categories.map((cat) => cat.pages.length);
@@ -201,6 +203,18 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
 
         return routes === undefined ? [] : routes;
     },
+    getPage: (step: number): Page => {
+        const pages = get().getPages();
+        const totalSteps = get().totalSteps;
+
+        const index = step < 0
+            ? 0
+            : step >= totalSteps
+            ? totalSteps
+            : step; 
+
+        return pages[index];
+    },
     getPages: (): Page[] => {
         const data = get().data;
         const pages = data?.categories
@@ -225,7 +239,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
 
         if(currentStep < totalSteps)
             if(!get().isLoading) {
-                // MERK: Veldig ineffektivt å kjøre denne funksjonen tre ganger.
+                // MERK: Ineffektivt å kjøre denne funksjonen tre ganger?
                 // Dette kan kanskje løses bedre med en dobbelt-lenket liste.
                 // Kan også lage en funksjon som returnerer et array med prev, curr og next???
                 // getPage: Page[] () =>
@@ -282,7 +296,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                 set({
                     isLoading: true,
                     stepDirection: direction.left,
-                    currentStep: get().currentStep! - 1 * skip
+                    currentStep: currentStep - 1 * skip
                 });
                 get().getCurrentPage().active = true;
                 setTimeout(() => set({ isLoading: false }), timeout);

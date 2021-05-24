@@ -51,6 +51,7 @@ export default function Content() {
     React.useEffect(() => {
         if(!user) {
             history.replace("/");
+            document.title = "Sysco Digital Onboarding";
         }
     }, [user, history]);
 
@@ -64,12 +65,12 @@ export default function Content() {
                 key={key}
             />
         }
-    ), [user]);
+    ), [user, getRoutes]);
 
-    const currentRoute = React.useMemo(() => getCurrentRoute().path, [currentStep]);
+    const currentRoute = React.useMemo(() => getCurrentRoute().path, [currentStep, getCurrentRoute]);
 
-    const from = React.useMemo(() => stepDirection === 0 ? "-200%" : "200%", [currentStep]);
-    const leave = React.useMemo(() => stepDirection === 1 ? "-200%" : "200%", [currentStep]);
+    const from = React.useMemo(() => stepDirection === 0 ? "-200%" : "200%", [currentStep, stepDirection]);
+    const leave = React.useMemo(() => stepDirection === 1 ? "-200%" : "200%", [currentStep, stepDirection]);
 
     const transitions = useTransition(useLocation(), location => location.pathname, {
         from: { opacity: 0, transform: `translateX(${from})` },

@@ -1,32 +1,69 @@
 import React from 'react';
-
 import {
-    Typography,
-    useTheme
+    Box,
+    createStyles,
+    makeStyles,
+    Theme,
+    Typography
 } from '@material-ui/core';
 
-import { useSpring, animated } from 'react-spring';
+import {
+    SyscoPage,
+    SyscoLine
+} from './../../components/Custom';
+
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+        root: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%)`,
+        },
+        config: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: theme.spacing(28),
+        },
+        item: {
+            width: '100%',
+        },
+    })
+);
 
 export default function Outro() {
-    const theme = useTheme();
-    const style = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: theme.transitions.duration.enteringScreen }
-    });
+    const classes = useStyles();
+
+    const Title = () => <Typography color="secondary" variant="h1">... Quiz?</Typography>;
+
+    const Content = () => {    
+        return (
+            <div className={classes.config}>
+                <Box component={Title} className={classes.item}/>
+                <Box component={SyscoLine} className={classes.item}/>
+            </div>
+        );
+    }
+
+    const Component = (): JSX.Element => {
+        return (
+            <SyscoPage
+                title={null}
+                category="DEL 4"
+                icon={null}
+                content={<Content/>}
+                color="secondary"
+            />      
+        );
+    }
 
     return (
         <React.Fragment>
-            <animated.div style={style}>
-                <div>
-                    <Typography color="textPrimary">
-                        {[...new Array(666)]
-                            .map(
-                            () => `Outro.`,
-                            ).join('\n')}
-                    </Typography>
-                </div>
-            </animated.div>
+            <div className={classes.root}>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 };

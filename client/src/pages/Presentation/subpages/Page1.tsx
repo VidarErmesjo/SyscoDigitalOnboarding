@@ -16,8 +16,6 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 
 import HexagonImage, { IHexagonImage } from '../../../components/Custom/HexagonImage';
 
-import LisaOffice from '../../../assets/images/LisaOffice.png';
-
 import { SyscoPage, SyscoLogo } from '../../../components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>

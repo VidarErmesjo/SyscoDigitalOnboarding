@@ -6,11 +6,8 @@ import {
     makeStyles,
     Theme,
     Typography,
-    useTheme,
-    withStyles,
+    useTheme
 } from '@material-ui/core';
-
-const itemSpacing = 24;
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

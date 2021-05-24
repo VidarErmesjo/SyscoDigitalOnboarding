@@ -46,12 +46,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-    const [user, data, setData, currentStep, getCurrentPage] = Zustand.useStore(state => [
+    const [user, data, setData, currentStep, getPage] = Zustand.useStore(state => [
         state.user,
         state.data,
         state.setData,
         state.currentStep,
-        state.getCurrentPage
+        state.getPage
     ], shallow);
 
 	// Låse scrolling
@@ -67,14 +67,12 @@ export default function App() {
             }).catch(error => {
                 console.log(error);
             })
-
-        //return () => {}
     }, [user, data, setData]);
 
     const classes = useStyles();
     const theme = useTheme();
 
-    const currentPage = React.useMemo(() => getCurrentPage(), [currentStep])
+    const currentPage = React.useMemo(() => getPage(currentStep), [currentStep, getPage])
 
     // Svart bakgrunn på video og kart.
     const alternativeBackgroundColor = currentPage?.id.includes("video") || currentPage?.id.includes("kart");

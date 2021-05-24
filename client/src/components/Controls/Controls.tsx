@@ -7,8 +7,6 @@ import {
     Theme
 } from '@material-ui/core';
 
-import { useRouteMatch, useLocation } from 'react-router-dom';
-
 import {
     ChevronLeft as ChevronLeftIcon,
     ChevronRight as ChevronRightIcon,

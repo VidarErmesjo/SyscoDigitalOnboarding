@@ -3,8 +3,7 @@ import YouTube, { Options } from 'react-youtube';
 import {
     createStyles,
     makeStyles,
-    Theme,
-    useTheme,
+    Theme
 } from '@material-ui/core';
 
 import { Zustand } from '../../../store';
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Video() {
     const classes = useStyles();
-    const theme = useTheme();
     const [nextStep] = Zustand.useStore(state => [state.nextStep]);
 
     const opts: Options = {

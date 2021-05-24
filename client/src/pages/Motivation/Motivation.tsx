@@ -4,8 +4,7 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
 
 import {
