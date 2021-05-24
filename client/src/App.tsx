@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center',
 
 			color: theme.palette.primary.main,
-			backgroundColor: theme.palette.background.default,
+			backgroundColor: theme.palette.primary.main,// theme.palette.background.default,
 			height: '100vh',
             margin: 0,
 
@@ -46,10 +46,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function App() {
-    const [user, data, setData] = Zustand.useStore(state => [
+    const [user, data, setData, currentStep, getCurrentPage] = Zustand.useStore(state => [
         state.user,
         state.data,
-        state.setData
+        state.setData,
+        state.currentStep,
+        state.getCurrentPage
     ], shallow);
 
 	// Låse scrolling
@@ -66,18 +68,27 @@ export default function App() {
                 console.log(error);
             })
 
-        return () => {}
+        //return () => {}
     }, [user, data, setData]);
 
     const classes = useStyles();
     const theme = useTheme();
+
+    const currentPage = React.useMemo(() => getCurrentPage(), [currentStep])
+
+    // Svart bakgrunn på video og kart.
+    const alternativeBackgroundColor = currentPage?.id.includes("video") || currentPage?.id.includes("kart");
+    const backgroundColor = alternativeBackgroundColor ? theme.palette.background.default : theme.palette.primary.main;
 
     return (
         <React.Fragment>
             {data && data.categories.length > 0 ?
                 <div
                     className={classes.root}
-                    //style={{ backgroundColor: user ? theme.palette.primary.main : theme.palette.background.default }}
+                    style={{
+                        // Svart bakgrunn på innlogging.
+                        backgroundColor: user ? backgroundColor : theme.palette.background.default
+                    }}
                     >
                     <header className={classes.item}>
                         <Header/>

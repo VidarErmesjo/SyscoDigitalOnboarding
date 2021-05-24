@@ -14,7 +14,7 @@ import {
     WorkplaceLogo
 } from '../../../components/Custom';
 
-import { AccountIcon } from '../../../components/icons';
+import { AccountIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

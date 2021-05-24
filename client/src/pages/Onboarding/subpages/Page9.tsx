@@ -13,7 +13,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { AssignmentIcon } from '../../../components/icons';
+import { AssignmentIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

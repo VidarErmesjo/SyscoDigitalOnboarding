@@ -70,7 +70,6 @@ export default function Signup(props: any) {
                             Du skal nå igjennom en Onboarding-prosess.
                             Du vil få vite det meste du trenger å vite før første dag på jobb.
                             Hva slags verktøy som brukes i SYSCO, hva rutinene ved ansettelse er, og ikke minst hva slags verdier SYSCO står for.
-                            Vi vil også opprette flere brukerkontoer for deg.
                             Vi som har laget denne webapplikasjonen håper den er til god hjelp, og vi ønsker deg lykke til i ny jobb.
                         </Typography>
                     </Box>

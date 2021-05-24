@@ -149,7 +149,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         const currentStep = get().currentStep;
 
         // Lag liste med antall sider per kategori.
-        const offsets = get().data?.categories.map((category) => category.pages.length);
+        const offsets = get().data?.categories.map((cat) => cat.pages.length);
 
         // Finn indeks til liste ovenfor.
         const index = categories.indexOf(categories.find(({ id }) => id === category.id)!);

@@ -17,7 +17,7 @@ import {
     AccountIcon,
     AssignmentIcon,
     WavingPersonIcon
-} from '../../../components/icons';
+} from '../../../components/Icons';
 
 const itemSpacing = 24;
 

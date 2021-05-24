@@ -11,7 +11,7 @@ import { Zustand } from './../../../store';
 
 import NorwayMap from './NorwayMap';
 
-import { GeoMarkerIcon } from '../../../components/icons';
+import { GeoMarkerIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

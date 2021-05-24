@@ -15,7 +15,7 @@ import {
     SyscoTextButtonBulleted
 } from '../../../components/Custom';
 
-import { WavingPersonIcon } from '../../../components/icons'; 
+import { WavingPersonIcon } from '../../../components/Icons'; 
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

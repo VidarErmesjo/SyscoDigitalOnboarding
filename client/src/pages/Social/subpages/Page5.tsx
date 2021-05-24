@@ -13,7 +13,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { SportsHandballIcon } from '../../../components/icons';
+import { SportsHandballIcon } from '../../../components/Icons';
 
 import VRManMini from './../../../assets/polygons/VRManMini.svg';
 import VRManSmall from './../../../assets/polygons/VRManSmall.svg';

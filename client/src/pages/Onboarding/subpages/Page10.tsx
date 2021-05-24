@@ -18,7 +18,7 @@ import {
 import {
     AssignmentIcon,
     UpRightArrowIcon
-} from '../../../components/icons';
+} from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

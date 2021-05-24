@@ -14,7 +14,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { CheckIcon, PeopleIcon } from '../../../components/icons';
+import { CheckIcon, PeopleIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

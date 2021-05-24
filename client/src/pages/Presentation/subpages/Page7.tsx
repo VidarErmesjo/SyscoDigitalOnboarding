@@ -13,7 +13,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { CheckIcon } from '../../../components/icons';
+import { CheckIcon } from '../../../components/Icons';
 
 import Background from '../../../assets/images/ElhubProsjektet.png';
 

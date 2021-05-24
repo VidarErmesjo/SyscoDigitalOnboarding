@@ -12,6 +12,7 @@ export interface IHexagonImage {
 
 export default function HexagonImage(props: IHexagonImage) {
     const id = props.imageURL.toString();
+    // Dette funker jo, men kanskje bruke noe mer fancy ID greier - GUID? - eller hash'e
 
     return (
         <React.Fragment>
@@ -34,7 +35,12 @@ export default function HexagonImage(props: IHexagonImage) {
                 >
                 <path d="M44 0L87.3013 25V75L44 100L0.69873 75V25L44 0Z" fill={`url(${"#hexagon".concat(id)})`}/>
                 <defs>
-                    <pattern id={"hexagon".concat(id)} patternUnits="userSpaceOnUse" width="88" height="100">
+                    <pattern
+                        id={"hexagon".concat(id)}
+                        patternUnits="userSpaceOnUse"
+                        width="88"
+                        height="100"
+                        >
                         <use xlinkHref={"#".concat(id)}/>
                     </pattern>
                     <image

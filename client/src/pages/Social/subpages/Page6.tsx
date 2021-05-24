@@ -13,7 +13,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { MoodIcon } from '../../../components/icons';
+import { MoodIcon } from '../../../components/Icons';
 
 import VRManMini from './../../../assets/polygons/VRManMini.svg';
 import VRManSmall from './../../../assets/polygons/VRManSmall.svg';

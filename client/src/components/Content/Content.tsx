@@ -96,7 +96,6 @@ export default function Content() {
                         to={currentRoute}
                     />}
                     {transitions.map(({ item: location, props, key }) => {
-                        //console.log(location.pathname);
                         return <animated.div style={props} key={key}>
                             <Switch location={location}>
                                 {routes}

@@ -13,7 +13,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { WavingPersonIcon } from '../../../components/icons';
+import { WavingPersonIcon } from '../../../components/Icons';
 
 import FadderBig from '../../../assets/polygons/FadderBig.svg';
 import FadderMedium from '../../../assets/polygons/FadderMedium.svg';

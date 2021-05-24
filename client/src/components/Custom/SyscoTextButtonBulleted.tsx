@@ -1,7 +1,6 @@
 import React from "react";
 
 import {
-    Box,
     createStyles,
     IconButton,
     makeStyles,
@@ -10,7 +9,7 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { CubeIcon } from '../icons';
+import { CubeIcon } from '../Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

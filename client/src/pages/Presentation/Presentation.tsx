@@ -15,7 +15,7 @@ import {
     SyscoLogo
 } from '../../components/Custom';
 
-import { AssignmentIcon, AvatarIcon, CheckIcon } from '../../components/icons';
+import { AssignmentIcon, AvatarIcon, CheckIcon } from '../../components/Icons';
 
 const itemSpacing = 24;
 

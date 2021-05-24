@@ -16,7 +16,7 @@ import {
     SyscoOverlay
 } from '../../../components/Custom';
 
-import { AccountIcon, LoginIcon, ShieldIcon } from '../../../components/icons';
+import { AccountIcon, LoginIcon, ShieldIcon } from '../../../components/Icons';
 
 import WikiLogo from '../../../components/Custom/WikiLogo.svg';
 import SharepointLogo from '../../../components/Custom/SharepointLogo.svg';

@@ -14,7 +14,7 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
-import { CheckIcon, PeopleIcon } from '../../../components/icons';
+import { CheckIcon, PeopleIcon } from '../../../components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -98,7 +98,7 @@ export default function Page8() {
             bottom="-1px"
             width="1542px"
             height="504px"
-            style={{ backgroundColor: theme.palette.background.default }}
+            style={{ backgroundColor: theme.palette.primary.main }}
             >
             <Box
                 display="flex"

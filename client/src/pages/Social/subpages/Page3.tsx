@@ -20,7 +20,7 @@ import {
     OutdoorGrillIcon,
     SportsHandballIcon,
     SportsVolleyballIcon,
-} from '../../../components/icons';
+} from '../../../components/Icons';
 
 const itemSpacing = 24;
 

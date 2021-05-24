@@ -13,12 +13,11 @@ import {
     PlayCircleFilled as PlayCircle
 } from '@material-ui/icons';
 
-import { Spring } from 'react-spring/renderprops';
-
 import {
     Formik,
     Form,
-    FormikHelpers
+    FormikHelpers,
+    useFormik
 } from 'formik';
 
 import { Zustand } from '../../store';
@@ -49,13 +48,16 @@ export default function SignupForm(props: any) {
 
     const classes = useStyles();
     const theme = useTheme();
+   // const formik = useFormic(initialValues, validationSchema);
 
     const initialValues = {
         email: '',
     };
     
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Ugyldig brukernavn!').required('Vennligs skriv inn gyldig brukernavn.'),
+        email: Yup.string()
+            .email('Ugyldig inntasting!')
+            .required('Hint: "navn.navnesen@sysco.no"'),
     });
 
     const onSubmit = (values: Values, {setSubmitting}: FormikHelpers<Values>) => {
@@ -72,51 +74,45 @@ export default function SignupForm(props: any) {
 
     return (
         <React.Fragment>
-            <Spring
-                from={{ opacity: 0 }}
-                to={{ opacity: 1 }}
-                config={{ duration: theme.transitions.duration.enteringScreen }}
+            <Formik
+                initialValues={{...initialValues}}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
                 >
-                {() => <Formik
-                    initialValues={{...initialValues}}
-                    validationSchema={validationSchema}
-                    onSubmit={onSubmit}
-                    >
-                    <Form className={classes.form}>
+                <Form className={classes.form}>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        >
                         <Grid
-                            container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
+                            item
+                            xs={12}
+                            zeroMinWidth
                             >
-                            <Grid
-                                item
-                                xs={12}
-                                zeroMinWidth
+                            <TextField
+                                name="email"
+                                label="SYSCO epost"
+                                placeholder="navn.navnesen@sysco.no"
+                                color="secondary"
+                                variant="outlined"
+                                size="small"
+                                className={classes.textField}                                
+                            />
+                            <Button
+                                variant="outlined"
+                                color="secondary"
+                                size="small"
+                                startIcon={<PlayCircle/>}
+                                type="submit"
                                 >
-                                <TextField
-                                    name="email"
-                                    label="SYSCO epost"
-                                    placeholder="navn.navnesen@sysco.no"
-                                    color="secondary"
-                                    variant="outlined"
-                                    size="small"
-                                    className={classes.textField}                                
-                                />
-                                <Button
-                                    variant="outlined"
-                                    color="secondary"
-                                    size="small"
-                                    startIcon={<PlayCircle/>}
-                                    type="submit"
-                                    >
-                                    Start
-                                </Button>              
-                            </Grid>
+                                Start
+                            </Button>              
                         </Grid>
-                    </Form>
-                </Formik>}
-            </Spring>
+                    </Grid>
+                </Form>
+            </Formik>
         </React.Fragment>
     );  
 }
