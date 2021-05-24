@@ -94,7 +94,7 @@ enum direction {
 const useStore = create<IStore>(persist(devtools((set, get) => ({
     // Session
     user: null,
-    signIn: async (email: string | null) => {
+    signIn: (email: string | null) => {
         if(!get().isLoading) {
             const totalSteps = get().getRoutes().length;
             set({
@@ -106,7 +106,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
             setTimeout(() => set(({ isLoading: false })), timeout);
         }
     },
-    signOut: async () => {
+    signOut: () => {
         if(!get().isLoading) {
             set({
                 isLoading: true,
@@ -124,24 +124,28 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         }
     },
     data: null,
-    setData: async (payload: IOnboardingData) => {
-        if(!get().data) {
+    setData: (payload: IOnboardingData) => {
+        if((!get().data)) {
             set({ isLoading: true });
-            
-            // Init data
-            payload.categories.forEach((category) => 
-                category.pages.forEach((page) => {
-                    page.path = `/${payload.id}/${category.id}/${page.id}`;
-                    page.active = false;
-                    page.completed = false;
-                })
-            );
-            set({ data: payload === undefined ? null : payload });
+
+            if(payload === undefined) {
+                set({ data: null });
+            }
+            else {
+                payload.categories.forEach((category) => 
+                    category.pages.forEach((page) => {
+                        page.path = `/${payload.id}/${category.id}/${page.id}`;
+                        page.active = false;
+                        page.completed = false;
+                    })
+                );
+                set({ data: payload === undefined ? null : payload });
+            }
             setTimeout(() => set(({ isLoading: false })), timeout);
         }
     },
     isLoading: false,
-    setIsLoading: async (state: boolean) => {
+    setIsLoading: (state: boolean) => {
         set({ isLoading: state });
     },
 
@@ -246,7 +250,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
     currentStep: 0,
     totalSteps: 0,
     stepDirection: direction.right,
-    nextStep: async () => {
+    nextStep: () => {
         const currentStep = get().currentStep;
         const totalSteps = get().totalSteps;
 
@@ -293,7 +297,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                 setTimeout(() => set({ isLoading: false }), timeout);
             }
     },    
-    previousStep: async () => {
+    previousStep: () => {
         const currentStep = get().currentStep;
         if(currentStep > 0)
             if(!get().isLoading) {
@@ -315,7 +319,7 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
                 setTimeout(() => set({ isLoading: false }), timeout);
             }
     },
-    gotoStep: async (step: number) => {
+    gotoStep: (step: number) => {
         const currentStep = get().currentStep;
         const totalSteps = get().totalSteps;
         step = step < 0 ? currentStep : (step >= totalSteps ? currentStep : step);

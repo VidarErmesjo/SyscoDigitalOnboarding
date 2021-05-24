@@ -64,6 +64,9 @@ export default function App() {
         if(!data)
             fetch('/api/onboarding').then((response) => {
                 // Bruk "lokal" backup hvis ikke OK-respons ;)
+                if(!response.ok)
+                    console.log("Using local backup data. ;)");
+
                 return response.ok ? response.json() : JSON.stringify(onboardingData);
             }).then((payload) => {
                 setData(payload);
