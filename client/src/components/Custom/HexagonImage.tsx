@@ -1,18 +1,21 @@
 import React from 'react'
 
 export interface IHexagonImage {
-    minWidth: string;
-    minHeight: string;
-    positionTop?: string;
-    positionLeft?: string;
-    positionRight?: string;
-    positionBottom?: string;
+    minWidth: string | number;
+    minHeight: string | number;
+    positionTop?: string | number;
+    positionLeft?: string | number;
+    positionRight?: string | number;
+    positionBottom?: string | number;
+    x?: number;
     imageURL: string
 }
 
 export default function HexagonImage(props: IHexagonImage) {
     const id = props.imageURL.toString();
     // Dette funker jo, men kanskje bruke noe mer fancy ID greier - GUID? - eller hash'e
+
+    const shiftX = props.x === undefined ? 0 : props.x;
 
     return (
         <React.Fragment>
@@ -46,7 +49,7 @@ export default function HexagonImage(props: IHexagonImage) {
                     <image
                         id={id}
                         xlinkHref={`${props.imageURL}`}
-                        x="-44"
+                        x={-44 + shiftX}
                         width="196" // Dobbel av bredden (2 * 88)
                         height="100"
                     />

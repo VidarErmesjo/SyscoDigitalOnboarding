@@ -62,14 +62,13 @@ export default function App() {
     // Last inn kursdata
     React.useEffect(() => {
         if(!data)
-            fetch('api/onboarding').then((response) => {
+            fetch('/api/onboarding').then((response) => {
                 // Bruk "lokal" backup hvis ikke OK-respons ;)
                 if(!response.ok)
                     console.log("Using local backup data. ;)");
 
                 return response.ok ? response.json() : JSON.parse(JSON.stringify(onboardingData));
             }).then((payload) => {
-                console.log(payload);
                 setData(payload);
             }).catch(error => {
                 console.log(error);

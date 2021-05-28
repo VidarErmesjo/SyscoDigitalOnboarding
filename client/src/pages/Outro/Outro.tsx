@@ -8,8 +8,7 @@ import {
 } from '@material-ui/core';
 
 import {
-    SyscoPage,
-    SyscoLine
+    SyscoPage
 } from './../../components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -42,7 +41,6 @@ export default function Outro() {
         return (
             <div className={classes.config}>
                 <Box component={Title} className={classes.item}/>
-                <Box component={SyscoLine} className={classes.item}/>
             </div>
         );
     }
@@ -51,7 +49,7 @@ export default function Outro() {
         return (
             <SyscoPage
                 title={null}
-                category="DEL 4"
+                category="DEL 6"
                 icon={null}
                 content={<Content/>}
                 color="secondary"

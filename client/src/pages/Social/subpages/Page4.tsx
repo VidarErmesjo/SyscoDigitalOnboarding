@@ -15,12 +15,8 @@ import {
 
 import { OutdoorGrillIcon } from '../../../components/Icons';
 
-import VRManMini from './../../../assets/polygons/VRManMini.svg';
-import VRManSmall from './../../../assets/polygons/VRManSmall.svg';
-import Lisa176 from './../../../assets/polygons/Lisa176.svg';
-import Lisa190 from './../../../assets/polygons/Lisa190.svg';
-import Lisa247 from './../../../assets/polygons/Lisa247.svg';
-import WomenLaughingBig from './../../../assets/polygons/WomenLaughingBig.svg';
+import { HexagonImage } from '../../../components/Custom';
+import { IHexagonImage } from '../../../components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -39,73 +35,76 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 
-interface ICoordinates {
-    left: number;
-    top: number;
-    src: string;
-    alt: string;
-}
-
-const imageCoordinates: ICoordinates[]  = [
+const images: IHexagonImage[]  = [
     {
-        left: 541,
-        top: 170,
-        src: VRManMini,
-        alt: "Person wearing VR headset."
+        minWidth: 195,
+        minHeight: 195,
+        positionLeft: 865,
+        positionTop: 67,
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
     },
     {
-        left: 675,
-        top: 88,
-        src: VRManSmall,
-        alt: "Person wearing VR headset."
+        minWidth: 247,
+        minHeight: 247,
+        positionLeft: 1056,
+        positionTop: 34,
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
-        left: 866,
-        top: 55,
-        src: Lisa247,
-        alt: "Smiling woman at her work station."
+        minWidth: 332,
+        minHeight: 385,
+        positionLeft: 166,
+        positionTop: 106,
+        imageURL: "https://i.imgur.com/Yfh3aXT.png"
     },
     {
-        left: 214,
-        top: 186,
-        src: WomenLaughingBig,
-        alt: "Women at work laughing."
+        minWidth: 247,
+        minHeight: 247,
+        positionLeft: 514,
+        positionTop: 222,
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
-        left: 580,
-        top: 277,
-        src: Lisa190,
-        alt: "Smiling woman at her work station."
+        minWidth: 190,
+        minHeight: 190,
+        positionLeft: 770,
+        positionTop: 256,
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
-        left: 798,
-        top: 275,
-        src: Lisa176,
-        alt: "Smiling woman at her work station."
+        minWidth: 176,
+        minHeight: 176,
+        positionLeft: 988,
+        positionTop: 254,
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
-        left: 1008,
-        top: 248,
-        src: Lisa247,
-        alt: "Smiling woman at her work station."
+        minWidth: 247,
+        minHeight: 247,
+        positionLeft: 1198,
+        positionTop: 227,
+        imageURL: "https://i.imgur.com/2RZuwfa.png"
     },
     {
-        left: 474,
-        top: 461,
-        src: VRManSmall,
-        alt: "Person wearing VR headset."
+        minWidth: 195,
+        minHeight: 195,
+        positionLeft: 416,
+        positionTop: 421,
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
     },
     {
-        left: 691,
-        top: 431,
-        src: VRManSmall,
-        alt: "Person wearing VR headset."
+        minWidth: 195,
+        minHeight: 195,
+        positionLeft: 881,
+        positionTop: 410,
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
     },
     {
-        left: 893,
-        top: 451,
-        src: VRManSmall,
-        alt: "Person wearing VR headset."
+        minWidth: 195,
+        minHeight: 195,
+        positionLeft: 1083,
+        positionTop: 430,
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
     },
 ]
 
@@ -129,13 +128,15 @@ export default function Page4() {
     </div>
 
     const Content = () => <React.Fragment>
-        {imageCoordinates.map((image) => <Box
-            position="absolute"
-            left={image.left}
-            top={image.top}
-            >
-            <img src={image.src} alt={image.alt}/>
-        </Box>)}
+        {images.map((image, index) => <HexagonImage
+            minWidth={image.minWidth}
+            minHeight={image.minHeight}
+            positionLeft={image.positionLeft}
+            positionTop={image.positionTop}
+            imageURL={image.imageURL}
+            key={index}
+            />
+        )}
     </React.Fragment>
 
     const Component = () => {

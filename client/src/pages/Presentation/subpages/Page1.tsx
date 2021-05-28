@@ -154,7 +154,7 @@ export default function Page1() {
                                         //marginLeft: '2vw',
                                         marginTop: '6vw'
                                     }}>
-                                    <circle cx="350" cy="350" r="300"  stroke-width="5" fill="none" />
+                                    <circle cx="350" cy="350" r="300"  strokeWidth="5" fill="none" />
                                     <image 
                                         className='img-circle' 
                                         xlinkHref="https://i.imgur.com/hHY12O1.png" 

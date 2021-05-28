@@ -140,24 +140,24 @@ export default function Progress() {
                 className={classes.stepper}
                 nonLinear
                 >
-                {pages.filter((item) => !item.isChild).map((page, index) => <Step
-                    key={index}
-                    active={page.active}
-                    completed={page.active ? false : page.completed}
-                    >
-                    <StepLabel
-                        StepIconComponent={SyscoStepIcon}
-                        error={page.active && page.completed}
-                        >                            
-                        <Typography
-                            color="textPrimary"
-                            variant="caption"
-                            style={{ userSelect: 'none'}}
-                            >
-                            {page.title}
-                        </Typography>
-                    </StepLabel>                       
-                </Step>)}
+                {pages.filter((item) => !item.disabled).map((page, index) => <Step
+                        key={index}
+                        active={page.active}
+                        completed={page.active ? false : page.completed}
+                        >
+                        <StepLabel
+                            StepIconComponent={SyscoStepIcon}
+                            error={page.active && page.completed}
+                            >                            
+                            <Typography
+                                color="textPrimary"
+                                variant="caption"
+                                style={{ userSelect: 'none'}}
+                                >
+                                {page.title}
+                            </Typography>
+                        </StepLabel>                       
+                    </Step>)}
             </Stepper>
         </React.Fragment>
     );

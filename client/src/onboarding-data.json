@@ -86,79 +86,80 @@
             {
                "id":"kart",
                "title":"Kart",
-               "component":"norway"
+               "component":"norway",
+               "disabled": false
             },
             {
                "id":"stord-kontoret",
-               "title":"Stord",
+               "title":"Stord-kontoret",
                "component":"stordOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"stord",
-               "title":"",
+               "title":"Stord",
                "component":"stord",
-               "isChild": true
+               "disabled": true
             },
             {
                "id":"bergen-kontoret",
-               "title":"Bergen",
+               "title":"Bergen-kontoret",
                "component":"bergenOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"bergen",
-               "title":"",
+               "title":"Bergen",
                "component":"bergen",
-               "isChild": true
+               "disabled": true
             },
             {
                "id":"haugesund-kontoret",
-               "title":"Haugesund",
+               "title":"Haugesund-kontoret",
                "component":"haugesundOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"haugesund",
-               "title":"",
+               "title":"Haugesund",
                "component":"haugesund",
-               "isChild": true
+               "disabled": true
             },
             {
                "id":"stavanger-kontoret",
-               "title":"Stavanger",
+               "title":"Stavanger-kontoret",
                "component":"stavangerOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"stavanger",
-               "title":"",
+               "title":"Stavanger",
                "component":"stavanger",
-               "isChild": true
+               "disabled": true
             },
             {
                "id":"oslo-kontoret",
-               "title":"Oslo",
+               "title":"Oslo-kontoret",
                "component":"osloOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"oslo",
-               "title":"",
+               "title":"Oslo",
                "component":"oslo",
-               "isChild": true
+               "disabled": true
             },
             {
                "id":"ølen-kontoret",
-               "title":"Ølen",
+               "title":"Ølen-kontoret",
                "component":"ølenOffice",
-               "isParent": true
+               "disabled": true
             },
             {
                "id":"ølen",
-               "title":"",
+               "title":"Ølen",
                "component":"ølen",
-               "isChild": true
+               "disabled": true
             }
          ]
       },

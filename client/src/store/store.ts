@@ -25,9 +25,7 @@ export type Page = {
     component: string;
     active: boolean;
     completed: boolean;
-    isParent: boolean;
-    //hasChildren: number;
-    isChild: boolean;
+    disabled: boolean;
 }
 
 export type Category = {
@@ -77,12 +75,11 @@ interface IStore {
     gotoStep: (step: number) => void;
 
     scale: number;
-    zoomIn: () => void;
-    zoomOut: () => void;
+    zoomIn: (increment: number) => void;
+    zoomOut: (decrement: number) => void;
 }
 
-const timeout = 100;
-const increment = 0.05;
+const timeout = 250;
 const storageName = "SyscoDigitalOnboarding";
 
 enum direction {
@@ -125,24 +122,22 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
     },
     data: null,
     setData: (payload: IOnboardingData) => {
-        if((!get().data)) {
-            set({ isLoading: true });
+        if(get().data)
+            return;
 
-            if(payload === undefined) {
-                set({ data: null });
-            }
-            else {
-                payload.categories.forEach((category) => 
-                    category.pages.forEach((page) => {
-                        page.path = `/${payload.id}/${category.id}/${page.id}`;
-                        page.active = false;
-                        page.completed = false;
-                    })
-                );
-                set({ data: payload === undefined ? null : payload });
-            }
-            setTimeout(() => set(({ isLoading: false })), timeout);
-        }
+        set({ isLoading: true });
+
+        payload?.categories?.forEach((category) => 
+            category?.pages.forEach((page) => {
+                page.path = `/${payload.id}/${category.id}/${page.id}`;
+                page.active = false;
+                page.completed = false;
+                page.disabled = page.disabled ? true : false;
+            })
+        );
+        set({ data: payload === undefined ? null : payload });
+
+        setTimeout(() => set(({ isLoading: false })), timeout);
     },
     isLoading: false,
     setIsLoading: (state: boolean) => {
@@ -251,70 +246,53 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
     totalSteps: 0,
     stepDirection: direction.right,
     nextStep: () => {
-        const currentStep = get().currentStep;
-        const totalSteps = get().totalSteps;
-
-        if(currentStep < totalSteps)
+        if(get().currentStep < get().totalSteps)
             if(!get().isLoading) {
-                // MERK: Ineffektivt å kjøre denne funksjonen tre ganger?
-                // Dette kan kanskje løses bedre med en dobbelt-lenket liste.
-                // Kan også lage en funksjon som returnerer et array med prev, curr og next???
-                // getPage: Page[] () =>
+                set({ isLoading: true });
+
                 const currentPage = get().getCurrentPage();
-                const nextPage = get().getCurrentPage(1);
-                const previousPage = get().getCurrentPage(-1);
 
-                //console.log(`${currentPage.id}.active: ${currentPage.active}, ${currentPage.id}.completed: ${currentPage.completed}`);
-                //console.log(`${nextPage.id}.active: ${nextPage.active}, ${nextPage.id}.completed: ${nextPage.completed}`);
-                //console.log(`${previousPage.id}.active: ${previousPage.active}, ${previousPage.id}.completed: ${previousPage.completed}`);
+                currentPage.active = false;
+                currentPage.completed = true;
 
-                // Normalt tilfelle
-                if(!(currentPage.isParent && nextPage.isChild)) {
-                    currentPage.active = false;
-                    currentPage.completed = true;
-                }
-               
-                // Spesielt tilfelle: "Ditt kontor"
-                if(currentPage.isParent && nextPage.isChild) {
-                    currentPage.active = true;
-                }
+                // Kontroller for sider som er skrudd av.
+                if(get().getCurrentPage(1).disabled)
+                    while(get().getCurrentPage(1).disabled)
+                        set(state => ({ currentStep: state.currentStep + 1 }));
 
-                if(currentPage.isChild && previousPage.isParent) {
-                    previousPage.active = false;
-                    previousPage.completed = true;
-                    currentPage.completed = true;
-                }
-
-                // ??
-                if(currentStep < totalSteps - 1 ) {
-                    set({
-                        isLoading: true,
+                // Hopp fremover.
+                if(get().currentStep < get().totalSteps - 1) {
+                    set(state => ({
                         stepDirection: direction.right,
-                        currentStep: currentStep + 1
-                    });
+                        currentStep: state.currentStep + 1
+                    }));
+
+                    // Sett neste som aktiv etter inkrement.
                     get().getCurrentPage().active = true;
                 }
                 setTimeout(() => set({ isLoading: false }), timeout);
             }
     },    
     previousStep: () => {
-        const currentStep = get().currentStep;
-        if(currentStep > 0)
+        if(get().currentStep > 0)
             if(!get().isLoading) {
-                const currentPage = get().getCurrentPage();
-                const previousPage = get().getCurrentPage(-1);
+                set({ isLoading: true });
 
-                currentPage.active = false;
 
-                // Hack: Hopper over isChild-sider - "pseudo sub pages" - burder skrives om (manipulate controls?).
-                // isParent: booean => hasChildren: number ?
-                const skip = previousPage.isChild ? 2 : 1;
+                get().getCurrentPage().active = false;
 
-                set({
-                    isLoading: true,
+                // Kontroller for sider som er skrudd av.
+                if(get().getCurrentPage(-1).disabled)
+                    while(get().getCurrentPage(-1).disabled)
+                        set(state => ({ currentStep: state.currentStep - 1 }));
+
+                // Hopp tilbake.
+                set(state => ({
                     stepDirection: direction.left,
-                    currentStep: currentStep - 1 * skip
-                });
+                    currentStep: state.currentStep - 1
+                }));
+
+                // Sett neste som aktiv etter dekrement.
                 get().getCurrentPage().active = true;
                 setTimeout(() => set({ isLoading: false }), timeout);
             }
@@ -333,11 +311,11 @@ const useStore = create<IStore>(persist(devtools((set, get) => ({
         setTimeout(() => set({ isLoading: false }), timeout);
     },
     scale: 1,
-    zoomIn: () => {
+    zoomIn: (increment: number) => {
         set(state => ({ scale: state.scale + increment }));
     },
-    zoomOut: () => {
-        set(state => ({ scale: state.scale - increment }));
+    zoomOut: (decrement: number) => {
+        set(state => ({ scale: state.scale - decrement }));
     },
 })), { name: storageName, getStorage: () => localStorage}));
 

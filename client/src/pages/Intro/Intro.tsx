@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Intro(): JSX.Element {
-    const [getCategories, getRoutes] = Zustand.useStore(state => [state.getCategories, state.getRoutes]);
+    const [getCategories, getPages] = Zustand.useStore(state => [state.getCategories, state.getPages]);
     const classes = useStyles();
     const theme = useTheme();
 
@@ -48,7 +48,8 @@ export default function Intro(): JSX.Element {
 
     const Content = () => {   
         const categoryCount = getCategories().length;
-        const pageCount = getRoutes().length;
+        // + 2 for kontorsider.
+        const pageCount = getPages().filter((item) => !item.disabled).length + 2;
     
         const Text = (): JSX.Element => {
             return (

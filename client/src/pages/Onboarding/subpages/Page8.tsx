@@ -15,9 +15,8 @@ import {
 
 import { WavingPersonIcon } from '../../../components/Icons';
 
-import FadderBig from '../../../assets/polygons/FadderBig.svg';
-import FadderMedium from '../../../assets/polygons/FadderMedium.svg';
-import FadderSmall from '../../../assets/polygons/FadderSmall.svg';
+import { HexagonImage } from '../../../components/Custom';
+import { IHexagonImage } from '../../../components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -106,45 +105,31 @@ function SponsorCard() {
 
 }
 
-function Images() {
-    return (
-        <span>
-            <Box
-                position="absolute"
-                left="145px"
-                top="142px"
-                >
-                <img src={FadderBig} alt="Large hexagonally shaped frame of person."/>
-            </Box>
-            <Box
-                position="absolute"
-                left="475px"
-                top="176px"
-                >
-                <img src={FadderMedium} alt="Medium sized hexagonally shaped frame of person."/>
-            </Box>
-            <Box
-                position="absolute"
-                left="375px"
-                top="410px"
-                >
-                <img src={FadderSmall} alt="Small hexagonally shaped frame of person."/>
-            </Box>
-        </span>
-    );
-}
-
-function Content() {
-    const classes = useStyles();
-
-
-    return (
-        <section className={classes.content}>
-            <SponsorCard/>
-            <Images/>            
-        </section>
-    );
-}
+const images: IHexagonImage[] = [
+    {
+        minWidth: 287,
+        minHeight: 313,
+        positionLeft: 145,
+        positionTop: 142,
+        x: -10,
+        imageURL: "https://i.imgur.com/NzudYyk.png"
+    },
+    {
+        minWidth: 237,
+        minHeight: 259,
+        positionLeft: 475,
+        positionTop: 176,
+        x: -10,
+        imageURL: "https://i.imgur.com/045vkwd.png"
+    },
+    {
+        minWidth: 188,
+        minHeight: 188,
+        positionLeft: 375,
+        positionTop: 410,
+        imageURL: "https://i.imgur.com/HHsQUcZ.png"
+    },
+]
 
 export default function Page8() {
     const classes = useStyles();
@@ -152,9 +137,28 @@ export default function Page8() {
     const Title = () => <Typography
         color="textPrimary"
         variant="h4"
-        style={{ fontStyle: 'normal'}}><WavingPersonIcon/>Fadder</Typography>
+        style={{ fontStyle: 'normal'}}
+        >
+        <WavingPersonIcon/>
+        Fadder
+    </Typography>
 
-    const Component = (): JSX.Element => {
+    const Content = (props: any) => <React.Fragment>
+        <SponsorCard/>
+        {images.map((image, index) => <HexagonImage
+                minWidth={image.minWidth}
+                minHeight={image.minHeight}
+                positionLeft={image.positionLeft}
+                positionTop={image.positionTop}
+                x={image.x}
+                imageURL={image.imageURL}
+                key={index}
+                {...props}
+            />
+        )}                
+    </React.Fragment>
+
+    const Component = () => {
         return (
             <SyscoPage
                 title={<Title/>}

@@ -13,6 +13,9 @@ import {
     SyscoPage,
 } from '../../../components/Custom';
 
+import { HexagonImage } from '../../../components/Custom';
+import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+
 import StavangerOfficeProfile from './../../../assets/polygons/StavangerOfficeProfile.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -72,6 +75,7 @@ const rightBox = <React.Fragment>
     Vi er kun en avdeling, har delt ansvaret mellom meg og Geir Olav Hagen. Jeg har HR/ansatte, Geir Olav økonomi og annen admin
 </React.Fragment>
 
+// https://i.imgur.com/LZfSb6h.png
 export default function StavangerOffice() {
     const classes = useStyles();
     const theme = useTheme();
@@ -118,6 +122,13 @@ export default function StavangerOffice() {
                             marginRight: theme.spacing(4)
                         }}
                         />
+                    {/* <HexagonImage
+                        minWidth="150px"
+                        minHeight="172px"
+                        positionLeft="152px"
+                        x={-10}
+                        imageURL="https://i.imgur.com/LZfSb6h.png"
+                    /> */}
 
                     <Typography
                         color="textPrimary"

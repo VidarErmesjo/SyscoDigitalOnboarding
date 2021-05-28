@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Video() {
-    const classes = useStyles();
     const [nextStep] = Zustand.useStore(state => [state.nextStep]);
+    const classes = useStyles();
 
     const opts: Options = {
         width: '1268',
@@ -48,8 +48,8 @@ export default function Video() {
     return (
         <React.Fragment>
             <div className={classes.root}>
-                    <Component/>
-                </div>
+                <Component/>
+            </div>
         </React.Fragment>
     );
 }

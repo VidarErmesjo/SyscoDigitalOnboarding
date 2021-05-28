@@ -4,7 +4,8 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography
+    Typography,
+    useTheme
 } from '@material-ui/core';
 
 import { Zustand } from './../../../store';
@@ -47,38 +48,46 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IMarkers {
     offset: [number, number];
     title: string;
+    id: string;
 }
 
 const markers: IMarkers[] = [
     {
         offset: [125, 190],
         title: "Bergen",
+        id: "bergen-kontoret",
     },
     {
         offset: [220, 205],
         title: "Stord",
+        id: "stord-kontoret",
     },
     {
         offset: [250, 230],
         title: "Ølen",
+        id: "ølen-kontoret",
     },
     {
         offset: [280, 190],
         title: "Haugesund",
+        id: "haugesund-kontoret",
     },
     {
         offset: [195, 660],
         title: "Oslo",
+        id: "oslo-kontoret",
     },
     {
         offset: [360, 225],
         title: "Stavanger",
+        id: "stavanger-kontoret"
     },
 ]
 
 function Markers() {
-    const [currentStep, getPages, gotoStep] = Zustand.useStore(state => [
+    const [currentStep, getPage, getPages, gotoStep] = Zustand.useStore(state => [
         state.currentStep,
+        state.getPage,
         state.getPages,
         state.gotoStep
     ])
@@ -86,9 +95,21 @@ function Markers() {
     const classes = useStyles();
 
     const handleOnClick = (marker: IMarkers) => {
-        const page = pages.find(({ title }) => title === marker.title);
-        const step = pages.indexOf(page!);
-        gotoStep(step === -1 ? currentStep : step);
+        // Finn id til valgt filial.
+        const step = pages.indexOf(pages.find(({ id }) => id === marker.id)!);
+        if(step === -1) {
+            console.log("Error: Could not find page");
+            return;
+        }
+
+        // Skru av kart og skru på filialsider.
+        const map = getPage(currentStep);
+        const parent = getPage(step);
+        const child = getPage(step + 1);
+        map.disabled = true;
+        parent.disabled = false;
+        child.disabled = false;
+        gotoStep(step);
     }
 
     return (
@@ -122,7 +143,7 @@ export default function Norway() {
 
     const Component = () => {
         return (
-            <div style={{ transform: `scale(1)`}}>         
+            <div>         
                 <NorwayMap/>
                 <Markers/>
             </div>

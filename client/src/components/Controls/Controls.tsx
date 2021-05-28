@@ -59,7 +59,8 @@ export default function Controls() {
         nextStep,
         previousStep,
         zoomIn,
-        zoomOut
+        zoomOut,
+        getCurrentPage
     ] = Zustand.useStore(state => [
         state.isLoading,
         state.currentStep,
@@ -67,10 +68,29 @@ export default function Controls() {
         state.nextStep,
         state.previousStep,
         state.zoomIn,
-        state.zoomOut
+        state.zoomOut,
+        state.getCurrentPage
     ], shallow);
 
     const classes = useStyles();
+    const page = React.useMemo(() => getCurrentPage(), [currentStep, getCurrentPage]);
+
+    /*document.addEventListener('keydown', function(event) {
+        if(event.key === "ArrowLeft") {
+            previousStep();
+        }
+        else if(event.key === "ArrowRight") {
+            nextStep();
+        }
+        else if(event.key === "ArrowUp") {
+            zoomIn(0.005);
+        }
+        else if(event.key === "ArrowDown") {
+            zoomOut(0.005);
+        }
+    })*/
+
+    const restrict = page.id === "kart";
 
     const Navigation = () => <React.Fragment>
             <IconButton
@@ -91,7 +111,7 @@ export default function Controls() {
                 disabled={currentStep! >= totalSteps!
                     ? true
                     : false
-                    || isLoading}
+                    || isLoading || restrict}
                 className={classes.iconButton}
                 style={{ right: 0 }}
                 >
@@ -102,7 +122,7 @@ export default function Controls() {
     const Zoom = () => <React.Fragment>
         <IconButton
             color="secondary"
-            onClick={zoomIn}
+            onClick={() => zoomIn(0.05)}
             className={classes.zoomButton}
             style={{ top: "15%" }}
             >
@@ -110,7 +130,7 @@ export default function Controls() {
         </IconButton>
         <IconButton
             color="secondary"
-            onClick={zoomOut}
+            onClick={() => zoomOut(0.05)}
             className={classes.zoomButton}
             style={{ top: "30%" }}
             >

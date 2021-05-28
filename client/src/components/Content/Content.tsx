@@ -4,7 +4,8 @@ import {
     Container,
     createStyles,
     makeStyles,
-    Theme
+    Theme,
+    useTheme
 } from '@material-ui/core';
 
 import {
@@ -45,6 +46,7 @@ export default function Content() {
     ], shallow);
 
     const classes = useStyles();
+    const theme = useTheme();
 
     // Omdiriger browser til innlogging ved avsluttet Onboarding.
     const history = useHistory();
@@ -56,15 +58,26 @@ export default function Content() {
     }, [user, history]);
 
     // Henter inn alle ruter.
-    const routes = React.useMemo(() => 
-        getRoutes().map(({ path, component }, key) => {
-            return <Route
+    const transitionRoutes = React.useMemo(() => 
+        getRoutes()
+            .filter((route) => route.component !== "video" && route.component !== "norway")
+            .map(({ path, component }, key) => <Route
                 exact
                 path={path}
                 component={Components[component]}
                 key={key}
             />
-        }
+    ), [user, getRoutes]);
+
+    const fadeRoutes = React.useMemo(() =>
+        getRoutes()
+            .filter((route) => route.component === "video" || route.component === "norway")
+            .map(({ path, component }, key) => <Route
+                exact
+                path={path}
+                component={Components[component]}
+                key={key}
+            />
     ), [user, getRoutes]);
 
     const currentRoute = React.useMemo(() => getCurrentRoute().path, [currentStep, getCurrentRoute]);
@@ -75,6 +88,13 @@ export default function Content() {
         from: { opacity: 0, transform: `translateX(${from})` },
         enter: { opacity: 1, transform: `translateX(0%)` },
         leave: { opacity: 0, transform: `translateX(${leave})` }
+    })
+
+    const fades = useTransition(useLocation(), location => location.pathname, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: theme.transitions.duration.enteringScreen }
     })
 
     return (
@@ -95,13 +115,19 @@ export default function Content() {
                         exact
                         to={currentRoute}
                     />}
-                    {transitions.map(({ item: location, props, key }) => {
-                        return <animated.div style={props} key={key}>
+                    {fadeRoutes}
+                    {fades.map(({ item: location, props, key }) => <animated.div style={props} key={key}>
                             <Switch location={location}>
-                                {routes}
+                                
+                            </Switch>
+                        </animated.div>                        
+                    )}
+                    {transitions.map(({ item: location, props, key }) => <animated.div style={props} key={key}>
+                            <Switch location={location}>
+                                {transitionRoutes}
                             </Switch>
                         </animated.div>
-                    })}
+                    )}
                 </React.Fragment>
             </Container>
         </React.Fragment>

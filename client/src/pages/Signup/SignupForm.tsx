@@ -15,8 +15,7 @@ import {
 import {
     Formik,
     Form,
-    FormikHelpers,
-    //useFormik
+    FormikHelpers
 } from 'formik';
 
 import { Zustand } from '../../store';
@@ -42,11 +41,10 @@ interface Values {
     email: string;
 }
 
-export default function SignupForm(props: any) {
+export default function SignupForm() {
     const signIn = Zustand.useStore(state => state.signIn);
 
     const classes = useStyles();
-    //const formik = useFormik(initialValues, validationSchema);
 
     const initialValues = {
         email: '',
