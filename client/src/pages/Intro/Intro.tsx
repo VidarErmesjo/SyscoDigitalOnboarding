@@ -9,9 +9,9 @@ import {
     useTheme
 } from '@material-ui/core';
 
-import { Zustand } from './../../store';
+import { Zustand } from 'store';
 
-import { SyscoPage, SyscoLine } from '../../components/Custom';
+import { SyscoPage, SyscoLine } from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

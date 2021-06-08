@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import BergenOfficeBig from '../../../assets/polygons/BergenOfficeBig.svg';
-import BergenOfficeMedium from '../../../assets/polygons/BergenOfficeMedium.svg';
-import BergenOfficeSmall from '../../../assets/polygons/BergenOfficeSmall.svg';
+import BergenOfficeBig from 'assets/polygons/BergenOfficeBig.svg';
+import BergenOfficeMedium from 'assets/polygons/BergenOfficeMedium.svg';
+import BergenOfficeSmall from 'assets/polygons/BergenOfficeSmall.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

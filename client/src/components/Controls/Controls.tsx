@@ -15,7 +15,7 @@ import {
 } from '@material-ui/icons';
 
 import shallow from 'zustand/shallow';
-import { Zustand } from '../../store';
+import { Zustand } from 'store';
 
 const chevronSize = 100;
 const zoomSize = 100;
@@ -96,10 +96,9 @@ export default function Controls() {
             <IconButton
                 color="secondary"
                 onClick={previousStep}
-                disabled={currentStep! < 1
+                disabled={currentStep < 1
                     ? true
-                    : false
-                    || isLoading}
+                    : isLoading}
                 className={classes.iconButton}
                 style={{ left: 0 }}
                 >
@@ -108,10 +107,9 @@ export default function Controls() {
             <IconButton
                 color="secondary"
                 onClick={nextStep}
-                disabled={currentStep! >= totalSteps!
+                disabled={currentStep >= totalSteps
                     ? true
-                    : false
-                    || isLoading || restrict}
+                    : isLoading || restrict}
                 className={classes.iconButton}
                 style={{ right: 0 }}
                 >

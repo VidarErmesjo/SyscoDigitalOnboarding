@@ -11,12 +11,12 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { WavingPersonIcon } from '../../../components/Icons';
+import { WavingPersonIcon } from 'components/Icons';
 
-import { HexagonImage } from '../../../components/Custom';
-import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import { HexagonImage } from 'components/Custom';
+import { IHexagonImage } from 'components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

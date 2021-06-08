@@ -12,7 +12,7 @@ import { Assignment as AssignmentIcon } from '@material-ui/icons';
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

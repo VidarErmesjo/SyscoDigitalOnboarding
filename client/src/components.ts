@@ -12,7 +12,7 @@ import {
 } from './pages';
 
 // Del 1 - "Introduksjon"
-import { Video } from './pages/Intro/subpages';
+import { Video } from 'pages/Intro/subpages';
 
 // Del 2 - "Presentasjon"
 import {
@@ -25,7 +25,7 @@ import {
     Page7 as Presentation7,
     Page8 as Presentation8,
     Page9 as Presentation9
-} from './pages/Presentation/subpages';
+} from 'pages/Presentation/subpages';
 
 // Del 3 - "Ditt kontor"
 import {
@@ -42,7 +42,7 @@ import {
     StavangerOffice,
     Stord,
     StordOffice
-} from './pages/YourOffice/subpages';
+} from 'pages/YourOffice/subpages';
 
 // Del 4 - "Onboarding""
 import {
@@ -56,7 +56,7 @@ import {
     Page8 as Onboarding8,
     Page9 as Onboarding9,
     Page10 as Onboarding10,
-} from './pages/Onboarding/subpages';
+} from 'pages/Onboarding/subpages';
 
 // Del 5 - "Sosialt i SYSCO"
 import {
@@ -66,19 +66,19 @@ import {
     Page4 as Social4,
     Page5 as Social5,
     Page6 as Social6,
-} from './pages/Social/subpages';
+} from 'pages/Social/subpages';
 
 // Del 6 - "Motiverende for ansatte"
 import {
     Page1 as Motivation1,
-} from './pages/Motivation/subpages';
+} from 'pages/Motivation/subpages';
 
-interface ICompontents {
+interface IComponents {
     [key: string]: React.ComponentType<JSX.Element>
 }
 
 // Her defineres alle sidene.
-const Components: ICompontents = {
+const Components: IComponents = {
     intro: Intro,
     video: Video,
     presentation: Presentation,

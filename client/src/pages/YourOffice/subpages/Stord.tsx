@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import StordMaraton from './../../../assets/images/StordMaraton.png';
-import StordSprotslig from './../../../assets/images/StordSportslig.png';
-import StordOrganisering from './../../../assets/images/StordOrganisering.png';
+import StordMaraton from 'assets/images/StordMaraton.png';
+import StordSprotslig from 'assets/images/StordSportslig.png';
+import StordOrganisering from 'assets/images/StordOrganisering.png';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

@@ -11,12 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { SportsHandballIcon } from '../../../components/Icons';
+import { SportsHandballIcon } from 'components/Icons';
 
-import { HexagonImage } from '../../../components/Custom';
-import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import HexagonImage, { IHexagonImage } from 'components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

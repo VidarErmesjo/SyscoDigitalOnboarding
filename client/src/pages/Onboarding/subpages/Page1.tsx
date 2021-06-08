@@ -11,13 +11,13 @@ import {
 import {
     SyscoCard,
     SyscoPage
-} from '../../../components/Custom';
+} from 'components/Custom';
 
 import {
     AccountIcon,
     AssignmentIcon,
     WavingPersonIcon
-} from '../../../components/Icons';
+} from 'components/Icons';
 
 const itemSpacing = 24;
 

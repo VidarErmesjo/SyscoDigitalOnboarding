@@ -4,7 +4,7 @@ import {
 
 import { useField } from 'formik';
 
-import SyscoTextField from '../../components/Custom/SyscoTextField';
+import SyscoTextField from 'components/Custom/SyscoTextField';
 
 type Props = TextFieldProps & {
     name: string;

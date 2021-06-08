@@ -14,18 +14,18 @@ import {
 import {
     SyscoPage,
     SyscoOverlay
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { AccountIcon, LoginIcon, ShieldIcon } from '../../../components/Icons';
+import { AccountIcon, LoginIcon, ShieldIcon } from 'components/Icons';
 
-import WikiLogo from '../../../components/Custom/WikiLogo.svg';
-import SharepointLogo from '../../../components/Custom/SharepointLogo.svg';
-import TeamsLogo from '../../../components/Custom/TeamsLogo.svg';
-import OutlookLogo from '../../../components/Custom/OutlookLogo.svg';
-import OneDriveLogo from '../../../components/Custom/OneDriveLogo.svg';
-import SlackLogo from '../../../components/Custom/SlackLogo.svg';
-import CVPartnerLogo from '../../../components/Custom/CVPartnerLogo.svg';
-import UdemyLogo from '../../../components/Custom/UdemyLogo.svg';
+import WikiLogo from 'components/Custom/WikiLogo.svg';
+import SharepointLogo from 'components/Custom/SharepointLogo.svg';
+import TeamsLogo from 'components/Custom/TeamsLogo.svg';
+import OutlookLogo from 'components/Custom/OutlookLogo.svg';
+import OneDriveLogo from 'components/Custom/OneDriveLogo.svg';
+import SlackLogo from 'components/Custom/SlackLogo.svg';
+import CVPartnerLogo from 'components/Custom/CVPartnerLogo.svg';
+import UdemyLogo from 'components/Custom/UdemyLogo.svg';
 
 
 const useStyles = makeStyles((theme: Theme) =>

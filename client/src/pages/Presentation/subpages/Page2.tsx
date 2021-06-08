@@ -9,12 +9,12 @@ import {
 
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import HexagonImage, { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import HexagonImage, { IHexagonImage } from 'components/Custom/HexagonImage';
 
 
 import {
     SyscoPage
-} from '../../../components/Custom';
+} from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

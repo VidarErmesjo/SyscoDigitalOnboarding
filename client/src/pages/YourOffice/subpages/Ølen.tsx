@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import ØlenKontoret from './../../../assets/images/ØlenKontoret.png';
-import ØlenSosialt from './../../../assets/images/ØlenSosialt.png';
-import ØlenCovid19 from './../../../assets/images/ØlenCovid19.png';
+import ØlenKontoret from 'assets/images/ØlenKontoret.png';
+import ØlenSosialt from 'assets/images/ØlenSosialt.png';
+import ØlenCovid19 from 'assets/images/ØlenCovid19.png';
 
 
 const useStyles = makeStyles((theme: Theme) =>

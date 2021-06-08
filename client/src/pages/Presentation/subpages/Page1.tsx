@@ -14,9 +14,9 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import CakeIcon from '@material-ui/icons/Cake';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 
-import HexagonImage, { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import HexagonImage, { IHexagonImage } from 'components/Custom/HexagonImage';
 
-import { SyscoPage, SyscoLogo } from '../../../components/Custom';
+import { SyscoPage, SyscoLogo } from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

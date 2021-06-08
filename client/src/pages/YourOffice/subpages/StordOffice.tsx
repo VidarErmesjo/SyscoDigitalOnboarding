@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import StordOfficeBig from '../../../assets/polygons/StordOfficeBig.svg';
-import StordOfficeMedium from '../../../assets/polygons/StordOfficeMedium.svg';
-import StordOfficeSmall from '../../../assets/polygons/StordOfficeSmall.svg';
+import StordOfficeBig from 'assets/polygons/StordOfficeBig.svg';
+import StordOfficeMedium from 'assets/polygons/StordOfficeMedium.svg';
+import StordOfficeSmall from 'assets/polygons/StordOfficeSmall.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

@@ -18,7 +18,7 @@ import {
     FormikHelpers
 } from 'formik';
 
-import { Zustand } from '../../store';
+import { Zustand } from 'store';
 import * as Yup from 'yup';
 import TextField from './TextFieldWrapper';
 
@@ -61,8 +61,9 @@ export default function SignupForm() {
         fetch('/api/signup').then((response) => {
             return response.json();
         }).then((payload) => {
+            console.log(`SignupForm.tsx => payload: ${payload}`);
         }).catch(error => {
-            console.log(error);
+            console.log(`SignupForm.tsx => error: ${error}`);
         })
         signIn(values.email);
     };

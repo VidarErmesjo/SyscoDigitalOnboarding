@@ -13,14 +13,14 @@ import {
 import {
     SyscoCard,
     SyscoPage
-} from '../../../components/Custom';
+} from 'components/Custom';
 
 import {
     MoodIcon,
     OutdoorGrillIcon,
     SportsHandballIcon,
     SportsVolleyballIcon,
-} from '../../../components/Icons';
+} from 'components/Icons';
 
 const itemSpacing = 24;
 
@@ -75,7 +75,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const title = "Sosialt";
-const afterWorkText = "Som nyansatt får du en SYSCO fadder som vil følge deg opp den første tiden. Hen vil være en coach og veileder de første ca. 3 ukene.";
+const afterWorkText = "Ved flere av kontorene hos Sysco har man “After Work” ativiteter. Det er lønningspils, lunsjer, middager og annet sosialt som skaper samhold på kontoret.";
+const bedriftslagText = "Sysco har også flere bedriftslag og sosiale tilbud innenfor sport og aktivitet. Et eksempel fra et kontor  er Stors som løper Sunhordaland maraton sammen. Haugesund driver også med felles treningsøkter både inne og ute.";
+const fagligUtviklingText = "Her i Sysco tar vi kompetanseutvikling seriøst. Du får gode muligheter for å utvikle deg faglig og bygge ny kompetanse.";
 
 export default function Page3() {
     const classes = useStyles();
@@ -95,7 +97,7 @@ export default function Page3() {
         top="335px"
         display="flex"
         justifyContent="space-evenly"
-        alignItems="center"
+        alignItems="baseline"
         >
         <span className={classes.item}>
             <SyscoCard
@@ -109,16 +111,16 @@ export default function Page3() {
             <SyscoCard
                 title="Bedriftslag"
                 icon={<SportsHandballIcon/>}
-                content={afterWorkText}  
+                content={bedriftslagText}  
                 onClick={() => alert("Bedriftslag")}                      
             />
         </span>
         <span className={classes.item}>
             <SyscoCard
-                title="Annen moro"
+                title="Faglig utvikling"
                 icon={<MoodIcon/>}
-                content={afterWorkText}
-                onClick={() => alert("Annen moro")}                     
+                content={fagligUtviklingText}
+                onClick={() => alert("Faglig utvikling")}                     
             />                   
         </span>
     </Box>

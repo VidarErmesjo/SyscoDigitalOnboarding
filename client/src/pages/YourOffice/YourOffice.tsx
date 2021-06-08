@@ -11,7 +11,7 @@ import {
 import {
     SyscoPage,
     SyscoLine
-} from './../../components/Custom';
+} from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

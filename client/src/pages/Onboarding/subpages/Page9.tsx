@@ -11,9 +11,9 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { AssignmentIcon } from '../../../components/Icons';
+import { AssignmentIcon } from 'components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

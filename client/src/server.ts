@@ -1,7 +1,7 @@
 import { createServer } from "miragejs"
 
 // Data som skal hentes fra "back-end".
-import onboardingData from './onboarding-data.json';
+import onboardingData from 'onboarding-data.json';
 
 // Users
 const users: string[] = [

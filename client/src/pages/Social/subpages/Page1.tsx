@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -10,10 +9,9 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { HexagonImage } from '../../../components/Custom';
-import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import HexagonImage, { IHexagonImage } from 'components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

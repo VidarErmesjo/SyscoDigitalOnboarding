@@ -9,7 +9,7 @@ import {
 
 import { Spring } from 'react-spring/renderprops';
 
-import { Progress } from '../Progress';
+import { Progress } from 'components/Progress';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -39,7 +39,7 @@ export default function Footer() {
                     to={{ opacity: 1 }}
                     config={{ duration: theme.transitions.duration.enteringScreen }}
                     >
-                    {props => <div style={props}>{true && <Progress/>}</div>}
+                    {props => <div style={props}><Progress/></div>}
                 </Spring>
             </footer>
         </React.Fragment>

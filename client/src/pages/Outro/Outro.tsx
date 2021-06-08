@@ -9,7 +9,7 @@ import {
 
 import {
     SyscoPage
-} from './../../components/Custom';
+} from 'components/Custom';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Outro() {
     const classes = useStyles();
 
-    const Title = () => <Typography color="secondary" variant="h1">... Quiz?</Typography>;
+    const Title = () => <Typography color="secondary" variant="h1">Quiz</Typography>;
 
     const Content = () => {    
         return (

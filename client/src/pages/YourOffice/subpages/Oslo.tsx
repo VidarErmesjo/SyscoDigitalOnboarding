@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import OsloBig from './../../../assets/polygons/StavangerBig.svg';
-import OsloMedium from './../../../assets/polygons/StavangerMedium.svg';
-import OsloSmall from './../../../assets/polygons/StavangerSmall.svg';
+import OsloBig from 'assets/polygons/StavangerBig.svg';
+import OsloMedium from 'assets/polygons/StavangerMedium.svg';
+import OsloSmall from 'assets/polygons/StavangerSmall.svg';
 
 
 const useStyles = makeStyles((theme: Theme) =>

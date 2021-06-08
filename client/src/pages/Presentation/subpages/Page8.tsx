@@ -12,9 +12,9 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { CheckIcon, PeopleIcon } from '../../../components/Icons';
+import { CheckIcon, PeopleIcon } from 'components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

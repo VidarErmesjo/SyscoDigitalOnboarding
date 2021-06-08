@@ -16,12 +16,12 @@ import {
     useTheme,
 } from '@material-ui/core';
 
-import { Zustand } from './../../store';
+import { Zustand } from 'store';
 import shallow from 'zustand/shallow';
 
 const CustomConnector = withStyles((theme: Theme) => ({
     alternativeLabel: {
-        top: `calc(50% - 21.5px)`,
+        top: `calc(50% - 0.75rem)`,
         left: `calc(-50% + 30px)`,
         right: `calc(50% + 30px)`,
         width: 'auto',
@@ -154,7 +154,7 @@ export default function Progress() {
                                 variant="caption"
                                 style={{ userSelect: 'none'}}
                                 >
-                                {page.title}
+                                {/* {page.title} */}
                             </Typography>
                         </StepLabel>                       
                     </Step>)}

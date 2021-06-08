@@ -4,15 +4,14 @@ import {
     createStyles,
     makeStyles,
     Theme,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
 
 import { Zustand } from './../../../store';
 
 import NorwayMap from './NorwayMap';
 
-import { GeoMarkerIcon } from '../../../components/Icons';
+import { GeoMarkerIcon } from 'components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

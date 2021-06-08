@@ -13,12 +13,12 @@ import {
 import {
     SyscoPage,
     SyscoOverlay
-} from '../../../components/Custom';
+} from 'components/Custom';
 
 import {
     AssignmentIcon,
     UpRightArrowIcon
-} from '../../../components/Icons';
+} from 'components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

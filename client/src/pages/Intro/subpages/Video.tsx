@@ -6,7 +6,7 @@ import {
     Theme
 } from '@material-ui/core';
 
-import { Zustand } from '../../../store';
+import { Zustand } from 'store';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: `translate(-50%, -50%)`
+            transform: `translate(-50%, -50%)`,
+            zIndex: 1000000,
         },
     })
 );

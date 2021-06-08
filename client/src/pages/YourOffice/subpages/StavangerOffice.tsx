@@ -11,12 +11,12 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { HexagonImage } from '../../../components/Custom';
-import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import { HexagonImage } from 'components/Custom';
+import { IHexagonImage } from 'components/Custom/HexagonImage';
 
-import StavangerOfficeProfile from './../../../assets/polygons/StavangerOfficeProfile.svg';
+import StavangerOfficeProfile from 'assets/polygons/StavangerOfficeProfile.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

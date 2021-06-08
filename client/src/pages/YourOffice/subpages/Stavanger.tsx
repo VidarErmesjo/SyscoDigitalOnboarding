@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import StavangerBig from './../../../assets/polygons/StavangerBig.svg';
-import StavangerMedium from './../../../assets/polygons/StavangerMedium.svg';
-import StavangerSmall from './../../../assets/polygons/StavangerSmall.svg';
+import StavangerBig from 'assets/polygons/StavangerBig.svg';
+import StavangerMedium from 'assets/polygons/StavangerMedium.svg';
+import StavangerSmall from 'assets/polygons/StavangerSmall.svg';
 
 const text = "Vi pleier å ha et kick off på høsten, reiser et sted for en helg. Spiser godt, god drikke og masse moro og gøy.";
 

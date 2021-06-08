@@ -11,12 +11,12 @@ import {
 import { Zustand } from './store';
 import shallow from 'zustand/shallow';
 
-import { Content } from './components/Content'
-import { Controls } from './components/Controls';
-import { Footer } from './components/Footer';
-import { Header } from './components/Header';
+import { Content } from 'components/Content'
+import { Controls } from 'components/Controls';
+import { Footer } from 'components/Footer';
+import { Header } from 'components/Header';
 
-import onboardingData from './onboarding-data.json';
+import onboardingData from 'onboarding-data.json';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

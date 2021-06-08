@@ -19,10 +19,10 @@ import {
 import { animated, useTransition } from 'react-spring';
 
 import shallow from 'zustand/shallow';
-import { Zustand } from '../../store';
+import { Zustand } from 'store';
 
-import { Signup } from './../../pages';
-import Components from './../../components';
+import { Signup } from 'pages';
+import Components from 'components';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

@@ -13,13 +13,13 @@ import { Assignment as AssignmentIcon } from '@material-ui/icons';
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import WhatWeDo1 from '../../../assets/polygons/WhatWeDo1.svg';
-import WhatWeDo2 from '../../../assets/polygons/WhatWeDo2.svg';
-import WhatWeDo3 from '../../../assets/polygons/WhatWeDo3.svg';
-import WhatWeDo4 from '../../../assets/polygons/WhatWeDo4.svg';
-import WhatWeDo5 from '../../../assets/polygons/WhatWeDo5.svg';
+import WhatWeDo1 from 'assets/polygons/WhatWeDo1.svg';
+import WhatWeDo2 from 'assets/polygons/WhatWeDo2.svg';
+import WhatWeDo3 from 'assets/polygons/WhatWeDo3.svg';
+import WhatWeDo4 from 'assets/polygons/WhatWeDo4.svg';
+import WhatWeDo5 from 'assets/polygons/WhatWeDo5.svg';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

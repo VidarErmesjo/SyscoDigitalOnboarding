@@ -12,9 +12,9 @@ import {
 import {
     SyscoPage,
     VismaSeveraLogo
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { AccountIcon } from '../../../components/Icons';
+import { AccountIcon } from 'components/Icons';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

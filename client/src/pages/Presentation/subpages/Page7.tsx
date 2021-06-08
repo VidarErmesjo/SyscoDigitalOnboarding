@@ -11,11 +11,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { CheckIcon } from '../../../components/Icons';
+import { CheckIcon } from 'components/Icons';
 
-import Background from '../../../assets/images/ElhubProsjektet.png';
+import Background from 'assets/images/ElhubProsjektet.png';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({

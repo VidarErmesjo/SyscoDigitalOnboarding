@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-    Box,
     createStyles,
     makeStyles,
     Theme,
@@ -11,12 +10,11 @@ import {
 
 import {
     SyscoPage,
-} from '../../../components/Custom';
+} from 'components/Custom';
 
-import { MoodIcon } from '../../../components/Icons';
+import { MoodIcon } from 'components/Icons';
 
-import { HexagonImage } from '../../../components/Custom';
-import { IHexagonImage } from '../../../components/Custom/HexagonImage';
+import HexagonImage, { IHexagonImage } from 'components/Custom/HexagonImage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -143,7 +141,7 @@ export default function Page5() {
         return (
             <SyscoPage
                 title={<Title/>}
-                category="Annet moro"
+                category="Faglig innhold"
                 icon={<MoodIcon/>}
                 content={<Content/>}
                 color="secondary"
