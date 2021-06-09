@@ -64,13 +64,13 @@ export default function Intro(): JSX.Element {
                         Du kan navigere deg frem og tilbake i prosessen ved å benytte deg av <strong style={{ color: theme.palette.secondary.main}}>de grønne navigasjonspilene</strong> du finner på venstre og høyre side av denne teksten.
                         <br/><br/><br/>
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         color="secondary"
                         variant="h4"
                         style={{ textAlign: 'center' }}
                         >
                         Lykke til :)
-                    </Typography>
+                    </Typography> */}
                 </React.Fragment>
             );
         }
